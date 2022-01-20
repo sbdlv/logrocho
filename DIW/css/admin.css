@@ -1,0 +1,60 @@
+#side_bar_admin {
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+}
+
+#side_bar_admin .nav-link:hover {
+  background-color: var(--bs-blue);
+}
+
+.table th {
+  background-color: transparent;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.table th:hover {
+  background-color: #f6f7f9;
+}
+
+.table th,
+.table td {
+  padding: 15px;
+}
+
+.table tr {
+  vertical-align: middle;
+}
+
+.table tbody tr:nth-child(odd) {
+  background-color: #f6f7f9;
+}
+
+#searchWrapper {
+  position: relative;
+}
+
+#searchWrapper .fa-search {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+#searchWrapper input {
+  padding-left: 40px;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+body main {
+  min-height: 100vh;
+  margin-left: 250px;
+}
+/*# sourceMappingURL=admin.css.map */
