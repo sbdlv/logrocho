@@ -1,23 +1,23 @@
 <?php
-class BarController
+class PinchoController
 {
 
     function index($id = false)
     {
-        require_once "repository/BarRepository.php";
-        $repo = new BarRepository();
+        require_once "repository/PinchoRepository.php";
+        $repo = new PinchoRepository();
         
-        $bars = $repo->findAll();
-        $activeMenu = "bar";
-        include "view/Bar/index.php";
+        $pinchos = $repo->findAll();
+        $activeMenu = "pincho";
+        include "view/Pincho/index.php";
     }
     
     function info($id){
-        require_once "repository/BarRepository.php";
-        $repo = new BarRepository();
+        require_once "repository/PinchoRepository.php";
+        $repo = new PinchoRepository();
         
-        $bar = $repo->find($id);
-        $activeMenu = "bar";
+        $pincho = $repo->find($id);
+        $activeMenu = "pincho";
         include "view/Bar/info.php";
     }
 
@@ -40,8 +40,8 @@ class BarController
     function json($page){
         header('Content-Type: application/json; charset=utf-8');
         
-        require_once "repository/BarRepository.php";
-        $repo = new BarRepository();
+        require_once "repository/PinchoRepository.php";
+        $repo = new PinchoRepository();
 
         echo json_encode($repo->findAll(0,1));
     }

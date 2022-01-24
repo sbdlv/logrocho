@@ -1,9 +1,12 @@
 <?php
 require_once "IDAO.php";
-require_once "model/Bar.php";
+require_once "model/Pincho.php";
 
-class BarRepository implements IDAO
+class PinchoRepository implements IDAO
 {
+
+    private const DB_TABLE = "pincho";
+
     /**
      * Obtiene la información de un usuario
      *
@@ -12,26 +15,26 @@ class BarRepository implements IDAO
      */
     function find($id)
     {
-        $stmt = getConexion()->prepare("SELECT * FROM bar WHERE `id` = ?");
+        $stmt = getConexion()->prepare("SELECT * FROM " . self::DB_TABLE . " WHERE `id` = ?");
         $stmt->execute([$id]);
 
         $fetch = $stmt->fetchAll();
 
-        return Bar::getInstance($fetch[0]);
+        return Pincho::getInstance($fetch[0]);
     }
 
     function findAll($page = false, $amount = 1)
     {
         if($page){
-            $results = getConexion()->query("SELECT * FROM bar LIMIT $page,$amount");
+            $results = getConexion()->query("SELECT * FROM " . self::DB_TABLE . " LIMIT $page,$amount");
         } else {
-            $results = getConexion()->query("SELECT * FROM bar");
+            $results = getConexion()->query("SELECT * FROM " . self::DB_TABLE . "");
         }
 
         $instances = [];
 
         foreach ($results as $row) {
-            $instances[] = Bar::getInstance($row);
+            $instances[] = Pincho::getInstance($row);
         }
 
         return $instances;
@@ -56,7 +59,7 @@ class BarRepository implements IDAO
 
     function delete($obj) :bool
     {
-        $stmt = getConexion()->prepare("DELETE FROM bar WHERE `id` = ?");
+        $stmt = getConexion()->prepare("DELETE FROM " . self::DB_TABLE . " WHERE `id` = ?");
         $stmt->execute([$obj->id]);
 
         return $stmt->rowCount();

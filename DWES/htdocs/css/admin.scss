@@ -1,20 +1,6 @@
-body{
-    display: flex;
+//* COMPONENTS
+@import "admin/components/side_bar";
+@import "admin/components/tables";
 
-    main{
-        min-height: 100vh;
-        margin-left: 250px;
-    }
-}
-
-#side_bar_admin{
-    width: 250px;
-    height: 100vh;
-    position: fixed;
-
-    .nav-link{
-        &:hover{
-            background-color: var(--bs-blue);
-        }
-    }
-}
+//* GLOBAL
+@import "admin/global";

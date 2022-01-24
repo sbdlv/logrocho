@@ -67,4 +67,15 @@ input:not([type="submit"]) {
 .reseña_destacada .imgWrapper img {
   border-radius: .25rem;
 }
-/*# sourceMappingURL=main.css.map */
+
+.login_form {
+  max-width: 500px;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  left: 0;
+  right: 0;
+  padding: 25px;
+}
+/*# sourceMappingURL=style.css.map */

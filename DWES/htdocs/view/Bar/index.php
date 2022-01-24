@@ -8,51 +8,14 @@
     <title>Listado usuarios - Panel admin</title>
     <base href="<?= dirname(getServerAbsPathForActions()) ?>/">
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/listado.css">
-    <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
-    <aside class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" id="side_bar_admin">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <i class="fas fa-tools me-2"></i>
-            <span class="fs-4">Panel admin</span>
-        </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item mb-2">
-                <a href="listado_restaruante.html" class="nav-link active" aria-current="page">
-                    <i class="fas fa-store"></i>
-                    Restaurantes
-                </a>
-            </li>
-            <li class="nav-item mb-2">
-                <a href="listado_pincho.html" class="nav-link text-white">
-                    <i class="fas fa-utensils"></i>
-                    Pinchos
-                </a>
-            </li>
-            <li class="nav-item mb-2">
-                <a href="listado_usuario.html" class="nav-link text-white">
-                    <i class="fas fa-users"></i>
-                    Usuarios
-                </a>
-            </li>
-            <li class="nav-item mb-2">
-                <a href="listado_resenia.html" class="nav-link text-white">
-                    <i class="fas fa-gavel"></i>
-                    Reseñas
-                </a>
-            </li>
-        </ul>
-        <hr>
-        <div class="dropdown">
-            <a href="index.html" class="btn bg-danger text-white"><i class="fas fa-sign-out-alt"></i></a>
-        </div>
-    </aside>
+    <?php include "view/side_bar_admin.php"?>
     <main class="w-100 p-4">
         <div class="container">
             <h1 class="mb-4">Bares</h1>
@@ -113,7 +76,7 @@
                                     <td class="puntuacionWrapper text-center">?<i class="fas fa-star"></i></td>
                                     <td class="text-center"><?=$bar->lon?></td>
                                     <td class="text-center"><?=$bar->lat?></td>
-                                    <td class="text-center"><a href="ficha_restaurante.html"><i class="fas fa-external-link-alt"></i></a></td>
+                                    <td class="text-center"><a href="<?=getServerAbsPathForActions()?>bar/info/<?=$bar->id?>"><i class="fas fa-external-link-alt"></i></a></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>

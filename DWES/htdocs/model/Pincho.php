@@ -4,9 +4,9 @@ require_once "AbstractMappedSQLModel.php";
 
 class Pincho extends AbstractMappedSQLModel{
 
-    static int $id;
-    static int $bar_id;
-    static string $name;
+    public int $id;
+    public int $bar_id;
+    public string $name;
 
     static function getPropertiesMapArray(): array
     {
