@@ -4,7 +4,8 @@ CREATE TABLE `user` (
   `email` varchar(255) UNIQUE,
   `password` varchar(255),
   `admin` boolean,
-  `created_date` date
+  `created_date` date,
+  `img_path` varchar(255)
 );
 
 CREATE TABLE `bar` (
@@ -13,7 +14,8 @@ CREATE TABLE `bar` (
   `address` varchar(255),
   `lon` decimal,
   `lat` decimal,
-  `terrace` boolean
+  `terrace` boolean,
+  `principal_img_id` int
 );
 
 CREATE TABLE `multimediaBar` (
@@ -30,7 +32,7 @@ CREATE TABLE `review` (
   `presentation` tinyint,
   `texture` tinyint,
   `taste` tinyint,
-  `pincho` int
+  `pincho_id` int
 );
 
 CREATE TABLE `multimediaReview` (
@@ -45,15 +47,23 @@ CREATE TABLE `review_user` (
   `review_id` int
 );
 
+CREATE TABLE `review_user_likes` (
+  `id` int PRIMARY KEY AUTO_INCREMENT,
+  `user_id` int,
+  `isLike` boolean
+);
+
 CREATE TABLE `pincho` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `bar_id` int,
-  `name` varchar(255)
+  `name` varchar(255),
+  `principal_img_id` int
 );
 
 CREATE TABLE `allergen` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `name` varchar(255)
+  `name` varchar(255),
+  `img_path` varchar(255)
 );
 
 CREATE TABLE `pincho_allergen` (
@@ -68,11 +78,13 @@ CREATE TABLE `multimediaPincho` (
   `path` varchar(255)
 );
 
+ALTER TABLE `bar` ADD FOREIGN KEY (`principal_img_id`) REFERENCES `multimediaBar` (`id`);
+
 ALTER TABLE `multimediaBar` ADD FOREIGN KEY (`bar_id`) REFERENCES `bar` (`id`);
 
 ALTER TABLE `review` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
-ALTER TABLE `review` ADD FOREIGN KEY (`pincho`) REFERENCES `pincho` (`id`);
+ALTER TABLE `review` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`);
 
 ALTER TABLE `multimediaReview` ADD FOREIGN KEY (`review_id`) REFERENCES `review` (`id`);
 
@@ -80,7 +92,11 @@ ALTER TABLE `review_user` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 ALTER TABLE `review_user` ADD FOREIGN KEY (`review_id`) REFERENCES `review` (`id`);
 
+ALTER TABLE `review_user_likes` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+
 ALTER TABLE `pincho` ADD FOREIGN KEY (`bar_id`) REFERENCES `bar` (`id`);
+
+ALTER TABLE `pincho` ADD FOREIGN KEY (`principal_img_id`) REFERENCES `multimediaPincho` (`id`);
 
 ALTER TABLE `pincho_allergen` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`);
 

@@ -1,6 +1,7 @@
 <?php
+require_once "AbstractMappedSQLModel.php";
 
-class User
+class User extends AbstractMappedSQLModel
 {
     public string $username;
 
@@ -12,17 +13,17 @@ class User
 
     public string $created_date;
 
-    public static function getInstance($fetchData)
+    static function getPropertiesMapArray(): array
     {
-        $instance = new self();
-
-        $instance->username = $fetchData["username"];
-        $instance->email = $fetchData["email"];
-        $instance->password = $fetchData["password"];
-        $instance->admin = $fetchData["admin"];
-        $instance->created_date = $fetchData["created_date"];
-
-        return $instance;
+        return [
+            "id" => "id",
+            "username" => "username",
+            "email" => "email",
+            "password" => "password",
+            "admin" => "admin",
+            "created_date" => "created_date",
+        ];
+        
     }
 
     public static function fromstdclass(stdClass $obj)
