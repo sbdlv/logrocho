@@ -8,8 +8,8 @@
     <title>Login</title>
     <base href="<?= dirname(getServerAbsPathForActions()) ?>/">
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>

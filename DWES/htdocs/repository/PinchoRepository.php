@@ -25,7 +25,7 @@ class PinchoRepository implements IDAO
 
     function findAll($page = false, $amount = 1)
     {
-        if($page){
+        if($page !== false){
             $results = getConexion()->query("SELECT * FROM " . self::DB_TABLE . " LIMIT $page,$amount");
         } else {
             $results = getConexion()->query("SELECT * FROM " . self::DB_TABLE . "");
@@ -48,13 +48,8 @@ class PinchoRepository implements IDAO
      */
     function save($obj)
     {
-        /*
-        if ($obj instanceof stdClass) {
-            $obj = Bar::fromstdclass($obj);
-        }
-
-        $stmt = getConexion()->prepare("INSERT INTO `user`(`username`, `email`, `password`, `admin`, `created_date`) VALUES (?, ?, ?, ?, now())");
-        return $stmt->execute([$obj->username, $obj->email, sha1($obj->password), false]);*/
+        $stmt = getConexion()->prepare("INSERT INTO `pincho`(`bar_id`, `name`) VALUES (?,?)");
+        return $stmt->execute([$obj->bar_id, $obj->name]);
     }
 
     function delete($obj) :bool
@@ -67,6 +62,7 @@ class PinchoRepository implements IDAO
 
     function update($obj)
     {
-        //TODO:
+        $stmt = getConexion()->prepare("UPDATE `pincho` SET `bar_id` = ?, `name` = ? WHERE `id` = ?");
+        return $stmt->execute([$obj->bar_id, $obj->name, $obj->id]);
     }
 }

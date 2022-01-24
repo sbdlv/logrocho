@@ -22,7 +22,7 @@ class BarRepository implements IDAO
 
     function findAll($page = false, $amount = 1)
     {
-        if($page){
+        if ($page !== false) {
             $results = getConexion()->query("SELECT * FROM bar LIMIT $page,$amount");
         } else {
             $results = getConexion()->query("SELECT * FROM bar");
@@ -45,16 +45,11 @@ class BarRepository implements IDAO
      */
     function save($obj)
     {
-        /*
-        if ($obj instanceof stdClass) {
-            $obj = Bar::fromstdclass($obj);
-        }
-
-        $stmt = getConexion()->prepare("INSERT INTO `user`(`username`, `email`, `password`, `admin`, `created_date`) VALUES (?, ?, ?, ?, now())");
-        return $stmt->execute([$obj->username, $obj->email, sha1($obj->password), false]);*/
+        $stmt = getConexion()->prepare("INSERT INTO `bar`(`name`, `address`, `lon`, `lat`, `terrace`, `principal_img_id`) VALUES (?,?,?,?,?,?)");
+        return $stmt->execute([$obj->name, $obj->address, $obj->lon, $obj->lat, $obj->terrace, $obj->principal_img_id]);
     }
 
-    function delete($obj) :bool
+    function delete($obj): bool
     {
         $stmt = getConexion()->prepare("DELETE FROM bar WHERE `id` = ?");
         $stmt->execute([$obj->id]);
@@ -64,6 +59,7 @@ class BarRepository implements IDAO
 
     function update($obj)
     {
-        //TODO:
+        $stmt = getConexion()->prepare("UPDATE `bar` SET `name` = ?, `address` = ?, `lon` = ?, `lat` = ?, `terrace` = ?, `principal_img_id` = ? WHERE `id` = ?");
+        return $stmt->execute([$obj->name, $obj->address, $obj->lon, $obj->lat, $obj->terrace, $obj->principal_img_id, $obj->id]);
     }
 }

@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "220addf2-84e6-44e9-9dbb-8370470af375",
+		"name": "Logr8",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Nuevo Bar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "BAR POST",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "POST",
+							"type": "text"
+						},
+						{
+							"key": "terrace",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "lon",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "lat",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "logrocho.local/index.php/bar/alta",
+					"host": [
+						"logrocho",
+						"local"
+					],
+					"path": [
+						"index.php",
+						"bar",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Nuevo Pincho",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "bar_id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "ALTA PIncho",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "logrocho.local/index.php/pincho/alta",
+					"host": [
+						"logrocho",
+						"local"
+					],
+					"path": [
+						"index.php",
+						"pincho",
+						"alta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Bar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "UPDATED",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "UPDATED",
+							"type": "text"
+						},
+						{
+							"key": "terrace",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "lon",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "lat",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "logrocho.local/index.php/bar/update",
+					"host": [
+						"logrocho",
+						"local"
+					],
+					"path": [
+						"index.php",
+						"bar",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Bar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "11",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "logrocho.local/index.php/bar/delete",
+					"host": [
+						"logrocho",
+						"local"
+					],
+					"path": [
+						"index.php",
+						"bar",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON ALL Bares",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "logrocho.local/index.php/bar/jsonAll/1",
+					"host": [
+						"logrocho",
+						"local"
+					],
+					"path": [
+						"index.php",
+						"bar",
+						"jsonAll",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Bar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "logrocho.local/index.php/bar/json/1",
+					"host": [
+						"logrocho",
+						"local"
+					],
+					"path": [
+						"index.php",
+						"bar",
+						"json",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Pincho",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "MODIFICADO",
+							"type": "text"
+						},
+						{
+							"key": "bar_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "logrocho.local/index.php/pincho/update",
+					"host": [
+						"logrocho",
+						"local"
+					],
+					"path": [
+						"index.php",
+						"pincho",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Pincho",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "id",
+							"value": "3",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "logrocho.local/index.php/pincho/delete",
+					"host": [
+						"logrocho",
+						"local"
+					],
+					"path": [
+						"index.php",
+						"pincho",
+						"delete"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON ALL Pinchos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "logrocho.local/index.php/pincho/jsonAll/1",
+					"host": [
+						"logrocho",
+						"local"
+					],
+					"path": [
+						"index.php",
+						"pincho",
+						"jsonAll",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "JSON Pincho",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "logrocho.local/index.php/pincho/json/2",
+					"host": [
+						"logrocho",
+						"local"
+					],
+					"path": [
+						"index.php",
+						"pincho",
+						"json",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

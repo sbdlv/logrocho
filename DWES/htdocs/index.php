@@ -31,7 +31,7 @@ if (isset($array_ruta[0])) {
 
         //Cargar el modelo (A veces puede llegar a no ser necesario)
         if (file_exists($modelPath)) {
-            require $modelPath;
+            require_once $modelPath;
         }
 
         //Instanciar el controlador dinamicamente

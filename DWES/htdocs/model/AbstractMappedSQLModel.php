@@ -19,6 +19,11 @@ abstract class AbstractMappedSQLModel{
      * @return mixed The instance created from the data
      */
     static function getInstance($fetchData){
+
+        if($fetchData instanceof stdClass){
+            $fetchData = json_decode(json_encode($fetchData), true);
+        }
+
         $class = get_called_class();
         
         $instance = new $class;
