@@ -1,0 +1,26 @@
+footer{
+    background-color: $color-primary;
+    color: white;
+    .container{
+        article{
+            margin: 10px;
+            ul{
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                a{
+                    text-decoration: none;
+                    color: rgb(231, 231, 231);
+                }
+            }
+
+            @media (max-width: $media-sm) {
+                flex: 0 0 100%;
+            }
+        }
+
+        @media (max-width: $media-sm) {
+            flex-wrap: wrap;
+        }
+    }
+}

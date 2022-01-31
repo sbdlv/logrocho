@@ -1,0 +1,27 @@
+.best_slider{
+    .item{
+        height: 600px;
+    }
+
+    .owl-nav{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+
+        button i{
+            color: rgb(26, 26, 26);
+            font-size: 50px;
+        }
+
+        .owl-next{
+            position: relative;
+            right: -50px;
+            float: right;
+        }
+        .owl-prev{
+            position: relative;
+            left: -50px;
+        }
+    }
+}

@@ -11,7 +11,7 @@ class ReviewController
 
         $reviews = $repo->findAll();
         $activeMenu = "review";
-        include "view/Bar/index.php";
+        include "view/Review/index.php";
     }
 
     function info($id)
@@ -20,7 +20,7 @@ class ReviewController
 
         $review = $repo->find($id);
         $activeMenu = "review";
-        include "view/Bar/info.php";
+        include "view/Review/info.php";
     }
 
     function alta()
