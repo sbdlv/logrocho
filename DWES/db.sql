@@ -1,6 +1,7 @@
 CREATE TABLE `user` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
-  `username` varchar(255) UNIQUE,
+  `first_name` varchar(255),
+  `last_name` varchar(255),
   `email` varchar(255) UNIQUE,
   `password` varchar(255),
   `admin` boolean,
@@ -80,7 +81,7 @@ CREATE TABLE `multimediaPincho` (
 
 ALTER TABLE `bar` ADD FOREIGN KEY (`principal_img_id`) REFERENCES `multimediaBar` (`id`);
 
-ALTER TABLE `multimediaBar` ADD FOREIGN KEY (`bar_id`) REFERENCES `bar` (`id`);
+ALTER TABLE `multimediaBar` ADD FOREIGN KEY (`bar_id`) REFERENCES `bar` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `review` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
@@ -94,7 +95,7 @@ ALTER TABLE `review_user` ADD FOREIGN KEY (`review_id`) REFERENCES `review` (`id
 
 ALTER TABLE `review_user_likes` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
-ALTER TABLE `pincho` ADD FOREIGN KEY (`bar_id`) REFERENCES `bar` (`id`);
+ALTER TABLE `pincho` ADD FOREIGN KEY (`bar_id`) REFERENCES `bar` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `pincho` ADD FOREIGN KEY (`principal_img_id`) REFERENCES `multimediaPincho` (`id`);
 

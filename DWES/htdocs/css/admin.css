@@ -51,6 +51,7 @@ body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  background-color: #f9fafb;
 }
 
 body main {

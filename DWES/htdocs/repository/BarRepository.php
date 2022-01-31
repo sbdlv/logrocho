@@ -20,10 +20,14 @@ class BarRepository implements IDAO
         return Bar::getInstance($fetch[0]);
     }
 
-    function findAll($page = false, $amount = 1)
+    function findAll($page = false, $amount = 1, $orderBy = false, $orderDir = "DESC")
     {
         if ($page !== false) {
-            $results = getConexion()->query("SELECT * FROM bar LIMIT $page,$amount");
+            if ($orderBy) {
+                $results = getConexion()->query("SELECT * FROM bar ORDER BY " . $orderBy . " " . $orderDir . " LIMIT $page,$amount");
+            } else {
+                $results = getConexion()->query("SELECT * FROM bar LIMIT $page,$amount");
+            }
         } else {
             $results = getConexion()->query("SELECT * FROM bar");
         }

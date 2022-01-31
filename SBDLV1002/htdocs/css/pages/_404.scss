@@ -1,0 +1,29 @@
+#e404Wrapper{
+    height: 100vh;
+
+    #e404{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+        right: 0;
+        width: 80%;
+
+        
+        h1{
+            font-size: 200px;
+        }
+        
+        p{
+            font-size: 24px;
+        }
+        
+        @media (max-width: $media-sm) {
+            width: 100%;
+
+            h1{
+                font-size: 150px;
+            }
+        }
+    }
+}

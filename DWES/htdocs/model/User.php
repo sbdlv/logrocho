@@ -3,7 +3,11 @@ require_once "AbstractMappedSQLModel.php";
 
 class User extends AbstractMappedSQLModel
 {
-    public string $username;
+    public int $id;
+
+    public string $first_name;
+
+    public string $last_name;
 
     public string $email;
 
@@ -17,7 +21,8 @@ class User extends AbstractMappedSQLModel
     {
         return [
             "id" => "id",
-            "username" => "username",
+            "first_name" => "first_name",
+            "last_name" => "last_name",
             "email" => "email",
             "password" => "password",
             "admin" => "admin",
@@ -30,7 +35,8 @@ class User extends AbstractMappedSQLModel
     {
         $instance = new self();
 
-        $instance->username = $obj->username;
+        $instance->first_name = $obj->first_name;
+        $instance->last_name = $obj->last_name;
         $instance->email = $obj->email;
         $instance->password = $obj->password;
 
