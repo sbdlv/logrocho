@@ -1,0 +1,44 @@
+// https://demos.wrappixel.com/premium-admin-templates/bootstrap/adminpro-bootstrap/package/html/main/table-basic.html#
+.table {
+    th {
+        background-color: transparent;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+
+        &:hover {
+            background-color: #f6f7f9;
+        }
+    }
+
+    th,
+    td {
+        padding: 15px;
+    }
+
+    tr{
+        vertical-align: middle;
+    }
+
+    tbody {
+        tr:nth-child(odd) {
+            background-color: #f6f7f9;
+        }
+    }
+}
+
+
+
+#searchWrapper{
+    position: relative;
+    .fa-search{
+        position: absolute;
+        left: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    input{
+        padding-left: 40px;
+    }
+
+}

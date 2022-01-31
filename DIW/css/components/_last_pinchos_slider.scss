@@ -1,0 +1,31 @@
+.last_pinchos_slider{
+    img{
+        height: 250px;
+        object-fit: cover;
+        background-color: rgb(243, 243, 243);
+        background-image: url("../img/pincho_placeholder.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 80px;
+
+
+        animation-name: loadingPincho;
+        animation-duration: .75s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate-reverse;
+
+        &::before{
+            visibility: hidden;
+        }
+
+        @keyframes loadingPincho {
+            from{
+                background-color: rgb(211, 211, 211);;
+            }
+
+            to{
+                background-color: rgb(243, 243, 243);;
+            }
+        }
+    }
+}

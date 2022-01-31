@@ -90,6 +90,7 @@ class BarController
 
     function jsonAll($page)
     {
+        header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json; charset=utf-8');
         $repo = new BarRepository();
 

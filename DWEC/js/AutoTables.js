@@ -1,4 +1,18 @@
-// data-propId -> El nombre de la propiedad de la entidad
-// data-propCheckMethod -> El nombre de la funcion que comprobara la validez del campo
+function AutoTables(table) {
 
-// Las tablas deben tener la clase .autotable en el tag <table>
+
+    let root = $(table.root);
+
+    root.find("th").on("click", (e) => {
+        let target = $(e.target);
+
+        if (table.orderBy == target.text()) {
+            table.desc = !table.desc;
+        } else {
+            table.orderBy = target.text();
+            table.desc = true;
+        }
+    });
+
+    root.find("#autoTableTools").append("<td>Editar</td>");
+}
