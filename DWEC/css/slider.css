@@ -1,0 +1,157 @@
+body {
+  margin: 0;
+}
+
+.controles {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  z-index: 100;
+  justify-content: center;
+  width: 100%;
+}
+.controles button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  height: 40px;
+  width: 40px;
+  border-color: transparent;
+  margin: 0 10px;
+  background-color: transparent;
+  transition: all 0.25s ease-out;
+}
+.controles button:hover {
+  background-color: rgba(255, 255, 255, 0.404);
+}
+.controles button:active {
+  background-color: rgba(145, 145, 145, 0.404);
+}
+.controles button.next {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="white">  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>');
+}
+.controles button.prev {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="white">  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>');
+}
+.controles button.pause {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="white">  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v6m4-6v6m7-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>');
+}
+.controles button.play {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="white">  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>');
+}
+
+.slider {
+  position: relative;
+  height: 500px;
+  width: 900px;
+  overflow: hidden;
+}
+.slider[data-reverse=true] .slides .wrapper.disappear {
+  animation-name: disappearReverse;
+}
+.slider[data-reverse=true] .slides .wrapper.appear {
+  animation-name: appearReverse;
+  transform: translateX(-100%);
+}
+@keyframes disappearReverse {
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes appearReverse {
+  to {
+    transform: translateX(0);
+  }
+}
+.slider[data-style=fade] .slides .wrapper {
+  transform: translateX(0) !important;
+}
+.slider[data-style=fade] .slides .wrapper.disappear {
+  animation-name: disappearFade;
+}
+.slider[data-style=fade] .slides .wrapper.appear {
+  animation-name: appearFade;
+}
+@keyframes disappearFadeReverse {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes appearFadeReverse {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes disappearFade {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes appearFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.slider .slides {
+  display: flex;
+  position: relative;
+  height: 100%;
+}
+.slider .slides .wrapper {
+  height: 100%;
+  width: 100%;
+  flex: 0 0 100%;
+  left: 0;
+  background: lightgrey;
+  position: absolute;
+}
+.slider .slides .wrapper img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.slider .slides .wrapper.active {
+  z-index: 20;
+}
+.slider .slides .wrapper.disappear {
+  animation-name: disappear;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  z-index: 10;
+}
+.slider .slides .wrapper.appear {
+  animation-name: appear;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  transform: translateX(100%);
+}
+@keyframes disappear {
+  to {
+    transform: translateX(-100%);
+  }
+}
+@keyframes appear {
+  to {
+    transform: translateX(0);
+  }
+}
+.slider .controles {
+  position: absolute;
+}
+
+/*# sourceMappingURL=slider.css.map */
