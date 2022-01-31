@@ -27,18 +27,18 @@ class ReviewRepository implements IDAO
     {
         if ($page !== false) {
             if ($orderBy) {
-                $results = getConexion()->query("SELECT * FROM bar ORDER BY " . $orderBy . " " . $orderDir . " LIMIT $page,$amount");
+                $results = getConexion()->query("SELECT * FROM " . self::TABLE_NAME . " ORDER BY " . $orderBy . " " . $orderDir . " LIMIT $page,$amount");
             } else {
-                $results = getConexion()->query("SELECT * FROM bar LIMIT $page,$amount");
+                $results = getConexion()->query("SELECT * FROM " . self::TABLE_NAME . " LIMIT $page,$amount");
             }
         } else {
-            $results = getConexion()->query("SELECT * FROM bar");
+            $results = getConexion()->query("SELECT * FROM " . self::TABLE_NAME);
         }
 
         $instances = [];
 
         foreach ($results as $row) {
-            $instances[] = Bar::getInstance($row);
+            $instances[] = Review::getInstance($row);
         }
 
         return $instances;
@@ -52,13 +52,13 @@ class ReviewRepository implements IDAO
      */
     function save($obj)
     {
-        $stmt = getConexion()->prepare("INSERT INTO `bar`(`name`, `address`, `lon`, `lat`, `terrace`, `principal_img_id`) VALUES (?,?,?,?,?,?)");
-        return $stmt->execute([$obj->name, $obj->address, $obj->lon, $obj->lat, $obj->terrace, $obj->principal_img_id]);
+        $stmt = getConexion()->prepare("INSERT INTO `" . self::TABLE_NAME . "` (`user_id`, `title`, `desc`, `presentation`, `texture`, `taste`, `pincho_id`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        return $stmt->execute([$obj->user_id, $obj->title, $obj->desc, $obj->presentation, $obj->texture, $obj->taste, $obj->pincho_id]);
     }
 
     function delete($obj): bool
     {
-        $stmt = getConexion()->prepare("DELETE FROM bar WHERE `id` = ?");
+        $stmt = getConexion()->prepare("DELETE FROM " . self::TABLE_NAME . " WHERE `id` = ?");
         $stmt->execute([$obj->id]);
 
         return $stmt->rowCount();
@@ -66,7 +66,7 @@ class ReviewRepository implements IDAO
 
     function update($obj)
     {
-        $stmt = getConexion()->prepare("UPDATE `bar` SET `name` = ?, `address` = ?, `lon` = ?, `lat` = ?, `terrace` = ?, `principal_img_id` = ? WHERE `id` = ?");
-        return $stmt->execute([$obj->name, $obj->address, $obj->lon, $obj->lat, $obj->terrace, $obj->principal_img_id, $obj->id]);
+        $stmt = getConexion()->prepare("UPDATE `" . self::TABLE_NAME . "` SET `user_id` = ?, `title` = ?, `desc` = ?, `presentation` = ?, `texture` = ?, `taste` = ?, `pincho_id` = ? WHERE `id` = ?");
+        return $stmt->execute([$obj->user_id, $obj->title, $obj->desc, $obj->presentation, $obj->texture, $obj->taste, $obj->pincho_id, $obj->id]);
     }
 }
