@@ -1,9 +1,12 @@
 <?php
 require_once "IDAO.php";
-require_once "model/Bar.php";
+require_once "model/Review.php";
 
-class BarRepository implements IDAO
+class ReviewRepository implements IDAO
 {
+
+    private const TABLE_NAME = "review";
+
     /**
      * Obtiene la información de un usuario
      *
@@ -12,12 +15,12 @@ class BarRepository implements IDAO
      */
     function find($id)
     {
-        $stmt = getConexion()->prepare("SELECT * FROM bar WHERE `id` = ?");
+        $stmt = getConexion()->prepare("SELECT * FROM " . self::TABLE_NAME .  " WHERE `id` = ?");
         $stmt->execute([$id]);
 
         $fetch = $stmt->fetchAll();
 
-        return Bar::getInstance($fetch[0]);
+        return Review::getInstance($fetch[0]);
     }
 
     function findAll($page = false, $amount = 1, $orderBy = false, $orderDir = "DESC")

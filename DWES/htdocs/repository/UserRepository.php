@@ -12,7 +12,7 @@ class UserRepository implements IDAO
      */
     function find($id)
     {
-        $stmt = getConexion()->prepare("SELECT * FROM user WHERE `email` = ?");
+        $stmt = getConexion()->prepare("SELECT * FROM user WHERE `id` = ?");
         $stmt->execute([$id]);
 
         $fetch = $stmt->fetchAll();
@@ -20,8 +20,25 @@ class UserRepository implements IDAO
         return User::getInstance($fetch[0]);
     }
 
-    function findAll()
+    function findAll($page = false, $amount = 1, $orderBy = false, $orderDir = "DESC")
     {
+        if ($page !== false) {
+            if ($orderBy) {
+                $results = getConexion()->query("SELECT * FROM user ORDER BY " . $orderBy . " " . $orderDir . " LIMIT $page,$amount");
+            } else {
+                $results = getConexion()->query("SELECT * FROM user LIMIT $page,$amount");
+            }
+        } else {
+            $results = getConexion()->query("SELECT * FROM user");
+        }
+
+        $instances = [];
+
+        foreach ($results as $row) {
+            $instances[] = User::getInstance($row);
+        }
+
+        return $instances;
     }
 
     /**
@@ -36,18 +53,22 @@ class UserRepository implements IDAO
             $obj = User::fromstdclass($obj);
         }
 
-        $stmt = getConexion()->prepare("INSERT INTO `user`(`username`, `email`, `password`, `admin`, `created_date`) VALUES (?, ?, ?, ?, now())");
-        return $stmt->execute([$obj->username, $obj->email, sha1($obj->password), false]);
+        $stmt = getConexion()->prepare("INSERT INTO `user`(`first_name`, `last_name`, `email`, `password`, `admin`, `created_date`) VALUES (?, ?, ?, sha1(?), ?, now())");
+        return $stmt->execute([$obj->first_name, $obj->last_name, $obj->email, $obj->password, false]);
     }
 
     function delete($obj)
     {
-        //TODO:
+        $stmt = getConexion()->prepare("DELETE FROM user WHERE `id` = ?");
+        $stmt->execute([$obj->id]);
+
+        return $stmt->rowCount();
     }
 
     function update($obj)
     {
-        //TODO:
+        $stmt = getConexion()->prepare("UPDATE `user` SET `first_name` = ?, `last_name` = ?, `email` = ? WHERE `id` = ?");
+        return $stmt->execute([$obj->first_name, $obj->last_name, $obj->email, $obj->id]);
     }
 
 

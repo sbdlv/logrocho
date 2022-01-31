@@ -1,7 +1,9 @@
 <?php
+require_once "repository/UserRepository.php";
 
 class UserController
 {
+    private const AMOUNT_OF_RESULTS_PER_PAGE = 4;
 
     function index()
     {
@@ -79,8 +81,7 @@ class UserController
     private function redirectSession(){
         if (isset($_SESSION["logged"]) && $_SESSION["logged"]) {
             if ($_SESSION["user"]["admin"]) {
-                //TODO: Ir al backend
-                require "view/admin/success.php";
+                header("Location: " . getServerAbsPathForActions() . "bar");
             } else {
                 //TODO: Ir al home page
                 require "view/user/success.php";
@@ -89,5 +90,93 @@ class UserController
             //Temporal. Llegados a este punto, ya se habria hecho un Header location
             die;
         }
+    }
+
+    function alta()
+    {
+        if (isset($_POST["first_name"], $_POST["last_name"], $_POST["email"], $_POST["password"])) {
+            $user = new User();
+
+            $user->first_name = $_POST["first_name"];
+            $user->last_name = $_POST["last_name"];
+            $user->email = $_POST["email"];
+            $user->password = $_POST["password"];
+            
+            //TODO: Incluir campo imagen etc
+
+            $repo = new UserRepository();
+            if ($repo->save($user)) {
+                echo "Se ha dado de alta el usuario";
+            } else {
+                echo "Error: No se ha dado de alta el usuario";
+            }
+        } else {
+            echo "Error: FALTAN campos POST";
+        }
+    }
+
+    function update()
+    {
+        if (isset($_POST["id"], $_POST["first_name"], $_POST["last_name"], $_POST["password"])) {
+            $user = new User();
+
+            $user->id = $_POST["id"];
+            $user->first_name = $_POST["first_name"];
+            $user->last_name = $_POST["last_name"];
+            $user->email = $_POST["email"];
+            $user->password = $_POST["password"];
+            //TODO: Incluir campo imagen etc
+
+            $repo = new UserRepository();
+            if ($repo->update($user)) {
+                echo "Se ha modificado el usuario";
+            } else {
+                echo "Error: No se ha modificado el usuario";
+            }
+        } else {
+            echo "Error: FALTAN campos POST";
+        }
+    }
+
+    function delete()
+    {
+        if (isset($_POST["id"])) {
+            $repo = new UserRepository();
+            $user = new User();
+
+            $user->id = $_POST["id"];
+
+            if ($repo->delete($user)) {
+                echo "Se ha borrado el usuario";
+            } else {
+                http_response_code(400);
+                echo "Error: No se ha podido borrar el usuario";
+            }
+        } else {
+            echo "Error: FALTAN campos POST";
+        }
+    }
+
+    function jsonAll($page, $orderBy = false, $orderDir = false)
+    {
+        header('Access-Control-Allow-Origin: *');
+        header('Content-Type: application/json; charset=utf-8');
+        $repo = new UserRepository();
+
+        $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
+
+        if($orderBy && $orderDir){
+            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE, $orderBy, $orderDir));
+        } else {
+            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));
+        }
+    }
+
+    function json($id)
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        $repo = new UserRepository();
+
+        echo json_encode($repo->find($id));
     }
 }
