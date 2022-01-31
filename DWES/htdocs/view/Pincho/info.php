@@ -20,9 +20,6 @@
             <div class="tarjeta row p-4">
                 <h1>Pincho de tortilla - Pincho</h1>
             </div>
-            <div class="my-4">
-                <button class="btn btn-primary">Editar</button>
-            </div>
             <div class="row my-4">
                 <div class="col-12 col-lg-4 tarjeta"><img src="img/pt1.jpg" class="img-fluid my-2" alt=""></div>
                 <div class="col offset-lg-1 tarjeta p-4">

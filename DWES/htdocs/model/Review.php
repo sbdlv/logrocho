@@ -22,6 +22,7 @@ class Review extends AbstractMappedSQLModel
         return [
             "id" => "id",
             "user_id" => "user_id",
+            "title" => "title",
             "desc" => "desc",
             "presentation" => "presentation",
             "texture" => "texture",

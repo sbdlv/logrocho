@@ -7,7 +7,14 @@ class UserController
 
     function index()
     {
-        $this->login();
+        $activeMenu = "user";
+        require "view/user/index.php";
+    }
+
+    function info($id)
+    {
+        $activeMenu = "user";
+        require "view/user/info.php";
     }
 
     function login()
@@ -78,7 +85,8 @@ class UserController
         header("Location: " . getServerAbsPathForActions() . "user/login");
     }
 
-    private function redirectSession(){
+    private function redirectSession()
+    {
         if (isset($_SESSION["logged"]) && $_SESSION["logged"]) {
             if ($_SESSION["user"]["admin"]) {
                 header("Location: " . getServerAbsPathForActions() . "bar");
@@ -101,7 +109,7 @@ class UserController
             $user->last_name = $_POST["last_name"];
             $user->email = $_POST["email"];
             $user->password = $_POST["password"];
-            
+
             //TODO: Incluir campo imagen etc
 
             $repo = new UserRepository();
@@ -165,7 +173,7 @@ class UserController
 
         $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
 
-        if($orderBy && $orderDir){
+        if ($orderBy && $orderDir) {
             echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE, $orderBy, $orderDir));
         } else {
             echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));

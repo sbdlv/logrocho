@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $review->id . " " . $review->name ?> - Reseña</title>
+    <title>#<?= $review->id?> - Reseña</title>
 
     <base href="<?= dirname(getServerAbsPathForActions()) ?>/">
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
@@ -19,10 +19,7 @@
     <main class="w-100 p-4">
         <section class="container my-4">
             <div class="tarjeta row p-4">
-                <h1><?= $review->title ?> - Reseña</h1>
-            </div>
-            <div class="my-4">
-                <button class="btn btn-primary">Editar</button>
+                <h1>#<?= $review->id?> - Reseña</h1>
             </div>
             <div class="row my-4">
                 <div class="col tarjeta p-4">
