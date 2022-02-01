@@ -1,4 +1,0 @@
-En principio las rutas para el js debería de funcionar automáticamente (Para el MVC es automático, da igual donde pongas la carpeta)
-En caso de error, intenta editar la constante URL_BASE del fichero bares.js
-
-# Para probar el listado de bares acceder al fichero /listado_restaruante.html mediante XAMPP
