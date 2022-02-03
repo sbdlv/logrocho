@@ -15,14 +15,14 @@ CREATE TABLE `bar` (
   `address` varchar(255),
   `lon` decimal,
   `lat` decimal,
-  `terrace` boolean,
-  `principal_img_id` int
+  `terrace` boolean
 );
 
 CREATE TABLE `multimediaBar` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `bar_id` int,
-  `path` varchar(255)
+  `path` varchar(255),
+  `priority` int
 );
 
 CREATE TABLE `review` (
@@ -39,7 +39,8 @@ CREATE TABLE `review` (
 CREATE TABLE `multimediaReview` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `review_id` int,
-  `path` varchar(255)
+  `path` varchar(255),
+  `priority` int
 );
 
 CREATE TABLE `review_user` (
@@ -57,8 +58,7 @@ CREATE TABLE `review_user_likes` (
 CREATE TABLE `pincho` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `bar_id` int,
-  `name` varchar(255),
-  `principal_img_id` int
+  `name` varchar(255)
 );
 
 CREATE TABLE `allergen` (
@@ -76,10 +76,9 @@ CREATE TABLE `pincho_allergen` (
 CREATE TABLE `multimediaPincho` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `pincho_id` int,
-  `path` varchar(255)
+  `path` varchar(255),
+  `priority` int
 );
-
-ALTER TABLE `bar` ADD FOREIGN KEY (`principal_img_id`) REFERENCES `multimediaBar` (`id`);
 
 ALTER TABLE `multimediaBar` ADD FOREIGN KEY (`bar_id`) REFERENCES `bar` (`id`) ON DELETE CASCADE;
 
@@ -96,8 +95,6 @@ ALTER TABLE `review_user` ADD FOREIGN KEY (`review_id`) REFERENCES `review` (`id
 ALTER TABLE `review_user_likes` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 ALTER TABLE `pincho` ADD FOREIGN KEY (`bar_id`) REFERENCES `bar` (`id`) ON DELETE CASCADE;
-
-ALTER TABLE `pincho` ADD FOREIGN KEY (`principal_img_id`) REFERENCES `multimediaPincho` (`id`);
 
 ALTER TABLE `pincho_allergen` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`);
 

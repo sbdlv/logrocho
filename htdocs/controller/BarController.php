@@ -1,6 +1,6 @@
 <?php
 require_once "repository/BarRepository.php";
-
+addToBreadCrumbs("Bares", getServerAbsPathForActions() . "bar");
 class BarController
 {
     private const AMOUNT_OF_RESULTS_PER_PAGE = 4;
@@ -16,6 +16,7 @@ class BarController
 
     function info($id)
     {
+        addToBreadCrumbs("Bar #$id");
         $repo = new BarRepository();
 
         $bar = $repo->find($id);
@@ -97,7 +98,7 @@ class BarController
 
         $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
 
-        if($orderBy && $orderDir){
+        if ($orderBy && $orderDir) {
             echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE, $orderBy, $orderDir));
         } else {
             echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));
@@ -110,5 +111,35 @@ class BarController
         $repo = new BarRepository();
 
         echo json_encode($repo->find($id));
+    }
+
+    function total()
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        $repo = new BarRepository();
+
+        echo json_encode($repo->total());
+    }
+
+    function uploadPic(){
+        var_dump($_POST);
+        var_dump($_FILES);
+        if(isset($_POST["pk"], $_POST["name"])){
+
+            //TODO: Comprobar que post pk es un int y existe en BD
+            $destPath = $_SERVER["DOCUMENT_ROOT"] . "/img/img_bares/" . $_POST["pk"];
+            if(!file_exists($destPath)){
+                mkdir($destPath);
+            }
+
+            $finalPath = $destPath . "/" . basename($_POST["name"]) . ".png";
+            move_uploaded_file($_FILES["pic"]["tmp_name"], $finalPath);
+
+            $priority = isset($_POST["priority"]) ? $_POST["priority"] : -1;
+
+            //BD
+            $repo = new BarRepository();
+            $repo->uploadPic($_POST["pk"], "/img/img_bares/" . $_POST["pk"] . "/" . basename($_POST["name"]) . ".png" , $priority);
+        }
     }
 }
