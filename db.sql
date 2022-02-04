@@ -1,3 +1,17 @@
+/* DROP */
+DROP TABLE IF EXISTS multimediaPincho;
+DROP TABLE IF EXISTS multimediaBar;
+DROP TABLE IF EXISTS multimediaReview;
+DROP TABLE IF EXISTS review_user_likes;
+DROP TABLE IF EXISTS review_user;
+DROP TABLE IF EXISTS review;
+DROP TABLE IF EXISTS pincho_allergen;
+DROP TABLE IF EXISTS allergen;
+DROP TABLE IF EXISTS pincho;
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS bar;
+
+/* CREATE */
 CREATE TABLE `user` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `first_name` varchar(255),
