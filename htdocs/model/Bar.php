@@ -20,7 +20,6 @@ class Bar extends AbstractMappedSQLModel
             "lon" => "lon",
             "lat" => "lat",
             "terrace" => "terrace",
-            "principal_img_id" => "principal_img_id",
         ];
     }
 }

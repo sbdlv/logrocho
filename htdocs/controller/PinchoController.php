@@ -98,4 +98,28 @@ class PinchoController
 
         echo json_encode($repo->find($id));
     }
+
+    function uploadPic(){
+        if(isset($_POST["pk"], $_POST["name"])){
+
+            //TODO: Comprobar que post pk es un int y existe en BD
+            $destPath = $_SERVER["DOCUMENT_ROOT"] . "/img/img_pinchos/" . $_POST["pk"];
+            if(!file_exists($destPath)){
+                mkdir($destPath);
+            }
+
+            $finalPath = $destPath . "/" . basename($_POST["name"]) . ".png";
+            move_uploaded_file($_FILES["pic"]["tmp_name"], $finalPath);
+
+            $priority = isset($_POST["priority"]) ? $_POST["priority"] : -1;
+
+            //BD
+            $repo = new PinchoRepository();
+            $repo->uploadPic($_POST["pk"], "/img/img_pinchos/" . $_POST["pk"] . "/" . basename($_POST["name"]) . ".png" , $priority);
+        } else {
+            http_response_code(400);
+            echo "Falta campos POST";
+        }
+    }
+
 }

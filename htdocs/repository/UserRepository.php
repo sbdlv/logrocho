@@ -10,10 +10,10 @@ class UserRepository implements IDAO
      * @param string $id el email del usuario
      * @return void
      */
-    function find($id)
+    function find($email)
     {
-        $stmt = getConexion()->prepare("SELECT * FROM user WHERE `id` = ?");
-        $stmt->execute([$id]);
+        $stmt = getConexion()->prepare("SELECT * FROM user WHERE `email` = ?");
+        $stmt->execute([$email]);
 
         $fetch = $stmt->fetchAll();
 
@@ -56,9 +56,10 @@ class UserRepository implements IDAO
         $stmt = getConexion()->prepare("INSERT INTO `user`(`first_name`, `last_name`, `email`, `password`, `admin`, `created_date`) VALUES (?, ?, ?, sha1(?), ?, now())");
         return $stmt->execute([$obj->first_name, $obj->last_name, $obj->email, $obj->password, false]);
     }
-
+    
     function delete($obj)
     {
+        //TODO: Solo para admin
         $stmt = getConexion()->prepare("DELETE FROM user WHERE `id` = ?");
         $stmt->execute([$obj->id]);
 
@@ -85,5 +86,14 @@ class UserRepository implements IDAO
         $stmt->execute([$email, sha1($password)]);
 
         return count($stmt->fetchAll()) > 0;
+    }
+
+    function removeLikes($id)
+    {
+        //TODO: Solo para admin
+        $stmt = getConexion()->prepare("DELETE FROM review_user_likes WHERE `id` = ? AND admin = 1");
+        $stmt->execute([$id]);
+
+        return $stmt->rowCount() > 0;
     }
 }

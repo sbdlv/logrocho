@@ -20,6 +20,7 @@ class BarController
         $repo = new BarRepository();
 
         $bar = $repo->find($id);
+        $barImages = $repo->getImages($id);
         $activeMenu = "bar";
         include "view/Bar/info.php";
     }
@@ -99,9 +100,9 @@ class BarController
         $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
 
         if ($orderBy && $orderDir) {
-            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE, $orderBy, $orderDir));
+            echo json_encode($repo->findAll($offset, false, self::AMOUNT_OF_RESULTS_PER_PAGE, $orderBy, $orderDir));
         } else {
-            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));
+            echo json_encode($repo->findAll($offset, false, self::AMOUNT_OF_RESULTS_PER_PAGE));
         }
     }
 
@@ -121,14 +122,13 @@ class BarController
         echo json_encode($repo->total());
     }
 
-    function uploadPic(){
-        var_dump($_POST);
-        var_dump($_FILES);
-        if(isset($_POST["pk"], $_POST["name"])){
+    function uploadPic()
+    {
+        if (isset($_POST["pk"], $_POST["name"])) {
 
             //TODO: Comprobar que post pk es un int y existe en BD
             $destPath = $_SERVER["DOCUMENT_ROOT"] . "/img/img_bares/" . $_POST["pk"];
-            if(!file_exists($destPath)){
+            if (!file_exists($destPath)) {
                 mkdir($destPath);
             }
 
@@ -139,7 +139,10 @@ class BarController
 
             //BD
             $repo = new BarRepository();
-            $repo->uploadPic($_POST["pk"], "/img/img_bares/" . $_POST["pk"] . "/" . basename($_POST["name"]) . ".png" , $priority);
+            $repo->uploadPic($_POST["pk"], "/img/img_bares/" . $_POST["pk"] . "/" . basename($_POST["name"]) . ".png", $priority);
+        } else {
+            http_response_code(400);
+            echo "Falta campos POST";
         }
     }
 }

@@ -24,3 +24,7 @@ INSERT INTO `pincho`(`bar_id`, `name`) VALUES
 ('9','Pincho Bar 8'),
 ('9','Pincho Bar 9'),
 ('10','Pincho Bar 10');
+
+/* USUARIOS */
+INSERT INTO `user`(`first_name`, `last_name`, `email`, `password`, `admin`, `created_date`) VALUES 
+('Admin','Logrocho','logrocho@logrocho.local', SHA1('admin'),1,NOW())

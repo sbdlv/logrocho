@@ -22,10 +22,19 @@ function checkSession()
     }
 }
 
-function addToBreadCrumbs(string $text, string $url = null){
+function addToBreadCrumbs(string $text, string $url = null)
+{
     global $breadcrumbs;
     $breadcrumbs[] = [
-        "url"=> $url,
+        "url" => $url,
         "text" => $text
     ];
+}
+
+function isAdminForAPI()
+{
+    if (!isset($_SESSION["user"]) || !$_SESSION["user"]["admin"]) {
+        http_response_code(401);
+        echo "No tienes permisos para realizar esta acción";
+    }
 }

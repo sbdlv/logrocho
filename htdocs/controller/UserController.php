@@ -95,7 +95,7 @@ class UserController
                 require "view/user/success.php";
             }
 
-            //Temporal. Llegados a este punto, ya se habria hecho un Header location
+            //Temporal. Llegados a este punto, ya se habría hecho un Header location
             die;
         }
     }

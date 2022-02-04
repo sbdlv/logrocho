@@ -82,17 +82,17 @@ CREATE TABLE `multimediaPincho` (
 
 ALTER TABLE `multimediaBar` ADD FOREIGN KEY (`bar_id`) REFERENCES `bar` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `review` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+ALTER TABLE `review` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `review` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`);
 
 ALTER TABLE `multimediaReview` ADD FOREIGN KEY (`review_id`) REFERENCES `review` (`id`);
 
-ALTER TABLE `review_user` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+ALTER TABLE `review_user` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `review_user` ADD FOREIGN KEY (`review_id`) REFERENCES `review` (`id`);
 
-ALTER TABLE `review_user_likes` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
+ALTER TABLE `review_user_likes` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `pincho` ADD FOREIGN KEY (`bar_id`) REFERENCES `bar` (`id`) ON DELETE CASCADE;
 

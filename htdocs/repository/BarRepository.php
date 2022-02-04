@@ -77,4 +77,24 @@ class BarRepository implements IDAO
         $stmt = getConexion()->prepare("INSERT INTO `multimediaBar`(`bar_id`, `path`, `priority`) VALUES (?,?,?)");
         return $stmt->execute([$pk, $path, $priority]);
     }
+    
+    function getImages($id, &$imgs = []){
+        $stmt = getConexion()->prepare("SELECT * FROM `multimediabar` WHERE bar_id = ? ORDER BY priority, id");
+
+        $stmt->execute([$id]);
+
+        foreach ($stmt as $row) {
+            $imgs[$id][] = $row["path"];
+        }
+
+        return $imgs;
+    }
+
+    function getImagesForArray($objs, $imgs = []){
+        foreach ($objs as $obj => $id) {
+            $this->getImages($id, $imgs);
+        }
+
+        return $imgs;
+    }
 }

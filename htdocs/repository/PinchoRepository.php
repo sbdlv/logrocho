@@ -65,4 +65,9 @@ class PinchoRepository implements IDAO
         $stmt = getConexion()->prepare("UPDATE `pincho` SET `bar_id` = ?, `name` = ? WHERE `id` = ?");
         return $stmt->execute([$obj->bar_id, $obj->name, $obj->id]);
     }
+
+    function uploadPic($pk, $path, $priority = -1){
+        $stmt = getConexion()->prepare("INSERT INTO `multimediaPincho`(`pincho_id`, `path`, `priority`) VALUES (?,?,?)");
+        return $stmt->execute([$pk, $path, $priority]);
+    }
 }

@@ -1,0 +1,25 @@
+.imgdroparea {
+    display: flex;
+    padding: 2rem;
+
+    border-radius: 0.25rem;
+
+    img {
+        height: 250px;
+        max-width: 300px;
+        object-fit: cover;
+    }
+
+    .drop {
+        width: 20px;
+        transition: all 0.25s;
+        border-radius: .25rem;
+
+        &.draghover {
+            border: 2px dotted #666;
+            width: 200px;
+            background-color: #71cae670;
+            margin:0 10px;
+        }
+    }
+}

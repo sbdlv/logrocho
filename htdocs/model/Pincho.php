@@ -15,7 +15,6 @@ class Pincho extends AbstractMappedSQLModel{
             "id" => "id",
             "bar_id" => "bar_id",
             "name" => "name",
-            "principal_img_id" => "principal_img_id",
         ];
         
     }

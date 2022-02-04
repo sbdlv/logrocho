@@ -22,8 +22,7 @@
                 <h1><?= $bar->name ?> - Restaurante</h1>
             </div>
             <div class="row my-4">
-                <div class="col-12 col-lg-4 tarjeta"><img src="img/pexels-pixabay-262978.jpg" class="img-fluid my-2" alt=""></div>
-                <div class="col offset-lg-1 tarjeta p-4">
+                <div class="col tarjeta p-4">
                     <h2 class="mb-4"><i class="fas fa-info-circle"></i> Detalles</h2>
                     <div class="table-responsive">
                         <table class="table customize-table mb-0 v-middle table-borderless">
@@ -49,6 +48,12 @@
                     </div>
                 </div>
             </div>
+            <div class="row tarjeta p-4 mb-4">
+                <h2>Imágenes</h2>
+                <div class="barimgs imgdroparea">
+
+                </div>
+            </div>
             <div class="row tarjeta">
                 <div class="col-12 col-md-6 p-4">
                     <h2 class="mb-4"><i class="fas fa-map-marker-alt"></i> Localización</h2>
@@ -71,6 +76,17 @@
             </div>
         </div>
     </main>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/imgdroparea.js"></script>
+    <script>
+        $(".barimgs").ImgDropArea({
+            imagesSrc: <?=json_encode($barImages[$bar->id])?>,
+            additionalClass: "tarjeta",
+            onChange: () => {},
+            onAdd: () => {},
+        })
+    </script>
 </body>
 
 </html>
