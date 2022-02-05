@@ -100,9 +100,9 @@ class BarController
         $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
 
         if ($orderBy && $orderDir) {
-            echo json_encode($repo->findAll($offset, false, self::AMOUNT_OF_RESULTS_PER_PAGE, $orderBy, $orderDir));
+            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE, $orderBy, $orderDir));
         } else {
-            echo json_encode($repo->findAll($offset, false, self::AMOUNT_OF_RESULTS_PER_PAGE));
+            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));
         }
     }
 

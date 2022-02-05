@@ -74,7 +74,7 @@
 
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/AutoTables.js"></script>
-    <script src="js/bares.js"></script>
+    <script src="js/admin/bares.js"></script>
 
 </body>
 
