@@ -2,6 +2,9 @@
 require_once "repository/UserRepository.php";
 addToBreadCrumbs("Usuarios", getServerAbsPathForActions() . "user");
 
+/**
+ * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
+ */
 class UserController
 {
     private const AMOUNT_OF_RESULTS_PER_PAGE = 4;

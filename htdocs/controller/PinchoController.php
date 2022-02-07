@@ -2,6 +2,9 @@
 require_once "repository/PinchoRepository.php";
 addToBreadCrumbs("Pinchos", getServerAbsPathForActions() . "pincho");
 
+/**
+ * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
+ */
 class PinchoController
 {
     private const AMOUNT_OF_RESULTS_PER_PAGE = 4;

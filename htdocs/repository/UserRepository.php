@@ -2,14 +2,11 @@
 require_once "IDAO.php";
 require_once "model/User.php";
 
+/**
+ * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
+ */
 class UserRepository implements IDAO
 {
-    /**
-     * Obtiene la información de un usuario
-     *
-     * @param string $email el email del usuario
-     * @return User
-     */
     function find($email)
     {
         $stmt = getConexion()->prepare("SELECT * FROM user WHERE `email` = ?");
@@ -20,12 +17,6 @@ class UserRepository implements IDAO
         return User::getInstance($fetch[0]);
     }
 
-    /**
-     * Obtiene la información de un usuario
-     *
-     * @param string $id el email del usuario
-     * @return User
-     */
     function findById($id)
     {
         $stmt = getConexion()->prepare("SELECT * FROM user WHERE `id` = ?");
@@ -57,12 +48,6 @@ class UserRepository implements IDAO
         return $instances;
     }
 
-    /**
-     * Inserta en la base de datos el usuario
-     *
-     * @param stdClass|object $obj
-     * @return true si todo ha sido correcto, false sí no.
-     */
     function save($obj)
     {
         if ($obj instanceof stdClass) {
@@ -75,7 +60,6 @@ class UserRepository implements IDAO
 
     function delete($obj)
     {
-        //TODO: Solo para admin
         $stmt = getConexion()->prepare("DELETE FROM user WHERE `id` = ?");
         $stmt->execute([$obj->id]);
 
@@ -88,14 +72,6 @@ class UserRepository implements IDAO
         return $stmt->execute([$obj->first_name, $obj->last_name, $obj->email, $obj->id]);
     }
 
-
-    /**
-     * Comprueba las credenciales de inicio de sesión de un usuario
-     *
-     * @param string $email
-     * @param string $password
-     * @return true si las credenciales son correct, false sí no.
-     */
     function login($email, $password)
     {
         $stmt = getConexion()->prepare("SELECT * FROM user WHERE `email` = ? AND `password` = ?");
@@ -106,14 +82,12 @@ class UserRepository implements IDAO
 
     function removeLikes($id)
     {
-        //TODO: Solo para admin
         $stmt = getConexion()->prepare("DELETE FROM review_user_likes WHERE `user_id` = ?");
         return $stmt->execute([$id]);
     }
 
     function removeReviews($id)
     {
-        //TODO: Solo para admin
         $stmt = getConexion()->prepare("DELETE FROM review WHERE `user_id` = ?");
         return $stmt->execute([$id]);
     }

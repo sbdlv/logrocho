@@ -2,6 +2,9 @@
 require_once "repository/ReviewRepository.php";
 addToBreadCrumbs("Reseñas", getServerAbsPathForActions() . "review");
 
+/**
+ * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
+ */
 class ReviewController
 {
     private const AMOUNT_OF_RESULTS_PER_PAGE = 4;

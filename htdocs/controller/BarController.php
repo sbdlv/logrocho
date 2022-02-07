@@ -1,6 +1,10 @@
 <?php
 require_once "repository/BarRepository.php";
 addToBreadCrumbs("Bares", getServerAbsPathForActions() . "bar");
+
+/**
+ * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
+ */
 class BarController
 {
     private const AMOUNT_OF_RESULTS_PER_PAGE = 4;

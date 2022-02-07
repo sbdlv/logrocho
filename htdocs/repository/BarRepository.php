@@ -2,13 +2,16 @@
 require_once "IDAO.php";
 require_once "model/Bar.php";
 
+/**
+ * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
+ */
 class BarRepository implements IDAO
 {
     /**
-     * Obtiene la información de un usuario
+     * Obtiene la información de un bar
      *
-     * @param string $id el email del usuario
-     * @return void
+     * @param string $id el email del bar
+     * @return Bar
      */
     function find($id)
     {
@@ -20,6 +23,15 @@ class BarRepository implements IDAO
         return Bar::getInstance($fetch[0]);
     }
 
+    /**
+     * Obitiene los bares de la BD, mediante paginación
+     *
+     * @param mixed $page número de página actual
+     * @param integer $amount Cantidad de resultados por página
+     * @param mixed $orderBy El nombre del campo por el que se va a ordenar
+     * @param string $orderDir Dirección de ordenación (ASC, DESC)
+     * @return array Array de bares
+     */
     function findAll($page = false, $amount = 1, $orderBy = false, $orderDir = "DESC")
     {
         if ($page !== false) {
