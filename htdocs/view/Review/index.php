@@ -105,7 +105,7 @@
                         <tbody>
                         <?php foreach ($reviews as $review) : ?>
                             <tr>
-                                <td><a href="<?=getServerAbsPathForActions()?>user/info/<?= $review->user_id ?>">Ver ficha</a></td>
+                                <td class="text-center"><a href="<?=getServerAbsPathForActions()?>user/info/<?= $review->user_id ?>">Ver ficha</a></td>
                                 <td><?=$review->title?></td>
                                 <td><?=$review->desc?></td>
                                 <td class="puntuacionWrapper text-center"><?=$review->presentation?><i class="fas fa-star"></i></td>
@@ -117,7 +117,7 @@
                                 <td class="text-center"><a href="<?=getServerAbsPathForActions()?>pincho/info/<?= $review->pincho_id ?>">Ver ficha</a></td>
                                 <td class="text-center">
                                     <div class="d-flex">
-                                        <a href="<?= getServerAbsPathForActions() ?>review/info/<?= 1 ?>" class="btn btn-primary" title="Ver ficha"><i class="fas fa-external-link-alt"></i></a>
+                                        <a href="<?= getServerAbsPathForActions() ?>review/info/<?= $review->id ?>" class="btn btn-primary" title="Ver ficha"><i class="fas fa-external-link-alt"></i></a>
                                         <button class="btn btn-danger ms-2" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
                                     </div>
                                 </td>
@@ -128,10 +128,10 @@
                 </div>
                 <nav class="mt-4">
                     <ul class="pagination">
-                        <li class="page-item active">
+                        <li class="page-item">
                             <a class="page-link" href="#" tabindex="-1">Anterior</a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
                         <li class="page-item">
                             <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
                         </li>

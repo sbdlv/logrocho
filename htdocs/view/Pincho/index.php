@@ -95,10 +95,10 @@
                 </div>
                 <nav class="mt-4">
                     <ul class="pagination">
-                        <li class="page-item active">
+                        <li class="page-item">
                             <a class="page-link" href="#" tabindex="-1">Anterior</a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
                         <li class="page-item">
                             <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
                         </li>

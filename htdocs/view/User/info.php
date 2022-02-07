@@ -42,10 +42,6 @@
                                     <td>Fecha de alta</td>
                                     <td><?=$user->created_date?></td>
                                 </tr>
-                                <tr>
-                                    <td>Núm. Reseñas escritas</td>
-                                    <td>?</td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
