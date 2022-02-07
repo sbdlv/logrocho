@@ -22,16 +22,21 @@ $.fn.ImgDropArea = function (data = {
 
     this.data("data", data);
 
+    let imagesWrapper = $("<div></div>").addClass("images");
+    imagesWrapper.data("data", data);
+
     //Append images etc
     data.imagesSrc.forEach((src, i) => {
-        this.append(
+        imagesWrapper.append(
             getImgAndDrop(src, i, data.additionalClass)
         )
     });
 
     //Append the add button
     this.append(
-        $('<button><i class="fas fa-plus"></i></button>').on("click", data.onAdd).addClass("btn btn-primary")
+        $('<button onclick="uploadPic()">Subir imagen</button>').on("click", data.onAdd).addClass("btn btn-primary mb-4"),
+        $('<p><i>Arrastra las imagenes para organizarlas.</i></p>'),
+        imagesWrapper,
     );
 
     return this;

@@ -69,7 +69,6 @@
                     <table class="table customize-table mb-0 v-middle table-borderless">
                         <thead class="table-light">
                             <tr>
-                                <th>Imagen</th>
                                 <th>Nombre</th>
                                 <th>Alérgenos</th>
                                 <th class="text-center">Puntuación</th>
@@ -79,7 +78,6 @@
                         <tbody>
                             <?php foreach ($pinchos as $pincho) : ?>
                                 <tr>
-                                    <td><img src="img/pt1.jpg" alt="Pincho de tortilla" class="imagen_listado"></td>
                                     <td><?= $pincho->name ?></td>
                                     <td>
                                         <img src="img/alergenos/Huevos.png" class="icono_alergeno" alt="Alérgeno huevos" title="Alérgeno huevos">

@@ -192,3 +192,36 @@ insert into allergen (name, img_path) values ("Mostaza", "img/alergenos/Mostaza.
 insert into allergen (name, img_path) values ("Sésamo", "img/alergenos/Sésamo.png");
 insert into allergen (name, img_path) values ("Altramuz", "img/alergenos/Altramuz.png");
 insert into allergen (name, img_path) values ("Sulfitos", "img/alergenos/Sulfitos.png");
+
+/* IMAGENES BAR */
+insert into multimediaBar (bar_id, `path`) values 
+(1, "img/pexels-photo-262047.jpeg"),
+(1, "img/pexels-pixabay-262978.jpg");
+
+insert into multimediaBar (bar_id, `path`) values 
+(2, "img/pexels-photo-262047.jpeg"),
+(2, "img/pexels-pixabay-262978.jpg");
+
+insert into multimediaBar (bar_id, `path`) values 
+(3, "img/pexels-photo-262047.jpeg"),
+(4, "img/pexels-pixabay-262978.jpg");
+
+insert into multimediaBar (bar_id, `path`) values 
+(4, "img/pexels-photo-262047.jpeg"),
+(4, "img/pexels-pixabay-262978.jpg");
+
+insert into multimediaBar (bar_id, `path`) values 
+(5, "img/pexels-photo-262047.jpeg"),
+(5, "img/pexels-pixabay-262978.jpg");
+
+insert into multimediaBar (bar_id, `path`) values 
+(6, "img/pexels-photo-262047.jpeg"),
+(6, "img/pexels-pixabay-262978.jpg");
+
+insert into multimediaBar (bar_id, `path`) values 
+(7, "img/pexels-photo-262047.jpeg"),
+(7, "img/pexels-pixabay-262978.jpg");
+
+insert into multimediaBar (bar_id, `path`) values 
+(8, "img/pexels-photo-262047.jpeg"),
+(8, "img/pexels-pixabay-262978.jpg");

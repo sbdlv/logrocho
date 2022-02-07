@@ -56,7 +56,6 @@
                     <table class="table customize-table mb-0 v-middle table-borderless">
                         <thead class="table-light">
                             <tr>
-                                <th class="text-center">Imagen</th>
                                 <th>Nombre</th>
                                 <th>Apellidos</th>
                                 <th>Email</th>
@@ -68,7 +67,6 @@
                         <tbody>
                             <?php foreach ($users as $user) : ?>
                                 <tr>
-                                    <td class="text-center"><img src="img/pfp.jpg" class="imagen_listado" alt=""></td>
                                     <td><?= $user->first_name ?></td>
                                     <td><?= $user->last_name ?></td>
                                     <td><?= $user->email ?></td>
