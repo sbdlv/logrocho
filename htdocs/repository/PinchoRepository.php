@@ -70,4 +70,16 @@ class PinchoRepository implements IDAO
         $stmt = getConexion()->prepare("INSERT INTO `multimediaPincho`(`pincho_id`, `path`, `priority`) VALUES (?,?,?)");
         return $stmt->execute([$pk, $path, $priority]);
     }
+
+    function getImages($id, &$imgs = []){
+        $stmt = getConexion()->prepare("SELECT * FROM `multimediapincho` WHERE pincho_id = ? ORDER BY priority, id");
+
+        $stmt->execute([$id]);
+
+        foreach ($stmt as $row) {
+            $imgs[$id][] = $row["path"];
+        }
+
+        return $imgs;
+    }
 }

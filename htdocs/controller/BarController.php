@@ -132,14 +132,18 @@ class BarController
                 mkdir($destPath);
             }
 
-            $finalPath = $destPath . "/" . basename($_POST["name"]) . ".png";
+            $ext = "." . pathinfo($_FILES["pic"]["name"])["extension"];
+
+            $fileNameAndExt = pathinfo($_FILES["pic"]["name"])["filename"] . $ext;
+
+            $finalPath = $destPath . "/" . $fileNameAndExt;
             move_uploaded_file($_FILES["pic"]["tmp_name"], $finalPath);
 
             $priority = isset($_POST["priority"]) ? $_POST["priority"] : -1;
 
             //BD
             $repo = new BarRepository();
-            if ($repo->uploadPic($_POST["pk"], "/img/img_bares/" . $_POST["pk"] . "/" . basename($_POST["name"]) . ".png", $priority)) {
+            if ($repo->uploadPic($_POST["pk"], "/img/img_bares/" . $_POST["pk"] . "/" . $fileNameAndExt, $priority)) {
                 echo "Se ha subido la imagen!";
             } else {
                 echo "Ha ocurrido un error";

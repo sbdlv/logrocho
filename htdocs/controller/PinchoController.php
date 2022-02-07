@@ -7,18 +7,20 @@ class PinchoController
     private const AMOUNT_OF_RESULTS_PER_PAGE = 4;
 
     function index($id = false)
-    {        
+    {
         $repo = new PinchoRepository();
-        
+
         $pinchos = $repo->findAll();
         $activeMenu = "pincho";
         include "view/Pincho/index.php";
     }
-    
-    function info($id){
+
+    function info($id)
+    {
         $repo = new PinchoRepository();
         addToBreadCrumbs("Pincho #$id");
         $pincho = $repo->find($id);
+        $pinchoImages = $repo->getImages($id);
         $activeMenu = "pincho";
         include "view/Pincho/info.php";
     }
@@ -82,9 +84,10 @@ class PinchoController
         }
     }
 
-    function jsonAll($page){
+    function jsonAll($page)
+    {
         header('Content-Type: application/json; charset=utf-8');
-              
+
         $repo = new PinchoRepository();
 
         $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
@@ -92,7 +95,8 @@ class PinchoController
         echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));
     }
 
-    function json($id){
+    function json($id)
+    {
         header('Content-Type: application/json; charset=utf-8');
 
         $repo = new PinchoRepository();
@@ -100,27 +104,32 @@ class PinchoController
         echo json_encode($repo->find($id));
     }
 
-    function uploadPic(){
-        if(isset($_POST["pk"], $_POST["name"])){
+    function uploadPic()
+    {
+        if (isset($_POST["pk"], $_POST["name"])) {
 
             //TODO: Comprobar que post pk es un int y existe en BD
             $destPath = $_SERVER["DOCUMENT_ROOT"] . "/img/img_pinchos/" . $_POST["pk"];
-            if(!file_exists($destPath)){
+            if (!file_exists($destPath)) {
                 mkdir($destPath);
             }
 
-            $finalPath = $destPath . "/" . basename($_POST["name"]) . ".png";
+            $ext = "." . pathinfo($_FILES["pic"]["name"])["extension"];
+
+            $fileNameAndExt = pathinfo($_FILES["pic"]["name"])["filename"] . $ext;
+
+            $finalPath = $destPath . "/" . $fileNameAndExt;
             move_uploaded_file($_FILES["pic"]["tmp_name"], $finalPath);
 
             $priority = isset($_POST["priority"]) ? $_POST["priority"] : -1;
 
             //BD
             $repo = new PinchoRepository();
-            $repo->uploadPic($_POST["pk"], "/img/img_pinchos/" . $_POST["pk"] . "/" . basename($_POST["name"]) . ".png" , $priority);
+            $repo->uploadPic($_POST["pk"], "/img/img_pinchos/" . $_POST["pk"] . "/" . $fileNameAndExt, $priority);
+            echo "Se ha subido la imagen";
         } else {
             http_response_code(400);
             echo "Falta campos POST";
         }
     }
-
 }

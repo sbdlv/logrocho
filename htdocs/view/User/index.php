@@ -59,7 +59,6 @@
                                 <th>Nombre</th>
                                 <th>Apellidos</th>
                                 <th>Email</th>
-                                <th class="text-center">Núm. Reseñas</th>
                                 <th class="text-center">Fecha alta</th>
                                 <th class="text-center">Ver ficha</th>
                             </tr>
@@ -70,9 +69,8 @@
                                     <td><?= $user->first_name ?></td>
                                     <td><?= $user->last_name ?></td>
                                     <td><?= $user->email ?></td>
-                                    <td class="text-center">?</td>
                                     <td class="text-center"><?= $user->created_date ?></td>
-                                    <td class="text-center d-flex position-relative">
+                                    <td class="text-center d-flex justify-content-center">
                                         <a href="<?= getServerAbsPathForActions() ?>user/info/<?= $user->id ?>" class="btn btn-primary" title="Ver ficha"><i class="fas fa-external-link-alt"></i></a>
                                         <button class="btn btn-danger ms-2" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
                                     </td>

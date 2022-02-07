@@ -22,8 +22,7 @@
                 <h1>Pincho de tortilla - Pincho</h1>
             </div>
             <div class="row my-4">
-                <div class="col-12 col-lg-4 tarjeta"><img src="img/pt1.jpg" class="img-fluid my-2" alt=""></div>
-                <div class="col offset-lg-1 tarjeta p-4">
+                <div class="col tarjeta p-4">
                     <h2 class="mb-4"><i class="fas fa-info-circle"></i> Detalles</h2>
                     <div class="table-responsive">
                         <table class="table customize-table mb-0 v-middle table-borderless">
@@ -34,7 +33,7 @@
                                 </tr>
                                 <tr>
                                     <td>Bar</td>
-                                    <td><a href="<?=getServerAbsPathForActions() ?>bar/info/<?=$pincho->bar_id?>">Ver ficha</a></td>
+                                    <td><a href="<?= getServerAbsPathForActions() ?>bar/info/<?= $pincho->bar_id ?>">Ver ficha</a></td>
                                 </tr>
                                 <tr>
                                     <td>Alérgenos</td>
@@ -51,9 +50,8 @@
             </div>
             <div class="row tarjeta p-4 mb-4">
                 <h2 class="mb-4"><i class="fas fa-images"></i></i> Multimedia</h2>
-                <div class="displa-felx imagenes_reseña">
-                    <img src="img/pt1.jpg" alt="">
-                    <img src="img/pt2.jpg" alt="">
+                <div class="pinchoimgs imgdroparea">
+
                 </div>
             </div>
             <div class="row tarjeta p-4">
@@ -79,6 +77,58 @@
             </div>
         </section>
     </main>
+
+    <button class="save_btn btn btn-success m-4"><i class="far fa-save"></i> Guardar</button>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/image-uploader.min.js"></script>
+    <script src="js/imgdroparea.js"></script>
+    <script>
+        let ID = <?= $pincho->id ?>;
+        let barimgs = $(".pinchoimgs");
+        barimgs.ImgDropArea({
+            <?php if (empty($pinchoImages)) : ?>
+                imagesSrc: [],
+            <?php else : ?>
+                imagesSrc: <?= json_encode($pinchoImages[$pincho->id]) ?>,
+            <?php endif; ?>
+            additionalClass: "tarjeta",
+            onChange: (data) => {
+                console.log(data);
+            },
+            onAdd: () => {},
+        })
+
+        function uploadPic() {
+            let input = document.createElement('input');
+            input.type = 'file';
+            input.accept = "image/png, image/jpeg";
+            input.onchange = _ => {
+                // you can use this method to get file and perform respective operations
+                let files = Array.from(input.files);
+                console.log(files);
+
+                files.forEach(file => {
+                    let fd = new FormData();
+                    fd.append("pic", file);
+                    fd.append("name", file.name);
+                    fd.append("pk", ID);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "index.php/pincho/uploadPic",
+                        data: fd,
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            barimgs.ImgDropAreaAdd([`/img/img_pinchos/${ID}/${file.name}`])
+                        }
+                    });
+                });
+            };
+            input.click();
+        }
+    </script>
 </body>
 
 </html>

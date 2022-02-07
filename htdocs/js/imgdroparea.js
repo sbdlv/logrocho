@@ -34,8 +34,8 @@ $.fn.ImgDropArea = function (data = {
 
     //Append the add button
     this.append(
-        $('<button onclick="uploadPic()">Subir imagen</button>').on("click", data.onAdd).addClass("btn btn-primary mb-4"),
-        $('<p><i>Arrastra las imagenes para organizarlas.</i></p>'),
+        $('<button onclick="uploadPic()">Subir imagen</button>').on("click", data.onAdd).addClass("btn btn-primary"),
+        $('<p><i>Arrastra las imagenes para organizarlas.</i></p>').addClass("my-4"),
         imagesWrapper,
     );
 
@@ -43,14 +43,14 @@ $.fn.ImgDropArea = function (data = {
 }
 
 $.fn.ImgDropAreaAdd = function (imagesSrc = []) {
-    let lastElemToAppend = this.find(".drop").last();
+    let lastElemToAppend = this.find(".images").eq(0);
 
     let additionalClass = this.data("data").additionalClass;
 
     let lastPos = this.find("img").length - 1;
 
     imagesSrc.forEach(imageSrc => {
-        lastElemToAppend = getImgAndDrop(imageSrc, ++lastPos, additionalClass).insertAfter(lastElemToAppend).last()
+        lastElemToAppend.append(getImgAndDrop(imageSrc, ++lastPos, additionalClass))
     });
 
     return this;
