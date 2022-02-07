@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "220addf2-84e6-44e9-9dbb-8370470af375",
+		"_postman_id": "a932ef0a-a238-42e8-8e13-7a61d4900d41",
 		"name": "Logr8",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -149,6 +149,27 @@
 						"method": "GET",
 						"header": [],
 						"url": {
+							"raw": "logrocho.local/index.php/bar/jsonAll/1",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"bar",
+								"jsonAll",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "JSON by ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
 							"raw": "logrocho.local/index.php/bar/json/1",
 							"host": [
 								"logrocho",
@@ -165,12 +186,12 @@
 					"response": []
 				},
 				{
-					"name": "JSON by ID",
+					"name": "Total",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "logrocho.local/index.php/bar/jsonAll/1",
+							"raw": "logrocho.local/index.php/bar/total/",
 							"host": [
 								"logrocho",
 								"local"
@@ -178,8 +199,49 @@
 							"path": [
 								"index.php",
 								"bar",
-								"jsonAll",
-								"1"
+								"total",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload IMG",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pic",
+									"contentType": "image/png",
+									"type": "file",
+									"src": "/D:/logrocho/Mockup Contacto.png"
+								},
+								{
+									"key": "pk",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "name",
+									"value": "Testing",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "logrocho.local/index.php/bar/uploadPic",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"bar",
+								"uploadPic"
 							]
 						}
 					},
@@ -275,7 +337,7 @@
 							"formdata": [
 								{
 									"key": "id",
-									"value": "3",
+									"value": "11",
 									"type": "text"
 								}
 							]
@@ -332,6 +394,46 @@
 								"pincho",
 								"json",
 								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Upload IMG",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "pk",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "pic",
+									"type": "file",
+									"src": "/D:/logrocho/Mockup Contacto.png"
+								},
+								{
+									"key": "name",
+									"value": "Testing pincho",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "logrocho.local/index.php/pincho/uploadPic",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"pincho",
+								"uploadPic"
 							]
 						}
 					},
@@ -397,7 +499,7 @@
 							"formdata": [
 								{
 									"key": "id",
-									"value": "1",
+									"value": "2",
 									"type": "text"
 								}
 							]
@@ -427,7 +529,7 @@
 							"formdata": [
 								{
 									"key": "id",
-									"value": "2",
+									"value": "3",
 									"type": "text"
 								},
 								{
@@ -494,7 +596,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "logrocho.local/index.php/user/json/2",
+							"raw": "logrocho.local/index.php/user/json/1",
 							"host": [
 								"logrocho",
 								"local"
@@ -503,7 +605,7 @@
 								"index.php",
 								"user",
 								"json",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -521,27 +623,154 @@
 						"header": [],
 						"body": {
 							"mode": "formdata",
-							"formdata": []
+							"formdata": [
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "title",
+									"value": "Review de prueba",
+									"type": "default"
+								},
+								{
+									"key": "desc",
+									"value": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+									"type": "default"
+								},
+								{
+									"key": "presentation",
+									"value": "3",
+									"type": "default"
+								},
+								{
+									"key": "texture",
+									"value": "3",
+									"type": "default"
+								},
+								{
+									"key": "taste",
+									"value": "4",
+									"type": "default"
+								},
+								{
+									"key": "pincho_id",
+									"value": "1",
+									"type": "default"
+								}
+							]
 						},
-						"url": null
+						"url": {
+							"raw": "http://logrocho.local/index.php/review/alta",
+							"protocol": "http",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"review",
+								"alta"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Delete",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
-						"url": null
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "1",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://logrocho.local/index.php/review/delete",
+							"protocol": "http",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"review",
+								"delete"
+							]
+						}
 					},
 					"response": []
 				},
 				{
 					"name": "Update",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
-						"url": null
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "2",
+									"type": "default"
+								},
+								{
+									"key": "user_id",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "title",
+									"value": "Modificada",
+									"type": "default"
+								},
+								{
+									"key": "desc",
+									"value": "Esta review ha sido modificada",
+									"type": "default"
+								},
+								{
+									"key": "presentation",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "texture",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "taste",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "pincho_id",
+									"value": "1",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://logrocho.local/index.php/review/update",
+							"protocol": "http",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"review",
+								"update"
+							]
+						}
 					},
 					"response": []
 				},
@@ -550,7 +779,20 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": "http://logrocho.local/index.php/review/jsonAll/1",
+							"protocol": "http",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"review",
+								"jsonAll",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -559,7 +801,9 @@
 					"request": {
 						"method": "GET",
 						"header": [],
-						"url": null
+						"url": {
+							"raw": ""
+						}
 					},
 					"response": []
 				}
