@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
-    <?php include "view/side_bar_admin.php"?>
+    <?php include "view/side_bar_admin.php" ?>
     <main class="w-100 p-4">
         <section class="container">
             <h1 class="mb-4">Pinchos</h1>
@@ -27,29 +28,39 @@
                             <input type="submit" class="btn" value="">
                         </div>
                     </div>
-                    <div class="tarjeta p-5">
-                        <h2 class="h4 mb-4">Búsqueda avanzada</h2>
-                        <label for="bar" class="h5">Bar</label>
-                        <input type="text" class="form-control" name="bar" id="bar">
-                        <label for="terraza" class="h5 mt-3">Puntuación</label>
-                        <select class="form-select" aria-label="Selector de terraza" id="terraza">
-                            <option selected value="any">Cualquiera</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                        <div class="form-group">
-                            <label for="alergenos" class="h5 mt-3">Alérgenos</label>
-                            <select class="form-select" name="alergenos" id="alergenos" multiple>
-                                <option value="any" selected>Cualquiera</option>
-                                <option value="none">Sin alergenos</option>
-                                <option value="gluten">Gluten</option>
-                                <option value="huevos">Huevos</option>
-                            </select>
+                    <div class="accordion tarjeta mb-5" id="accordionPrimary">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <h2 class="h4 m-0">Busqueda avanzada</h2>
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionPrimary">
+                                <div class="accordion-body">
+                                    <label for="bar" class="h5">Bar</label>
+                                    <input type="text" class="form-control" name="bar" id="bar">
+                                    <label for="terraza" class="h5 mt-3">Puntuación</label>
+                                    <select class="form-select" aria-label="Selector de terraza" id="terraza">
+                                        <option selected value="any">Cualquiera</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <div class="form-group">
+                                        <label for="alergenos" class="h5 mt-3">Alérgenos</label>
+                                        <select class="form-select" name="alergenos" id="alergenos" multiple>
+                                            <option value="any" selected>Cualquiera</option>
+                                            <option value="none">Sin alergenos</option>
+                                            <option value="gluten">Gluten</option>
+                                            <option value="huevos">Huevos</option>
+                                        </select>
+                                    </div>
+                                    <input type="submit" value="Búsqueda avanzada" class="btn btn-primary mt-4">
+                                </div>
+                            </div>
                         </div>
-                        <input type="submit" value="Búsqueda avanzada" class="btn btn-primary mt-4">
                     </div>
                 </form>
             </section>
@@ -66,18 +77,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($pinchos as $pincho) :?>
+                            <?php foreach ($pinchos as $pincho) : ?>
                                 <tr>
                                     <td><img src="img/pt1.jpg" alt="Pincho de tortilla" class="imagen_listado"></td>
-                                    <td><?=$pincho->name?></td>
+                                    <td><?= $pincho->name ?></td>
                                     <td>
                                         <img src="img/alergenos/Huevos.png" class="icono_alergeno" alt="Alérgeno huevos" title="Alérgeno huevos">
                                         <img src="img/alergenos/Gluten.png" class="icono_alergeno" title="Alérgeno gluten" alt="Alérgeno gluten">
                                     </td>
                                     <td class="puntuacionWrapper text-center">?<i class="fas fa-star"></i></td>
-                                    <td class="text-center"><a href="<?=getServerAbsPathForActions()?>pincho/info/<?=$pincho->id?>"><i class="fas fa-external-link-alt"></i></a></td>
+                                    <td class="text-center"><a href="<?= getServerAbsPathForActions() ?>pincho/info/<?= $pincho->id ?>"><i class="fas fa-external-link-alt"></i></a></td>
                                 </tr>
-                            <?php endforeach;?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>

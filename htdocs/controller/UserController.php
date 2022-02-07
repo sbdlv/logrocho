@@ -1,5 +1,6 @@
 <?php
 require_once "repository/UserRepository.php";
+addToBreadCrumbs("Usuarios", getServerAbsPathForActions() . "user");
 
 class UserController
 {
@@ -14,6 +15,7 @@ class UserController
     function info($id)
     {
         $activeMenu = "user";
+        addToBreadCrumbs("Usuario #$id");
         require "view/user/info.php";
     }
 

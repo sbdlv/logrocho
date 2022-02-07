@@ -1,5 +1,6 @@
 <?php
 require_once "repository/PinchoRepository.php";
+addToBreadCrumbs("Pinchos", getServerAbsPathForActions() . "pincho");
 
 class PinchoController
 {
@@ -16,7 +17,7 @@ class PinchoController
     
     function info($id){
         $repo = new PinchoRepository();
-        
+        addToBreadCrumbs("Pincho #$id");
         $pincho = $repo->find($id);
         $activeMenu = "pincho";
         include "view/Pincho/info.php";

@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/style.css">
     <script src="js/bootstrap/js/bootstrap.min.js"></script>
-
 </head>
 
 <body>
@@ -29,14 +28,14 @@
                             <input type="submit" class="btn" value="">
                         </div>
                     </div>
-                    <div class="accordion tarjeta mb-5" id="accordionExample">
+                    <div class="accordion tarjeta mb-5" id="accordionPrimary">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 <h2 class="h4 m-0">Busqueda avanzada</h2>
                                 </button>
                             </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionPrimary">
                                 <div class="accordion-body">
                                     <div class="form-group">
                                         <label for="terraza" class="h5">Terraza</label>

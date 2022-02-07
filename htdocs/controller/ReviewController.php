@@ -1,5 +1,6 @@
 <?php
 require_once "repository/ReviewRepository.php";
+addToBreadCrumbs("Reseñas", getServerAbsPathForActions() . "review");
 
 class ReviewController
 {
@@ -17,7 +18,7 @@ class ReviewController
     function info($id)
     {
         $repo = new ReviewRepository();
-
+        addToBreadCrumbs("Reseña #$id");
         $review = $repo->find($id);
         $activeMenu = "review";
         include "view/Review/info.php";

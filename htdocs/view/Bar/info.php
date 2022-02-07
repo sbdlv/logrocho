@@ -16,7 +16,7 @@
 <body>
     <?php include "view/side_bar_admin.php" ?>
     <main class="w-100 p-4">
-        <div class="container">
+        <section class="container">
             <?php include "view/breadcrumbs.php" ?>
             <div class="tarjeta row p-4">
                 <h1><?= $bar->name ?> - Restaurante</h1>
@@ -74,7 +74,7 @@
                 </div>
                 <div class="col-12 col-md-6"><img src="img/maps.png" class="img-fluid my-2" alt=""></div>
             </div>
-        </div>
+        </section>
     </main>
 
     <script src="js/jquery-3.6.0.min.js"></script>

@@ -17,6 +17,7 @@
     <?php include "view/side_bar_admin.php" ?>
     <main class="w-100 p-4">
         <section class="container my-4">
+            <?php include "view/breadcrumbs.php" ?>
             <div class="tarjeta row p-4">
                 <h1>Pincho de tortilla - Pincho</h1>
             </div>
