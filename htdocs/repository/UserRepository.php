@@ -7,13 +7,29 @@ class UserRepository implements IDAO
     /**
      * Obtiene la información de un usuario
      *
-     * @param string $id el email del usuario
+     * @param string $email el email del usuario
      * @return void
      */
     function find($email)
     {
         $stmt = getConexion()->prepare("SELECT * FROM user WHERE `email` = ?");
         $stmt->execute([$email]);
+
+        $fetch = $stmt->fetchAll();
+
+        return User::getInstance($fetch[0]);
+    }
+
+    /**
+     * Obtiene la información de un usuario
+     *
+     * @param string $id el email del usuario
+     * @return void
+     */
+    function findById($id)
+    {
+        $stmt = getConexion()->prepare("SELECT * FROM user WHERE `id` = ?");
+        $stmt->execute([$id]);
 
         $fetch = $stmt->fetchAll();
 

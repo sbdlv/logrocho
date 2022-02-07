@@ -30,7 +30,7 @@
           <a class="nav-link" href="#">Pinchos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Iniciar sesión</a>
+          <a class="nav-link" href="<?= getServerAbsPathForActions() . "user/login" ?>">Iniciar sesión</a>
         </li>
       </ul>
     </div>
@@ -46,7 +46,7 @@
       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
         <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
         <label class="btn btn-outline-primary" for="btnradio1">Restaruantes</label>
-      
+
         <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
         <label class="btn btn-outline-primary" for="btnradio2">Pinchos</label>
       </div>
@@ -55,13 +55,11 @@
       <div class="container">
         <h2 class="mb-5 fw-bold">¿Que quieres ver?</h2>
         <div class="what_to_see d-flex justify-content-center">
-          <a href=""
-            class="option tarjeta tarjeta-btn d-flex justify-content-center flex-column align-items-center m-2">
+          <a href="" class="option tarjeta tarjeta-btn d-flex justify-content-center flex-column align-items-center m-2">
             <img src="img/bar_icon.png" alt="">
             <p class="mt-3">Restaurantes</p>
           </a>
-          <a href=""
-            class="option tarjeta tarjeta-btn d-flex justify-content-center flex-column align-items-center m-2">
+          <a href="" class="option tarjeta tarjeta-btn d-flex justify-content-center flex-column align-items-center m-2">
             <img src="img/pincho_icon.png" alt="">
             <p class="mt-3">Pinchos</p>
           </a>
@@ -75,8 +73,7 @@
           <img class="" src="img/pt1.jpg" alt="Pincho">
           <div class="card-body">
             <h5 class="card-title fw-bold mb-2">Pincho de tortilla</h5>
-            <div class="card-subtitle mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <div class="card-subtitle mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
             <p class="card-text text_clamp_3">Some quick example text to build on the card title and make up the bulk of
               the card's content.</p>
           </div>
@@ -85,8 +82,7 @@
           <img class="" src="img/pp1.jpg" alt="Pincho">
           <div class="card-body">
             <h5 class="card-title fw-bold mb-2">Pincho de tortilla</h5>
-            <div class="card-subtitle mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <div class="card-subtitle mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
             <p class="card-text text_clamp_3">Some quick example text to build on the card title and make up the bulk of
               the card's content.</p>
           </div>
@@ -95,8 +91,7 @@
           <img class="" src="img/pm-1.jpg" alt="Pincho">
           <div class="card-body">
             <h5 class="card-title fw-bold mb-2">Pincho de tortilla</h5>
-            <div class="card-subtitle mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <div class="card-subtitle mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
             <p class="card-text text_clamp_3">Some quick example text to build on the card title and make up the bulk of
               the card's content.</p>
           </div>
@@ -105,8 +100,7 @@
           <img class="" src="img/" alt="Pincho">
           <div class="card-body">
             <h5 class="card-title fw-bold mb-2">Pincho de tortilla</h5>
-            <div class="card-subtitle mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <div class="card-subtitle mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
             <p class="card-text text_clamp_3">Some quick example text to build on the card title and make up the bulk of
               the card's content.</p>
           </div>
@@ -115,8 +109,7 @@
           <img class="" src="img/pexels-photo-262047.jpeg" alt="Pincho">
           <div class="card-body">
             <h5 class="card-title fw-bold mb-2">Pincho de tortilla</h5>
-            <div class="card-subtitle mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i
-                class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+            <div class="card-subtitle mb-2"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
             <p class="card-text text_clamp_3">Some quick example text to build on the card title and make up the bulk of
               the card's content.</p>
           </div>

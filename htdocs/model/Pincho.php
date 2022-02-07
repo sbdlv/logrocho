@@ -7,7 +7,6 @@ class Pincho extends AbstractMappedSQLModel{
     public int $id;
     public int $bar_id;
     public string $name;
-    public $principal_img_id;
 
     static function getPropertiesMapArray(): array
     {

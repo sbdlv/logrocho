@@ -26,7 +26,18 @@ class UserController
             require_once "repository/UserRepository.php";
             $repo = new UserRepository();
 
-            if (!$repo->login($_POST["email"], $_POST["password"])) {
+            //Comprobar requisitos de contraseña etc
+            if (!preg_match("/^[a-z0-9]+@[a-z0-9]+\.[a-z]+$/i", $_POST["email"])) {
+                $errorMsg = "No has introducido una dirección de email valida.";
+            } else if (strlen($_POST["password"]) < 8) {
+                $errorMsg = "No la contraseña debe tener una longitud minima de 8 caracteres.";
+            } else if (!preg_match("/[a-z]+/", $_POST["password"])) {
+                $errorMsg = "La contraseña debe de tener al menos una minúscula.";
+            } else if (!preg_match("/[A-Z]+/", $_POST["password"])) {
+                $errorMsg = "La contraseña debe de tener al menos una mayúscula.";
+            } else if (!preg_match("/[0-9]+/", $_POST["password"])) {
+                $errorMsg = "La contraseña debe de tener al menos un número.";
+            } else if (!$repo->login($_POST["email"], $_POST["password"])) {
                 $errorMsg = "Clave o usuario incorrectos.";
             } else {
                 $_SESSION["user"] = (array) $repo->find($_POST["email"]);
@@ -48,11 +59,11 @@ class UserController
             if (!preg_match("/^[a-z0-9]+@[a-z0-9]+\.[a-z]+$/i", $_POST["email"])) {
                 $errorMsg = "No has introducido una dirección de email valida.";
             } else if (strlen($_POST["password"]) < 8) {
-                $errorMsg = "No la contraseña debe tener una longitud minima de 8 carácteres.";
+                $errorMsg = "No la contraseña debe tener una longitud minima de 8 caracteres.";
             } else if (!preg_match("/[a-z]+/", $_POST["password"])) {
                 $errorMsg = "La contraseña debe de tener al menos una minúscula.";
             } else if (!preg_match("/[A-Z]+/", $_POST["password"])) {
-                $errorMsg = "La contraseña debe de tener al menos una mayuscula.";
+                $errorMsg = "La contraseña debe de tener al menos una mayúscula.";
             } else if (!preg_match("/[0-9]+/", $_POST["password"])) {
                 $errorMsg = "La contraseña debe de tener al menos un número.";
             } else {
@@ -185,6 +196,6 @@ class UserController
         header('Content-Type: application/json; charset=utf-8');
         $repo = new UserRepository();
 
-        echo json_encode($repo->find($id));
+        echo json_encode($repo->findById($id));
     }
 }

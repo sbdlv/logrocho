@@ -9,7 +9,6 @@ class Bar extends AbstractMappedSQLModel
     public float $lon;
     public float $lat;
     public bool $terrace;
-    public $principal_img_id;
 
     static function getPropertiesMapArray(): array
     {

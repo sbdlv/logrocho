@@ -49,8 +49,8 @@ class BarRepository implements IDAO
      */
     function save($obj)
     {
-        $stmt = getConexion()->prepare("INSERT INTO `bar`(`name`, `address`, `lon`, `lat`, `terrace`, `principal_img_id`) VALUES (?,?,?,?,?,?)");
-        return $stmt->execute([$obj->name, $obj->address, $obj->lon, $obj->lat, $obj->terrace, $obj->principal_img_id]);
+        $stmt = getConexion()->prepare("INSERT INTO `bar`(`name`, `address`, `lon`, `lat`, `terrace`) VALUES (?,?,?,?,?)");
+        return $stmt->execute([$obj->name, $obj->address, $obj->lon, $obj->lat, $obj->terrace]);
     }
 
     function delete($obj): bool
@@ -63,8 +63,8 @@ class BarRepository implements IDAO
 
     function update($obj)
     {
-        $stmt = getConexion()->prepare("UPDATE `bar` SET `name` = ?, `address` = ?, `lon` = ?, `lat` = ?, `terrace` = ?, `principal_img_id` = ? WHERE `id` = ?");
-        return $stmt->execute([$obj->name, $obj->address, $obj->lon, $obj->lat, $obj->terrace, $obj->principal_img_id, $obj->id]);
+        $stmt = getConexion()->prepare("UPDATE `bar` SET `name` = ?, `address` = ?, `lon` = ?, `lat` = ?, `terrace` = ? WHERE `id` = ?");
+        return $stmt->execute([$obj->name, $obj->address, $obj->lon, $obj->lat, $obj->terrace, $obj->id]);
     }
 
     function total(){

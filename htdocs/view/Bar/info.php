@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="row tarjeta p-4 mb-4">
-                <h2>Imágenes</h2>
+                <h2><i class="fas fa-images"></i> Imágenes</h2>
                 <div class="barimgs imgdroparea">
 
                 </div>

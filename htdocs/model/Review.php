@@ -15,7 +15,7 @@ class Review extends AbstractMappedSQLModel
     public int $texture;
     public int $taste;
 
-    public bool $pincho_id;
+    public int $pincho_id;
 
     static function getPropertiesMapArray(): array
     {

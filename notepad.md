@@ -5,7 +5,7 @@ SELECT p.id, (SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 as "Nota t
 
 # Consultar la nota total calculada de los pinchos de un bar en especifico
 ```sql
-SELECT p.id, b.id, (SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 as "Total" FROM `pincho` p JOIN review r ON p.id = r.pincho_id JOIN bar b ON b.id = p.bar_id WHERE b.id = 1 GROUP BY p.id;
+SELECT p.id, b.id, (SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 as "Total" FROM `pincho` p JOIN review r ON p.id = r.pincho_id JOIN bar b ON b.id = p.bar_id WHERE b.id = 4 GROUP BY p.id;
 ```
 
 # Puntuación de un bar

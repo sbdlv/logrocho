@@ -139,7 +139,11 @@ class BarController
 
             //BD
             $repo = new BarRepository();
-            $repo->uploadPic($_POST["pk"], "/img/img_bares/" . $_POST["pk"] . "/" . basename($_POST["name"]) . ".png", $priority);
+            if ($repo->uploadPic($_POST["pk"], "/img/img_bares/" . $_POST["pk"] . "/" . basename($_POST["name"]) . ".png", $priority)) {
+                echo "Se ha subido la imagen!";
+            } else {
+                echo "Ha ocurrido un error";
+            }
         } else {
             http_response_code(400);
             echo "Falta campos POST";

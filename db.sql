@@ -92,7 +92,7 @@ ALTER TABLE `multimediaBar` ADD FOREIGN KEY (`bar_id`) REFERENCES `bar` (`id`) O
 
 ALTER TABLE `review` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `review` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`);
+ALTER TABLE `review` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `multimediaReview` ADD FOREIGN KEY (`review_id`) REFERENCES `review` (`id`);
 
@@ -100,11 +100,11 @@ ALTER TABLE `review_user_likes` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`
 
 ALTER TABLE `pincho` ADD FOREIGN KEY (`bar_id`) REFERENCES `bar` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `pincho_allergen` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`);
+ALTER TABLE `pincho_allergen` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `pincho_allergen` ADD FOREIGN KEY (`allergen_id`) REFERENCES `allergen` (`id`);
 
-ALTER TABLE `multimediaPincho` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`);
+ALTER TABLE `multimediaPincho` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`) ON DELETE CASCADE;
 
 
 /* -------------------- */
@@ -134,7 +134,7 @@ insert into bar (name, address, lon, lat, terrace) values ('Bar Fliptune', '84 R
 insert into bar (name, address, lon, lat, terrace) values ('Bar Twinte', '43 Lillian Drive', 99.3, 86.24, false);
 
 /* USUARIOS */
-insert into user (first_name, last_name, email, password, admin, created_date) values ('Admin', 'Logrocho', 'admin@logrocho.local', SHA1('usuario123ABC'), false, NOW());
+insert into user (first_name, last_name, email, password, admin, created_date) values ('Admin', 'Logrocho', 'admin@logrocho.local', SHA1('usuario123ABC'), true, NOW());
 insert into user (first_name, last_name, email, password, admin, created_date) values ('Brnaba', 'Anfonsi', 'banfonsi0@mediafire.com', SHA1('usuario123ABC'), false, NOW());
 insert into user (first_name, last_name, email, password, admin, created_date) values ('Phylis', 'Nelthorp', 'pnelthorp1@amazon.de', SHA1('usuario123ABC'), false, NOW());
 insert into user (first_name, last_name, email, password, admin, created_date) values ('Kalina', 'Windsor', 'kwindsor2@exblog.jp', SHA1('usuario123ABC'), false, NOW());

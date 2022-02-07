@@ -20,10 +20,10 @@ $.ajax({
                     $("<td></td>").append($("<input type='text'/>").val(bar.lat)).addClass("text-center").attr("data-propName", "lat"),
                     $("<td></td>").append($(`<input type='checkbox' ${bar.terrace ? "checked" : ""}/>`)).addClass("text-center").attr("data-propName", "terrace"),
                     $("<td></td>").append(
-                        $("<button></button>").on("click", deleteRow).addClass("btn btn-danger").append($('<i class="fas fa-trash-alt"></i>')),
                         $("<a></a>").attr("href", "index.php/bar/info/" + bar.id).addClass("btn btn-primary").append(
                             $('<i class="fas fa-external-link-alt"></i>')
-                        ).addClass("ms-2")
+                        ).attr("title", "Ver ficha"),
+                        $("<button></button>").on("click", deleteRow).addClass("btn btn-danger").append($('<i class="fas fa-trash-alt"></i>')).addClass("ms-2").attr("title", "Eliminar")
                     ).addClass("d-flex"),
                 ).attr("data-id", bar.id)
             );
