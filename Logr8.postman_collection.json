@@ -227,7 +227,7 @@
 								},
 								{
 									"key": "name",
-									"value": "Testing",
+									"value": "Testing temp",
 									"type": "default"
 								}
 							]
@@ -384,7 +384,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "logrocho.local/index.php/pincho/json/2",
+							"raw": "logrocho.local/index.php/pincho/json/1",
 							"host": [
 								"logrocho",
 								"local"
@@ -393,7 +393,7 @@
 								"index.php",
 								"pincho",
 								"json",
-								"2"
+								"1"
 							]
 						}
 					},
@@ -610,6 +610,150 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Borrar usuario + reseñas + likes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "logrocho.local/index.php/user/completeDelete/5",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"user",
+								"completeDelete",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar reseña usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "review_id",
+									"value": "4",
+									"type": "default"
+								},
+								{
+									"key": "user_id",
+									"value": "3",
+									"type": "default"
+								},
+								{
+									"key": "title",
+									"value": "Modificación por usuario",
+									"type": "default"
+								},
+								{
+									"key": "desc",
+									"value": "Modificada",
+									"type": "default"
+								},
+								{
+									"key": "presentation",
+									"value": "3",
+									"type": "default"
+								},
+								{
+									"key": "texture",
+									"value": "3",
+									"type": "default"
+								},
+								{
+									"key": "taste",
+									"value": "3",
+									"type": "default"
+								},
+								{
+									"key": "pincho_id",
+									"value": "2",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "logrocho.local/index.php/user/updateReview/",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"user",
+								"updateReview",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar reseña usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "user_id",
+									"value": "3",
+									"type": "default"
+								},
+								{
+									"key": "review_id",
+									"value": "4",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "logrocho.local/index.php/user/deleteReview/",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"user",
+								"deleteReview",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar likes usuario",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "logrocho.local/index.php/user/deleteLikes/4",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"user",
+								"deleteLikes",
+								"4"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -802,7 +946,18 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": ""
+							"raw": "http://logrocho.local/index.php/review/json/2",
+							"protocol": "http",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"review",
+								"json",
+								"2"
+							]
 						}
 					},
 					"response": []
