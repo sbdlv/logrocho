@@ -31,7 +31,7 @@ $.fn.ImgDropArea = function (data = {
 
     //Append the add button
     this.append(
-        $("<button>+</button>").on("click", data.onAdd)
+        $('<button><i class="fas fa-plus"></i></button>').on("click", data.onAdd).addClass("btn btn-primary")
     );
 
     return this;

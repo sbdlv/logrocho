@@ -159,11 +159,11 @@ insert into pincho (bar_id, name) values (1, 'Sauce - Alfredo');
 insert into pincho (bar_id, name) values (3, 'Mustard - Pommery');
 
 /* RESEÑAS */
-insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (1, 'vel nulla eget eros elementum', 'volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim', 2, 1, 8, 4);
-insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (4, 'faucibus accumsan odio curabitur convallis', 'egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero', 3, 9, 6, 4);
-insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (5, 'lobortis sapien sapien', 'suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis', 1, 2, 10, 1);
+insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (1, 'vel nulla eget eros elementum', 'volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim', 2, 1, 5, 4);
+insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (4, 'faucibus accumsan odio curabitur convallis', 'egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero', 3, 3, 4, 4);
+insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (5, 'lobortis sapien sapien', 'suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis', 1, 2, 5, 1);
 insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (3, 'est phasellus sit amet', 'ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi', 3, 5, 4, 2);
-insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (2, 'quis justo maecenas rhoncus aliquam', 'interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur', 2, 9, 9, 3);
+insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (2, 'quis justo maecenas rhoncus aliquam', 'interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur', 2, 5, 5, 3);
 
 /* LIKES */
 insert into review_user_likes (user_id, review_id, isLike) values (5, 1, true);

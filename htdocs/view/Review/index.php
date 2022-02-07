@@ -98,27 +98,49 @@
                                 <th class="text-center">Total (Calculado)</th>
                                 <th class="text-center">Me gusta</th>
                                 <th class="text-center">No me gusta</th>
-                                <th class="text-center">Ver ficha</th>
+                                <th class="text-center">Pincho</th>
+                                <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
+                        <?php foreach ($reviews as $review) : ?>
                             <tr>
-                                <td>Marcos_dp99</td>
-                                <td>¡Lo mejor que he probado nunca!</td>
-                                <td>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati eligendi quidem
-                                    fuga eveniet quod. Ad aliquam rem ut! Quaerat beatae id sapiente inventore dolor
-                                    harum omnis odit reiciendis ratione in.</td>
-                                <td class="puntuacionWrapper text-center">5<i class="fas fa-star"></i></td>
-                                <td class="puntuacionWrapper text-center">5<i class="fas fa-star"></i></td>
-                                <td class="puntuacionWrapper text-center">5<i class="fas fa-star"></i></td>
-                                <td class="puntuacionWrapper text-center">5<i class="fas fa-star"></i></td>
-                                <td class="text-center">3</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center"><a href="ficha_resenia.html"><i class="fas fa-external-link-alt"></i></a></td>
+                                <td><a href="<?=getServerAbsPathForActions()?>user/info/<?= $review->user_id ?>">Ver ficha</a></td>
+                                <td><?=$review->title?></td>
+                                <td><?=$review->desc?></td>
+                                <td class="puntuacionWrapper text-center"><?=$review->presentation?><i class="fas fa-star"></i></td>
+                                <td class="puntuacionWrapper text-center"><?=$review->taste?><i class="fas fa-star"></i></td>
+                                <td class="puntuacionWrapper text-center"><?=$review->texture?><i class="fas fa-star"></i></td>
+                                <td class="puntuacionWrapper text-center">?<i class="fas fa-star"></i></td>
+                                <td class="text-center">?</td>
+                                <td class="text-center">?</td>
+                                <td class="text-center"><a href="<?=getServerAbsPathForActions()?>pincho/info/<?= $review->pincho_id ?>">Ver ficha</a></td>
+                                <td class="text-center">
+                                    <div class="d-flex">
+                                        <a href="<?= getServerAbsPathForActions() ?>review/info/<?= 1 ?>" class="btn btn-primary" title="Ver ficha"><i class="fas fa-external-link-alt"></i></a>
+                                        <button class="btn btn-danger ms-2" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+                                    </div>
+                                </td>
                             </tr>
+                        <?php endforeach;?>
                         </tbody>
                     </table>
                 </div>
+                <nav class="mt-4">
+                    <ul class="pagination">
+                        <li class="page-item active">
+                            <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Siguiente</a>
+                        </li>
+                    </ul>
+                </nav>
             </section>
         </div>
     </main>

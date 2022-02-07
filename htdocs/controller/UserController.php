@@ -9,6 +9,8 @@ class UserController
     function index()
     {
         $activeMenu = "user";
+        $repo = new UserRepository();
+        $users = $repo->findAll();
         require "view/user/index.php";
     }
 
@@ -16,6 +18,8 @@ class UserController
     {
         $activeMenu = "user";
         addToBreadCrumbs("Usuario #$id");
+        $repo = new UserRepository();
+        $user = $repo->findById($id);
         require "view/user/info.php";
     }
 

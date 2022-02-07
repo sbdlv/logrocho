@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>#<?= $review->id ?> - Reseña</title>
+    <title>#<?= $review->id ?> - Reseña - Ficha</title>
 
     <base href="<?= dirname(getServerAbsPathForActions()) ?>/">
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
@@ -30,44 +30,44 @@
                             <tbody>
                                 <tr>
                                     <td>Usuario</td>
-                                    <td><a href="ficha_usuario.html">Marcos_dp99</a></td>
+                                    <td><a href="<?=getServerAbsPathForActions()?>user/info/<?= $review->user_id ?>">Ver ficha</a></td>
                                 </tr>
                                 <tr>
                                     <td>Pincho</td>
-                                    <td><a href="ficha_pincho.html">Pincho de tortilla</a></td>
+                                    <td><a href="<?=getServerAbsPathForActions()?>pincho/info/<?= $review->pincho_id ?>">Ver ficha</a></td>
                                 </tr>
                                 <tr>
                                     <td>Titulo</td>
-                                    <td>¡Lo mejor que he probado nunca!</td>
+                                    <td><?= $review->title ?></td>
                                 </tr>
                                 <tr>
                                     <td>Descripción</td>
-                                    <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consectetur, repudiandae ab facere dignissimos modi laborum reprehenderit quidem fuga accusamus alias perspiciatis veritatis impedit sunt sequi temporibus consequuntur commodi mollitia debitis.</td>
+                                    <td><?= $review->desc ?></td>
                                 </tr>
                                 <tr>
                                     <td>Presentación</td>
-                                    <td class="puntuacionWrapper">5<i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><?= $review->presentation ?><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Sabor</td>
-                                    <td class="puntuacionWrapper">4<i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><?= $review->taste ?><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Textura</td>
-                                    <td class="puntuacionWrapper">4<i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><?= $review->texture ?><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Me gusta <i class="fas fa-thumbs-up"></i></td>
-                                    <td>3</td>
+                                    <td>?</td>
                                 </tr>
                                 <tr>
                                     <td>No me gusta <i class="fas fa-thumbs-down"></i></td>
-                                    <td>1</td>
+                                    <td>?</td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="puntuacionWrapper h3">
-                            <div class="font-weight-bold mt-4 d-inline-block">Total (Calculado): </div> 5 <i class="fas fa-star"></i>
+                            <div class="font-weight-bold mt-4 d-inline-block">Total (Calculado): </div> ? <i class="fas fa-star"></i>
                         </div>
                     </div>
                 </div>

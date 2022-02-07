@@ -3,6 +3,7 @@
   height: 100vh;
   position: fixed;
 }
+
 #side_bar_admin .nav-link:hover {
   background-color: var(--bs-blue);
 }
@@ -12,16 +13,20 @@
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 }
+
 .table th:hover {
   background-color: #f6f7f9;
 }
+
 .table th,
 .table td {
   padding: 15px;
 }
+
 .table tr {
   vertical-align: middle;
 }
+
 .table tbody tr:nth-child(odd) {
   background-color: #f6f7f9;
 }
@@ -29,31 +34,41 @@
 #searchWrapper {
   position: relative;
 }
+
 #searchWrapper .fa-search {
   position: absolute;
   left: 10px;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
+
 #searchWrapper input {
   padding-left: 40px;
 }
 
 .imgdroparea {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   padding: 2rem;
   border-radius: 0.25rem;
 }
+
 .imgdroparea img {
   height: 250px;
   max-width: 300px;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
+
 .imgdroparea .drop {
   width: 20px;
+  -webkit-transition: all 0.25s;
   transition: all 0.25s;
-  border-radius: 0.25rem;
+  border-radius: .25rem;
 }
+
 .imgdroparea .drop.draghover {
   border: 2px dotted #666;
   width: 200px;
@@ -62,9 +77,12 @@
 }
 
 body {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   background-color: #f9fafb;
 }
+
 body main {
   min-height: 100vh;
   margin-left: 250px;
@@ -73,5 +91,4 @@ body main {
 #search {
   padding-left: 40px !important;
 }
-
 /*# sourceMappingURL=admin.css.map */

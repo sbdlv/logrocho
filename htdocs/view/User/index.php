@@ -58,6 +58,7 @@
                             <tr>
                                 <th class="text-center">Imagen</th>
                                 <th>Nombre</th>
+                                <th>Apellidos</th>
                                 <th>Email</th>
                                 <th class="text-center">Núm. Reseñas</th>
                                 <th class="text-center">Fecha alta</th>
@@ -65,17 +66,38 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-center"><img src="img/pfp.jpg" class="imagen_listado" alt=""></td>
-                                <td>Marcos_dp99</td>
-                                <td>Marcos_dp99@hotmail.com</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">10/02/2000</td>
-                                <td class="text-center"><a href="ficha_usuario.html"><i class="fas fa-external-link-alt"></i></a></td>
-                            </tr>
+                            <?php foreach ($users as $user) : ?>
+                                <tr>
+                                    <td class="text-center"><img src="img/pfp.jpg" class="imagen_listado" alt=""></td>
+                                    <td><?= $user->first_name ?></td>
+                                    <td><?= $user->last_name ?></td>
+                                    <td><?= $user->email ?></td>
+                                    <td class="text-center">?</td>
+                                    <td class="text-center"><?= $user->created_date ?></td>
+                                    <td class="text-center d-flex position-relative">
+                                        <a href="<?= getServerAbsPathForActions() ?>user/info/<?= $user->id ?>" class="btn btn-primary" title="Ver ficha"><i class="fas fa-external-link-alt"></i></a>
+                                        <button class="btn btn-danger ms-2" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
+                <nav class="mt-4">
+                    <ul class="pagination">
+                        <li class="page-item active">
+                            <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Siguiente</a>
+                        </li>
+                    </ul>
+                </nav>
             </section>
         </section>
     </main>

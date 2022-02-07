@@ -86,12 +86,30 @@
                                         <img src="img/alergenos/Gluten.png" class="icono_alergeno" title="Alérgeno gluten" alt="Alérgeno gluten">
                                     </td>
                                     <td class="puntuacionWrapper text-center">?<i class="fas fa-star"></i></td>
-                                    <td class="text-center"><a href="<?= getServerAbsPathForActions() ?>pincho/info/<?= $pincho->id ?>"><i class="fas fa-external-link-alt"></i></a></td>
+                                    <td class="text-center d-flex justify-content-center">
+                                        <a href="<?= getServerAbsPathForActions() ?>pincho/info/<?= $pincho->id ?>" class="btn btn-primary" title="Ver ficha"><i class="fas fa-external-link-alt"></i></a>
+                                        <button class="btn btn-danger ms-2" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+                                    </td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
+                <nav class="mt-4">
+                    <ul class="pagination">
+                        <li class="page-item active">
+                            <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Siguiente</a>
+                        </li>
+                    </ul>
+                </nav>
             </section>
         </section>
     </main>

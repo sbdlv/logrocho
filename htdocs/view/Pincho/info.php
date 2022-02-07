@@ -38,7 +38,7 @@
                                 </tr>
                                 <tr>
                                     <td>Puntuación</td>
-                                    <td class="puntuacionWrapper">5<i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper">?<i class="fas fa-star"></i></td>
                                 </tr>
                             </tbody>
                         </table>

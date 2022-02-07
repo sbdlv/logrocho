@@ -81,7 +81,11 @@
     <script src="js/imgdroparea.js"></script>
     <script>
         $(".barimgs").ImgDropArea({
-            imagesSrc: <?=json_encode($barImages[$bar->id])?>,
+            <?php if (empty($barImages)) : ?>
+                imagesSrc: [],
+            <?php else : ?>
+                imagesSrc: <?= json_encode($barImages[$bar->id]) ?>,
+            <?php endif; ?>
             additionalClass: "tarjeta",
             onChange: () => {},
             onAdd: () => {},
