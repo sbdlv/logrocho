@@ -29,11 +29,11 @@
                             <tbody>
                                 <tr>
                                     <td>Nombre</td>
-                                    <td><?= $bar->name ?></td>
+                                    <td><input type="text" name="" id="" value="<?= $bar->name ?>"></td>
                                 </tr>
                                 <tr>
                                     <td>Dirección</td>
-                                    <td><?= $bar->address ?></td>
+                                    <td><input type="text" name="" id="" value="<?= $bar->address ?>"></td>
                                 </tr>
                                 <tr>
                                     <td>Puntuación</td>
@@ -41,7 +41,7 @@
                                 </tr>
                                 <tr>
                                     <td>Terraza</td>
-                                    <td><?= $bar->terrace ? "Si" : "No" ?></td>
+                                    <td><input type="checkbox" name="" id="" <?= $bar->terrace ? "checked" : ""?>></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -62,11 +62,11 @@
                             <tbody>
                                 <tr>
                                     <td>Lon. </td>
-                                    <td><?= $bar->lon ?></td>
+                                    <td><input type="number" name="" id="" value="<?= $bar->lon ?>"></td>
                                 </tr>
                                 <tr>
                                     <td>Lat. </td>
-                                    <td><?= $bar->lat ?></td>
+                                    <td><input type="number" name="" id="" value="<?= $bar->lat ?>"></td>
                                 </tr>
                             </tbody>
                         </table>

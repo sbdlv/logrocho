@@ -30,7 +30,11 @@
                             <tbody>
                                 <tr>
                                     <td>Nombre</td>
-                                    <td><?= $pincho->name ?></td>
+                                    <td><input type="text" name="" id="" value="<?= $pincho->name ?>"></td>
+                                </tr>
+                                <tr>
+                                    <td>Bar</td>
+                                    <td><a href="<?=getServerAbsPathForActions() ?>bar/info/<?=$pincho->bar_id?>">Ver ficha</a></td>
                                 </tr>
                                 <tr>
                                     <td>Alérgenos</td>

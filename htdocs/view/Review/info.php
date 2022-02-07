@@ -38,23 +38,23 @@
                                 </tr>
                                 <tr>
                                     <td>Titulo</td>
-                                    <td><?= $review->title ?></td>
+                                    <td><input type="text" name="" id="" value="<?= $review->title ?>"></td>
                                 </tr>
                                 <tr>
                                     <td>Descripción</td>
-                                    <td><?= $review->desc ?></td>
+                                    <td><textarea name="" id="" cols="30" rows="10"><?= $review->desc ?></textarea></td>
                                 </tr>
                                 <tr>
                                     <td>Presentación</td>
-                                    <td class="puntuacionWrapper"><?= $review->presentation ?><i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><input type="number" name="" id="" value="<?= $review->presentation ?>"><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Sabor</td>
-                                    <td class="puntuacionWrapper"><?= $review->taste ?><i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><input type="number" name="" id="" value="<?= $review->taste ?>"><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Textura</td>
-                                    <td class="puntuacionWrapper"><?= $review->texture ?><i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><input type="number" name="" id="" value="<?= $review->texture ?>"><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Me gusta <i class="fas fa-thumbs-up"></i></td>
