@@ -8,7 +8,7 @@ class UserRepository implements IDAO
      * Obtiene la información de un usuario
      *
      * @param string $email el email del usuario
-     * @return void
+     * @return User
      */
     function find($email)
     {
@@ -24,7 +24,7 @@ class UserRepository implements IDAO
      * Obtiene la información de un usuario
      *
      * @param string $id el email del usuario
-     * @return void
+     * @return User
      */
     function findById($id)
     {
@@ -72,7 +72,7 @@ class UserRepository implements IDAO
         $stmt = getConexion()->prepare("INSERT INTO `user`(`first_name`, `last_name`, `email`, `password`, `admin`, `created_date`) VALUES (?, ?, ?, sha1(?), ?, now())");
         return $stmt->execute([$obj->first_name, $obj->last_name, $obj->email, $obj->password, false]);
     }
-    
+
     function delete($obj)
     {
         //TODO: Solo para admin
@@ -107,8 +107,21 @@ class UserRepository implements IDAO
     function removeLikes($id)
     {
         //TODO: Solo para admin
-        $stmt = getConexion()->prepare("DELETE FROM review_user_likes WHERE `id` = ? AND admin = 1");
-        $stmt->execute([$id]);
+        $stmt = getConexion()->prepare("DELETE FROM review_user_likes WHERE `user_id` = ?");
+        return $stmt->execute([$id]);
+    }
+
+    function removeReviews($id)
+    {
+        //TODO: Solo para admin
+        $stmt = getConexion()->prepare("DELETE FROM review WHERE `user_id` = ?");
+        return $stmt->execute([$id]);
+    }
+
+    function checkReviewOP($user_id, $review_id)
+    {
+        $stmt = getConexion()->prepare("SELECT * FROM review WHERE `user_id` = ? AND `id` = ?");
+        $stmt->execute([$user_id, $review_id]);
 
         return $stmt->rowCount() > 0;
     }

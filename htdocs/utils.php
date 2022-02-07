@@ -36,5 +36,6 @@ function isAdminForAPI()
     if (!isset($_SESSION["user"]) || !$_SESSION["user"]["admin"]) {
         http_response_code(401);
         echo "No tienes permisos para realizar esta acción";
+        die;
     }
 }
