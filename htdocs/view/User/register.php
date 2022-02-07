@@ -15,7 +15,9 @@
 <body>
     <main>
         <form class="tarjeta login_form mx-auto text-center" method="POST" action="<?= getServerAbsPathForActions() . "user/register" ?>">
-            <h1 class="h3 mb-3 fw-normal">Registro</h1>
+            <div class="w-50 mb-3 mx-auto">
+                <img src="img/logo.png" alt="Logrocho logo" class="img-fluid">
+            </div>
             <?php if (isset($errorMsg)) : ?>
                 <div class="alert alert-danger" role="alert">
                     Error: <?= $errorMsg ?>

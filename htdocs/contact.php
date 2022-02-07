@@ -1,3 +1,4 @@
+<?php require "utils.php"?>
 <!DOCTYPE html>
 <html lang="es-ES">
 
@@ -12,13 +13,7 @@
 </head>
 
 <body>
-
-    <head>
-
-    </head>
-    <nav>
-
-    </nav>
+    <?php include "view/nav.php" ?>
     <main class="my-5">
         <section class="container">
             <h1>Contacto</h1>
@@ -72,9 +67,7 @@
             </div>
         </section>
     </main>
-    <footer>
-
-    </footer>
+    <?php include "view/footer.php" ?>
 </body>
 
 </html>

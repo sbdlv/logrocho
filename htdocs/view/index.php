@@ -14,28 +14,7 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark px-4" id="mainNav">
-    <a class="navbar-brand" href="#">
-      <img src="img/logo.png" width="120" alt="">
-    </a>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Restaruantes</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pinchos</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="<?= getServerAbsPathForActions() . "user/login" ?>">Iniciar sesión</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-
+  <?php include "nav.php" ?>
   <main>
     <section class="container py-5">
       <h2 class="mb-5 fw-bold">Lo mejor</h2>
@@ -147,50 +126,7 @@
     </section>
   </main>
 
-  <footer class="py-5">
-    <div class="container d-flex justify-content-between">
-      <article>
-        <h2 class="h5 fw-bold">Lorme ipsum</h2>
-        <ul>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-        </ul>
-      </article>
-      <article>
-        <h2 class="h5 fw-bold">Lorme ipsum</h2>
-        <ul>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-        </ul>
-      </article>
-      <article>
-        <h2 class="h5 fw-bold">Lorme ipsum</h2>
-        <ul>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-        </ul>
-      </article>
-      <article>
-        <h2 class="h5 fw-bold">Lorme ipsum</h2>
-        <ul>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-          <li><a href="#">Lorem</a></li>
-        </ul>
-      </article>
-    </div>
-  </footer>
+  <?php include "footer.php" ?>
 
   <script src="js/jquery-3.6.0.min.js"></script>
   <script src="js/OwlCarousel2/dist/owl.carousel.min.js"></script>
