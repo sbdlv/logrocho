@@ -18,7 +18,7 @@ Para importarlo desde postman se hace desde el menu `File > Import` y lo importa
 y solo tendrás que cambiar la ruta (En mi caso es logrocho.local, peor la tendrás que **CAMBIAR** por lo tuya (Ej.: localhost etc)).
 
 # NOTAS
-- Los campos calculados se muestran con un ?, ya que de momento no se ha pedido implementar la funcionalidad de creacion de reseñas por parte del usuario, likes etc.
+- Los campos calculados se muestran con un ?, ya que de momento no se ha pedido implementar la funcionalidad de creación de reseñas por parte del usuario, likes etc.
 - La paginación en el back no funciona ya que esa parte es de JS, y actualmente las tablas se generan mediante PHP. La paginación está meramente para maquetación (DIW)
 
 ## Detalles para DWES
