@@ -2,15 +2,22 @@
 require_once "IDAO.php";
 require_once "model/User.php";
 
+/**
+ * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
+ */
 class UserRepository implements IDAO
 {
-    /**
-     * Obtiene la información de un usuario
-     *
-     * @param string $id el email del usuario
-     * @return void
-     */
-    function find($id)
+    function find($email)
+    {
+        $stmt = getConexion()->prepare("SELECT * FROM user WHERE `email` = ?");
+        $stmt->execute([$email]);
+
+        $fetch = $stmt->fetchAll();
+
+        return User::getInstance($fetch[0]);
+    }
+
+    function findById($id)
     {
         $stmt = getConexion()->prepare("SELECT * FROM user WHERE `id` = ?");
         $stmt->execute([$id]);
@@ -41,12 +48,6 @@ class UserRepository implements IDAO
         return $instances;
     }
 
-    /**
-     * Inserta en la base de datos el usuario
-     *
-     * @param stdClass|object $obj
-     * @return true si todo ha sido correcto, false sí no.
-     */
     function save($obj)
     {
         if ($obj instanceof stdClass) {
@@ -71,19 +72,31 @@ class UserRepository implements IDAO
         return $stmt->execute([$obj->first_name, $obj->last_name, $obj->email, $obj->id]);
     }
 
-
-    /**
-     * Comprueba las credenciales de inicio de sesión de un usuario
-     *
-     * @param string $email
-     * @param string $password
-     * @return true si las credenciales son correct, false sí no.
-     */
     function login($email, $password)
     {
         $stmt = getConexion()->prepare("SELECT * FROM user WHERE `email` = ? AND `password` = ?");
         $stmt->execute([$email, sha1($password)]);
 
         return count($stmt->fetchAll()) > 0;
+    }
+
+    function removeLikes($id)
+    {
+        $stmt = getConexion()->prepare("DELETE FROM review_user_likes WHERE `user_id` = ?");
+        return $stmt->execute([$id]);
+    }
+
+    function removeReviews($id)
+    {
+        $stmt = getConexion()->prepare("DELETE FROM review WHERE `user_id` = ?");
+        return $stmt->execute([$id]);
+    }
+
+    function checkReviewOP($user_id, $review_id)
+    {
+        $stmt = getConexion()->prepare("SELECT * FROM review WHERE `user_id` = ? AND `id` = ?");
+        $stmt->execute([$user_id, $review_id]);
+
+        return $stmt->rowCount() > 0;
     }
 }

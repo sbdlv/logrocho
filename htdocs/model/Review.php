@@ -1,6 +1,9 @@
 <?php
 require_once "AbstractMappedSQLModel.php";
 
+/**
+ * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
+ */
 class Review extends AbstractMappedSQLModel
 {
     public int $id;
@@ -15,7 +18,7 @@ class Review extends AbstractMappedSQLModel
     public int $texture;
     public int $taste;
 
-    public bool $pincho_id;
+    public int $pincho_id;
 
     static function getPropertiesMapArray(): array
     {

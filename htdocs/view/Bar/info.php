@@ -11,29 +11,30 @@
     <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/image-uploader.min.css">
 </head>
 
 <body>
     <?php include "view/side_bar_admin.php" ?>
     <main class="w-100 p-4">
-        <div class="container">
+        <section class="container">
+            <?php include "view/breadcrumbs.php" ?>
             <div class="tarjeta row p-4">
                 <h1><?= $bar->name ?> - Restaurante</h1>
             </div>
             <div class="row my-4">
-                <div class="col-12 col-lg-4 tarjeta"><img src="img/pexels-pixabay-262978.jpg" class="img-fluid my-2" alt=""></div>
-                <div class="col offset-lg-1 tarjeta p-4">
+                <div class="col tarjeta p-4">
                     <h2 class="mb-4"><i class="fas fa-info-circle"></i> Detalles</h2>
                     <div class="table-responsive">
                         <table class="table customize-table mb-0 v-middle table-borderless">
                             <tbody>
                                 <tr>
                                     <td>Nombre</td>
-                                    <td><?= $bar->name ?></td>
+                                    <td><input type="text" name="" id="" value="<?= $bar->name ?>"></td>
                                 </tr>
                                 <tr>
                                     <td>Dirección</td>
-                                    <td><?= $bar->address ?></td>
+                                    <td><input type="text" name="" id="" value="<?= $bar->address ?>"></td>
                                 </tr>
                                 <tr>
                                     <td>Puntuación</td>
@@ -41,11 +42,17 @@
                                 </tr>
                                 <tr>
                                     <td>Terraza</td>
-                                    <td><?= $bar->terrace ? "Si" : "No" ?></td>
+                                    <td><input type="checkbox" name="" id="" <?= $bar->terrace ? "checked" : "" ?>></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
+                </div>
+            </div>
+            <div class="row tarjeta p-4 mb-4">
+                <h2><i class="fas fa-images"></i> Imágenes</h2>
+                <div class="barimgs imgdroparea">
+
                 </div>
             </div>
             <div class="row tarjeta">
@@ -56,11 +63,11 @@
                             <tbody>
                                 <tr>
                                     <td>Lon. </td>
-                                    <td><?= $bar->lon ?></td>
+                                    <td><input type="number" name="" id="" value="<?= $bar->lon ?>"></td>
                                 </tr>
                                 <tr>
                                     <td>Lat. </td>
-                                    <td><?= $bar->lat ?></td>
+                                    <td><input type="number" name="" id="" value="<?= $bar->lat ?>"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -68,8 +75,61 @@
                 </div>
                 <div class="col-12 col-md-6"><img src="img/maps.png" class="img-fluid my-2" alt=""></div>
             </div>
-        </div>
+        </section>
     </main>
+
+    <button class="save_btn btn btn-success m-4"><i class="far fa-save"></i> Guardar</button>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/image-uploader.min.js"></script>
+    <script src="js/imgdroparea.js"></script>
+    <script>
+        let barID = <?=$bar->id?>;
+        let barimgs = $(".barimgs");
+        barimgs.ImgDropArea({
+            <?php if (empty($barImages)) : ?>
+                imagesSrc: [],
+            <?php else : ?>
+                imagesSrc: <?= json_encode($barImages[$bar->id]) ?>,
+            <?php endif; ?>
+            additionalClass: "tarjeta",
+            onChange: (data) => {
+                console.log(data);
+            },
+            onAdd: () => {},
+        })
+
+        function uploadPic() {
+            let input = document.createElement('input');
+            input.type = 'file';
+            input.accept = "image/png, image/jpeg";
+            input.onchange = _ => {
+                // you can use this method to get file and perform respective operations
+                let files = Array.from(input.files);
+                console.log(files);
+
+                files.forEach(file => {
+                    let fd = new FormData();
+                    fd.append("pic", file);
+                    fd.append("name", file.name);
+                    fd.append("pk", barID);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "index.php/bar/uploadPic",
+                        data: fd,
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            barimgs.ImgDropAreaAdd([`img/img_bares/${barID}/${file.name}`])
+                        }
+                    });
+                });
+            };
+            input.click();
+        }
+    </script>
+
 </body>
 
 </html>

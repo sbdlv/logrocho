@@ -16,7 +16,9 @@
     <main>
 
         <form class="tarjeta login_form mx-auto text-center" method="POST" action="<?= getServerAbsPathForActions() . "user/login" ?>">
-            <h1 class="h3 mb-3 fw-normal">Iniciar sesión</h1>
+            <div class="w-50 mb-3 mx-auto">
+                <img src="img/logo.png" alt="Logrocho logo" class="img-fluid">
+            </div>
             <?php if (isset($errorMsg)) : ?>
                 <div class="alert alert-danger" role="alert">
                     Error: <?= $errorMsg ?>
@@ -29,8 +31,8 @@
             <div class="form-floating mb-3">
                 <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
                 <label for="floatingPassword">Contraseña</label>
-            </div>        
-             <input type="submit" class="w-100 btn btn-lg btn-primary mb-3" href="listado_restaruante.html" value="Iniciar sesión"/>
+            </div>
+            <input type="submit" class="w-100 btn btn-lg btn-primary mb-3" href="listado_restaruante.html" value="Iniciar sesión" />
             <div class="text-center mb-3">
                 <a href="recuperar.html">¿olvidó su contraseña?</a>
                 o

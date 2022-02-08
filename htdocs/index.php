@@ -82,5 +82,5 @@ if (isset($array_ruta[0])) {
     }
 } else {
     //Ruta por defecto
-    header("Location: " . getServerAbsPathForActions() . "user/login");
+    include "view/index.php";
 }

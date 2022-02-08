@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="js/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -30,13 +31,23 @@
                             <input type="submit" class="btn" value="">
                         </div>
                     </div>
-                    <div class="tarjeta p-5">
-                        <h2 class="h4 mb-4">Busqueda avanzada</h2>
-                        <div class="form-group">
-                            <label for="terraza" class="h5">Fecha de alta</label>
-                            <input type="date" name="fecha_alta" id="fecha_alta" class="form-control">
+                    <div class="accordion tarjeta mb-5" id="accordionPrimary">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    <h2 class="h4 m-0">Busqueda avanzada</h2>
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionPrimary">
+                                <div class="accordion-body">
+                                    <div class="form-group">
+                                        <label for="terraza" class="h5">Fecha de alta</label>
+                                        <input type="date" name="fecha_alta" id="fecha_alta" class="form-control">
+                                    </div>
+                                    <input type="submit" value="Búsqueda avanzada" class="btn btn-primary mt-4">
+                                </div>
+                            </div>
                         </div>
-                        <input type="submit" value="Búsqueda avanzada" class="btn btn-primary mt-4">
                     </div>
                 </form>
             </section>
@@ -45,26 +56,44 @@
                     <table class="table customize-table mb-0 v-middle table-borderless">
                         <thead class="table-light">
                             <tr>
-                                <th class="text-center">Imagen</th>
                                 <th>Nombre</th>
+                                <th>Apellidos</th>
                                 <th>Email</th>
-                                <th class="text-center">Núm. Reseñas</th>
                                 <th class="text-center">Fecha alta</th>
                                 <th class="text-center">Ver ficha</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-center"><img src="img/pfp.jpg" class="imagen_listado" alt=""></td>
-                                <td>Marcos_dp99</td>
-                                <td>Marcos_dp99@hotmail.com</td>
-                                <td class="text-center">1</td>
-                                <td class="text-center">10/02/2000</td>
-                                <td class="text-center"><a href="ficha_usuario.html"><i class="fas fa-external-link-alt"></i></a></td>
-                            </tr>
+                            <?php foreach ($users as $user) : ?>
+                                <tr>
+                                    <td><?= $user->first_name ?></td>
+                                    <td><?= $user->last_name ?></td>
+                                    <td><?= $user->email ?></td>
+                                    <td class="text-center"><?= $user->created_date ?></td>
+                                    <td class="text-center d-flex justify-content-center">
+                                        <a href="<?= getServerAbsPathForActions() ?>user/info/<?= $user->id ?>" class="btn btn-primary" title="Ver ficha"><i class="fas fa-external-link-alt"></i></a>
+                                        <button class="btn btn-danger ms-2" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
+                <nav class="mt-4">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" href="#" tabindex="-1">Anterior</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">Siguiente</a>
+                        </li>
+                    </ul>
+                </nav>
             </section>
         </section>
     </main>

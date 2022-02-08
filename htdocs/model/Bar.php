@@ -1,6 +1,9 @@
 <?php
 require_once "AbstractMappedSQLModel.php";
 
+/**
+ * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
+ */
 class Bar extends AbstractMappedSQLModel
 {
     public int $id;
@@ -9,7 +12,6 @@ class Bar extends AbstractMappedSQLModel
     public float $lon;
     public float $lat;
     public bool $terrace;
-    public $principal_img_id;
 
     static function getPropertiesMapArray(): array
     {
@@ -20,7 +22,6 @@ class Bar extends AbstractMappedSQLModel
             "lon" => "lon",
             "lat" => "lat",
             "terrace" => "terrace",
-            "principal_img_id" => "principal_img_id",
         ];
     }
 }

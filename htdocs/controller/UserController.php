@@ -1,6 +1,10 @@
 <?php
 require_once "repository/UserRepository.php";
+addToBreadCrumbs("Usuarios", getServerAbsPathForActions() . "user");
 
+/**
+ * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
+ */
 class UserController
 {
     private const AMOUNT_OF_RESULTS_PER_PAGE = 4;
@@ -8,12 +12,17 @@ class UserController
     function index()
     {
         $activeMenu = "user";
+        $repo = new UserRepository();
+        $users = $repo->findAll();
         require "view/user/index.php";
     }
 
     function info($id)
     {
         $activeMenu = "user";
+        addToBreadCrumbs("Usuario #$id");
+        $repo = new UserRepository();
+        $user = $repo->findById($id);
         require "view/user/info.php";
     }
 
@@ -26,7 +35,18 @@ class UserController
             require_once "repository/UserRepository.php";
             $repo = new UserRepository();
 
-            if (!$repo->login($_POST["email"], $_POST["password"])) {
+            //Comprobar requisitos de contraseña etc
+            if (!preg_match("/^[a-z0-9]+@[a-z0-9]+\.[a-z]+$/i", $_POST["email"])) {
+                $errorMsg = "No has introducido una dirección de email valida.";
+            } else if (strlen($_POST["password"]) < 8) {
+                $errorMsg = "No la contraseña debe tener una longitud minima de 8 caracteres.";
+            } else if (!preg_match("/[a-z]+/", $_POST["password"])) {
+                $errorMsg = "La contraseña debe de tener al menos una minúscula.";
+            } else if (!preg_match("/[A-Z]+/", $_POST["password"])) {
+                $errorMsg = "La contraseña debe de tener al menos una mayúscula.";
+            } else if (!preg_match("/[0-9]+/", $_POST["password"])) {
+                $errorMsg = "La contraseña debe de tener al menos un número.";
+            } else if (!$repo->login($_POST["email"], $_POST["password"])) {
                 $errorMsg = "Clave o usuario incorrectos.";
             } else {
                 $_SESSION["user"] = (array) $repo->find($_POST["email"]);
@@ -48,11 +68,11 @@ class UserController
             if (!preg_match("/^[a-z0-9]+@[a-z0-9]+\.[a-z]+$/i", $_POST["email"])) {
                 $errorMsg = "No has introducido una dirección de email valida.";
             } else if (strlen($_POST["password"]) < 8) {
-                $errorMsg = "No la contraseña debe tener una longitud minima de 8 carácteres.";
+                $errorMsg = "No la contraseña debe tener una longitud minima de 8 caracteres.";
             } else if (!preg_match("/[a-z]+/", $_POST["password"])) {
                 $errorMsg = "La contraseña debe de tener al menos una minúscula.";
             } else if (!preg_match("/[A-Z]+/", $_POST["password"])) {
-                $errorMsg = "La contraseña debe de tener al menos una mayuscula.";
+                $errorMsg = "La contraseña debe de tener al menos una mayúscula.";
             } else if (!preg_match("/[0-9]+/", $_POST["password"])) {
                 $errorMsg = "La contraseña debe de tener al menos un número.";
             } else {
@@ -91,12 +111,8 @@ class UserController
             if ($_SESSION["user"]["admin"]) {
                 header("Location: " . getServerAbsPathForActions() . "bar");
             } else {
-                //TODO: Ir al home page
-                require "view/user/success.php";
+                header("Location: index.php");
             }
-
-            //Temporal. Llegados a este punto, ya se habria hecho un Header location
-            die;
         }
     }
 
@@ -185,6 +201,110 @@ class UserController
         header('Content-Type: application/json; charset=utf-8');
         $repo = new UserRepository();
 
-        echo json_encode($repo->find($id));
+        echo json_encode($repo->findById($id));
+    }
+
+    function completeDelete($id)
+    {
+        //isAdminForAPI();
+        $repo = new UserRepository();
+        $user = new User();
+        $user->id = $id;
+
+        if ($repo->removeLikes($id) && $repo->removeReviews($id) && $repo->delete($user)) {
+            echo "Usuario + reseñas y likes eliminados";
+        } else {
+            echo "Error";
+        }
+    }
+
+    function updateReview()
+    {
+        //isAdminForAPI();
+        if (isset($_POST["user_id"], $_POST["review_id"], $_POST["title"], $_POST["desc"], $_POST["presentation"], $_POST["texture"], $_POST["taste"], $_POST["pincho_id"])) {
+            $repo = new UserRepository();
+
+            if ($repo->findById($_POST["user_id"])->admin) {
+                http_response_code(400);
+                echo "Error, el usuario a editar es administrador";
+            } else {
+                if ($repo->checkReviewOP($_POST["user_id"], $_POST["review_id"])) {
+                    require "repository/ReviewRepository.php";
+                    $repoReview = new ReviewRepository();
+                    $review = new Review();
+                    $review->id = $_POST["review_id"];
+                    $review->user_id = $_POST["user_id"];
+                    $review->title = $_POST["title"];
+                    $review->desc = $_POST["desc"];
+                    $review->presentation = $_POST["presentation"];
+                    $review->texture = $_POST["texture"];
+                    $review->taste = $_POST["taste"];
+                    $review->pincho_id = $_POST["pincho_id"];
+
+                    if ($repoReview->update($review)) {
+                        echo "Reseña actualizada!";
+                    } else {
+                        http_response_code(400);
+                        echo "Error al actualizar la reseña";
+                    }
+                } else {
+                    http_response_code(400);
+                    echo "Error: el usuario no es el autor de la reseña";
+                }
+            }
+        } else {
+            http_response_code(400);
+            echo "Faltan campos POST";
+        }
+    }
+
+    function deleteReview()
+    {
+        //isAdminForAPI();
+        if (isset($_POST["user_id"], $_POST["review_id"])) {
+            $repo = new UserRepository();
+
+            if ($repo->findById($_POST["user_id"])->admin) {
+                http_response_code(400);
+                echo "Error, el usuario a editar es administrador";
+            } else {
+                if ($repo->checkReviewOP($_POST["user_id"], $_POST["review_id"])) {
+                    require "repository/ReviewRepository.php";
+                    $repoReview = new ReviewRepository();
+                    $review = new Review();
+                    $review->id = $_POST["review_id"];
+
+                    if ($repoReview->delete($review)) {
+                        echo "Reseña eliminada!";
+                    } else {
+                        http_response_code(400);
+                        echo "Error al eliminar la reseña";
+                    }
+                } else {
+                    http_response_code(400);
+                    echo "Error: el usuario no es el autor de la reseña";
+                }
+            }
+        } else {
+            http_response_code(400);
+            echo "Faltan campos POST";
+        }
+    }
+
+    function deleteLikes($user_id)
+    {
+        //isAdminForAPI();
+        $repo = new UserRepository();
+        if ($repo->findById($user_id)->admin) {
+            http_response_code(400);
+            echo "Error, el usuario a editar es administrador";
+        } else {
+            if ($repo->removeLikes($user_id)) {
+                echo "Likes del usuario eliminados!";
+            } else {
+                http_response_code(400);
+                echo "Error al eliminar los likes del usuario";
+            }
+        }
     }
 }

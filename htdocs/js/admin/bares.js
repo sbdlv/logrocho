@@ -20,9 +20,11 @@ $.ajax({
                     $("<td></td>").append($("<input type='text'/>").val(bar.lat)).addClass("text-center").attr("data-propName", "lat"),
                     $("<td></td>").append($(`<input type='checkbox' ${bar.terrace ? "checked" : ""}/>`)).addClass("text-center").attr("data-propName", "terrace"),
                     $("<td></td>").append(
-                        $("<button>Borrar</button>").on("click", deleteRow).addClass("btn btn-danger"),
-                        $("<a>Ver ficha</a>").attr("href", "#").addClass("btn btn-primary")
-                    ),
+                        $("<a></a>").attr("href", "index.php/bar/info/" + bar.id).addClass("btn btn-primary").append(
+                            $('<i class="fas fa-external-link-alt"></i>')
+                        ).attr("title", "Ver ficha"),
+                        $("<button></button>").on("click", deleteRow).addClass("btn btn-danger").append($('<i class="fas fa-trash-alt"></i>')).addClass("ms-2").attr("title", "Eliminar")
+                    ).addClass("d-flex"),
                 ).attr("data-id", bar.id)
             );
         });
@@ -110,17 +112,19 @@ function processPage() {
 
             response.forEach(bar => {
                 tableRows.push(
-                    $("<tr></tr>").append(
-                        $("<td></td>").append($("<input type='text'/>").val(bar.name)).attr("data-propName", "name"),
-                        $("<td></td>").append($("<input type='text'/>").val(bar.address)).attr("data-propName", "address"),
-                        $("<td></td>").append($("<input type='number'/>").val(bar.lon)).addClass("text-center").attr("data-propName", "lon"),
-                        $("<td></td>").append($("<input type='number'/>").val(bar.lat)).addClass("text-center").attr("data-propName", "lat"),
-                        $("<td></td>").append($(`<input type='checkbox' ${bar.terrace ? "checked" : ""}/>`)).addClass("text-center").attr("data-propName", "terrace"),
-                        $("<td></td>").append(
-                            $("<button>Borrar</button>").on("click", deleteRow).addClass("btn btn-danger"),
-                            $("<a>Ver ficha</a>").attr("href", "#").addClass("btn btn-primary")
-                        ),
-                    ).attr("data-id", bar.id)
+                    $("<a></a>").append(
+                        $("<tr></tr>").append(
+                            $("<td></td>").append($("<input type='text'/>").val(bar.name)).attr("data-propName", "name"),
+                            $("<td></td>").append($("<input type='text'/>").val(bar.address)).attr("data-propName", "address"),
+                            $("<td></td>").append($("<input type='number'/>").val(bar.lon)).addClass("text-center").attr("data-propName", "lon"),
+                            $("<td></td>").append($("<input type='number'/>").val(bar.lat)).addClass("text-center").attr("data-propName", "lat"),
+                            $("<td></td>").append($(`<input type='checkbox' ${bar.terrace ? "checked" : ""}/>`)).addClass("text-center").attr("data-propName", "terrace"),
+                            $("<td></td>").append(
+                                $("<button>Borrar</button>").on("click", deleteRow).addClass("btn btn-danger"),
+                                $("<a>Ver ficha</a>").attr("href", "#").addClass("btn btn-primary")
+                            ),
+                        ).attr("data-id", bar.id)
+                    ).attr("href", "index.php/bar/info/" . bar.id)
                 );
             });
 
@@ -167,14 +171,14 @@ function updateRow(e) {
         url: URL_BASE + "index.php/bar/update",
         data: bar,
         success: function (response) {
-            
+
         }
     });
-}   
+}
 
 
 
-function deleteRow(e){
+function deleteRow(e) {
     let target = $(e.currentTarget);
 
     let tr = target.parent().parent();
@@ -189,7 +193,7 @@ function deleteRow(e){
         success: function (response) {
             alert("Fila eliminada");
         },
-        error: ()=>{
+        error: () => {
             alert("Error: No se ha borrado la fila");
         }
     });
