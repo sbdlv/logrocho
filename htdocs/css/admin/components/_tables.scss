@@ -15,7 +15,7 @@
         padding: 15px;
     }
 
-    tr{
+    tr {
         vertical-align: middle;
     }
 
@@ -24,21 +24,37 @@
             background-color: #f6f7f9;
         }
     }
+
 }
 
+th {
+    &[data-current-order="asc"] {
+        &::after {
+            margin-left: 5px;
+            content: "\f885";
+            font-family: "Font Awesome 5 Free";
+        }
+    }
 
+    &[data-current-order="desc"] {
+        &::after {
+            margin-left: 5px;
+            content: "\f160";
+            font-family: "Font Awesome 5 Free";
+        }
+    }
+}
 
-#searchWrapper{
+#searchWrapper {
     position: relative;
-    .fa-search{
+    .fa-search {
         position: absolute;
         left: 10px;
         top: 50%;
         transform: translateY(-50%);
     }
 
-    input{
+    input {
         padding-left: 40px;
     }
-
 }
