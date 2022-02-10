@@ -67,28 +67,13 @@
                 <div class="table-responsive mb-2" id="mainTableWrapper">
 
                 </div>
-                <nav class="mt-4">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Siguiente</a>
-                        </li>
-                    </ul>
-                </nav>
             </section>
         </div>
     </main>
 
     <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/AutoTables.js"></script>
-    <script src="js/admin/bares.js"></script>
+    <script src="js/ajax-tables.js"></script>
+    <script src="js/admin/bar.js"></script>
 
 </body>
 

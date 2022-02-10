@@ -81,7 +81,7 @@
     <button class="save_btn btn btn-success m-4"><i class="far fa-save"></i> Guardar</button>
 
     <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/image-uploader.min.js"></script>
+
     <script src="js/imgdroparea.js"></script>
     <script>
         let barID = <?=$bar->id?>;

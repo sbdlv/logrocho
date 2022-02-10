@@ -14,14 +14,14 @@ $.fn.AjaxTable = function (options = {
 
     //Table body
     this.append(
-        $("<table></table>").append(
+        $(`<table></table>`).append(
             [
                 $("<thead></thead>").append(
                     tableHeads
                 ),
                 $("<tbody></tbody>")
             ]
-        )
+        ).addClass(options.tableClass)
     )
 
     //Pagination Wrapper
