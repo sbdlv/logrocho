@@ -24,6 +24,9 @@ $.fn.AjaxTable = function (options = {
         )
     )
 
+    //Pagination Wrapper
+    this.append($("<nav></nav>"));
+
     //Print first page
     printTableAndPaginator(this, options);
 
@@ -38,6 +41,9 @@ $.fn.AjaxTable = function (options = {
  */
 function printTableAndPaginator(root, options) {
     let tbody = root.find("tbody").eq(0);
+
+    //Refresh pagination
+    printPagination(root, options);
 
     $.ajax({
         type: "GET",
@@ -63,6 +69,47 @@ function printTableAndPaginator(root, options) {
 
                 tbody.append(tr);
             });
+
+        }
+    });
+}
+
+function printPagination(root, options) {
+    let pageButtons = [];
+    let nav = root.find("nav").eq(0);
+
+    $.ajax({
+        type: "GET",
+        url: options.countUrl,
+        dataType: "json",
+        success: function (response) {
+            let total = parseInt(response);
+            let isLastPage = total - options.page * options.resultsPerPage <= 0;
+
+
+            //Prev number button
+            if (options.page != 1) {
+                pageButtons.push(generatePaginationNumericButton(options.page - 1, options.page - 1, root, options))
+            }
+
+            //Current button
+            pageButtons.push(generatePaginationNumericButton(options.page, options.page, root, options, true))
+
+            //Next number button
+            if (!isLastPage) {
+                pageButtons.push(generatePaginationNumericButton(options.page + 1, options.page + 1, root, options))
+            }
+
+            nav.html("");
+            nav.append(
+                $("<nav></nav>").append(
+                    $("<ul></ul>").append(
+                        generatePaginationNumericButton("Inicio", 1, root, options, false, options.page == 1),
+                        pageButtons,
+                        generatePaginationNumericButton("Última", total / options.resultsPerPage, root, options, false, isLastPage)
+                    ).addClass("pagination")
+                )
+            )
         }
     });
 }
@@ -97,15 +144,38 @@ function generateInputForField(queryIndex, type, value) {
     }
 }
 
+function generatePaginationNumericButton(text, page, root, options, isActive = false, isDisabled = false) {
+    return $(`<li class="page-item ${isActive ? "active" : ""}"></li>`).append($("<button></button>").addClass("page-link").text(text).attr("data-page", page)).prop("disabled", isDisabled).on("click", (e) => numericPagination_click(e, options, root));
+}
+
 function header_click(e, options, root) {
     let th = $(e.target);
 
     if (options.orderBy == th.attr("data-order-index")) {
         options.orderAsc = !options.orderAsc;
+
+        th.attr("data-current-order", options.orderAsc ? "asc" : "desc");
     } else {
         options.orderBy = th.attr("data-order-index");
         options.orderAsc = false;
+
+        $("[data-current-order]").eq(0).removeAttr("data-current-order");
+        th.attr("data-current-order", options.orderAsc ? "asc" : "desc");
     }
+
+    printTableAndPaginator(root, options);
+}
+
+/**
+ * 
+ * @param {*} e 
+ * @param {*} options 
+ * @param {JQuery} root 
+ */
+function numericPagination_click(e, options, root) {
+    let pageToLoad = parseInt($(e.target).attr("data-page"));
+
+    options.page = pageToLoad;
 
     printTableAndPaginator(root, options);
 }
