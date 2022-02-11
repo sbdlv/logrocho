@@ -85,65 +85,16 @@
                 </form>
             </section>
             <section class="tarjeta p-5 seccion-info">
-                <div class="table-responsive">
-                    <table class="table customize-table mb-0 v-middle table-borderless">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Usuario</th>
-                                <th>Titulo</th>
-                                <th>Descripción</th>
-                                <th class="text-center">Presentación</th>
-                                <th class="text-center">Sabor</th>
-                                <th class="text-center">Textura</th>
-                                <th class="text-center">Total (Calculado)</th>
-                                <th class="text-center">Me gusta</th>
-                                <th class="text-center">No me gusta</th>
-                                <th class="text-center">Pincho</th>
-                                <th class="text-center">Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <?php foreach ($reviews as $review) : ?>
-                            <tr>
-                                <td class="text-center"><a href="<?=getServerAbsPathForActions()?>user/info/<?= $review->user_id ?>">Ver ficha</a></td>
-                                <td><?=$review->title?></td>
-                                <td><?=$review->desc?></td>
-                                <td class="puntuacionWrapper text-center"><?=$review->presentation?><i class="fas fa-star"></i></td>
-                                <td class="puntuacionWrapper text-center"><?=$review->taste?><i class="fas fa-star"></i></td>
-                                <td class="puntuacionWrapper text-center"><?=$review->texture?><i class="fas fa-star"></i></td>
-                                <td class="puntuacionWrapper text-center">?<i class="fas fa-star"></i></td>
-                                <td class="text-center">?</td>
-                                <td class="text-center">?</td>
-                                <td class="text-center"><a href="<?=getServerAbsPathForActions()?>pincho/info/<?= $review->pincho_id ?>">Ver ficha</a></td>
-                                <td class="text-center">
-                                    <div class="d-flex">
-                                        <a href="<?= getServerAbsPathForActions() ?>review/info/<?= $review->id ?>" class="btn btn-primary" title="Ver ficha"><i class="fas fa-external-link-alt"></i></a>
-                                        <button class="btn btn-danger ms-2" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        <?php endforeach;?>
-                        </tbody>
-                    </table>
+                <div class="table-responsive mb-2" id="mainTableWrapper">
+
                 </div>
-                <nav class="mt-4">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Siguiente</a>
-                        </li>
-                    </ul>
-                </nav>
             </section>
         </div>
     </main>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/ajax-tables.js"></script>
+    <script src="js/admin/review.js"></script>
 </body>
 
 </html>

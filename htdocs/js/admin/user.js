@@ -1,0 +1,55 @@
+$("#mainTableWrapper").AjaxTable(
+    {
+        baseUrl: "index.php/user/jsonAll/",
+        countUrl: "index.php/user/total/",
+        resultsPerPage: 4,
+        structure: [
+            {
+                queryIndex: "first_name",
+                header: {
+                    displayName: "Nombre",
+                },
+                col: {
+                    type: "text"
+                }
+            },
+            {
+                queryIndex: "last_name",
+                header: {
+                    displayName: "Apellidos",
+                },
+                col: {
+                    type: "text"
+                }
+            },
+            {
+                queryIndex: "email",
+                header: {
+                    displayName: "Email",
+                },
+                col: {
+                    type: "text"
+                }
+            },
+            {
+                queryIndex: "admin",
+                header: {
+                    displayName: "Administrador",
+                },
+                col: {
+                    type: "checkbox"
+                }
+            },
+            {
+                queryIndex: "created_date",
+                header: {
+                    displayName: "Cuenta creada",
+                },
+                col: {
+                    type: "text"
+                }
+            },
+        ],
+        tableClass: "table"
+    }
+);

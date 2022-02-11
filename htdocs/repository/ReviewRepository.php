@@ -60,4 +60,10 @@ class ReviewRepository implements IDAO
         $stmt = getConexion()->prepare("UPDATE `" . self::TABLE_NAME . "` SET `user_id` = ?, `title` = ?, `desc` = ?, `presentation` = ?, `texture` = ?, `taste` = ?, `pincho_id` = ? WHERE `id` = ?");
         return $stmt->execute([$obj->user_id, $obj->title, $obj->desc, $obj->presentation, $obj->texture, $obj->taste, $obj->pincho_id, $obj->id]);
     }
+
+    function total(){
+        $results = getConexion()->query("SELECT count(*) as total FROM review");
+        $results->execute();
+        return $results->fetch()["total"];
+    }
 }

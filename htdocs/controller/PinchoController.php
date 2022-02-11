@@ -135,4 +135,12 @@ class PinchoController
             echo "Falta campos POST";
         }
     }
+
+    function total()
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        $repo = new PinchoRepository();
+
+        echo json_encode($repo->total());
+    }
 }

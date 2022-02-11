@@ -75,4 +75,10 @@ class PinchoRepository implements IDAO
 
         return $imgs;
     }
+
+    function total(){
+        $results = getConexion()->query("SELECT count(*) as total FROM pincho");
+        $results->execute();
+        return $results->fetch()["total"];
+    }
 }

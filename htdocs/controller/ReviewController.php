@@ -105,7 +105,7 @@ class ReviewController
 
         $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
 
-        if($orderBy && $orderDir){
+        if ($orderBy && $orderDir) {
             echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE, $orderBy, $orderDir));
         } else {
             echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));
@@ -118,5 +118,13 @@ class ReviewController
         $repo = new ReviewRepository();
 
         echo json_encode($repo->find($id));
+    }
+
+    function total()
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        $repo = new ReviewRepository();
+
+        echo json_encode($repo->total());
     }
 }

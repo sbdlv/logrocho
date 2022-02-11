@@ -307,4 +307,12 @@ class UserController
             }
         }
     }
+
+    function total()
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        $repo = new UserRepository();
+
+        echo json_encode($repo->total());
+    }
 }

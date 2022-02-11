@@ -99,4 +99,10 @@ class UserRepository implements IDAO
 
         return $stmt->rowCount() > 0;
     }
+
+    function total(){
+        $results = getConexion()->query("SELECT count(*) as total FROM user");
+        $results->execute();
+        return $results->fetch()["total"];
+    }
 }
