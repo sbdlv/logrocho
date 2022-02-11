@@ -2,6 +2,7 @@ $("#mainTableWrapper").AjaxTable(
     {
         baseUrl: "index.php/bar/jsonAll/",
         countUrl: "index.php/bar/total/",
+        infoBaseUrl: "index.php/bar/info/",
         resultsPerPage: 4,
         structure: [
             {
@@ -20,7 +21,7 @@ $("#mainTableWrapper").AjaxTable(
                 },
                 col: {
                     type: "text"
-                }
+                },
             },
             {
                 queryIndex: "lon",
@@ -47,7 +48,8 @@ $("#mainTableWrapper").AjaxTable(
                 },
                 col: {
                     type: "checkbox"
-                }
+                },
+                class: "text-center"
             }
         ],
         tableClass: "table"

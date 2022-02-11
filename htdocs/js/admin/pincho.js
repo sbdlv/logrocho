@@ -2,6 +2,7 @@ $("#mainTableWrapper").AjaxTable(
     {
         baseUrl: "index.php/pincho/jsonAll/",
         countUrl: "index.php/pincho/total/",
+        infoBaseUrl: "index.php/pincho/info/",
         resultsPerPage: 4,
         structure: [
             {

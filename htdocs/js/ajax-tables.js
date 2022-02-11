@@ -8,9 +8,13 @@ $.fn.AjaxTable = function (options = {
 
     options.structure.forEach(col => {
         tableHeads.append(
-            $("<th></th>").text(col.header.displayName).attr("data-order-index", col.queryIndex).on("click", (e) => header_click(e, options, this))
+            $("<th></th>").text(col.header.displayName).attr("data-order-index", col.queryIndex).on("click", (e) => header_click(e, options, this)).addClass(col.class)
         )
     });
+
+    tableHeads.append(
+        $("<th></th>").text("Acciones").addClass("text-center")
+    )
 
     //Table body
     this.append(
@@ -63,9 +67,18 @@ function printTableAndPaginator(root, options) {
                     tr.append(
                         $("<td></td>").append(
                             generateInputForField(colStructure.queryIndex, colStructure.col.type, rowData[colStructure.queryIndex])
-                        )
+                        ).addClass(colStructure.class)
                     )
                 });
+
+                //Link to entity info page
+                tr.append(
+                    $("<td></td>").append(
+                        $("<a></a>").attr("href", options.infoBaseUrl + rowData["id"]).append(
+                            $('<i class="fas fa-external-link-alt"></i>')
+                        ).addClass("btn btn-primary")
+                    ).addClass("text-center")
+                )
 
                 tbody.append(tr);
             });

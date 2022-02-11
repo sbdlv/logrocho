@@ -2,6 +2,7 @@ $("#mainTableWrapper").AjaxTable(
     {
         baseUrl: "index.php/user/jsonAll/",
         countUrl: "index.php/user/total/",
+        infoBaseUrl: "index.php/user/info/",
         resultsPerPage: 4,
         structure: [
             {
@@ -38,7 +39,8 @@ $("#mainTableWrapper").AjaxTable(
                 },
                 col: {
                     type: "checkbox"
-                }
+                },
+                class: "text-center"
             },
             {
                 queryIndex: "created_date",
