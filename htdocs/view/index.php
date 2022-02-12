@@ -11,23 +11,30 @@
   <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="js/OwlCarousel2/dist/assets/owl.carousel.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animate.min.css">
 </head>
 
 <body>
   <?php include "nav.php" ?>
   <main>
     <section class="container py-5">
-      <h2 class="mb-5 fw-bold">Lo mejor</h2>
-      <div class="owl-carousel owl-theme best_slider">
-        <div class="item"><img src="img/pexels-photo-262047.jpeg" alt=""></div>
-        <div class="item"><img src="img/pexels-pixabay-262978.jpg" alt=""></div>
+      <h2 class="mb-5 fw-bold">Pinchos</h2>
+      <div id="principal_sliders">
+        <div class="owl-carousel owl-theme best_pinchos_slider fixed_slider">
+          <div class="item"><img src="img/pexels-photo-262047.jpeg" alt=""></div>
+          <div class="item"><img src="img/pexels-pixabay-262978.jpg" alt=""></div>
+        </div>
+        <div class="owl-carousel owl-theme fav_slider fixed_slider">
+          <div class="item"><img src="img/pp1.jpg" alt=""></div>
+          <div class="item"><img src="img/pm-1.jpg" alt=""></div>
+        </div>
       </div>
       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-        <label class="btn btn-outline-primary" for="btnradio1">Restaruantes</label>
+        <input type="radio" class="btn-check" name="btnradio" id="toggleBestPinchosSlider" autocomplete="off" checked>
+        <label class="btn btn-outline-primary" for="toggleBestPinchosSlider">Los mejores</label>
 
-        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-        <label class="btn btn-outline-primary" for="btnradio2">Pinchos</label>
+        <input type="radio" class="btn-check" name="btnradio" id="toggleFavSlider" autocomplete="off">
+        <label class="btn btn-outline-primary" for="toggleFavSlider">Preferidos</label>
       </div>
     </section>
     <section class="container-fluid contrastFluid py-5">
