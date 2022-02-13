@@ -31,8 +31,18 @@ $.fn.AjaxTable = function (options = {
     //Pagination Wrapper
     this.append($("<nav></nav>"));
 
+    let root = this;
+
     //Print first page
-    printTableAndPaginator(this, options);
+    $.ajax({
+        type: "GET",
+        url: getQueryUrlWithArgs(options),
+        dataType: "json",
+        success: function (response) {
+            options.currentData = response;
+            printTableAndPaginator(root, options);
+        }
+    });
 
     return this;
 }
@@ -46,45 +56,38 @@ $.fn.AjaxTable = function (options = {
 function printTableAndPaginator(root, options) {
     let tbody = root.find("tbody").eq(0);
 
+    orderResults(root, options);
+
+    //Reset table rows
+    tbody.html("");
+
+    //Display the data
+    options.currentData.forEach(rowData => {
+        let tr = $("<tr></tr>");
+
+        //Generate td's based on the options
+        options.structure.forEach(colStructure => {
+            tr.append(
+                $("<td></td>").append(
+                    generateInputForField(colStructure.queryIndex, colStructure.col.type, rowData[colStructure.queryIndex])
+                ).addClass(colStructure.class)
+            )
+        });
+
+        //Link to entity info page
+        tr.append(
+            $("<td></td>").append(
+                $("<a></a>").attr("href", options.infoBaseUrl + rowData["id"]).append(
+                    $('<i class="fas fa-external-link-alt"></i>')
+                ).addClass("btn btn-primary")
+            ).addClass("text-center")
+        )
+
+        tbody.append(tr);
+    });
+
     //Refresh pagination
     printPagination(root, options);
-
-    $.ajax({
-        type: "GET",
-        url: getQueryUrlWithArgs(options),
-        dataType: "json",
-        success: function (response) {
-            console.log(response);
-            //Reset table rows
-            tbody.html("");
-
-            //Display the data
-            response.forEach(rowData => {
-                let tr = $("<tr></tr>");
-
-                //Generate td's based on the options
-                options.structure.forEach(colStructure => {
-                    tr.append(
-                        $("<td></td>").append(
-                            generateInputForField(colStructure.queryIndex, colStructure.col.type, rowData[colStructure.queryIndex])
-                        ).addClass(colStructure.class)
-                    )
-                });
-
-                //Link to entity info page
-                tr.append(
-                    $("<td></td>").append(
-                        $("<a></a>").attr("href", options.infoBaseUrl + rowData["id"]).append(
-                            $('<i class="fas fa-external-link-alt"></i>')
-                        ).addClass("btn btn-primary")
-                    ).addClass("text-center")
-                )
-
-                tbody.append(tr);
-            });
-
-        }
-    });
 }
 
 function printPagination(root, options) {
@@ -164,6 +167,7 @@ function generatePaginationNumericButton(text, page, root, options, isActive = f
 function header_click(e, options, root) {
     let th = $(e.target);
 
+    //Determine the index to order by and order direction
     if (options.orderBy == th.attr("data-order-index")) {
         options.orderAsc = !options.orderAsc;
 
@@ -190,5 +194,33 @@ function numericPagination_click(e, options, root) {
 
     options.page = pageToLoad;
 
-    printTableAndPaginator(root, options);
+    $.ajax({
+        type: "GET",
+        url: getQueryUrlWithArgs(options),
+        dataType: "json",
+        success: function (response) {
+            options.currentData = response;
+            printTableAndPaginator(root, options);
+        }
+    });
+}
+
+function orderResults(root, options) {
+    if (options.orderBy == null) {
+        return;
+    }
+    options.currentData.sort((a, b) => {
+        let result = 0;
+        if (a[options.orderBy] > b[options.orderBy]) {
+            result = 1;
+        } else if (a[options.orderBy] < b[options.orderBy]) {
+            result = -1;
+        }
+
+        if (options.orderAsc) {
+            return -result;
+        }
+
+        return result;
+    });
 }
