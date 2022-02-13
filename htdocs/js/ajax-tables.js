@@ -1,32 +1,26 @@
-$.fn.AjaxTable = function (options = {
-    structure: [],
-}) {
-    //Table heads
-    let tableHeads = $("<tr></tr>");
-
-    this.data("options", options);
-
-    options.structure.forEach(col => {
-        tableHeads.append(
-            $("<th></th>").text(col.header.displayName).attr("data-order-index", col.queryIndex).on("click", (e) => header_click(e, options, this)).addClass(col.class)
+$.fn.AjaxTable = function (options = {}) {
+    //Show cols selector
+    this.append(
+        $("<div></div>").append(
+            $("<select multiple autocomplete='off'></select>").addClass("form-select mb-4").append(
+                options.structure.map((colStructure) => {
+                    return $("<option selected></option>").text(colStructure.header.displayName).attr("value", colStructure.queryIndex)
+                })
+            ).on("change", (e) => { colselector_change(e, this, options) })
         )
-    });
-
-    tableHeads.append(
-        $("<th></th>").text("Acciones").addClass("text-center")
     )
 
-    //Table body
+    //Table
     this.append(
         $(`<table></table>`).append(
             [
-                $("<thead></thead>").append(
-                    tableHeads
-                ),
+                $("<thead></thead>"),
                 $("<tbody></tbody>")
             ]
         ).addClass(options.tableClass)
     )
+
+    printHeaders(this, options);
 
     //Pagination Wrapper
     this.append($("<nav></nav>"));
@@ -67,11 +61,13 @@ function printTable(root, options) {
 
         //Generate td's based on the options
         options.structure.forEach(colStructure => {
-            tr.append(
-                $("<td></td>").append(
-                    generateInputForField(colStructure.queryIndex, colStructure.col.type, rowData[colStructure.queryIndex])
-                ).addClass(colStructure.class)
-            )
+            if (!options.showCols || options.showCols.includes(colStructure.queryIndex)) {
+                tr.append(
+                    $("<td></td>").append(
+                        generateInputForField(colStructure.queryIndex, colStructure.col.type, rowData[colStructure.queryIndex])
+                    ).addClass(colStructure.class)
+                )
+            }
         });
 
         //Link to entity info page
@@ -130,20 +126,10 @@ function printPagination(root, options) {
 function getQueryUrlWithArgs(options) {
     let page = options.page ? options.page : 1;
 
-    let url = options.baseUrl + page;
-
-    if (options.orderBy) {
-        url += "/" + options.orderBy;
-
-        if (options.orderAsc != null) {
-            url += "/" + (options.orderAsc ? "ASC" : "DESC");
-        }
-    }
-
     //Set current page for future operations
     options.page = page;
 
-    return url;
+    return options.baseUrl + page;
 }
 
 function generateInputForField(queryIndex, type, value) {
@@ -201,7 +187,7 @@ function numericPagination_click(e, options, root) {
             printTable(root, options);
         }
     });
-    
+
     printPagination(root, options);
 }
 
@@ -223,4 +209,32 @@ function orderResults(root, options) {
 
         return result;
     });
+}
+
+function colselector_change(e, root, options) {
+    options.showCols = $(e.target).val();
+
+    printHeaders(root, options);
+    printTable(root, options);
+}
+
+function printHeaders(root, options) {
+    let thead = root.find("thead").eq(0);
+    thead.html("");
+
+    thead.append(
+        $("<tr></tr>").append(
+            options.structure.map((col) => {
+                if (!options.showCols || options.showCols.includes(col.queryIndex)) {
+                    let th = $("<th></th>").text(col.header.displayName).attr("data-order-index", col.queryIndex).on("click", (e) => header_click(e, options, root)).addClass(col.class);
+                    if (col.queryIndex == options.orderBy) {
+                        th.attr("data-current-order", options.orderAsc ? "asc" : "desc");
+                    }
+
+                    return th;
+                }
+            }),
+            $("<th></th>").text("Acciones").addClass("text-center")
+        )
+    )
 }
