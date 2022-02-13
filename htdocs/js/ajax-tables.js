@@ -40,10 +40,10 @@ $.fn.AjaxTable = function (options = {
         dataType: "json",
         success: function (response) {
             options.currentData = response;
-            printTableAndPaginator(root, options);
+            printTable(root, options);
         }
     });
-
+    printPagination(this, options);
     return this;
 }
 
@@ -53,7 +53,7 @@ $.fn.AjaxTable = function (options = {
  * @param {*} options 
  * @param {number} page 
  */
-function printTableAndPaginator(root, options) {
+function printTable(root, options) {
     let tbody = root.find("tbody").eq(0);
 
     orderResults(root, options);
@@ -85,9 +85,6 @@ function printTableAndPaginator(root, options) {
 
         tbody.append(tr);
     });
-
-    //Refresh pagination
-    printPagination(root, options);
 }
 
 function printPagination(root, options) {
@@ -180,7 +177,8 @@ function header_click(e, options, root) {
         th.attr("data-current-order", options.orderAsc ? "asc" : "desc");
     }
 
-    printTableAndPaginator(root, options);
+    printTable(root, options);
+    printPagination(root, options);
 }
 
 /**
@@ -200,9 +198,11 @@ function numericPagination_click(e, options, root) {
         dataType: "json",
         success: function (response) {
             options.currentData = response;
-            printTableAndPaginator(root, options);
+            printTable(root, options);
         }
     });
+    
+    printPagination(root, options);
 }
 
 function orderResults(root, options) {
