@@ -2,6 +2,7 @@ $.fn.AjaxTable = function (options = {}) {
     //Show cols selector
     this.append(
         $("<div></div>").append(
+            $("<h2>Mostrar columnas</h2>").addClass("h4 mb-4"),
             $("<select multiple autocomplete='off'></select>").addClass("form-select mb-4").append(
                 options.structure.map((colStructure) => {
                     return $("<option selected></option>").text(colStructure.header.displayName).attr("value", colStructure.queryIndex)
