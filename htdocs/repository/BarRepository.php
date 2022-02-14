@@ -79,18 +79,21 @@ class BarRepository implements IDAO
         return $stmt->execute([$obj->name, $obj->address, $obj->lon, $obj->lat, $obj->terrace, $obj->id]);
     }
 
-    function total(){
+    function total()
+    {
         $results = getConexion()->query("SELECT count(*) as total FROM bar");
         $results->execute();
         return $results->fetch()["total"];
     }
 
-    function uploadPic($pk, $path, $priority = -1){
+    function uploadPic($pk, $path, $priority = -1)
+    {
         $stmt = getConexion()->prepare("INSERT INTO `multimediaBar`(`bar_id`, `path`, `priority`) VALUES (?,?,?)");
         return $stmt->execute([$pk, $path, $priority]);
     }
-    
-    function getImages($id, &$imgs = []){
+
+    function getImages($id, &$imgs = [])
+    {
         $stmt = getConexion()->prepare("SELECT * FROM `multimediabar` WHERE bar_id = ? ORDER BY priority, id");
 
         $stmt->execute([$id]);
@@ -102,11 +105,35 @@ class BarRepository implements IDAO
         return $imgs;
     }
 
-    function getImagesForArray($objs, $imgs = []){
+    function getImagesForArray($objs, $imgs = [])
+    {
         foreach ($objs as $obj => $id) {
             $this->getImages($id, $imgs);
         }
 
         return $imgs;
+    }
+
+    function treatImages(int $id, array $imagesSrc)
+    {
+
+        if (count($imagesSrc) == 0) {
+            $stmt = getConexion()->prepare("DELETE FROM `multimediabar` WHERE `bar_id` = ?");
+            return $stmt->execute([$id]);
+        }
+
+        //Delete old images
+        $stmt = getConexion()->prepare("DELETE FROM `multimediabar` WHERE `bar_id` = $id AND `path` NOT IN (" . str_repeat("?,", count($imagesSrc) - 1) . "? )");
+        $stmt->execute($imagesSrc);
+
+        //Reorder
+        $stmt = getConexion()->prepare("UPDATE `multimediabar` SET `priority` = ? WHERE `path` = ?");
+
+        $priority = 0;
+
+        foreach ($imagesSrc as $src) {
+            $stmt->execute([$priority, $src]);
+            $priority++;
+        }
     }
 }

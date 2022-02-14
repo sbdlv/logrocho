@@ -63,9 +63,13 @@ class BarController
             $bar->lon = $_POST["lon"];
             $bar->lat = $_POST["lat"];
             $bar->terrace = $_POST["terrace"];
-            //TODO: Incluir campo imagen etc
 
             $repo = new BarRepository();
+            
+            if (isset($_POST["images"])) {
+                $repo->treatImages($_POST["id"], $_POST["images"]);
+            }
+
             if ($repo->update($bar)) {
                 echo "Se ha modificado el bar";
             } else {

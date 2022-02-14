@@ -56,6 +56,17 @@ $.fn.ImgDropAreaAdd = function (imagesSrc = []) {
     return this;
 }
 
+
+function ImgDropAreaGetVal(root) {
+    //Generate data and send to onchange function
+    let finalImageStructure = [];
+    root.find(".draggableImg ").each((i, elem) => {
+        finalImageStructure.push($(elem).attr("src"));
+    })
+
+    return finalImageStructure;
+}
+
 /**
  * 
  * @param {string} imageSrc The image src
