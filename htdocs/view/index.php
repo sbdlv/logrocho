@@ -21,11 +21,17 @@
       <h2 class="mb-5 fw-bold">Pinchos</h2>
       <div id="principal_sliders">
         <div class="owl-carousel owl-theme best_pinchos_slider fixed_slider">
-          <div class="item"><img src="img/pexels-photo-262047.jpeg" alt=""></div>
-          <div class="item"><img src="img/pexels-pixabay-262978.jpg" alt=""></div>
+          <div class="item"><img src="img/pf1.jpg" alt=""></div>
+          <div class="item"><img src="img/pf2.jpg" alt=""></div>
+          <div class="item"><img src="img/pf3.jpg" alt=""></div>
+          <div class="item"><img src="img/pf4.jpg" alt=""></div>
+          <div class="item"><img src="img/pf5.jpg" alt=""></div>
         </div>
         <div class="owl-carousel owl-theme fav_slider fixed_slider">
           <div class="item"><img src="img/pp1.jpg" alt=""></div>
+          <div class="item"><img src="img/pp2.jpg" alt=""></div>
+          <div class="item"><img src="img/pp3.jpg" alt=""></div>
+          <div class="item"><img src="img/pp4.jpg" alt=""></div>
           <div class="item"><img src="img/pm-1.jpg" alt=""></div>
         </div>
       </div>
