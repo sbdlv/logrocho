@@ -13,9 +13,21 @@
             <li class="nav-item">
                 <a class="nav-link" href="#">Pinchos</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= getServerAbsPathForActions() . "user/login" ?>">Iniciar sesión</a>
-            </li>
+
+            <?php if (isLogged()) : ?>
+                <?php if (isAdmin()) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= getServerAbsPathForActions() . "bar/" ?>">Panel admin</a>
+                    </li>
+                <?php endif; ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= getServerAbsPathForActions() . "user/logout" ?>">Cerrar sesión</a>
+                </li>
+            <?php else : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= getServerAbsPathForActions() . "user/login" ?>">Iniciar sesión</a>
+                </li>
+            <?php endif; ?>
         </ul>
     </div>
 </nav>

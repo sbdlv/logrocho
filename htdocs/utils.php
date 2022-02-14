@@ -64,6 +64,16 @@ function isAdminForAPI()
     }
 }
 
+function isAdmin()
+{
+    return isset($_SESSION["user"]) && $_SESSION["user"]["admin"];
+}
+
+function isLogged()
+{
+    return isset($_SESSION["user"]);
+}
+
 /**
  * Gets the system root path for the current web, wich means, it returns the dirname of the index.php of this mvc.
  *
