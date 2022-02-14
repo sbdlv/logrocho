@@ -95,7 +95,7 @@ ALTER TABLE `review` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DEL
 
 ALTER TABLE `review` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `multimediaReview` ADD FOREIGN KEY (`review_id`) REFERENCES `review` (`id`);
+ALTER TABLE `multimediaReview` ADD FOREIGN KEY (`review_id`) REFERENCES `review` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `review_user_likes` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
@@ -103,7 +103,7 @@ ALTER TABLE `pincho` ADD FOREIGN KEY (`bar_id`) REFERENCES `bar` (`id`) ON DELET
 
 ALTER TABLE `pincho_allergen` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `pincho_allergen` ADD FOREIGN KEY (`allergen_id`) REFERENCES `allergen` (`id`);
+ALTER TABLE `pincho_allergen` ADD FOREIGN KEY (`allergen_id`) REFERENCES `allergen` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `multimediaPincho` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`) ON DELETE CASCADE;
 
@@ -150,12 +150,12 @@ insert into user (first_name, last_name, email, password, admin, created_date) v
 /* PINCHOS */
 insert into pincho (bar_id, name, price) values (4, 'Bread - Rosemary Focaccia', 1);
 insert into pincho (bar_id, name, price) values (4, 'Truffle Shells - Semi - Sweet', 2);
-insert into pincho (bar_id, name, price) values (5, 'Bar Nature Valley', 2);
+insert into pincho (bar_id, name, price) values (5, 'Milk - Nature Valley', 2);
 insert into pincho (bar_id, name, price) values (1, 'Cherries - Fresh', 1.5);
 insert into pincho (bar_id, name, price) values (4, 'Wine - Zinfandel California 2002', 1.5);
 insert into pincho (bar_id, name, price) values (3, 'Arizona - Plum Green Tea', 1.5);
 insert into pincho (bar_id, name, price) values (1, 'Cabbage - Savoy', 1.5);
-insert into pincho (bar_id, name, price) values (1, 'Glass Clear 7 Oz Xl', 1.5);
+insert into pincho (bar_id, name, price) values (1, 'Glass Clear - 7 Oz Xl', 1.5);
 insert into pincho (bar_id, name, price) values (1, 'Sauce - Alfredo', 1.5);
 insert into pincho (bar_id, name, price) values (3, 'Mustard - Pommery', 1.5);
 
