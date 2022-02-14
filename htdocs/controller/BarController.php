@@ -65,10 +65,9 @@ class BarController
             $bar->terrace = $_POST["terrace"];
 
             $repo = new BarRepository();
-            
-            if (isset($_POST["images"])) {
-                $repo->treatImages($_POST["id"], $_POST["images"]);
-            }
+
+            $images = isset($_POST["images"]) ? $_POST["images"]: [];
+            $repo->treatImages($_POST["id"], $images);
 
             if ($repo->update($bar)) {
                 echo "Se ha modificado el bar";

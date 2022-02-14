@@ -73,9 +73,8 @@ class PinchoController
             
             $repo = new PinchoRepository();
 
-            if (isset($_POST["images"])) {
-                $repo->treatImages($_POST["id"], $_POST["images"]);
-            }
+            $images = isset($_POST["images"]) ? $_POST["images"]: [];
+            $repo->treatImages($_POST["id"], $images);
 
             if ($repo->update($pincho) && $repo->setAllergens($pincho, $_POST["allergens"])) {
                 echo "Se ha modificado el pincho";
