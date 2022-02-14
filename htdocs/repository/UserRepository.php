@@ -68,8 +68,8 @@ class UserRepository implements IDAO
 
     function update($obj)
     {
-        $stmt = getConexion()->prepare("UPDATE `user` SET `first_name` = ?, `last_name` = ?, `email` = ? WHERE `id` = ?");
-        return $stmt->execute([$obj->first_name, $obj->last_name, $obj->email, $obj->id]);
+        $stmt = getConexion()->prepare("UPDATE `user` SET `first_name` = ?, `last_name` = ?, `email` = ?, `created_date` = ? WHERE `id` = ?");
+        return $stmt->execute([$obj->first_name, $obj->last_name, $obj->email, $obj->created_date, $obj->id]);
     }
 
     function login($email, $password)
@@ -100,7 +100,8 @@ class UserRepository implements IDAO
         return $stmt->rowCount() > 0;
     }
 
-    function total(){
+    function total()
+    {
         $results = getConexion()->query("SELECT count(*) as total FROM user");
         $results->execute();
         return $results->fetch()["total"];
