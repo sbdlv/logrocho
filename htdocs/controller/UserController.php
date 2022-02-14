@@ -327,6 +327,10 @@ class UserController
         $repoReview = new ReviewRepository();
         $reviews = $repoReview->byUser($id);
 
+        
+        $likedReviews = $repoReview->likedByUser($id);
+        $dislikedReviews = $repoReview->dislikedByUser($id);
+
         require "view/user/profile.php";
     }
 

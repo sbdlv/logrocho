@@ -58,40 +58,36 @@
                     <?php if (count($reviews)) : ?>
                         <div class="reviews">
                             <?php foreach ($reviews as $review) : ?>
-                                <div class="tarjeta tarjeta-btn card review p-4 flex-row">
-                                    <div class="me-4"><img src="img/pfp.jpg" alt="" class="pfp"></div>
-                                    <div>
-                                        <p class="h4">¡Lo mejor que he probado!</p>
-                                        <p class="text_clamp_3 review-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit provident eaque eos veniam, culpa quis at praesentium necessitatibus, eveniet earum quisquam quo, magnam fugiat? Adipisci quia ad quibusdam sequi quod.</p>
-                                        <div class="card-subtitle mb-2"><span class="fw-bold">Presentacion: </span><?php TemplateHelper::getStarts($review->presentation) ?></div>
-                                        <div class="card-subtitle mb-2"><span class="fw-bold">Sabor: </span><?php TemplateHelper::getStarts($review->taste) ?></div>
-                                        <div class="card-subtitle mb-2"><span class="fw-bold">Textura: </span><?php TemplateHelper::getStarts($review->texture) ?></div>
-                                        <div class="d-flex justify-content-between">
-                                            <div class="rating d-flex">
-                                                <div class="likes">
-                                                    <i class="fas fa-thumbs-up"></i>
-                                                    <?= $review->likes ?>
-                                                </div>
-                                                <div class="ms-2 dislikes">
-                                                    <i class="fas fa-thumbs-down"></i>
-                                                    <?= $review->dislikes ?>
-                                                </div>
-                                            </div>
-                                            <a class="btn btn-primary" href="<?= getServerAbsPathForActions() ?>pincho/detalles/<?= $review->pincho_id ?>">Ver pincho</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                <?php include "view/Review/templates/card-detailed.php" ?>
                             <?php endforeach; ?>
                         </div>
                     <?php else : ?>
                         <p>No tienes reseñas.</p>
                     <?php endif; ?>
                 </div>
-                <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                    <h2>Mis likes</h2>
+                <div class="tab-pane fade p-4" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+                    <h2 class="mb-4">Mis likes</h2>
+                    <?php if (count($reviews)) : ?>
+                        <div class="reviews">
+                            <?php foreach ($likedReviews as $review) : ?>
+                                <?php include "view/Review/templates/card-detailed.php" ?>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php else : ?>
+                        <p>No tienes reseñas.</p>
+                    <?php endif; ?>
                 </div>
-                <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                    <h2>Mis dislikes</h2>
+                <div class="tab-pane fade p-4" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+                    <h2 class="mb-4">Mis dislikes</h2>
+                    <?php if (count($reviews)) : ?>
+                        <div class="reviews">
+                            <?php foreach ($dislikedReviews as $review) : ?>
+                                <?php include "view/Review/templates/card-detailed.php" ?>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php else : ?>
+                        <p>No tienes reseñas.</p>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
