@@ -22,6 +22,15 @@ class ReviewController
     {
         $repo = new ReviewRepository();
         addToBreadCrumbs("Reseña #$id");
+
+        require "repository/UserRepository.php";
+        $userRepo = new UserRepository();
+        $users = $userRepo->findAll();
+
+        require "repository/PinchoRepository.php";
+        $pinchoRepo = new PinchoRepository();
+        $pinchos = $pinchoRepo->findAll();
+
         $review = $repo->find($id);
         $activeMenu = "review";
         include "view/Review/info.php";
