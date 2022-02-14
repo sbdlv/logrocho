@@ -1,0 +1,14 @@
+.page_user_zone{
+    .info{
+        img{
+            height: 200px;
+            border-radius: 50%;
+        }
+    }
+
+    .lateral_bar{
+        background-color: $color-primary;
+        color: white;
+        min-height: 100vh;
+    }
+}
