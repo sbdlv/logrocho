@@ -4,7 +4,7 @@ let bestPinchosSlider = $(".best_pinchos_slider");
 bestPinchosSlider.owlCarousel(
     {
         autoplay: true,
-        autoplayTimeout: 1000,
+        autoplayTimeout: 5000,
         loop: true,
         items: 1,
         nav: true,
