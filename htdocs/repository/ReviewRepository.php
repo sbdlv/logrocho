@@ -61,9 +61,24 @@ class ReviewRepository implements IDAO
         return $stmt->execute([$obj->user_id, $obj->title, $obj->desc, $obj->presentation, $obj->texture, $obj->taste, $obj->pincho_id, $obj->id]);
     }
 
-    function total(){
+    function total()
+    {
         $results = getConexion()->query("SELECT count(*) as total FROM review");
         $results->execute();
         return $results->fetch()["total"];
+    }
+
+    function byUser($id)
+    {
+        $stmt = getConexion()->prepare("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  JOIN review_user_likes rul ON r.id = rul.review_id WHERE r.user_id = ? GROUP BY r.id");
+        $stmt->execute([$id]);
+
+        $results = $stmt->fetchAll();
+        $instances = [];
+        foreach ($results as $row) {
+            $instances[] = Review::getInstance($row);
+        }
+
+        return $instances;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 require "utils.php";
-// require "db.php";
+require "templates.php";
+
 header('Access-Control-Allow-Origin: *');
 
 //require "vendor/autoload.php";

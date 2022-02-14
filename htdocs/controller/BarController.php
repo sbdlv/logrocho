@@ -9,7 +9,7 @@ class BarController
 {
     private const AMOUNT_OF_RESULTS_PER_PAGE = 4;
 
-    function index($id = false)
+    function list($id = false)
     {
         $repo = new BarRepository();
 
@@ -26,7 +26,7 @@ class BarController
         $bar = $repo->find($id);
         $barImages = $repo->getImages($id);
         $activeMenu = "bar";
-        include "view/Bar/info.php";
+        include "view/Bar/list.php";
     }
 
     function alta()
@@ -66,7 +66,7 @@ class BarController
 
             $repo = new BarRepository();
 
-            $images = isset($_POST["images"]) ? $_POST["images"]: [];
+            $images = isset($_POST["images"]) ? $_POST["images"] : [];
             $repo->treatImages($_POST["id"], $images);
 
             if ($repo->update($bar)) {
@@ -159,5 +159,15 @@ class BarController
             http_response_code(400);
             echo "Falta campos POST";
         }
+    }
+
+    //Publico
+    function index($id = false)
+    {
+        $repo = new BarRepository();
+
+        $bars = $repo->findAll();
+        $activeMenu = "bar";
+        include "view/Bar/index.php";
     }
 }

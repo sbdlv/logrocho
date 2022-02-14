@@ -1,0 +1,3 @@
+ - Zona usuario
+ - Agregar entidades desde back
+ - 

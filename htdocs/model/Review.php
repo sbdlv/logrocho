@@ -31,6 +31,8 @@ class Review extends AbstractMappedSQLModel
             "texture" => "texture",
             "taste" => "taste",
             "pincho_id" => "pincho_id",
+            "likes" => "likes",
+            "dislikes" => "dislikes",
         ];
     }
 }
