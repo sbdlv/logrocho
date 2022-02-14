@@ -17,13 +17,13 @@ class UserController
         require "view/user/index.php";
     }
     
-    function info($id)
+    function edit($id)
     {
         $activeMenu = "user";
         addToBreadCrumbs("Usuario #$id");
         $repo = new UserRepository();
         $user = $repo->findById($id);
-        require "view/user/info.php";
+        require "view/user/edit.php";
     }
 
     function login()

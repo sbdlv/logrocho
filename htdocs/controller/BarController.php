@@ -18,7 +18,7 @@ class BarController
         include "view/Bar/index.php";
     }
 
-    function info($id)
+    function edit($id)
     {
         addToBreadCrumbs("Bar #$id");
         $repo = new BarRepository();
@@ -26,7 +26,7 @@ class BarController
         $bar = $repo->find($id);
         $barImages = $repo->getImages($id);
         $activeMenu = "bar";
-        include "view/Bar/list.php";
+        include "view/Bar/info.php";
     }
 
     function alta()

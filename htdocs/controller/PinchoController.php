@@ -18,7 +18,7 @@ class PinchoController
         include "view/Pincho/index.php";
     }
 
-    function info($id)
+    function edit($id)
     {
         $repo = new PinchoRepository();
         addToBreadCrumbs("Pincho #$id");
@@ -38,7 +38,7 @@ class PinchoController
         $currentAllergens = $repo->getAllergens($pincho);
 
         $activeMenu = "pincho";
-        include "view/Pincho/info.php";
+        include "view/Pincho/edit.php";
     }
     
     function alta()

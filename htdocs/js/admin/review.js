@@ -2,8 +2,8 @@ $("#mainTableWrapper").AjaxTable(
     {
         baseUrl: "index.php/review/jsonAll/",
         countUrl: "index.php/review/total/",
-        infoBaseUrl: "index.php/review/info/",
         deleteUrl: "index.php/review/delete/",
+        infoBaseUrl: "index.php/review/edit/",
         resultsPerPage: 4,
         structure: [
             {

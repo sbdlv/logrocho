@@ -18,7 +18,7 @@ class ReviewController
         include "view/Review/index.php";
     }
 
-    function info($id)
+    function edit($id)
     {
         $repo = new ReviewRepository();
         addToBreadCrumbs("Reseña #$id");
@@ -33,7 +33,7 @@ class ReviewController
 
         $review = $repo->find($id);
         $activeMenu = "review";
-        include "view/Review/info.php";
+        include "view/Review/edit.php";
     }
 
     function alta()
