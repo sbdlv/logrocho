@@ -31,7 +31,8 @@ $("#mainTableWrapper").AjaxTable(
                 },
                 col: {
                     type: "number"
-                }
+                },
+                class: "text-center"
             },
             {
                 queryIndex: "lat",
@@ -40,7 +41,8 @@ $("#mainTableWrapper").AjaxTable(
                 },
                 col: {
                     type: "number"
-                }
+                },
+                class: "text-center"
             },
             {
                 queryIndex: "terrace",

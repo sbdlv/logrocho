@@ -41,6 +41,6 @@ $menus = [
     </ul>
     <hr>
     <div class="dropdown">
-        <a href="index.html" class="btn bg-danger text-white"><i class="fas fa-sign-out-alt"></i></a>
+        <a href="index.php" class="btn bg-danger text-white"><i class="fas fa-sign-out-alt"></i></a>
     </div>
 </aside>
