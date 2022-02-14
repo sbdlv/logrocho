@@ -8,7 +8,7 @@
                 <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Restaruantes</a>
+                <a class="nav-link" href="#">Restaurantes</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Pinchos</a>
