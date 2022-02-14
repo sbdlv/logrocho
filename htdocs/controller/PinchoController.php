@@ -22,12 +22,25 @@ class PinchoController
     {
         $repo = new PinchoRepository();
         addToBreadCrumbs("Pincho #$id");
+
+        require_once "repository/BarRepository.php";
+        $barRepo = new BarRepository();
+        $bars = $barRepo->findAll();
+        
+        require_once "repository/AllergenRepository.php";
+        $allergenRepo = new AllergenRepository();
+        $allergens = $allergenRepo->findAll();
+
+        
         $pincho = $repo->find($id);
         $pinchoImages = $repo->getImages($id);
+
+        $currentAllergens = $repo->getAllergens($pincho);
+
         $activeMenu = "pincho";
         include "view/Pincho/info.php";
     }
-
+    
     function alta()
     {
         if (isset($_POST["bar_id"], $_POST["name"])) {
@@ -50,21 +63,28 @@ class PinchoController
 
     function update()
     {
-        if (isset($_POST["id"], $_POST["bar_id"], $_POST["name"])) {
+        if (isset($_POST["id"], $_POST["bar_id"], $_POST["name"], $_POST["price"], $_POST["allergens"])) {
             $pincho = new Pincho();
 
             $pincho->id = $_POST["id"];
             $pincho->bar_id = $_POST["bar_id"];
             $pincho->name = $_POST["name"];
-            //TODO: Incluir campo imagen etc
-
+            $pincho->price = $_POST["price"];
+            
             $repo = new PinchoRepository();
-            if ($repo->update($pincho)) {
+
+            if (isset($_POST["images"])) {
+                $repo->treatImages($_POST["id"], $_POST["images"]);
+            }
+
+            if ($repo->update($pincho) && $repo->setAllergens($pincho, $_POST["allergens"])) {
                 echo "Se ha modificado el pincho";
             } else {
+                http_response_code(400);
                 echo "Error: No se ha modificado el pincho";
             }
         } else {
+            http_response_code(400);
             echo "Error: FALTAN campos POST";
         }
     }
