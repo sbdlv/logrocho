@@ -109,4 +109,16 @@ class ReviewRepository implements IDAO
 
         return $instances;
     }
+
+    function last(int $amount)
+    {
+        $results = getConexion()->query("SELECT * FROM " . self::TABLE_NAME . " ORDER BY id DESC LIMIT $amount");
+        $instances = [];
+
+        foreach ($results as $row) {
+            $instances[] = Review::getInstance($row);
+        }
+
+        return $instances;
+    }
 }

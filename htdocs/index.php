@@ -1,4 +1,5 @@
 <?php
+include_once "db.php";
 require "utils.php";
 require "templates.php";
 
@@ -26,7 +27,6 @@ if (isset($array_ruta[0])) {
 
     //Llamada al controlador
     if (file_exists($controllerPath)) {
-        include_once "db.php";
 
         //Cargamos el fichero del controlador
         require $controllerPath;
@@ -83,5 +83,15 @@ if (isset($array_ruta[0])) {
     }
 } else {
     //Ruta por defecto
+
+    include "repository/ReviewRepository.php";
+    $reviewRepo = new ReviewRepository();
+
+    include "repository/PinchoRepository.php";
+    $pinchoRepo = new PinchoRepository();
+
+    $lastPinchos = $pinchoRepo->last(5);
+    $lastReviews = $reviewRepo->last(5);
+
     include "view/index.php";
 }

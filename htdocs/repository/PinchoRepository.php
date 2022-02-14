@@ -134,4 +134,16 @@ class PinchoRepository implements IDAO
             $priority++;
         }
     }
+
+    function last(int $amount)
+    {
+        $results = getConexion()->query("SELECT * FROM pincho ORDER BY id DESC LIMIT $amount");
+        $instances = [];
+
+        foreach ($results as $row) {
+            $instances[] = Pincho::getInstance($row);
+        }
+
+        return $instances;
+    }
 }
