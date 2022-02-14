@@ -49,7 +49,8 @@ $("#mainTableWrapper").AjaxTable(
                 },
                 col: {
                     type: "text"
-                }
+                },
+                class: "text-center"
             },
         ],
         tableClass: "table"

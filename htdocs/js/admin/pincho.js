@@ -17,11 +17,12 @@ $("#mainTableWrapper").AjaxTable(
             {
                 queryIndex: "bar_id",
                 header: {
-                    displayName: "Bar",
+                    displayName: "Bar ID",
                 },
                 col: {
                     type: "text"
-                }
+                },
+                class: "text-center"                
             },
         ],
         tableClass: "table"

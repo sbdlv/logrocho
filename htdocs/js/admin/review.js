@@ -50,6 +50,26 @@ $("#mainTableWrapper").AjaxTable(
                     type: "number"
                 }
             },
+            {
+                queryIndex: "pincho_id",
+                header: {
+                    displayName: "Pincho ID",
+                },
+                col: {
+                    type: "number"
+                },
+                class: "text-center"
+            },
+            {
+                queryIndex: "user_id",
+                header: {
+                    displayName: "User ID",
+                },
+                col: {
+                    type: "number"
+                },
+                class: "text-center"
+            },
         ],
         tableClass: "table"
     }

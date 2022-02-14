@@ -55,7 +55,7 @@
                                 </tr>
                                 <tr>
                                     <td>Descripción</td>
-                                    <td><textarea name="" id="review_desc" cols="30" rows="10"><?= $review->desc ?></textarea></td>
+                                    <td><textarea class="w-100" id="review_desc" cols="30" rows="10"><?= $review->desc ?></textarea></td>
                                 </tr>
                                 <tr>
                                     <td>Presentación</td>

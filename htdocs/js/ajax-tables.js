@@ -134,11 +134,13 @@ function getQueryUrlWithArgs(options) {
 }
 
 function generateInputForField(queryIndex, type, value) {
+    // Este case estaba para la crear inputs para las tablas, pero como solo se va a poder editar desde las fichas, no hace falta de momento.
     switch (type) {
-        case "text":
-            return $("<input>").attr("type", "text").val(value);
+        // case "text":
+        //     return $("<input>").attr("type", "text").val(value);
         case "checkbox":
-            return $(`<input ${value ? "checked" : ""}>`).attr("type", "checkbox");
+            // return $(`<input ${value ? "checked" : ""}>`).attr("type", "checkbox");
+            return value ? "Si" : "No";
         default:
             return String(value);
     }
