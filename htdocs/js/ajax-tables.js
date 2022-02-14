@@ -76,7 +76,12 @@ function printTable(root, options) {
             $("<td></td>").append(
                 $("<a></a>").attr("href", options.infoBaseUrl + rowData["id"]).append(
                     $('<i class="fas fa-external-link-alt"></i>')
-                ).addClass("btn btn-primary")
+                ).addClass("btn btn-primary"),
+                $("<button></button>").append(
+                    $('<i class="fas fa-trash"></i>')
+                ).addClass("btn btn-danger").on("click", () => {
+                    deleteRow(rowData["id"], root, options);
+                }).addClass("ms-2")
             ).addClass("text-center")
         )
 
@@ -240,4 +245,30 @@ function printHeaders(root, options) {
             $("<th></th>").text("Acciones").addClass("text-center")
         )
     )
+}
+
+function deleteRow(id, root, options) {
+    $.ajax({
+        type: "POST",
+        url: options.deleteUrl,
+        data: {
+            id: id
+        },
+        success: function (response) {
+            $.ajax({
+                type: "GET",
+                url: getQueryUrlWithArgs(options),
+                dataType: "json",
+                success: function (response) {
+                    options.currentData = response;
+                    printTable(root, options);
+                }
+            });
+            alert("¡Fila eliminada!");
+        },
+        error: function (response) {
+            alert("Error al eliminar la fila");
+        },
+    });
+
 }
