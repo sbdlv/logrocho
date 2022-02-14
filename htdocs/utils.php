@@ -63,3 +63,13 @@ function isAdminForAPI()
         die;
     }
 }
+
+/**
+ * Gets the system root path for the current web, wich means, it returns the dirname of the index.php of this mvc.
+ *
+ * @return string The web root system path
+ */
+function getSystemWebRootFolderPath()
+{
+    return dirname(__FILE__);
+}

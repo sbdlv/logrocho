@@ -134,7 +134,7 @@ class BarController
         if (isset($_POST["pk"], $_POST["name"])) {
 
             //TODO: Comprobar que post pk es un int y existe en BD
-            $destPath = $_SERVER["DOCUMENT_ROOT"] . "/img/img_bares/" . $_POST["pk"];
+            $destPath = getSystemWebRootFolderPath() . "/img/img_bares/" . $_POST["pk"];
             if (!file_exists($destPath)) {
                 mkdir($destPath);
             }
