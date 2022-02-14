@@ -25,36 +25,49 @@
             <div class="row my-4">
                 <div class="col tarjeta p-4">
                     <h2 class="mb-4"><i class="fas fa-info-circle"></i> Detalles</h2>
+                    <input type="hidden" id="review_id" value="<?= $review->id ?>">
                     <div class="table-responsive">
                         <table class="table customize-table mb-0 v-middle table-borderless">
                             <tbody>
                                 <tr>
                                     <td>Usuario</td>
-                                    <td><a href="<?=getServerAbsPathForActions()?>user/info/<?= $review->user_id ?>">Ver ficha</a></td>
+                                    <td>
+                                        <select name="" id="review_user_id" autocomplete="false">
+                                            <?php foreach ($users as $user) : ?>
+                                                <option value="<?= $user->id ?>" <?= $user->id == $review->user_id ? "selected" : "" ?>><?= $user->email ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Pincho</td>
-                                    <td><a href="<?=getServerAbsPathForActions()?>pincho/info/<?= $review->pincho_id ?>">Ver ficha</a></td>
+                                    <td>
+                                        <select name="" id="review_pincho_id" autocomplete="false">
+                                            <?php foreach ($pinchos as $pincho) : ?>
+                                                <option value="<?= $pincho->id ?>" <?= $pincho->id  == $review->pincho_id ? "selected" : "" ?>><?= $pincho->name ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Titulo</td>
-                                    <td><input type="text" name="" id="" value="<?= $review->title ?>"></td>
+                                    <td><input type="text" name="" id="review_title" value="<?= $review->title ?>"></td>
                                 </tr>
                                 <tr>
                                     <td>Descripción</td>
-                                    <td><textarea name="" id="" cols="30" rows="10"><?= $review->desc ?></textarea></td>
+                                    <td><textarea class="w-100" id="review_desc" cols="30" rows="10"><?= $review->desc ?></textarea></td>
                                 </tr>
                                 <tr>
                                     <td>Presentación</td>
-                                    <td class="puntuacionWrapper"><input type="number" name="" id="" value="<?= $review->presentation ?>"><i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_presentation" value="<?= $review->presentation ?>"><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Sabor</td>
-                                    <td class="puntuacionWrapper"><input type="number" name="" id="" value="<?= $review->taste ?>"><i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_taste" value="<?= $review->taste ?>"><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Textura</td>
-                                    <td class="puntuacionWrapper"><input type="number" name="" id="" value="<?= $review->texture ?>"><i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_texture" value="<?= $review->texture ?>"><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Me gusta <i class="fas fa-thumbs-up"></i></td>
@@ -81,6 +94,11 @@
             </div>
         </section>
     </main>
+
+    <button class="save_btn btn btn-success m-4" id="save_btn"><i class="far fa-save"></i> Guardar</button>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/admin/info/review.js"></script>
 </body>
 
 </html>

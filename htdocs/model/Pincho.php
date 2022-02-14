@@ -4,11 +4,13 @@ require_once "AbstractMappedSQLModel.php";
 /**
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
  */
-class Pincho extends AbstractMappedSQLModel{
+class Pincho extends AbstractMappedSQLModel
+{
 
     public int $id;
     public int $bar_id;
     public string $name;
+    public float $price;
 
     static function getPropertiesMapArray(): array
     {
@@ -16,7 +18,7 @@ class Pincho extends AbstractMappedSQLModel{
             "id" => "id",
             "bar_id" => "bar_id",
             "name" => "name",
+            "price" => "price",
         ];
-        
     }
 }

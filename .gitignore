@@ -1,3 +1,5 @@
 .vscode
 jsconfig.json
 /*.zip
+htdocs/css/*.css
+htdocs/css/*.css.map

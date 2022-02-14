@@ -25,16 +25,17 @@
             <div class="row my-4">
                 <div class="col tarjeta p-4">
                     <h2 class="mb-4"><i class="fas fa-info-circle"></i> Detalles</h2>
+                    <input type="hidden" id="bar_id" value="<?= $bar->id ?>">
                     <div class="table-responsive">
                         <table class="table customize-table mb-0 v-middle table-borderless">
                             <tbody>
                                 <tr>
                                     <td>Nombre</td>
-                                    <td><input type="text" name="" id="" value="<?= $bar->name ?>"></td>
+                                    <td><input type="text" name="" id="bar_name" value="<?= $bar->name ?>"></td>
                                 </tr>
                                 <tr>
                                     <td>Dirección</td>
-                                    <td><input type="text" name="" id="" value="<?= $bar->address ?>"></td>
+                                    <td><input type="text" name="" id="bar_address" value="<?= $bar->address ?>"></td>
                                 </tr>
                                 <tr>
                                     <td>Puntuación</td>
@@ -42,7 +43,7 @@
                                 </tr>
                                 <tr>
                                     <td>Terraza</td>
-                                    <td><input type="checkbox" name="" id="" <?= $bar->terrace ? "checked" : "" ?>></td>
+                                    <td><input type="checkbox" name="" id="bar_terrace" <?= $bar->terrace ? "checked" : "" ?>></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -51,7 +52,7 @@
             </div>
             <div class="row tarjeta p-4 mb-4">
                 <h2><i class="fas fa-images"></i> Imágenes</h2>
-                <div class="barimgs imgdroparea">
+                <div class="barimgs imgdroparea" id="bar_images">
 
                 </div>
             </div>
@@ -63,11 +64,11 @@
                             <tbody>
                                 <tr>
                                     <td>Lon. </td>
-                                    <td><input type="number" name="" id="" value="<?= $bar->lon ?>"></td>
+                                    <td><input type="number" name="" id="bar_lon" value="<?= $bar->lon ?>"></td>
                                 </tr>
                                 <tr>
                                     <td>Lat. </td>
-                                    <td><input type="number" name="" id="" value="<?= $bar->lat ?>"></td>
+                                    <td><input type="number" name="" id="bar_lat" value="<?= $bar->lat ?>"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -78,13 +79,13 @@
         </section>
     </main>
 
-    <button class="save_btn btn btn-success m-4"><i class="far fa-save"></i> Guardar</button>
+    <button class="save_btn btn btn-success m-4" id="save_btn"><i class="far fa-save"></i> Guardar</button>
 
     <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/image-uploader.min.js"></script>
+
     <script src="js/imgdroparea.js"></script>
     <script>
-        let barID = <?=$bar->id?>;
+        let barID = <?= $bar->id ?>;
         let barimgs = $(".barimgs");
         barimgs.ImgDropArea({
             <?php if (empty($barImages)) : ?>
@@ -121,7 +122,7 @@
                         contentType: false,
                         processData: false,
                         success: function(response) {
-                            barimgs.ImgDropAreaAdd([`img/img_bares/${barID}/${file.name}`])
+                            barimgs.ImgDropAreaAdd([`/img/img_bares/${barID}/${file.name}`])
                         }
                     });
                 });
@@ -129,6 +130,8 @@
             input.click();
         }
     </script>
+
+    <script src="js/admin/info/bar.js"></script>
 
 </body>
 

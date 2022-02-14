@@ -24,20 +24,37 @@
             <div class="row my-4">
                 <div class="col tarjeta p-4">
                     <h2 class="mb-4"><i class="fas fa-info-circle"></i> Detalles</h2>
+                    <input type="hidden" id="pincho_id" value="<?= $pincho->id ?>">
                     <div class="table-responsive">
                         <table class="table customize-table mb-0 v-middle table-borderless">
                             <tbody>
                                 <tr>
                                     <td>Nombre</td>
-                                    <td><input type="text" name="" id="" value="<?= $pincho->name ?>"></td>
+                                    <td><input type="text" name="" id="pincho_name" value="<?= $pincho->name ?>"></td>
                                 </tr>
                                 <tr>
                                     <td>Bar</td>
-                                    <td><a href="<?= getServerAbsPathForActions() ?>bar/info/<?= $pincho->bar_id ?>">Ver ficha</a></td>
+                                    <td>
+                                        <select name="" id="pincho_bar_id" autocomplete="false">
+                                            <?php foreach ($bars as $bar) : ?>
+                                                <option value="<?= $bar->id ?>" <?= $bar->id  == $pincho->bar_id ? "selected" : "" ?>><?= $bar->name ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Precio</td>
+                                    <td><input type="number" name="" id="pincho_price" value="<?= $pincho->price ?>">€</td>
                                 </tr>
                                 <tr>
                                     <td>Alérgenos</td>
-                                    <td><img src="img/alergenos/Huevos.png" class="icono_alergeno" alt="Alérgeno huevos" title="Alérgeno huevos"><img src="img/alergenos/Gluten.png" class="icono_alergeno" title="Alérgeno gluten" alt="Alérgeno gluten"></td>
+                                    <td>
+                                        <select name="" id="pincho_allergens" multiple autocomplete="false">
+                                            <?php foreach ($allergens as $allergen) : ?>
+                                                <option value="<?= $allergen["id"] ?>" <?= in_array($allergen["id"], $currentAllergens) ? "selected" : "" ?>><?= $allergen["name"] ?></option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Puntuación</td>
@@ -50,7 +67,7 @@
             </div>
             <div class="row tarjeta p-4 mb-4">
                 <h2 class="mb-4"><i class="fas fa-images"></i></i> Multimedia</h2>
-                <div class="pinchoimgs imgdroparea">
+                <div class="pinchoimgs imgdroparea" id="pincho_images">
 
                 </div>
             </div>
@@ -78,7 +95,7 @@
         </section>
     </main>
 
-    <button class="save_btn btn btn-success m-4"><i class="far fa-save"></i> Guardar</button>
+    <button class="save_btn btn btn-success m-4" id="save_btn"><i class="far fa-save"></i> Guardar</button>
 
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/image-uploader.min.js"></script>
@@ -129,6 +146,9 @@
             input.click();
         }
     </script>
+
+    <script src="js/admin/info/pincho.js"></script>
+
 </body>
 
 </html>

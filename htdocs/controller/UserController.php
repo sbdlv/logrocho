@@ -141,14 +141,15 @@ class UserController
 
     function update()
     {
-        if (isset($_POST["id"], $_POST["first_name"], $_POST["last_name"], $_POST["password"])) {
+        if (isset($_POST["id"], $_POST["first_name"], $_POST["last_name"])) {
             $user = new User();
 
             $user->id = $_POST["id"];
             $user->first_name = $_POST["first_name"];
             $user->last_name = $_POST["last_name"];
             $user->email = $_POST["email"];
-            $user->password = $_POST["password"];
+            $user->created_date = $_POST["created_date"];
+            //$user->password = $_POST["password"];
             //TODO: Incluir campo imagen etc
 
             $repo = new UserRepository();
@@ -306,5 +307,13 @@ class UserController
                 echo "Error al eliminar los likes del usuario";
             }
         }
+    }
+
+    function total()
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        $repo = new UserRepository();
+
+        echo json_encode($repo->total());
     }
 }

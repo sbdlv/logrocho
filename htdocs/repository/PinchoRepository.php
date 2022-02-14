@@ -53,8 +53,8 @@ class PinchoRepository implements IDAO
 
     function update($obj)
     {
-        $stmt = getConexion()->prepare("UPDATE `pincho` SET `bar_id` = ?, `name` = ? WHERE `id` = ?");
-        return $stmt->execute([$obj->bar_id, $obj->name, $obj->id]);
+        $stmt = getConexion()->prepare("UPDATE `pincho` SET `bar_id` = ?, `name` = ?, `price` = ? WHERE `id` = ?");
+        return $stmt->execute([$obj->bar_id, $obj->name, $obj->price, $obj->id]);
     }
 
     function uploadPic($pk, $path, $priority = -1)
@@ -74,5 +74,64 @@ class PinchoRepository implements IDAO
         }
 
         return $imgs;
+    }
+
+    function total()
+    {
+        $results = getConexion()->query("SELECT count(*) as total FROM pincho");
+        $results->execute();
+        return $results->fetch()["total"];
+    }
+
+    function getAllergens($obj)
+    {
+        $stmt = getConexion()->prepare("SELECT * FROM `pincho_allergen` WHERE pincho_id = ?");
+
+        $stmt->execute([$obj->id]);
+
+        $allergens = [];
+
+        foreach ($stmt as $row) {
+            $allergens[] = $row["allergen_id"];
+        }
+
+        return $allergens;
+    }
+
+    function setAllergens($obj, $allergens)
+    {
+        $stmt = getConexion()->prepare("DELETE FROM `pincho_allergen` WHERE `pincho_id` = ?");
+        $stmt->execute([$obj->id]);
+
+        $stmt = getConexion()->prepare("INSERT INTO `pincho_allergen` (pincho_id, allergen_id) VALUES (?, ?)");
+
+        foreach ($allergens as $allergen) {
+            $stmt->execute([$obj->id, $allergen]);
+        }
+
+        return true;
+    }
+
+    function treatImages(int $id, array $imagesSrc)
+    {
+
+        if (count($imagesSrc) == 0) {
+            $stmt = getConexion()->prepare("DELETE FROM `multimediapincho` WHERE `pincho_id` = ?");
+            return $stmt->execute([$id]);
+        }
+
+        //Delete old images
+        $stmt = getConexion()->prepare("DELETE FROM `multimediapincho` WHERE `pincho_id` = $id AND `path` NOT IN (" . str_repeat("?,", count($imagesSrc) - 1) . "? )");
+        $stmt->execute($imagesSrc);
+
+        //Reorder
+        $stmt = getConexion()->prepare("UPDATE `multimediapincho` SET `priority` = ? WHERE `path` = ?");
+
+        $priority = 0;
+
+        foreach ($imagesSrc as $src) {
+            $stmt->execute([$priority, $src]);
+            $priority++;
+        }
     }
 }

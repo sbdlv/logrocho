@@ -29,19 +29,22 @@
                 </div>
             <?php endif; ?>
             <div class="form-floating mb-3">
-                <input type="email" class="form-control" id="floatingInputEmail" name="email" placeholder="name@example.com">
+                <input type="email" class="form-control" id="user_email" name="email" placeholder="name@example.com">
                 <label for="floatingInput">Correo electronico</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+                <input type="password" class="form-control" id="user_password" name="password" placeholder="Password">
                 <label for="floatingPassword">Contraseña</label>
             </div>
-            <input class="w-100 btn btn-lg btn-primary mb-3" type="submit" value="Registrarse">
+            <input class="w-100 btn btn-lg btn-primary mb-3" type="submit" value="Registrarse" id="submit">
             <div class="text-center mb-3">
                 <a href="<?= getServerAbsPathForActions() . "user/login" ?>">Ya tienes cuenta?</a>
             </div>
         </form>
     </main>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/user-register.js"></script>
 </body>
 
 </html>

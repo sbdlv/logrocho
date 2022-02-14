@@ -5,24 +5,63 @@
 
     .images {
         display: flex;
-        margin-top: 20px;
+        padding: 20px 0;
         overflow-x: auto;
 
-        img {
-            height: 250px;
-            max-width: 300px;
-            object-fit: cover;
-        }
-        .drop {
-            min-width: 20px;
-            transition: all 0.25s;
-            border-radius: 0.25rem;
+        .img-draggable-wrapper {
+            display: flex;
+            position: relative;
 
-            &.draghover {
-                border: 2px dotted #666;
-                width: 200px;
-                background-color: #71cae670;
-                margin: 0 10px;
+            img {
+                height: 250px;
+                max-width: 300px;
+                object-fit: cover;
+            }
+            .drop {
+                min-width: 20px;
+                transition: all 0.25s;
+                border-radius: 0.25rem;
+
+                &.draghover {
+                    border: 2px dotted #666;
+                    width: 200px;
+                    background-color: #71cae670;
+                    margin: 0 10px;
+                }
+            }
+
+            &:hover {
+                button {
+                    display: initial;
+
+                    position: absolute;
+                    top: -10px;
+                    right: 10px;
+                    background-color: rgb(253, 45, 45);
+                    color: white;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    border: none;
+                    padding: 0;
+                    
+                    animation-name: appearDelete;
+                    animation-duration: .25s;
+                    animation-iteration-count: 1;
+
+                    @keyframes appearDelete {
+                        from{
+                            transform: scale(0);
+                        }
+                        to{
+                            transform: scale(1);
+                        }
+                    }
+                }
+            }
+            
+            button {
+                display: none;
             }
         }
     }

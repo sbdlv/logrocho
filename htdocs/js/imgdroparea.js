@@ -3,7 +3,7 @@
  */
 
 /**
- * Initialice a img ordenable/draggable zone
+ * Initialice an img ordenable/draggable zone
  * @param {object} data The initialization data
  * @param {Array} imagesSrc The images src
  * @param {} data The initialization data
@@ -56,6 +56,17 @@ $.fn.ImgDropAreaAdd = function (imagesSrc = []) {
     return this;
 }
 
+
+function ImgDropAreaGetVal(root) {
+    //Generate data and send to onchange function
+    let finalImageStructure = [];
+    root.find(".draggableImg ").each((i, elem) => {
+        finalImageStructure.push($(elem).attr("src"));
+    })
+
+    return finalImageStructure;
+}
+
 /**
  * 
  * @param {string} imageSrc The image src
@@ -64,11 +75,15 @@ $.fn.ImgDropAreaAdd = function (imagesSrc = []) {
  * @returns {JQuery} The img JQuery element
  */
 function getImgAndDrop(imageSrc, pos, additionalClass = "") {
-    return newDropZone(true).add(
-        $("<img/>").attr("src", imageSrc).addClass("draggableImg").addClass(additionalClass).attr("data-img-pos", pos).on("dragstart", imgOnDragStart).on("dragend", imgOnDragEnd).add(
-            newDropZone(false)
+    return $("<div></div>").addClass("img-draggable-wrapper").append(
+        newDropZone(true).add(
+            $("<img/>").attr("src", imageSrc).addClass("draggableImg").addClass(additionalClass).attr("data-img-pos", pos).on("dragstart", imgOnDragStart).on("dragend", imgOnDragEnd).add(
+                newDropZone(false).add(
+                    $('<button class="btn btn-danger"><i class="fas fa-times"></i></button>').on("click", deleteImage)
+                )
+            )
         )
-    );
+    )
 }
 
 /**
@@ -102,7 +117,7 @@ function dropOnDrop(e) {
     let ogImgTargetPos = e.originalEvent.dataTransfer.getData("ogTarget");
     let ogImgTarget = $(`[data-img-pos="${ogImgTargetPos}"]`);
 
-    let parent = dropTarget.parent();
+    let parent = dropTarget.parent().parent();
     let data = parent.data("data");
 
     //Move DOM
@@ -135,4 +150,13 @@ function dropOnDragover(e) {
 
 function dropOnDragleave(e) {
     $(e.target).removeClass("draghover");
+}
+
+function deleteImage(e) {
+    $(e.target).closest(".img-draggable-wrapper").remove();
+
+    $("[data-img-pos]").each((i, elem) => {
+        console.log(elem);
+        $(elem).attr("data-img-pos", i);
+    })
 }

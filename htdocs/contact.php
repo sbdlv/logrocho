@@ -61,13 +61,16 @@
                             <label for="message" class="mb-3">Mensaje</label>
                             <textarea class="form-control" id="message" rows="3" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="submit" class="btn btn-primary" id="submit">Enviar</button>
                     </form>
                 </div>
             </div>
         </section>
     </main>
     <?php include "view/footer.php" ?>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/contact.js"></script>
 </body>
 
 </html>

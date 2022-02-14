@@ -65,53 +65,16 @@
                 </form>
             </section>
             <section class="tarjeta p-5 seccion-info">
-                <div class="table-responsive">
-                    <table class="table customize-table mb-0 v-middle table-borderless">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Alérgenos</th>
-                                <th class="text-center">Puntuación</th>
-                                <th class="text-center">Ver ficha</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php foreach ($pinchos as $pincho) : ?>
-                                <tr>
-                                    <td><?= $pincho->name ?></td>
-                                    <td>
-                                        <img src="img/alergenos/Huevos.png" class="icono_alergeno" alt="Alérgeno huevos" title="Alérgeno huevos">
-                                        <img src="img/alergenos/Gluten.png" class="icono_alergeno" title="Alérgeno gluten" alt="Alérgeno gluten">
-                                    </td>
-                                    <td class="puntuacionWrapper text-center">?<i class="fas fa-star"></i></td>
-                                    <td class="text-center d-flex justify-content-center">
-                                        <a href="<?= getServerAbsPathForActions() ?>pincho/info/<?= $pincho->id ?>" class="btn btn-primary" title="Ver ficha"><i class="fas fa-external-link-alt"></i></a>
-                                        <button class="btn btn-danger ms-2" title="Eliminar"><i class="fas fa-trash-alt"></i></button>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
+                <div class="table-responsive mb-2" id="mainTableWrapper">
+
                 </div>
-                <nav class="mt-4">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Siguiente</a>
-                        </li>
-                    </ul>
-                </nav>
             </section>
         </section>
     </main>
 
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/ajax-tables.js"></script>
+    <script src="js/admin/pincho.js"></script>
 </body>
 
 </html>

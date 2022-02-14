@@ -26,8 +26,8 @@ CREATE TABLE `bar` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255),
   `address` varchar(255),
-  `lon` decimal,
-  `lat` decimal,
+  `lon` decimal(10,2),
+  `lat` decimal(10,2),
   `terrace` boolean
 );
 
@@ -66,7 +66,8 @@ CREATE TABLE `review_user_likes` (
 CREATE TABLE `pincho` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `bar_id` int,
-  `name` varchar(255)
+  `name` varchar(255),
+  `price` decimal(10,2)
 );
 
 CREATE TABLE `allergen` (
@@ -94,7 +95,7 @@ ALTER TABLE `review` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DEL
 
 ALTER TABLE `review` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `multimediaReview` ADD FOREIGN KEY (`review_id`) REFERENCES `review` (`id`);
+ALTER TABLE `multimediaReview` ADD FOREIGN KEY (`review_id`) REFERENCES `review` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `review_user_likes` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
@@ -102,7 +103,7 @@ ALTER TABLE `pincho` ADD FOREIGN KEY (`bar_id`) REFERENCES `bar` (`id`) ON DELET
 
 ALTER TABLE `pincho_allergen` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `pincho_allergen` ADD FOREIGN KEY (`allergen_id`) REFERENCES `allergen` (`id`);
+ALTER TABLE `pincho_allergen` ADD FOREIGN KEY (`allergen_id`) REFERENCES `allergen` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `multimediaPincho` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`) ON DELETE CASCADE;
 
@@ -147,16 +148,16 @@ insert into user (first_name, last_name, email, password, admin, created_date) v
 insert into user (first_name, last_name, email, password, admin, created_date) values ('Godfry', 'McArtan', 'gmcartan9@squidoo.com', SHA1('usuario123ABC'), false, NOW());
 
 /* PINCHOS */
-insert into pincho (bar_id, name) values (4, 'Bread - Rosemary Focaccia');
-insert into pincho (bar_id, name) values (4, 'Truffle Shells - Semi - Sweet');
-insert into pincho (bar_id, name) values (5, 'Bar Nature Valley');
-insert into pincho (bar_id, name) values (1, 'Cherries - Fresh');
-insert into pincho (bar_id, name) values (4, 'Wine - Zinfandel California 2002');
-insert into pincho (bar_id, name) values (3, 'Arizona - Plum Green Tea');
-insert into pincho (bar_id, name) values (1, 'Cabbage - Savoy');
-insert into pincho (bar_id, name) values (1, 'Glass Clear 7 Oz Xl');
-insert into pincho (bar_id, name) values (1, 'Sauce - Alfredo');
-insert into pincho (bar_id, name) values (3, 'Mustard - Pommery');
+insert into pincho (bar_id, name, price) values (4, 'Bread - Rosemary Focaccia', 1);
+insert into pincho (bar_id, name, price) values (4, 'Truffle Shells - Semi - Sweet', 2);
+insert into pincho (bar_id, name, price) values (5, 'Milk - Nature Valley', 2);
+insert into pincho (bar_id, name, price) values (1, 'Cherries - Fresh', 1.5);
+insert into pincho (bar_id, name, price) values (4, 'Wine - Zinfandel California 2002', 1.5);
+insert into pincho (bar_id, name, price) values (3, 'Arizona - Plum Green Tea', 1.5);
+insert into pincho (bar_id, name, price) values (1, 'Cabbage - Savoy', 1.5);
+insert into pincho (bar_id, name, price) values (1, 'Glass Clear - 7 Oz Xl', 1.5);
+insert into pincho (bar_id, name, price) values (1, 'Sauce - Alfredo', 1.5);
+insert into pincho (bar_id, name, price) values (3, 'Mustard - Pommery', 1.5);
 
 /* RESEÑAS */
 insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (1, 'vel nulla eget eros elementum', 'volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim', 2, 1, 5, 4);
