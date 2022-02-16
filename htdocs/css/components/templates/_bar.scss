@@ -1,0 +1,29 @@
+.bar-search-card {
+    min-height: 220px;
+    align-items: stretch;
+
+    text-decoration: none;
+
+    color: initial;
+
+    .imgWrapper {
+        background-color: lightgray;
+        background-image: url("../img/bar_placeholder.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 80px;
+
+        border-top-left-radius: .25rem;
+        border-bottom-left-radius: .25rem;
+    }
+    .address {
+        display: flex;
+        align-items: center;
+        color: grey;
+
+        p {
+            margin: 0;
+            margin-left: 10px;
+        }
+    }
+}

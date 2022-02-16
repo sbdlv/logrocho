@@ -1,3 +1,3 @@
- - Zona usuario
+ - Zona usuario. Agregar links y funcionalidad al los delete + guardado de formulario de info prefil.
  - Agregar entidades desde back
  - 
