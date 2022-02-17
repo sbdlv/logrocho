@@ -1,6 +1,7 @@
 $.fn.AjaxSearch = function (options = {}) {
     this.append(
-        $("<div></div>")
+        $("<div></div>").addClass("total h3 mb-4"),
+        $("<div></div>").addClass("results")
     )
 
     //Pagination Wrapper
@@ -29,24 +30,25 @@ $.fn.AjaxSearch = function (options = {}) {
  * @param {number} page 
  */
 function printResults(root, options) {
-    let resultsWrapper = root.find("div").eq(0);
+    let resultsWrapper = root.find(".results");
 
-    //orderResults(root, options);
-
-    //Reset table rows
     resultsWrapper.html("");
 
-    //Display the data
     resultsWrapper.append(
-        options.currentData.map((data) => {
-            return options.getTemplate(data);
-        })
-    )
+        $("<div></div>"),
+        $("<div></div>").append(
+            options.currentData.map((data) => {
+                return options.getTemplate(data);
+            })
+        )
+    );
 }
 
 function printPagination(root, options) {
     let pageButtons = [];
     let nav = root.find("nav").eq(0);
+
+    let resultsCountWrapper = root.find(".total");
 
     $.ajax({
         type: "GET",
@@ -56,6 +58,8 @@ function printPagination(root, options) {
             let total = parseInt(response);
             let isLastPage = total - options.page * options.resultsPerPage <= 0;
 
+            //Total results
+            resultsCountWrapper.text(`Total: ${total}`);
 
             //Prev number button
             if (options.page != 1) {
@@ -119,78 +123,25 @@ function numericPagination_click(e, options, root) {
     });
 
     printPagination(root, options);
+    $("#results").get(0).scrollIntoView();
 }
 
-function orderResults(root, options) {
-    if (options.orderBy == null) {
-        return;
-    }
-    options.currentData.sort((a, b) => {
-        let result = 0;
-        if (a[options.orderBy] > b[options.orderBy]) {
-            result = 1;
-        } else if (a[options.orderBy] < b[options.orderBy]) {
-            result = -1;
-        }
+// function orderResults(root, options) {
+//     if (options.orderBy == null) {
+//         return;
+//     }
+//     options.currentData.sort((a, b) => {
+//         let result = 0;
+//         if (a[options.orderBy] > b[options.orderBy]) {
+//             result = 1;
+//         } else if (a[options.orderBy] < b[options.orderBy]) {
+//             result = -1;
+//         }
 
-        if (options.orderAsc) {
-            return -result;
-        }
+//         if (options.orderAsc) {
+//             return -result;
+//         }
 
-        return result;
-    });
-}
-
-function colselector_change(e, root, options) {
-    options.showCols = $(e.target).val();
-
-    printHeaders(root, options);
-    printTable(root, options);
-}
-
-function printHeaders(root, options) {
-    let thead = root.find("thead").eq(0);
-    thead.html("");
-
-    thead.append(
-        $("<tr></tr>").append(
-            options.structure.map((col) => {
-                if (!options.showCols || options.showCols.includes(col.queryIndex)) {
-                    let th = $("<th></th>").text(col.header.displayName).attr("data-order-index", col.queryIndex).on("click", (e) => header_click(e, options, root)).addClass(col.class);
-                    if (col.queryIndex == options.orderBy) {
-                        th.attr("data-current-order", options.orderAsc ? "asc" : "desc");
-                    }
-
-                    return th;
-                }
-            }),
-            $("<th></th>").text("Acciones").addClass("text-center")
-        )
-    )
-}
-
-function deleteRow(id, root, options) {
-    $.ajax({
-        type: "POST",
-        url: options.deleteUrl,
-        data: {
-            id: id
-        },
-        success: function (response) {
-            $.ajax({
-                type: "GET",
-                url: getQueryUrlWithArgs(options),
-                dataType: "json",
-                success: function (response) {
-                    options.currentData = response;
-                    printTable(root, options);
-                }
-            });
-            alert("¡Fila eliminada!");
-        },
-        error: function (response) {
-            alert("Error al eliminar la fila");
-        },
-    });
-
-}
+//         return result;
+//     });
+// }

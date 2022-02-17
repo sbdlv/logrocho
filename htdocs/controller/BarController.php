@@ -170,9 +170,20 @@ class BarController
         $activeMenu = "bar";
         include "view/Bar/index.php";
     }
-    
-    function search(){
-        
+
+    function search()
+    {
+
         include "view/Bar/search.php";
+    }
+
+    function searchQuery($page = 1, $amount = 1)
+    {
+        $repo = new BarRepository();
+
+        $offset = ($page - 1) * $amount;
+
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($repo->search($offset, $amount));
     }
 }

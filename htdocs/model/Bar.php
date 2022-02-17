@@ -12,6 +12,7 @@ class Bar extends AbstractMappedSQLModel
     public float $lon;
     public float $lat;
     public bool $terrace;
+    public float $rating;
 
     static function getPropertiesMapArray(): array
     {
@@ -22,6 +23,7 @@ class Bar extends AbstractMappedSQLModel
             "lon" => "lon",
             "lat" => "lat",
             "terrace" => "terrace",
+            "rating" => "rating",
         ];
     }
 }

@@ -36,9 +36,6 @@
       </div>
     </section>
     <section class="container pb-5 row mx-auto">
-      <div class="total">
-        127 resultados
-      </div>
       <div id="results">
 
       </div>

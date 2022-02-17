@@ -17,8 +17,6 @@ $(function () {
 $("#results").AjaxSearch({
     baseUrl: "index.php/bar/jsonAll/",
     countUrl: "index.php/bar/total/",
-    deleteUrl: "index.php/bar/delete/",
-    infoBaseUrl: "index.php/bar/edit/",
     resultsPerPage: 4,
     getTemplate: (data) => {
         return $("<a></a>").addClass("tarjeta tarjeta-btn bar-search-card row mx-auto mb-4").append(
