@@ -8,10 +8,10 @@
                 <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Restaurantes</a>
+                <a class="nav-link" href="<?= getServerAbsPathForActions() . "bar/search" ?>">Bares</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pinchos</a>
+                <a class="nav-link" href="">Pinchos</a>
             </li>
 
             <?php if (isLogged()) : ?>

@@ -20,7 +20,19 @@ $.fn.AjaxSearch = function (options = {}) {
         }
     });
     printPagination(this, options);
-    return this;
+    return (postValues) => {
+        $.ajax({
+            type: "POST",
+            url: getQueryUrlWithArgs(options),
+            data: postValues,
+            dataType: "json",
+            success: function (response) {
+                options.currentData = response;
+                printResults(root, options);
+            }
+        });
+        printPagination(root, options);
+    };
 }
 
 /**
@@ -94,7 +106,11 @@ function getQueryUrlWithArgs(options) {
     //Set current page for future operations
     options.page = page;
 
-    return options.baseUrl + page;
+    let queryUrl = options.baseUrl + page + "/";
+
+    queryUrl += options.resultsPerPage ? options.resultsPerPage : 4;
+
+    return queryUrl;
 }
 
 function generatePaginationNumericButton(text, page, root, options, isActive = false, isDisabled = false) {
@@ -125,23 +141,3 @@ function numericPagination_click(e, options, root) {
     printPagination(root, options);
     $("#results").get(0).scrollIntoView();
 }
-
-// function orderResults(root, options) {
-//     if (options.orderBy == null) {
-//         return;
-//     }
-//     options.currentData.sort((a, b) => {
-//         let result = 0;
-//         if (a[options.orderBy] > b[options.orderBy]) {
-//             result = 1;
-//         } else if (a[options.orderBy] < b[options.orderBy]) {
-//             result = -1;
-//         }
-
-//         if (options.orderAsc) {
-//             return -result;
-//         }
-
-//         return result;
-//     });
-// }

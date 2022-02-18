@@ -30,8 +30,8 @@
           <input type="text" class="form-control" id="bar_address" placeholder="">
         </div>
         <div class="form-group mb-4">
-          <label for="bar_name" class="h4">Puntuación</label>
-          <div id="slider-range"></div>
+          <label for="bar_rating" class="h4">Puntuación</label>
+          <div id="bar_rating"></div>
         </div>
       </div>
     </section>

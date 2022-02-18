@@ -94,6 +94,10 @@ input:not([type="submit"]) {
 
 .fa-star{
     color: #f7ce5b;
+
+    &.off{
+        color: lightgray;
+    }
 }
 
 .pfp{
