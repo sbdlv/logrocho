@@ -139,13 +139,14 @@ class BarRepository implements IDAO
 
     function search($page, $amount, $nameLike = "", $addressLike = "", $minRating = 0, $maxRating = 5)
     {
-        $baseQuery = "SELECT id, name, address, lon, lat, terrace, AVG(t.total) as rating FROM (SELECT p.id as pid, b.*,(SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 as total FROM `pincho` p JOIN review r ON p.id = r.pincho_id JOIN bar b ON b.id = p.bar_id GROUP BY p.id) t GROUP BY id HAVING";
+
+        $baseQuery = "SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id HAVING";
 
         //Having
         $baseQuery .= " name LIKE ?";
         $baseQuery .= " AND address LIKE ?";
-        $baseQuery .= " AND rating > ?";
-        $baseQuery .= " AND rating < ?";
+        $baseQuery .= " AND rating >= ?";
+        $baseQuery .= " AND rating <= ?";
 
         $baseQuery .= " LIMIT $page,$amount";
 
