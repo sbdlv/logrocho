@@ -47,7 +47,7 @@
       <div class="container">
         <h2 class="mb-5 fw-bold">¿Que quieres ver?</h2>
         <div class="what_to_see d-flex justify-content-center">
-          <a href="" class="option tarjeta tarjeta-btn d-flex justify-content-center flex-column align-items-center m-2">
+          <a href="<?= getServerAbsPathForActions() . "bar/search" ?>" class="option tarjeta tarjeta-btn d-flex justify-content-center flex-column align-items-center m-2">
             <img src="img/bar_icon.png" alt="">
             <p class="mt-3">Restaurantes</p>
           </a>

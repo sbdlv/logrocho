@@ -10,6 +10,7 @@ $.fn.AjaxSearch = function (options = {}) {
     let root = this;
 
     //Print first page
+    root.find(".results").addClass("loading");
     $.ajax({
         type: "GET",
         url: getQueryUrlWithArgs(options),
@@ -20,7 +21,9 @@ $.fn.AjaxSearch = function (options = {}) {
         }
     });
     printPagination(this, options);
+
     return (postValues) => {
+        root.find(".results").addClass("loading");
         $.ajax({
             type: "POST",
             url: getQueryUrlWithArgs(options),
@@ -46,14 +49,22 @@ function printResults(root, options) {
 
     resultsWrapper.html("");
 
-    resultsWrapper.append(
-        $("<div></div>"),
-        $("<div></div>").append(
-            options.currentData.map((data) => {
-                return options.getTemplate(data);
-            })
+    resultsWrapper.removeClass("loading");
+
+    if (options.currentData.length == 0) {
+        resultsWrapper.append(
+            $("<p></p>").addClass("h4").text("No se ha encontrado resultados")
         )
-    );
+    } else {
+        resultsWrapper.append(
+            $("<div></div>"),
+            $("<div></div>").append(
+                options.currentData.map((data) => {
+                    return options.getTemplate(data);
+                })
+            )
+        );
+    }
 }
 
 function printPagination(root, options) {
@@ -127,6 +138,8 @@ function numericPagination_click(e, options, root) {
     let pageToLoad = parseInt($(e.target).attr("data-page"));
 
     options.page = pageToLoad;
+
+    root.find(".results").addClass("loading");
 
     $.ajax({
         type: "GET",

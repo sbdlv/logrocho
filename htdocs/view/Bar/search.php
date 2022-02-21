@@ -36,7 +36,7 @@
       </div>
     </section>
     <section class="container pb-5 row mx-auto">
-      <div id="results">
+      <div id="results" class="ajax-search">
 
       </div>
     </section>
