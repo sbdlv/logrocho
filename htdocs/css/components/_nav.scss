@@ -1,9 +1,15 @@
 #mainNav{
-    background-color: $color-primary !important;
+    //background-color: $color-primary !important;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
     li{
         &.active{
             a{
             }
         }
+    }
+
+    .dropdown-menu{
+        right: 0;
+        left: initial;
     }
 }

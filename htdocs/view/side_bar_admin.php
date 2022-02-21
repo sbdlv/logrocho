@@ -24,7 +24,7 @@ $menus = [
 ?>
 
 <aside class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" id="side_bar_admin">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+    <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <i class="fas fa-tools me-2"></i>
         <span class="fs-4">Panel admin</span>
     </a>
@@ -41,6 +41,7 @@ $menus = [
     </ul>
     <hr>
     <div class="dropdown">
-        <a href="index.php" class="btn bg-danger text-white"><i class="fas fa-sign-out-alt"></i></a>
+        <a href="/" class="btn bg-primary text-white"><i class="fas fa-home"></i></a>
+        <a href="<?= get_server_index_base_url() . "user/logout" ?>" class="btn bg-danger text-white"><i class="fas fa-sign-out-alt"></i></a>
     </div>
 </aside>
