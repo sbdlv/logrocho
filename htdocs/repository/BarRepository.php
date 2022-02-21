@@ -163,4 +163,23 @@ class BarRepository implements IDAO
 
         return $instances;
     }
+
+    function searchTotal($nameLike = "", $addressLike = "", $minRating = 0, $maxRating = 5)
+    {
+
+        $baseQuery = "SELECT b.name, b.address, IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id HAVING";
+
+        //Having
+        $baseQuery .= " name LIKE ?";
+        $baseQuery .= " AND address LIKE ?";
+        $baseQuery .= " AND rating >= ?";
+        $baseQuery .= " AND rating <= ?";
+
+        $stmt = get_db_connection()->prepare($baseQuery);
+        $stmt->execute(["%" . $nameLike . "%", "%" . $addressLike . "%", $minRating, $maxRating]);
+
+        $results = $stmt->fetchAll();
+
+        return count($results);
+    }
 }

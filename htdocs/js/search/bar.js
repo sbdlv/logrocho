@@ -18,7 +18,7 @@ $(function () {
 //Filters
 let makeQuery = $("#results").AjaxSearch({
     baseUrl: "index.php/bar/searchQuery/",
-    countUrl: "index.php/bar/total/",
+    countUrl: "index.php/bar/searchTotal/",
     resultsPerPage: 6,
     getTemplate: (data) => {
         let stars = $("<div></div>").addClass("mb-2");

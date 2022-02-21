@@ -12,8 +12,9 @@ $.fn.AjaxSearch = function (options = {}) {
     //Print first page
     root.find(".results").addClass("loading");
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: getQueryUrlWithArgs(options),
+        data: options.queryParams,
         dataType: "json",
         success: function (response) {
             options.currentData = response;
@@ -34,6 +35,7 @@ $.fn.AjaxSearch = function (options = {}) {
                 printResults(root, options);
             }
         });
+        options.queryParams = postValues;
         printPagination(root, options);
     };
 }
@@ -74,8 +76,9 @@ function printPagination(root, options) {
     let resultsCountWrapper = root.find(".total");
 
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: options.countUrl,
+        data: options.queryParams,
         dataType: "json",
         success: function (response) {
             let total = parseInt(response);
@@ -142,8 +145,9 @@ function numericPagination_click(e, options, root) {
     root.find(".results").addClass("loading");
 
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: getQueryUrlWithArgs(options),
+        data: options.queryParams,
         dataType: "json",
         success: function (response) {
             options.currentData = response;
