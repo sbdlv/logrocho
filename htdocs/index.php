@@ -1,6 +1,6 @@
 <?php
 include_once "db.php";
-require "utils.php";
+require "functions.php";
 require "templates.php";
 
 header('Access-Control-Allow-Origin: *');
