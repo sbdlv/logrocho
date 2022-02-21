@@ -8,10 +8,12 @@ $(function () {
             queryData.minRating = ui.values[0];
             queryData.maxRating = ui.values[1];
             requestData();
+            $("#amount").html('<i class="fas fa-star me-2"></i>' + ui.values[0] +
+                " - " + ui.values[1]);
         }
     });
-    $("#amount").val("$" + $("#slider-range").slider("values", 0) +
-        " - $" + $("#slider-range").slider("values", 1));
+    $("#amount").html('<i class="fas fa-star me-2"></i>' + $("#bar_rating").slider("values", 0) +
+        " - " + $("#bar_rating").slider("values", 1));
 });
 
 

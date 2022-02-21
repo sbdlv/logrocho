@@ -31,6 +31,7 @@
         </div>
         <div class="form-group mb-4">
           <label for="bar_rating" class="h4">Puntuación</label>
+          <div id="amount" class="mb-2"></div>
           <div id="bar_rating"></div>
         </div>
       </div>

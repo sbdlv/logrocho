@@ -19,12 +19,13 @@ $.fn.AjaxSearch = function (options = {}) {
         success: function (response) {
             options.currentData = response;
             printResults(root, options);
+            printPagination(root, options);
         }
     });
-    printPagination(this, options);
 
     return (postValues) => {
         root.find(".results").addClass("loading");
+        options.queryParams = postValues;
         $.ajax({
             type: "POST",
             url: getQueryUrlWithArgs(options),
@@ -33,10 +34,9 @@ $.fn.AjaxSearch = function (options = {}) {
             success: function (response) {
                 options.currentData = response;
                 printResults(root, options);
+                printPagination(root, options);
             }
         });
-        options.queryParams = postValues;
-        printPagination(root, options);
     };
 }
 
@@ -85,7 +85,7 @@ function printPagination(root, options) {
             let isLastPage = total - options.page * options.resultsPerPage <= 0;
 
             //Total results
-            resultsCountWrapper.text(`Total: ${total}`);
+            resultsCountWrapper.text(`Resultados: ${total}`);
 
             //Prev number button
             if (options.page != 1) {
@@ -152,9 +152,9 @@ function numericPagination_click(e, options, root) {
         success: function (response) {
             options.currentData = response;
             printResults(root, options);
+            printPagination(root, options);
         }
     });
 
-    printPagination(root, options);
     $("#results").get(0).scrollIntoView();
 }
