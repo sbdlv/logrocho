@@ -1,5 +1,11 @@
 .vscode
 jsconfig.json
 /*.zip
+
+# Css
 htdocs/css/*.css
-htdocs/css/*.css.map
+htdocs/css/*.map
+htdocs/css/fontawesome/scss/*
+
+## Exclude css
+!htdocs/css/animate.min.css

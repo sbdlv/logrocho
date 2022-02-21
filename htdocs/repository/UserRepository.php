@@ -9,7 +9,7 @@ class UserRepository implements IDAO
 {
     function find($email)
     {
-        $stmt = getConexion()->prepare("SELECT * FROM user WHERE `email` = ?");
+        $stmt = get_db_connection()->prepare("SELECT * FROM user WHERE `email` = ?");
         $stmt->execute([$email]);
 
         $fetch = $stmt->fetchAll();
@@ -19,7 +19,7 @@ class UserRepository implements IDAO
 
     function findById($id)
     {
-        $stmt = getConexion()->prepare("SELECT * FROM user WHERE `id` = ?");
+        $stmt = get_db_connection()->prepare("SELECT * FROM user WHERE `id` = ?");
         $stmt->execute([$id]);
 
         $fetch = $stmt->fetchAll();
@@ -31,12 +31,12 @@ class UserRepository implements IDAO
     {
         if ($page !== false) {
             if ($orderBy) {
-                $results = getConexion()->query("SELECT * FROM user ORDER BY " . $orderBy . " " . $orderDir . " LIMIT $page,$amount");
+                $results = get_db_connection()->query("SELECT * FROM user ORDER BY " . $orderBy . " " . $orderDir . " LIMIT $page,$amount");
             } else {
-                $results = getConexion()->query("SELECT * FROM user LIMIT $page,$amount");
+                $results = get_db_connection()->query("SELECT * FROM user LIMIT $page,$amount");
             }
         } else {
-            $results = getConexion()->query("SELECT * FROM user");
+            $results = get_db_connection()->query("SELECT * FROM user");
         }
 
         $instances = [];
@@ -54,13 +54,13 @@ class UserRepository implements IDAO
             $obj = User::fromstdclass($obj);
         }
 
-        $stmt = getConexion()->prepare("INSERT INTO `user`(`first_name`, `last_name`, `email`, `password`, `admin`, `created_date`) VALUES (?, ?, ?, sha1(?), ?, now())");
+        $stmt = get_db_connection()->prepare("INSERT INTO `user`(`first_name`, `last_name`, `email`, `password`, `admin`, `created_date`) VALUES (?, ?, ?, sha1(?), ?, now())");
         return $stmt->execute([$obj->first_name, $obj->last_name, $obj->email, $obj->password, false]);
     }
 
     function delete($obj)
     {
-        $stmt = getConexion()->prepare("DELETE FROM user WHERE `id` = ?");
+        $stmt = get_db_connection()->prepare("DELETE FROM user WHERE `id` = ?");
         $stmt->execute([$obj->id]);
 
         return $stmt->rowCount();
@@ -68,13 +68,13 @@ class UserRepository implements IDAO
 
     function update($obj)
     {
-        $stmt = getConexion()->prepare("UPDATE `user` SET `first_name` = ?, `last_name` = ?, `email` = ?, `created_date` = ? WHERE `id` = ?");
+        $stmt = get_db_connection()->prepare("UPDATE `user` SET `first_name` = ?, `last_name` = ?, `email` = ?, `created_date` = ? WHERE `id` = ?");
         return $stmt->execute([$obj->first_name, $obj->last_name, $obj->email, $obj->created_date, $obj->id]);
     }
 
     function login($email, $password)
     {
-        $stmt = getConexion()->prepare("SELECT * FROM user WHERE `email` = ? AND `password` = ?");
+        $stmt = get_db_connection()->prepare("SELECT * FROM user WHERE `email` = ? AND `password` = ?");
         $stmt->execute([$email, sha1($password)]);
 
         return count($stmt->fetchAll()) > 0;
@@ -82,19 +82,19 @@ class UserRepository implements IDAO
 
     function removeLikes($id)
     {
-        $stmt = getConexion()->prepare("DELETE FROM review_user_likes WHERE `user_id` = ?");
+        $stmt = get_db_connection()->prepare("DELETE FROM review_user_likes WHERE `user_id` = ?");
         return $stmt->execute([$id]);
     }
 
     function removeReviews($id)
     {
-        $stmt = getConexion()->prepare("DELETE FROM review WHERE `user_id` = ?");
+        $stmt = get_db_connection()->prepare("DELETE FROM review WHERE `user_id` = ?");
         return $stmt->execute([$id]);
     }
 
     function checkReviewOP($user_id, $review_id)
     {
-        $stmt = getConexion()->prepare("SELECT * FROM review WHERE `user_id` = ? AND `id` = ?");
+        $stmt = get_db_connection()->prepare("SELECT * FROM review WHERE `user_id` = ? AND `id` = ?");
         $stmt->execute([$user_id, $review_id]);
 
         return $stmt->rowCount() > 0;
@@ -102,7 +102,7 @@ class UserRepository implements IDAO
 
     function total()
     {
-        $results = getConexion()->query("SELECT count(*) as total FROM user");
+        $results = get_db_connection()->query("SELECT count(*) as total FROM user");
         $results->execute();
         return $results->fetch()["total"];
     }

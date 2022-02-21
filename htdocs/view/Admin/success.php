@@ -10,7 +10,7 @@
 
 <body>
     <h1>Has iniciado sesión como un usuario admin</h1>
-    <a href="<?= getServerAbsPathForActions() . "user/logout" ?>">Cerrar sesión</a>
+    <a href="<?= get_server_index_base_url() . "user/logout" ?>">Cerrar sesión</a>
 </body>
 
 </html>

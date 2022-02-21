@@ -1,0 +1,39 @@
+.ajax-search {
+    .results {
+        position: relative;
+
+        &.loading {
+            div{
+                opacity: 0.7;
+            }
+
+            &::after {
+                content: "\f2f1";
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                text-align: center;
+                font-size: 80px;
+                left: 0;
+                right: 0;
+
+                animation-name: loadingRotation;
+                animation-duration: 1s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+
+                @keyframes loadingRotation {
+                    from {
+                        transform: rotate(0);
+                    }
+                    to {
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+        }
+    }
+}

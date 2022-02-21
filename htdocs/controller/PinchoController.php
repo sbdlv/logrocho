@@ -1,6 +1,6 @@
 <?php
 require_once "repository/PinchoRepository.php";
-addToBreadCrumbs("Pinchos", getServerAbsPathForActions() . "pincho");
+add_to_breadcrumbs("Pinchos", get_server_index_base_url() . "pincho");
 
 /**
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
@@ -18,10 +18,10 @@ class PinchoController
         include "view/Pincho/index.php";
     }
 
-    function info($id)
+    function edit($id)
     {
         $repo = new PinchoRepository();
-        addToBreadCrumbs("Pincho #$id");
+        add_to_breadcrumbs("Pincho #$id");
 
         require_once "repository/BarRepository.php";
         $barRepo = new BarRepository();
@@ -38,7 +38,7 @@ class PinchoController
         $currentAllergens = $repo->getAllergens($pincho);
 
         $activeMenu = "pincho";
-        include "view/Pincho/info.php";
+        include "view/Pincho/edit.php";
     }
     
     function alta()
@@ -131,7 +131,7 @@ class PinchoController
         if (isset($_POST["pk"], $_POST["name"])) {
 
             //TODO: Comprobar que post pk es un int y existe en BD
-            $destPath = $_SERVER["DOCUMENT_ROOT"] . "/img/img_pinchos/" . $_POST["pk"];
+            $destPath = get_system_web_root_folder_path() . "/img/img_bares/" . $_POST["pk"];
             if (!file_exists($destPath)) {
                 mkdir($destPath);
             }

@@ -1,0 +1,15 @@
+.hero{
+    height: 300px;
+    color: white;
+    background-size: cover;
+    background-color: #dbdbdb;
+    background-blend-mode: darken;
+
+    h1{
+        font-size: 60px;
+    }
+
+    &.hero_bar{
+        background-image: url("../img/pexels-pixabay-262978.jpg");
+    }
+}

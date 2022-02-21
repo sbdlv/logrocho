@@ -1,13 +1,15 @@
 <?php
-require "utils.php";
-// require "db.php";
+include_once "db.php";
+require "functions.php";
+require "templates.php";
+
 header('Access-Control-Allow-Origin: *');
 
 //require "vendor/autoload.php";
 session_start();
 
 //Ruta home web
-$home = getHome() . "/";
+$home = get_root_url() . "/";
 
 //Quito la home de la ruta de la barra de direcciones
 $ruta = str_replace($home, "", urldecode($_SERVER["REQUEST_URI"]));
@@ -25,7 +27,6 @@ if (isset($array_ruta[0])) {
 
     //Llamada al controlador
     if (file_exists($controllerPath)) {
-        include_once "db.php";
 
         //Cargamos el fichero del controlador
         require $controllerPath;
@@ -82,5 +83,15 @@ if (isset($array_ruta[0])) {
     }
 } else {
     //Ruta por defecto
+
+    include "repository/ReviewRepository.php";
+    $reviewRepo = new ReviewRepository();
+
+    include "repository/PinchoRepository.php";
+    $pinchoRepo = new PinchoRepository();
+
+    $lastPinchos = $pinchoRepo->last(5);
+    $lastReviews = $reviewRepo->last(5);
+
     include "view/index.php";
 }

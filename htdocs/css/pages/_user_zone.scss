@@ -1,0 +1,26 @@
+.page_user_zone {
+    .profile_and_tabs {
+        background: linear-gradient(90deg, #e3ffe7 0%, #d9e7ff 100%);
+        .info {
+            img {
+                height: 200px;
+                border-radius: 50%;
+            }
+        }
+
+        .nav-link {
+            color: $color-primary;
+
+            &.active {
+                background-color: $color-primary;
+                color: white;
+            }
+        }
+    }
+
+    .reviews{
+        .review{
+            margin: 20px 0;
+        }
+    }
+}

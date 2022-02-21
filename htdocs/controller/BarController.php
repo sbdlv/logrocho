@@ -1,6 +1,6 @@
 <?php
 require_once "repository/BarRepository.php";
-addToBreadCrumbs("Bares", getServerAbsPathForActions() . "bar");
+add_to_breadcrumbs("Bares", get_server_index_base_url() . "bar");
 
 /**
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
@@ -9,7 +9,7 @@ class BarController
 {
     private const AMOUNT_OF_RESULTS_PER_PAGE = 4;
 
-    function index($id = false)
+    function list($id = false)
     {
         $repo = new BarRepository();
 
@@ -18,9 +18,9 @@ class BarController
         include "view/Bar/index.php";
     }
 
-    function info($id)
+    function edit($id)
     {
-        addToBreadCrumbs("Bar #$id");
+        add_to_breadcrumbs("Bar #$id");
         $repo = new BarRepository();
 
         $bar = $repo->find($id);
@@ -66,7 +66,7 @@ class BarController
 
             $repo = new BarRepository();
 
-            $images = isset($_POST["images"]) ? $_POST["images"]: [];
+            $images = isset($_POST["images"]) ? $_POST["images"] : [];
             $repo->treatImages($_POST["id"], $images);
 
             if ($repo->update($bar)) {
@@ -134,7 +134,7 @@ class BarController
         if (isset($_POST["pk"], $_POST["name"])) {
 
             //TODO: Comprobar que post pk es un int y existe en BD
-            $destPath = $_SERVER["DOCUMENT_ROOT"] . "/img/img_bares/" . $_POST["pk"];
+            $destPath = get_system_web_root_folder_path() . "/img/img_bares/" . $_POST["pk"];
             if (!file_exists($destPath)) {
                 mkdir($destPath);
             }
@@ -159,5 +159,31 @@ class BarController
             http_response_code(400);
             echo "Falta campos POST";
         }
+    }
+
+    //Publico
+    function index($id = false)
+    {
+        $repo = new BarRepository();
+
+        $bars = $repo->findAll();
+        $activeMenu = "bar";
+        include "view/Bar/index.php";
+    }
+
+    function search()
+    {
+
+        include "view/Bar/search.php";
+    }
+
+    function searchQuery($page = 1, $amount = 1)
+    {
+        $repo = new BarRepository();
+
+        $offset = ($page - 1) * $amount;
+
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($repo->search($offset, $amount, isset($_POST["name"]) ? $_POST["name"] : "", isset($_POST["address"]) ? $_POST["address"] : "", isset($_POST["minRating"]) ? $_POST["minRating"] : 0, isset($_POST["maxRating"]) ? $_POST["maxRating"] : 5));
     }
 }

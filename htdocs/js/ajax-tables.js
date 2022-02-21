@@ -121,7 +121,7 @@ function printPagination(root, options) {
                     $("<ul></ul>").append(
                         generatePaginationNumericButton("Inicio", 1, root, options, false, options.page == 1),
                         pageButtons,
-                        generatePaginationNumericButton("Última", total / options.resultsPerPage, root, options, false, isLastPage)
+                        generatePaginationNumericButton("Última", Math.ceil(total / options.resultsPerPage), root, options, false, isLastPage)
                     ).addClass("pagination")
                 )
             )

@@ -7,6 +7,6 @@ class AllergenRepository
 {
     function findAll()
     {
-        return getConexion()->query("SELECT * FROM allergen")->fetchAll();
+        return get_db_connection()->query("SELECT * FROM allergen")->fetchAll();
     }
 }

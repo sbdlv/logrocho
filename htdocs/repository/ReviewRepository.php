@@ -12,7 +12,7 @@ class ReviewRepository implements IDAO
 
     function find($id)
     {
-        $stmt = getConexion()->prepare("SELECT * FROM " . self::TABLE_NAME .  " WHERE `id` = ?");
+        $stmt = get_db_connection()->prepare("SELECT * FROM " . self::TABLE_NAME .  " WHERE `id` = ?");
         $stmt->execute([$id]);
 
         $fetch = $stmt->fetchAll();
@@ -24,12 +24,12 @@ class ReviewRepository implements IDAO
     {
         if ($page !== false) {
             if ($orderBy) {
-                $results = getConexion()->query("SELECT * FROM " . self::TABLE_NAME . " ORDER BY " . $orderBy . " " . $orderDir . " LIMIT $page,$amount");
+                $results = get_db_connection()->query("SELECT * FROM " . self::TABLE_NAME . " ORDER BY " . $orderBy . " " . $orderDir . " LIMIT $page,$amount");
             } else {
-                $results = getConexion()->query("SELECT * FROM " . self::TABLE_NAME . " LIMIT $page,$amount");
+                $results = get_db_connection()->query("SELECT * FROM " . self::TABLE_NAME . " LIMIT $page,$amount");
             }
         } else {
-            $results = getConexion()->query("SELECT * FROM " . self::TABLE_NAME);
+            $results = get_db_connection()->query("SELECT * FROM " . self::TABLE_NAME);
         }
 
         $instances = [];
@@ -43,13 +43,13 @@ class ReviewRepository implements IDAO
 
     function save($obj)
     {
-        $stmt = getConexion()->prepare("INSERT INTO `" . self::TABLE_NAME . "` (`user_id`, `title`, `desc`, `presentation`, `texture`, `taste`, `pincho_id`) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $stmt = get_db_connection()->prepare("INSERT INTO `" . self::TABLE_NAME . "` (`user_id`, `title`, `desc`, `presentation`, `texture`, `taste`, `pincho_id`) VALUES (?, ?, ?, ?, ?, ?, ?)");
         return $stmt->execute([$obj->user_id, $obj->title, $obj->desc, $obj->presentation, $obj->texture, $obj->taste, $obj->pincho_id]);
     }
 
     function delete($obj): bool
     {
-        $stmt = getConexion()->prepare("DELETE FROM " . self::TABLE_NAME . " WHERE `id` = ?");
+        $stmt = get_db_connection()->prepare("DELETE FROM " . self::TABLE_NAME . " WHERE `id` = ?");
         $stmt->execute([$obj->id]);
 
         return $stmt->rowCount();
@@ -57,13 +57,68 @@ class ReviewRepository implements IDAO
 
     function update($obj)
     {
-        $stmt = getConexion()->prepare("UPDATE `" . self::TABLE_NAME . "` SET `user_id` = ?, `title` = ?, `desc` = ?, `presentation` = ?, `texture` = ?, `taste` = ?, `pincho_id` = ? WHERE `id` = ?");
+        $stmt = get_db_connection()->prepare("UPDATE `" . self::TABLE_NAME . "` SET `user_id` = ?, `title` = ?, `desc` = ?, `presentation` = ?, `texture` = ?, `taste` = ?, `pincho_id` = ? WHERE `id` = ?");
         return $stmt->execute([$obj->user_id, $obj->title, $obj->desc, $obj->presentation, $obj->texture, $obj->taste, $obj->pincho_id, $obj->id]);
     }
 
-    function total(){
-        $results = getConexion()->query("SELECT count(*) as total FROM review");
+    function total()
+    {
+        $results = get_db_connection()->query("SELECT count(*) as total FROM review");
         $results->execute();
         return $results->fetch()["total"];
+    }
+
+    function byUser($id)
+    {
+        $stmt = get_db_connection()->prepare("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  JOIN review_user_likes rul ON r.id = rul.review_id WHERE r.user_id = ? GROUP BY r.id");
+        $stmt->execute([$id]);
+
+        $results = $stmt->fetchAll();
+        $instances = [];
+        foreach ($results as $row) {
+            $instances[] = Review::getInstance($row);
+        }
+
+        return $instances;
+    }
+
+    function likedByUser($id)
+    {
+        $stmt = get_db_connection()->prepare("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  JOIN review_user_likes rul ON r.id = rul.review_id WHERE rul.user_id = ? AND rul.isLike = 1 GROUP BY r.id");
+        $stmt->execute([$id]);
+
+        $results = $stmt->fetchAll();
+        $instances = [];
+        foreach ($results as $row) {
+            $instances[] = Review::getInstance($row);
+        }
+
+        return $instances;
+    }
+
+    function dislikedByUser($id)
+    {
+        $stmt = get_db_connection()->prepare("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  JOIN review_user_likes rul ON r.id = rul.review_id WHERE rul.user_id = ? AND rul.isLike = 0 GROUP BY r.id");
+        $stmt->execute([$id]);
+
+        $results = $stmt->fetchAll();
+        $instances = [];
+        foreach ($results as $row) {
+            $instances[] = Review::getInstance($row);
+        }
+
+        return $instances;
+    }
+
+    function last(int $amount)
+    {
+        $results = get_db_connection()->query("SELECT * FROM " . self::TABLE_NAME . " ORDER BY id DESC LIMIT $amount");
+        $instances = [];
+
+        foreach ($results as $row) {
+            $instances[] = Review::getInstance($row);
+        }
+
+        return $instances;
     }
 }

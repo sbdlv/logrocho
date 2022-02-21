@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>#<?= $review->id ?> - Reseña - Ficha</title>
 
-    <base href="<?= dirname(getServerAbsPathForActions()) ?>/">
+    <base href="<?= dirname(get_server_index_base_url()) ?>/">
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/admin.css">

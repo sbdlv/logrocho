@@ -12,7 +12,7 @@ class PinchoRepository implements IDAO
 
     function find($id)
     {
-        $stmt = getConexion()->prepare("SELECT * FROM " . self::DB_TABLE . " WHERE `id` = ?");
+        $stmt = get_db_connection()->prepare("SELECT * FROM " . self::DB_TABLE . " WHERE `id` = ?");
         $stmt->execute([$id]);
 
         $fetch = $stmt->fetchAll();
@@ -23,9 +23,9 @@ class PinchoRepository implements IDAO
     function findAll($page = false, $amount = 1)
     {
         if ($page !== false) {
-            $results = getConexion()->query("SELECT * FROM " . self::DB_TABLE . " LIMIT $page,$amount");
+            $results = get_db_connection()->query("SELECT * FROM " . self::DB_TABLE . " LIMIT $page,$amount");
         } else {
-            $results = getConexion()->query("SELECT * FROM " . self::DB_TABLE . "");
+            $results = get_db_connection()->query("SELECT * FROM " . self::DB_TABLE . "");
         }
 
         $instances = [];
@@ -39,13 +39,13 @@ class PinchoRepository implements IDAO
 
     function save($obj)
     {
-        $stmt = getConexion()->prepare("INSERT INTO `pincho`(`bar_id`, `name`) VALUES (?,?)");
+        $stmt = get_db_connection()->prepare("INSERT INTO `pincho`(`bar_id`, `name`) VALUES (?,?)");
         return $stmt->execute([$obj->bar_id, $obj->name]);
     }
 
     function delete($obj): bool
     {
-        $stmt = getConexion()->prepare("DELETE FROM " . self::DB_TABLE . " WHERE `id` = ?");
+        $stmt = get_db_connection()->prepare("DELETE FROM " . self::DB_TABLE . " WHERE `id` = ?");
         $stmt->execute([$obj->id]);
 
         return $stmt->rowCount();
@@ -53,19 +53,19 @@ class PinchoRepository implements IDAO
 
     function update($obj)
     {
-        $stmt = getConexion()->prepare("UPDATE `pincho` SET `bar_id` = ?, `name` = ?, `price` = ? WHERE `id` = ?");
+        $stmt = get_db_connection()->prepare("UPDATE `pincho` SET `bar_id` = ?, `name` = ?, `price` = ? WHERE `id` = ?");
         return $stmt->execute([$obj->bar_id, $obj->name, $obj->price, $obj->id]);
     }
 
     function uploadPic($pk, $path, $priority = -1)
     {
-        $stmt = getConexion()->prepare("INSERT INTO `multimediaPincho`(`pincho_id`, `path`, `priority`) VALUES (?,?,?)");
+        $stmt = get_db_connection()->prepare("INSERT INTO `multimediaPincho`(`pincho_id`, `path`, `priority`) VALUES (?,?,?)");
         return $stmt->execute([$pk, $path, $priority]);
     }
 
     function getImages($id, &$imgs = [])
     {
-        $stmt = getConexion()->prepare("SELECT * FROM `multimediapincho` WHERE pincho_id = ? ORDER BY priority, id");
+        $stmt = get_db_connection()->prepare("SELECT * FROM `multimediapincho` WHERE pincho_id = ? ORDER BY priority, id");
 
         $stmt->execute([$id]);
 
@@ -78,14 +78,14 @@ class PinchoRepository implements IDAO
 
     function total()
     {
-        $results = getConexion()->query("SELECT count(*) as total FROM pincho");
+        $results = get_db_connection()->query("SELECT count(*) as total FROM pincho");
         $results->execute();
         return $results->fetch()["total"];
     }
 
     function getAllergens($obj)
     {
-        $stmt = getConexion()->prepare("SELECT * FROM `pincho_allergen` WHERE pincho_id = ?");
+        $stmt = get_db_connection()->prepare("SELECT * FROM `pincho_allergen` WHERE pincho_id = ?");
 
         $stmt->execute([$obj->id]);
 
@@ -100,10 +100,10 @@ class PinchoRepository implements IDAO
 
     function setAllergens($obj, $allergens)
     {
-        $stmt = getConexion()->prepare("DELETE FROM `pincho_allergen` WHERE `pincho_id` = ?");
+        $stmt = get_db_connection()->prepare("DELETE FROM `pincho_allergen` WHERE `pincho_id` = ?");
         $stmt->execute([$obj->id]);
 
-        $stmt = getConexion()->prepare("INSERT INTO `pincho_allergen` (pincho_id, allergen_id) VALUES (?, ?)");
+        $stmt = get_db_connection()->prepare("INSERT INTO `pincho_allergen` (pincho_id, allergen_id) VALUES (?, ?)");
 
         foreach ($allergens as $allergen) {
             $stmt->execute([$obj->id, $allergen]);
@@ -116,16 +116,16 @@ class PinchoRepository implements IDAO
     {
 
         if (count($imagesSrc) == 0) {
-            $stmt = getConexion()->prepare("DELETE FROM `multimediapincho` WHERE `pincho_id` = ?");
+            $stmt = get_db_connection()->prepare("DELETE FROM `multimediapincho` WHERE `pincho_id` = ?");
             return $stmt->execute([$id]);
         }
 
         //Delete old images
-        $stmt = getConexion()->prepare("DELETE FROM `multimediapincho` WHERE `pincho_id` = $id AND `path` NOT IN (" . str_repeat("?,", count($imagesSrc) - 1) . "? )");
+        $stmt = get_db_connection()->prepare("DELETE FROM `multimediapincho` WHERE `pincho_id` = $id AND `path` NOT IN (" . str_repeat("?,", count($imagesSrc) - 1) . "? )");
         $stmt->execute($imagesSrc);
 
         //Reorder
-        $stmt = getConexion()->prepare("UPDATE `multimediapincho` SET `priority` = ? WHERE `path` = ?");
+        $stmt = get_db_connection()->prepare("UPDATE `multimediapincho` SET `priority` = ? WHERE `path` = ?");
 
         $priority = 0;
 
@@ -133,5 +133,17 @@ class PinchoRepository implements IDAO
             $stmt->execute([$priority, $src]);
             $priority++;
         }
+    }
+
+    function last(int $amount)
+    {
+        $results = get_db_connection()->query("SELECT * FROM pincho ORDER BY id DESC LIMIT $amount");
+        $instances = [];
+
+        foreach ($results as $row) {
+            $instances[] = Pincho::getInstance($row);
+        }
+
+        return $instances;
     }
 }

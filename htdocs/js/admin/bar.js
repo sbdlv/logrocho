@@ -3,7 +3,7 @@ $("#mainTableWrapper").AjaxTable(
         baseUrl: "index.php/bar/jsonAll/",
         countUrl: "index.php/bar/total/",
         deleteUrl: "index.php/bar/delete/",
-        infoBaseUrl: "index.php/bar/info/",
+        infoBaseUrl: "index.php/bar/edit/",
         resultsPerPage: 4,
         structure: [
             {
@@ -31,7 +31,8 @@ $("#mainTableWrapper").AjaxTable(
                 },
                 col: {
                     type: "number"
-                }
+                },
+                class: "text-center"
             },
             {
                 queryIndex: "lat",
@@ -40,7 +41,8 @@ $("#mainTableWrapper").AjaxTable(
                 },
                 col: {
                     type: "number"
-                }
+                },
+                class: "text-center"
             },
             {
                 queryIndex: "terrace",

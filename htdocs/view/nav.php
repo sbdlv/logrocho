@@ -5,17 +5,32 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Restaruantes</a>
+                <a class="nav-link" href="<?= get_server_index_base_url() . "bar/search" ?>">Bares</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Pinchos</a>
+                <a class="nav-link" href="">Pinchos</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= getServerAbsPathForActions() . "user/login" ?>">Iniciar sesión</a>
-            </li>
+
+            <?php if (is_logged()) : ?>
+                <?php if (is_admin()) : ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="<?= get_server_index_base_url() . "bar/" ?>">Panel admin</a>
+                    </li>
+                <?php endif; ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= get_server_index_base_url() . "user/profile/" . $_SESSION["user"]["id"] ?>">Zona usuario</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= get_server_index_base_url() . "user/logout" ?>">Cerrar sesión</a>
+                </li>
+            <?php else : ?>
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= get_server_index_base_url() . "user/login" ?>">Iniciar sesión</a>
+                </li>
+            <?php endif; ?>
         </ul>
     </div>
 </nav>
