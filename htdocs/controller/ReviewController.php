@@ -9,13 +9,13 @@ class ReviewController
 {
     private const AMOUNT_OF_RESULTS_PER_PAGE = 4;
 
-    function index($id = false)
+    function list()
     {
         $repo = new ReviewRepository();
 
         $reviews = $repo->findAll();
         $activeMenu = "review";
-        include "view/Review/index.php";
+        include "view/Review/list.php";
     }
 
     function edit($id)

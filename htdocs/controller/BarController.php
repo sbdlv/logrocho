@@ -9,13 +9,13 @@ class BarController
 {
     private const AMOUNT_OF_RESULTS_PER_PAGE = 4;
 
-    function list($id = false)
+    function list()
     {
         $repo = new BarRepository();
 
         $bars = $repo->findAll();
         $activeMenu = "bar";
-        include "view/Bar/index.php";
+        include "view/Bar/list.php";
     }
 
     function edit($id)
@@ -162,11 +162,11 @@ class BarController
     }
 
     //Publico
-    function index($id = false)
+    function index($id)
     {
         $repo = new BarRepository();
 
-        $bars = $repo->findAll();
+        $bar = $repo->find($id);
         $activeMenu = "bar";
         include "view/Bar/index.php";
     }

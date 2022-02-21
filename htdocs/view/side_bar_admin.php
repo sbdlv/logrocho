@@ -2,22 +2,22 @@
 $menus = [
     "bar" => [
         "title" => "Bares",
-        "href" => get_server_index_base_url() . "bar",
+        "href" => get_server_index_base_url() . "bar/list",
         "fa_class" => "fas fa-store"
     ],
     "pincho" => [
         "title" => "Pinchos",
-        "href" => get_server_index_base_url() . "pincho",
+        "href" => get_server_index_base_url() . "pincho/list",
         "fa_class" => "fas fa-utensils"
     ],
     "user" => [
         "title" => "Usuarios",
-        "href" => get_server_index_base_url() . "user",
+        "href" => get_server_index_base_url() . "user/list",
         "fa_class" => "fas fa-users"
     ],
     "review" => [
         "title" => "Reseñas",
-        "href" => get_server_index_base_url() . "review",
+        "href" => get_server_index_base_url() . "review/list",
         "fa_class" => "fas fa-gavel"
     ],
 ]

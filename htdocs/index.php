@@ -72,10 +72,16 @@ if (isset($array_ruta[0])) {
                     include "404.php";
                 }
             } else {
-                include "404.php";
+                //Pass the string as an index argument
+                $controller->index($controllerFunction);
             }
         } else {
-            $controller->index();
+            try {
+                $controller->index();
+            } catch (\ArgumentCountError  $th) {
+                //Se ha llamado a una función que necesitaba parámetros, pero sin parámetros
+                include "404.php";
+            }
         }
     } else {
         //Si no existe el controlador, mostrar una web de error genérica

@@ -9,13 +9,13 @@ class PinchoController
 {
     private const AMOUNT_OF_RESULTS_PER_PAGE = 4;
 
-    function index($id = false)
+    function list()
     {
         $repo = new PinchoRepository();
 
         $pinchos = $repo->findAll();
         $activeMenu = "pincho";
-        include "view/Pincho/index.php";
+        include "view/Pincho/list.php";
     }
 
     function edit($id)
