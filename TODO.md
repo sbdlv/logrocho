@@ -1,3 +1,2 @@
- - Zona usuario. Agregar links y funcionalidad al los delete + guardado de formulario de info perfil.
+ - Zona usuario. Agregar links y funcionalidad al los delete
  - Agregar entidades desde back
- - Hacer que la query de search devuelva también bares sin puntuación

@@ -14,10 +14,17 @@
 </head>
 
 <body>
-    <?php
-        var_dump($bar);
-    ?>
+    <?php require "view/nav.php" ?>
+    <main>
+        <section class="container py-5 row mx-auto">
+            
+        </section>
+        <section class="container pb-5 row mx-auto">
+            
+        </section>
 
+    </main>
+    <?php require "view/footer.php" ?>
     <script src="js/jquery-3.6.0.min.js"></script>
 </body>
 

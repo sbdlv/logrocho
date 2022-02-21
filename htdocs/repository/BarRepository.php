@@ -15,7 +15,7 @@ class BarRepository implements IDAO
      */
     function find($id)
     {
-        $stmt = get_db_connection()->prepare("SELECT * FROM bar WHERE `id` = ?");
+        $stmt = get_db_connection()->prepare("SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id WHERE b.id = ? GROUP BY b.id");
         $stmt->execute([$id]);
 
         $fetch = $stmt->fetchAll();
@@ -36,9 +36,9 @@ class BarRepository implements IDAO
     {
         if ($page !== false) {
             if ($orderBy) {
-                $results = get_db_connection()->query("SELECT * FROM bar ORDER BY " . $orderBy . " " . $orderDir . " LIMIT $page,$amount");
+                $results = get_db_connection()->query("SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id ORDER BY " . $orderBy . " " . $orderDir . " LIMIT $page,$amount");
             } else {
-                $results = get_db_connection()->query("SELECT * FROM bar LIMIT $page,$amount");
+                $results = get_db_connection()->query("SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id LIMIT $page,$amount");
             }
         } else {
             $results = get_db_connection()->query("SELECT * FROM bar");
