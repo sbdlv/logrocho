@@ -1,6 +1,6 @@
 <?php
 require_once "repository/ReviewRepository.php";
-addToBreadCrumbs("Reseñas", getServerAbsPathForActions() . "review");
+add_to_breadcrumbs("Reseñas", get_server_index_base_url() . "review");
 
 /**
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
@@ -21,7 +21,7 @@ class ReviewController
     function edit($id)
     {
         $repo = new ReviewRepository();
-        addToBreadCrumbs("Reseña #$id");
+        add_to_breadcrumbs("Reseña #$id");
 
         require "repository/UserRepository.php";
         $userRepo = new UserRepository();

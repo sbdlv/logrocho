@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Logrocho - Inicio</title>
-  <base href="<?= dirname(getServerAbsPathForActions()) ?>/">
+  <base href="<?= dirname(get_server_index_base_url()) ?>/">
   <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
   <link rel="stylesheet" href="js/OwlCarousel2/dist/assets/owl.carousel.min.css">
@@ -47,7 +47,7 @@
       <div class="container">
         <h2 class="mb-5 fw-bold">¿Que quieres ver?</h2>
         <div class="what_to_see d-flex justify-content-center">
-          <a href="<?= getServerAbsPathForActions() . "bar/search" ?>" class="option tarjeta tarjeta-btn d-flex justify-content-center flex-column align-items-center m-2">
+          <a href="<?= get_server_index_base_url() . "bar/search" ?>" class="option tarjeta tarjeta-btn d-flex justify-content-center flex-column align-items-center m-2">
             <img src="img/bar_icon.png" alt="">
             <p class="mt-3">Restaurantes</p>
           </a>

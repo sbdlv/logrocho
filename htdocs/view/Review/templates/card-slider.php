@@ -1,4 +1,4 @@
-<a class="tarjeta tarjeta-btn card review p-4 flex-row" href="<?=getServerAbsPathForActions()?>pincho/details/<?=$review->pincho_id?>">
+<a class="tarjeta tarjeta-btn card review p-4 flex-row" href="<?=get_server_index_base_url()?>pincho/details/<?=$review->pincho_id?>">
     <div class="me-4"><img src="img/pfp.jpg" alt="" class="pfp"></div>
     <div>
         <p class="h4"><?= $review->title ?></p>

@@ -9,7 +9,7 @@ header('Access-Control-Allow-Origin: *');
 session_start();
 
 //Ruta home web
-$home = getHome() . "/";
+$home = get_root_url() . "/";
 
 //Quito la home de la ruta de la barra de direcciones
 $ruta = str_replace($home, "", urldecode($_SERVER["REQUEST_URI"]));

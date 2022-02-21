@@ -1,4 +1,4 @@
-<a class="tarjeta tarjeta-btn card" href="<?= getServerAbsPathForActions()?>pincho/details/<?=$pincho->id?>">
+<a class="tarjeta tarjeta-btn card" href="<?= get_server_index_base_url()?>pincho/details/<?=$pincho->id?>">
     <img class="" src="img/" alt="Pincho">
     <div class="card-body">
         <h5 class="card-title fw-bold mb-2"><?= $pincho->name ?></h5>

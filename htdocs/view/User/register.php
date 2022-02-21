@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <base href="<?= dirname(getServerAbsPathForActions()) ?>/">
+    <base href="<?= dirname(get_server_index_base_url()) ?>/">
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/style.css">
@@ -14,7 +14,7 @@
 
 <body>
     <main>
-        <form class="tarjeta login_form mx-auto text-center" method="POST" action="<?= getServerAbsPathForActions() . "user/register" ?>">
+        <form class="tarjeta login_form mx-auto text-center" method="POST" action="<?= get_server_index_base_url() . "user/register" ?>">
             <div class="w-50 mb-3 mx-auto">
                 <img src="img/logo.png" alt="Logrocho logo" class="img-fluid">
             </div>
@@ -38,7 +38,7 @@
             </div>
             <input class="w-100 btn btn-lg btn-primary mb-3" type="submit" value="Registrarse" id="submit">
             <div class="text-center mb-3">
-                <a href="<?= getServerAbsPathForActions() . "user/login" ?>">Ya tienes cuenta?</a>
+                <a href="<?= get_server_index_base_url() . "user/login" ?>">Ya tienes cuenta?</a>
             </div>
         </form>
     </main>

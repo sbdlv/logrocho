@@ -6,9 +6,9 @@ $breadcrumbs = [];
  *
  * @return string Example: domain.local/index.php/
  */
-function getServerAbsPathForActions()
+function get_server_index_base_url()
 {
-    return isset($_SERVER["HTTPS"]) ? "https" : "http" . "://$_SERVER[HTTP_HOST]" . getHome() . "/";
+    return isset($_SERVER["HTTPS"]) ? "https" : "http" . "://$_SERVER[HTTP_HOST]" . get_root_url() . "/";
 }
 
 /**
@@ -16,7 +16,7 @@ function getServerAbsPathForActions()
  *
  * @return string Example: Returns domain.local/myweb1/ -> In this case, the index.php path is domain.local/myweb1/index.php
  */
-function getHome()
+function get_root_url()
 {
     /**
      * El REQUEST_URI nos devuelve por ej.: http://localhost/dws/Tema%205/Ejercicios/Practica%205/index.php/Categoria/fdssdf
@@ -30,10 +30,10 @@ function getHome()
  *
  * @return void
  */
-function checkSession()
+function check_session()
 {
     if (!$_SESSION["logged"]) {
-        header('Location: ' . getServerAbsPathForActions() . "user/login");
+        header('Location: ' . get_server_index_base_url() . "user/login");
     }
 }
 
@@ -43,7 +43,7 @@ function checkSession()
  * @param string $text The display text for the breadcrumb
  * @param string|null $url The href for the breadcrumb
  */
-function addToBreadCrumbs(string $text, string $url = null)
+function add_to_breadcrumbs(string $text, string $url = null)
 {
     global $breadcrumbs;
     $breadcrumbs[] = [
@@ -53,9 +53,9 @@ function addToBreadCrumbs(string $text, string $url = null)
 }
 
 /**
- * Chekc if the reques has been made by an admin. If not, returns 401
+ * Checks if the request has been made by an admin. If not, returns 401
  */
-function isAdminForAPI()
+function is_admin_for_api()
 {
     if (!isset($_SESSION["user"]) || !$_SESSION["user"]["admin"]) {
         http_response_code(401);
@@ -64,22 +64,22 @@ function isAdminForAPI()
     }
 }
 
-function isAdmin()
+function is_admin()
 {
     return isset($_SESSION["user"]) && $_SESSION["user"]["admin"];
 }
 
-function isLogged()
+function is_logged()
 {
     return isset($_SESSION["user"]);
 }
 
 /**
- * Gets the system root path for the current web, wich means, it returns the dirname of the index.php of this mvc.
+ * Gets the system root path for the current web, which means, it returns the dirname of the index.php of this mvc.
  *
  * @return string The web root system path
  */
-function getSystemWebRootFolderPath()
+function get_system_web_root_folder_path()
 {
     return dirname(__FILE__);
 }

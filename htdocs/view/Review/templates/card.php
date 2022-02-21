@@ -17,7 +17,7 @@
                     <?= $review->dislikes ?>
                 </div>
             </div>
-            <a class="btn btn-primary" href="<?= getServerAbsPathForActions() ?>pincho/detalles/<?= $review->pincho_id ?>">Ver pincho</a>
+            <a class="btn btn-primary" href="<?= get_server_index_base_url() ?>pincho/detalles/<?= $review->pincho_id ?>">Ver pincho</a>
         </div>
     </div>
 </div>

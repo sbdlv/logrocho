@@ -1,6 +1,6 @@
 <?php
 require_once "repository/BarRepository.php";
-addToBreadCrumbs("Bares", getServerAbsPathForActions() . "bar");
+add_to_breadcrumbs("Bares", get_server_index_base_url() . "bar");
 
 /**
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
@@ -20,7 +20,7 @@ class BarController
 
     function edit($id)
     {
-        addToBreadCrumbs("Bar #$id");
+        add_to_breadcrumbs("Bar #$id");
         $repo = new BarRepository();
 
         $bar = $repo->find($id);
@@ -134,7 +134,7 @@ class BarController
         if (isset($_POST["pk"], $_POST["name"])) {
 
             //TODO: Comprobar que post pk es un int y existe en BD
-            $destPath = getSystemWebRootFolderPath() . "/img/img_bares/" . $_POST["pk"];
+            $destPath = get_system_web_root_folder_path() . "/img/img_bares/" . $_POST["pk"];
             if (!file_exists($destPath)) {
                 mkdir($destPath);
             }

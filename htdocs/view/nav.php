@@ -8,27 +8,27 @@
                 <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="<?= getServerAbsPathForActions() . "bar/search" ?>">Bares</a>
+                <a class="nav-link" href="<?= get_server_index_base_url() . "bar/search" ?>">Bares</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="">Pinchos</a>
             </li>
 
-            <?php if (isLogged()) : ?>
-                <?php if (isAdmin()) : ?>
+            <?php if (is_logged()) : ?>
+                <?php if (is_admin()) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= getServerAbsPathForActions() . "bar/" ?>">Panel admin</a>
+                        <a class="nav-link" href="<?= get_server_index_base_url() . "bar/" ?>">Panel admin</a>
                     </li>
                 <?php endif; ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= getServerAbsPathForActions() . "user/profile/" . $_SESSION["user"]["id"] ?>">Zona usuario</a>
+                    <a class="nav-link" href="<?= get_server_index_base_url() . "user/profile/" . $_SESSION["user"]["id"] ?>">Zona usuario</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= getServerAbsPathForActions() . "user/logout" ?>">Cerrar sesión</a>
+                    <a class="nav-link" href="<?= get_server_index_base_url() . "user/logout" ?>">Cerrar sesión</a>
                 </li>
             <?php else : ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= getServerAbsPathForActions() . "user/login" ?>">Iniciar sesión</a>
+                    <a class="nav-link" href="<?= get_server_index_base_url() . "user/login" ?>">Iniciar sesión</a>
                 </li>
             <?php endif; ?>
         </ul>

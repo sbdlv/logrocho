@@ -1,6 +1,6 @@
 <?php
 require_once "repository/UserRepository.php";
-addToBreadCrumbs("Usuarios", getServerAbsPathForActions() . "user");
+add_to_breadcrumbs("Usuarios", get_server_index_base_url() . "user");
 
 /**
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
@@ -20,7 +20,7 @@ class UserController
     function edit($id)
     {
         $activeMenu = "user";
-        addToBreadCrumbs("Usuario #$id");
+        add_to_breadcrumbs("Usuario #$id");
         $repo = new UserRepository();
         $user = $repo->findById($id);
         require "view/user/edit.php";
@@ -102,14 +102,14 @@ class UserController
     function logout()
     {
         session_destroy();
-        header("Location: " . getServerAbsPathForActions() . "user/login");
+        header("Location: " . get_server_index_base_url() . "user/login");
     }
     
     private function redirectSession()
     {
         if (isset($_SESSION["logged"]) && $_SESSION["logged"]) {
             if ($_SESSION["user"]["admin"]) {
-                header("Location: " . getServerAbsPathForActions() . "bar");
+                header("Location: " . get_server_index_base_url() . "bar");
             } else {
                 header("Location: index.php");
             }
@@ -207,7 +207,7 @@ class UserController
     
     function completeDelete($id)
     {
-        //isAdminForAPI();
+        //is_admin_for_api();
         $repo = new UserRepository();
         $user = new User();
         $user->id = $id;
@@ -221,7 +221,7 @@ class UserController
     
     function updateReview()
     {
-        //isAdminForAPI();
+        //is_admin_for_api();
         if (isset($_POST["user_id"], $_POST["review_id"], $_POST["title"], $_POST["desc"], $_POST["presentation"], $_POST["texture"], $_POST["taste"], $_POST["pincho_id"])) {
             $repo = new UserRepository();
 
@@ -261,7 +261,7 @@ class UserController
 
     function deleteReview()
     {
-        //isAdminForAPI();
+        //is_admin_for_api();
         if (isset($_POST["user_id"], $_POST["review_id"])) {
             $repo = new UserRepository();
 
@@ -294,7 +294,7 @@ class UserController
 
     function deleteLikes($user_id)
     {
-        //isAdminForAPI();
+        //is_admin_for_api();
         $repo = new UserRepository();
         if ($repo->findById($user_id)->admin) {
             http_response_code(400);
