@@ -39,7 +39,7 @@
                                 </tr>
                                 <tr>
                                     <td>Puntuación</td>
-                                    <td class="puntuacionWrapper"><?=$bar->rating?><i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper">?<i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Terraza</td>

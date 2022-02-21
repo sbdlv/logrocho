@@ -161,6 +161,11 @@ class BarController
         }
     }
 
+    function new()
+    {
+        include "view/Bar/new.php";
+    }
+
     //Publico
     function index($id)
     {

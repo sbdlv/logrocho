@@ -53,6 +53,16 @@ $("#mainTableWrapper").AjaxTable(
                     type: "checkbox"
                 },
                 class: "text-center"
+            },
+            {
+                queryIndex: "rating",
+                header: {
+                    displayName: "Puntuación",
+                },
+                col: {
+                    type: "number"
+                },
+                class: "text-center"
             }
         ],
         tableClass: "table"
