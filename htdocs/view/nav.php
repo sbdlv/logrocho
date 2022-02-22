@@ -11,7 +11,7 @@
                 <a class="nav-link" href="<?= get_server_index_base_url() . "bar/search" ?>">Bares</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">Pinchos</a>
+                <a class="nav-link" href="<?= get_server_index_base_url() . "pincho/search" ?>">Pinchos</a>
             </li>
             <?php if (is_logged()) : ?>
                 <li class="nav-item dropdown">

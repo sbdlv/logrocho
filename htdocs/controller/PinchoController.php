@@ -26,12 +26,12 @@ class PinchoController
         require_once "repository/BarRepository.php";
         $barRepo = new BarRepository();
         $bars = $barRepo->findAll();
-        
+
         require_once "repository/AllergenRepository.php";
         $allergenRepo = new AllergenRepository();
         $allergens = $allergenRepo->findAll();
 
-        
+
         $pincho = $repo->find($id);
         $pinchoImages = $repo->getImages($id);
 
@@ -40,7 +40,7 @@ class PinchoController
         $activeMenu = "pincho";
         include "view/Pincho/edit.php";
     }
-    
+
     function alta()
     {
         if (isset($_POST["bar_id"], $_POST["name"])) {
@@ -70,10 +70,10 @@ class PinchoController
             $pincho->bar_id = $_POST["bar_id"];
             $pincho->name = $_POST["name"];
             $pincho->price = $_POST["price"];
-            
+
             $repo = new PinchoRepository();
 
-            $images = isset($_POST["images"]) ? $_POST["images"]: [];
+            $images = isset($_POST["images"]) ? $_POST["images"] : [];
             $repo->treatImages($_POST["id"], $images);
 
             if ($repo->update($pincho) && $repo->setAllergens($pincho, $_POST["allergens"])) {
@@ -161,5 +161,31 @@ class PinchoController
         $repo = new PinchoRepository();
 
         echo json_encode($repo->total());
+    }
+
+    function search()
+    {
+        require_once "repository/BarRepository.php";
+        $reop = new BarRepository();
+        $bars = $reop->findAll();
+
+        include "view/Pincho/search.php";
+    }
+
+    function searchQuery($page = 1, $amount = 1)
+    {
+        $repo = new PinchoRepository();
+
+        $offset = ($page - 1) * $amount;
+
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($repo->search($offset, $amount, isset($_POST["name"]) ? $_POST["name"] : "", isset($_POST["bar_name"]) ? $_POST["bar_name"] : "", isset($_POST["minRating"]) ? $_POST["minRating"] : 0, isset($_POST["maxRating"]) ? $_POST["maxRating"] : 5));
+    }
+
+    function searchTotal()
+    {
+        $repo = new PinchoRepository();
+        header('Content-Type: application/json; charset=utf-8');
+        echo json_encode($repo->searchTotal(isset($_POST["name"]) ? $_POST["name"] : "", isset($_POST["bar_name"]) ? $_POST["bar_name"] : "", isset($_POST["minRating"]) ? $_POST["minRating"] : 0, isset($_POST["maxRating"]) ? $_POST["maxRating"] : 5));
     }
 }

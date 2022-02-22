@@ -11,6 +11,8 @@ class Pincho extends AbstractMappedSQLModel
     public int $bar_id;
     public string $name;
     public float $price;
+    public float $rating;
+    public string $bar_name;
 
     static function getPropertiesMapArray(): array
     {
@@ -19,6 +21,8 @@ class Pincho extends AbstractMappedSQLModel
             "bar_id" => "bar_id",
             "name" => "name",
             "price" => "price",
+            "rating" => "rating",
+            "bar_name" => "bar_name",
         ];
     }
 }

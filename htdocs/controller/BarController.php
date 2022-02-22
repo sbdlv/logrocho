@@ -191,15 +191,16 @@ class BarController
         echo json_encode($repo->search($offset, $amount, isset($_POST["name"]) ? $_POST["name"] : "", isset($_POST["address"]) ? $_POST["address"] : "", isset($_POST["minRating"]) ? $_POST["minRating"] : 0, isset($_POST["maxRating"]) ? $_POST["maxRating"] : 5));
     }
 
-    function map()
-    {
-        include "view/Bar/map.php";
-    }
-
     function searchTotal()
     {
         $repo = new BarRepository();
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode($repo->searchTotal(isset($_POST["name"]) ? $_POST["name"] : "", isset($_POST["address"]) ? $_POST["address"] : "", isset($_POST["minRating"]) ? $_POST["minRating"] : 0, isset($_POST["maxRating"]) ? $_POST["maxRating"] : 5));
     }
+    
+    function map()
+    {
+        include "view/Bar/map.php";
+    }
+
 }
