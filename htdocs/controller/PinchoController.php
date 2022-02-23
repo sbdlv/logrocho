@@ -131,7 +131,7 @@ class PinchoController
         if (isset($_POST["pk"], $_POST["name"])) {
 
             //TODO: Comprobar que post pk es un int y existe en BD
-            $destPath = get_system_web_root_folder_path() . "/img/img_bares/" . $_POST["pk"];
+            $destPath = get_system_web_root_folder_path() . "/img/img_pinchos/" . $_POST["pk"];
             if (!file_exists($destPath)) {
                 mkdir($destPath);
             }

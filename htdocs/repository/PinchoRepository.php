@@ -192,4 +192,22 @@ class PinchoRepository implements IDAO
 
         return count($results);
     }
+
+    function byBar($pk)
+    {
+        $baseQuery = "SELECT p.*, b.name bar_name, IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3, 0) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN `bar` b ON b.id = p.bar_id WHERE b.id = ? GROUP BY p.id";
+
+        $stmt = get_db_connection()->prepare($baseQuery);
+        $stmt->execute([$pk]);
+
+        $results = $stmt->fetchAll();
+        $instances = [];
+
+
+        foreach ($results as $row) {
+            $instances[] = Pincho::getInstance($row);
+        }
+
+        return $instances;
+    }
 }

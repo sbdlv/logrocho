@@ -197,10 +197,37 @@ class BarController
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode($repo->searchTotal(isset($_POST["name"]) ? $_POST["name"] : "", isset($_POST["address"]) ? $_POST["address"] : "", isset($_POST["minRating"]) ? $_POST["minRating"] : 0, isset($_POST["maxRating"]) ? $_POST["maxRating"] : 5));
     }
-    
+
     function map()
     {
         include "view/Bar/map.php";
     }
 
+    function completeJson($pk)
+    {
+        $repo = new BarRepository();
+        require_once "repository/PinchoRepository.php";
+        $repoPincho = new PinchoRepository();
+
+        $imagesBar = $repo->getImages($pk);
+
+        $info = [
+            "bar" => $repo->find($pk),
+            "pinchos" => $repoPincho->byBar($pk),
+            "multimedia" => [
+                "bar" => empty($imagesBar) ? [] : $imagesBar[$pk],
+                "pinchos" => []
+            ]
+        ];
+
+
+        foreach ($info["pinchos"] as $pincho) {
+            $images = $repoPincho->getImages($pincho->id);
+            $info["multimedia"]["pinchos"][$pincho->id] = empty($images) ? [] : $images[$pincho->id];
+        }
+
+        header('Content-Type: application/json; charset=utf-8');
+
+        echo json_encode($info);
+    }
 }
