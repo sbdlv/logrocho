@@ -20,6 +20,9 @@ class Review extends AbstractMappedSQLModel
 
     public int $pincho_id;
 
+    public int $likes;
+    public int $dislikes;
+
     static function getPropertiesMapArray(): array
     {
         return [

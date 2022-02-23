@@ -188,4 +188,25 @@ class PinchoController
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode($repo->searchTotal(isset($_POST["name"]) ? $_POST["name"] : "", isset($_POST["bar_name"]) ? $_POST["bar_name"] : "", isset($_POST["minRating"]) ? $_POST["minRating"] : 0, isset($_POST["maxRating"]) ? $_POST["maxRating"] : 5));
     }
+
+    function completeJson($pk)
+    {
+        $repo = new PinchoRepository();
+
+        require_once "repository/ReviewRepository.php";
+        $reviewRepo = new ReviewRepository();
+
+
+        $images = $repo->getImages($pk);
+
+        $info = [
+            "pincho" => $repo->find($pk),
+            "multimedia" => empty($images) ? [] : $images[$pk],
+            "reviews" => $reviewRepo->byPincho($pk)
+        ];
+
+        header('Content-Type: application/json; charset=utf-8');
+
+        echo json_encode($info);
+    }
 }
