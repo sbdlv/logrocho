@@ -179,6 +179,7 @@ class BarController
 
     function search()
     {
+        $activeMenu = "bar";
         include "view/Bar/search.php";
     }
 

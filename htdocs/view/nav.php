@@ -1,16 +1,18 @@
+<?php
+if (!isset($activeMenu)) {
+    $activeMenu = "";
+}
+?>
 <nav class="navbar navbar-expand-lg navbar-light px-4" id="mainNav">
     <a class="navbar-brand" href="/index.php">
         <img src="img/logo.svg" width="100" alt="">
     </a>
     <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <!-- <li class="nav-item active">
-                <a class="nav-link" href="/">Inicio <span class="sr-only">(current)</span></a>
-            </li> -->
-            <li class="nav-item">
+            <li class="nav-item <?= $activeMenu == "bar" ? "active" : "" ?>">
                 <a class="nav-link" href="<?= get_server_index_base_url() . "bar/search" ?>">Bares</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item <?= $activeMenu == "pincho" ? "active" : "" ?>">
                 <a class="nav-link" href="<?= get_server_index_base_url() . "pincho/search" ?>">Pinchos</a>
             </li>
             <?php if (is_logged()) : ?>

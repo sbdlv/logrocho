@@ -7,15 +7,15 @@
         <div class="card-subtitle mb-2"><span class="fw-bold">Presentación: <?php TemplateHelper::getStarts($review->presentation) ?></div>
         <div class="card-subtitle mb-2"><span class="fw-bold">Textura: <?php TemplateHelper::getStarts($review->texture) ?></div>
         <div>
-            <btn class="likes btn">
+            <button class="likes btn">
                 <i class="fas fa-thumbs-up text-success"></i>
                 <?=$review->likes?>
-            </btn>
+            </button>
             
-            <btn class="dislikes btn">
+            <button class="dislikes btn">
                 <i class="fas fa-thumbs-down text-danger"></i>
                 <?=$review->dislikes?>
-            </btn>
+            </button>
         </div>
     </div>
 </div>

@@ -174,6 +174,7 @@ class PinchoController
         require_once "repository/BarRepository.php";
         $reop = new BarRepository();
         $bars = $reop->findAll();
+        $activeMenu = "pincho";
 
         include "view/Pincho/search.php";
     }
