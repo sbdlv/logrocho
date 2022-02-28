@@ -3,6 +3,10 @@
     height: 100vh;
     position: fixed;
 
+    i{
+        width: 28px;
+    }
+
     .nav-link{
         &:hover{
             background-color: var(--bs-blue);
