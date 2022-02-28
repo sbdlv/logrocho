@@ -24,11 +24,28 @@ $.ajax({
                 icon: markerIcon
             });
 
+            //Popup body
+            let stars = $("<div></div>").addClass("mb-2");
+
+            for (let i = 0; i < Math.floor(bar.rating); i++) {
+                stars.append('<i class="fas fa-star"></i>')
+            }
+
+            for (let i = 0; i < 5 - bar.rating; i++) {
+                stars.append('<i class="fas fa-star off"></i>')
+            }
+
+            let body = $("<div></div>").append(
+                $("<h3></h3>").text(bar.name),
+                stars,
+                $('<a></a>').addClass("link-primary").attr("href", `index.php/bar/${bar.id}`).text("Más información").append(
+                    $('<i class="ms-2 fas fa-external-link-alt"></i>')
+                ),
+            )
+
+            //Instance and add marker
             marker.addTo(map);
-            marker.bindPopup(`
-            <h3>${bar.name}</h3>
-            <a class="link-primary" href="index.php/bar/${bar.id}">Más info.</a>
-            `);
+            marker.bindPopup(body.html());
         });
     }
 });
