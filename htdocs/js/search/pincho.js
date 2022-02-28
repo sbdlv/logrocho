@@ -25,15 +25,13 @@ let makeQuery = $("#results").AjaxSearch({
     getTemplate: (data) => {
         let stars = $("<div></div>").addClass("mb-2");
 
-        for (let i = 0; i < data.rating; i++) {
+        for (let i = 0; i < Math.floor(data.rating); i++) {
             stars.append('<i class="fas fa-star"></i>')
         }
 
         for (let i = 0; i < 5 - data.rating; i++) {
             stars.append('<i class="fas fa-star off"></i>')
         }
-
-        console.log(data);
 
         return $("<a></a>").addClass("tarjeta tarjeta-btn pincho-search-card row mx-auto mb-4").append(
             $("<div></div>").addClass("col-3 imgWrapper").append(
