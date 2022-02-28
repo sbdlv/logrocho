@@ -11,10 +11,17 @@ $.ajax({
     url: "index.php/bar/jsonAll",
     dataType: "json",
     success: function (response) {
+
+        let markerIcon = L.icon({
+            iconUrl: "/img/bar_icon.png",
+            iconSize: [40, 40]
+        });
+
         response.forEach(bar => {
             let marker = new L.Marker([bar.lat, bar.lon], {
                 title: bar.name,
                 draggable: false,
+                icon: markerIcon
             });
 
             marker.addTo(map);
