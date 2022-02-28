@@ -26,8 +26,8 @@ CREATE TABLE `bar` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255),
   `address` varchar(255),
-  `lon` decimal(10,2),
-  `lat` decimal(10,2),
+  `lon` decimal(10,5),
+  `lat` decimal(10,5),
   `terrace` boolean
 );
 
@@ -113,26 +113,26 @@ ALTER TABLE `multimediaPincho` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho`
 /* -------------------- */
 
 /* BARES */
-insert into bar (name, address, lon, lat, terrace) values ('Bar Zooxo', '98290 Schiller Drive', 68.26, 65.61, false);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Meevee', '55 Maple Wood Point', 14.21, 7.81, true);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Aibox', '67 Carey Crossing', 10.14, 62.14, false);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Eayo', '16 Glendale Crossing', 95.45, 16.28, false);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Abata', '19258 Lindbergh Court', 69.1, 20.15, true);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Trudeo', '482 Summerview Parkway', 75.66, 50.37, true);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Realblab', '1 Northview Court', 45.5, 6.66, false);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Zooveo', '95442 Old Shore Park', 60.95, 78.33, true);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Rhynoodle', '257 Gerald Pass', 10.61, 5.59, false);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Voolith', '10 Mcguire Junction', 76.35, 84.57, true);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Brightbean', '21993 Spohn Lane', 5.95, 80.92, true);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Eabox', '0 Melvin Parkway', 53.12, 23.01, false);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Abatz', '41723 Cody Park', 59.17, 36.57, false);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Podcat', '74 Troy Terrace', 35.49, 35.06, false);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Kazio', '49 Tennessee Junction', 33.09, 33.84, true);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Twitterbeat', '37 Bellgrove Terrace', 50.22, 43.72, false);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Abata', '32308 Leroy Alley', 28.8, 59.76, true);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Zoomdog', '0664 Westend Alley', 75.66, 13.53, false);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Fliptune', '84 Ridgeway Hill', 68.24, 4.56, true);
-insert into bar (name, address, lon, lat, terrace) values ('Bar Twinte', '43 Lillian Drive', 99.3, 86.24, false);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Zooxo', '98290 Schiller Drive', -2.4581448529224916, 42.45497158574761, false);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Meevee', '55 Maple Wood Point', -2.42957713457907, 42.458059865912695, true);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Aibox', '67 Carey Crossing', -2.4640639329694514, 42.46714202924158, false);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Eayo', '16 Glendale Crossing', -2.4576295205180254, 42.458915016263425, false);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Abata', '19258 Lindbergh Court', -2.4604556795732915, 42.454150446345366, true);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Trudeo', '482 Summerview Parkway', -2.4750897792479147, 42.45781198017441, true);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Realblab', '1 Northview Court', -2.4675254414065266, 42.46172472988175, false);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Zooveo', '95442 Old Shore Park', -2.447487739744947, 42.46693164127969, true);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Rhynoodle', '257 Gerald Pass', -2.463801884117186, 42.46166946652319, false);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Voolith', '10 Mcguire Junction', -2.4799491015047836, 42.45443227822947, true);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Brightbean', '21993 Spohn Lane', -2.4299045002714745, 42.450117559476084, true);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Eabox', '0 Melvin Parkway', -2.458550461131404, 42.457081291704675, false);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Abatz', '41723 Cody Park', -2.4564316021076293, 42.45441064262549, false);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Podcat', '74 Troy Terrace', -2.4328893672592575, 42.46352427961426, false);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Kazio', '49 Tennessee Junction', -2.468488812382514, 42.461068617174675, true);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Twitterbeat', '37 Bellgrove Terrace', -2.47176681399925, 42.45376331174264, false);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Abata', '32308 Leroy Alley', -2.4533311206907418, 42.458021825982975, true);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Zoomdog', '0664 Westend Alley', -2.429335363023288, 42.46042959024284, false);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Fliptune', '84 Ridgeway Hill', -2.474158962912898, 42.46242858836241, true);
+insert into bar (name, address, lon, lat, terrace) values ('Bar Twinte', '43 Lillian Drive', -2.434441876938085, 42.45514057157795, false);
 
 /* USUARIOS */
 insert into user (first_name, last_name, email, password, admin, created_date) values ('Admin', 'Logrocho', 'admin@logrocho.local', SHA1('usuario123ABC'), true, NOW());

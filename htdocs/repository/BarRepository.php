@@ -41,7 +41,7 @@ class BarRepository implements IDAO
                 $results = get_db_connection()->query("SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id LIMIT $page,$amount");
             }
         } else {
-            $results = get_db_connection()->query("SELECT * FROM bar");
+            $results = get_db_connection()->query("SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id");
         }
 
         $instances = [];

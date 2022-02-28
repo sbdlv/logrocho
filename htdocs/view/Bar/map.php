@@ -23,24 +23,9 @@
             <div id="map" style="width:800px; height:600px;"></div>
         </section>
     </main>
-    <script>
-        let mapOptions = {
-            center: [51.958, 9.141],
-            zoom: 10
-        }
-        let map = new L.map('map', mapOptions);
-        let layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
-        map.addLayer(layer);
-        let marker = new L.Marker([51.958, 9.141], {
-            title: "Prueba",
-            draggable: false,
-        });
-        
-        marker.addTo(map);
-        marker.bindPopup("content").openPopup();
-    </script>
     <?php require "view/footer.php" ?>
     <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/map.js"></script>
 </body>
 
 </html>

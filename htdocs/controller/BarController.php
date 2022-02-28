@@ -98,18 +98,22 @@ class BarController
         }
     }
 
-    function jsonAll($page, $orderBy = false, $orderDir = false)
+    function jsonAll($page = false, $orderBy = false, $orderDir = false)
     {
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json; charset=utf-8');
         $repo = new BarRepository();
 
-        $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
+        if ($page) {
+            $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
 
-        if ($orderBy && $orderDir) {
-            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE, $orderBy, $orderDir));
+            if ($orderBy && $orderDir) {
+                echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE, $orderBy, $orderDir));
+            } else {
+                echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));
+            }
         } else {
-            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));
+            echo json_encode($repo->findAll());
         }
     }
 
