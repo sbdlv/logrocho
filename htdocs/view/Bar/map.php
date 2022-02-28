@@ -20,7 +20,7 @@
     <?php require "view/nav.php" ?>
     <main>
         <section class="container py-5 row mx-auto">
-            <div id="map" style="width:800px; height:600px;"></div>
+            <div id="map"></div>
         </section>
     </main>
     <?php require "view/footer.php" ?>

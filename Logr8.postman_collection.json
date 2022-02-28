@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2fc684c3-7d7e-4826-867b-962cd17da8a6",
+		"_postman_id": "c0415b29-07d1-45b8-a479-5284aaa487b4",
 		"name": "Logr8",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -273,7 +273,20 @@
 					"name": "JSON Complete by ID",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "logrocho.local/index.php/bar/completeJson/1",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"bar",
+								"completeJson",
+								"1"
+							]
+						}
 					},
 					"response": []
 				}
@@ -499,7 +512,20 @@
 					"name": "JSON Complete by ID",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "logrocho.local/index.php/pincho/completeJson/1",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"pincho",
+								"completeJson",
+								"1"
+							]
+						}
 					},
 					"response": []
 				}
