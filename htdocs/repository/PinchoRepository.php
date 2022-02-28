@@ -70,7 +70,7 @@ class PinchoRepository implements IDAO
         $stmt->execute([$id]);
 
         foreach ($stmt as $row) {
-            $imgs[$id][] = $row["path"];
+            $imgs[] = $row["path"];
         }
 
         return $imgs;

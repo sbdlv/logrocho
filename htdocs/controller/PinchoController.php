@@ -210,7 +210,7 @@ class PinchoController
 
         $info = [
             "pincho" => $repo->find($pk),
-            "multimedia" => empty($images) ? [] : $images[$pk],
+            "multimedia" => $images,
             "reviews" => $reviewRepo->byPincho($pk)
         ];
 

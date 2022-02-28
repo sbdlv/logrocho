@@ -107,7 +107,7 @@
             <?php if (empty($pinchoImages)) : ?>
                 imagesSrc: [],
             <?php else : ?>
-                imagesSrc: <?= json_encode($pinchoImages[$pincho->id]) ?>,
+                imagesSrc: <?= json_encode($pinchoImages) ?>,
             <?php endif; ?>
             additionalClass: "tarjeta",
             onChange: (data) => {

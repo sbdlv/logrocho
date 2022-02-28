@@ -216,7 +216,7 @@ class BarController
             "bar" => $repo->find($pk),
             "pinchos" => $repoPincho->byBar($pk),
             "multimedia" => [
-                "bar" => empty($imagesBar) ? [] : $imagesBar,
+                "bar" => $imagesBar,
                 "pinchos" => []
             ]
         ];
@@ -224,7 +224,7 @@ class BarController
 
         foreach ($info["pinchos"] as $pincho) {
             $images = $repoPincho->getImages($pincho->id);
-            $info["multimedia"]["pinchos"][$pincho->id] = empty($images) ? [] : $images[$pincho->id];
+            $info["multimedia"]["pinchos"][$pincho->id] = $images;
         }
 
         if ($return) {
