@@ -34,24 +34,24 @@
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active p-4" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
                     <h2 class="mb-4">Perfil</h2>
-                    <form class="pb-4">
+                    <section class="pb-4">
                         <div class="form-group mb-4">
-                            <label for="user_name">Nombre</label>
-                            <input type="email" class="form-control" id="user_name" placeholder="Tu nombre">
+                            <label for="user_first_name">Nombre</label>
+                            <input type="text" class="form-control" id="user_first_name" placeholder="Tu nombre" value="<?= $_SESSION["user"]["first_name"] ?>">
                         </div>
                         <div class="form-group mb-4">
-                            <label for="user_name">Apellidos</label>
-                            <input type="email" class="form-control" id="user_name" placeholder="Tus apellidos">
+                            <label for="user_last_name">Apellidos</label>
+                            <input type="text" class="form-control" id="user_last_name" placeholder="Tus apellidos" <?= $_SESSION["user"]["last_name"] ?>>
                         </div>
                         <div class="form-group mb-4">
-                            <label for="user_name">Email</label>
-                            <input type="email" class="form-control" id="user_name" placeholder="correo@electronico.com">
+                            <label for="user_email">Email</label>
+                            <input type="email" class="form-control" id="user_email" placeholder="correo@electronico.com" value="<?= $_SESSION["user"]["email"] ?>">
                         </div>
                         <div class="mb-4">
                             <p>Te unistes el: 20-20-2000</p>
                         </div>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </form>
+                        <button class="btn btn-primary" onclick="saveProfile()">Guardar</button>
+                    </section>
                 </div>
                 <div class="tab-pane fade p-4" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <h2 class="mb-4">Mis reseñas</h2>
@@ -92,6 +92,9 @@
             </div>
         </div>
     </main>
+
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/user-profile.js"></script>
     <?php include "view/footer.php" ?>
 </body>
 

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="js/OwlCarousel2/dist/assets/owl.carousel.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animate.min.css">
+  <script src="js/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
 <body>

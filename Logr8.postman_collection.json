@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "a932ef0a-a238-42e8-8e13-7a61d4900d41",
+		"_postman_id": "2fc684c3-7d7e-4826-867b-962cd17da8a6",
 		"name": "Logr8",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -246,6 +246,36 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Advance Search Query",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "logrocho.local/index.php/bar/searchQuery/2/10",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"bar",
+								"searchQuery",
+								"2",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "JSON Complete by ID",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
 				}
 			]
 		},
@@ -436,6 +466,40 @@
 								"uploadPic"
 							]
 						}
+					},
+					"response": []
+				},
+				{
+					"name": "Advance Search Query",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "logrocho.local/index.php/pincho/searchQuery/1/6",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"pincho",
+								"searchQuery",
+								"1",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "JSON Complete by ID",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}

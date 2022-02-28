@@ -11,6 +11,8 @@ $.fn.AjaxTable = function (options = {}) {
         )
     )
 
+    //Results per page
+
     //Table
     this.append(
         $(`<table></table>`).append(
@@ -172,7 +174,6 @@ function header_click(e, options, root) {
     }
 
     printTable(root, options);
-    printPagination(root, options);
 }
 
 /**

@@ -12,18 +12,20 @@ $.fn.AjaxSearch = function (options = {}) {
     //Print first page
     root.find(".results").addClass("loading");
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: getQueryUrlWithArgs(options),
+        data: options.queryParams,
         dataType: "json",
         success: function (response) {
             options.currentData = response;
             printResults(root, options);
+            printPagination(root, options);
         }
     });
-    printPagination(this, options);
 
     return (postValues) => {
         root.find(".results").addClass("loading");
+        options.queryParams = postValues;
         $.ajax({
             type: "POST",
             url: getQueryUrlWithArgs(options),
@@ -32,9 +34,9 @@ $.fn.AjaxSearch = function (options = {}) {
             success: function (response) {
                 options.currentData = response;
                 printResults(root, options);
+                printPagination(root, options);
             }
         });
-        printPagination(root, options);
     };
 }
 
@@ -74,15 +76,16 @@ function printPagination(root, options) {
     let resultsCountWrapper = root.find(".total");
 
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: options.countUrl,
+        data: options.queryParams,
         dataType: "json",
         success: function (response) {
             let total = parseInt(response);
             let isLastPage = total - options.page * options.resultsPerPage <= 0;
 
             //Total results
-            resultsCountWrapper.text(`Total: ${total}`);
+            resultsCountWrapper.text(`Resultados: ${total}`);
 
             //Prev number button
             if (options.page != 1) {
@@ -142,15 +145,16 @@ function numericPagination_click(e, options, root) {
     root.find(".results").addClass("loading");
 
     $.ajax({
-        type: "GET",
+        type: "POST",
         url: getQueryUrlWithArgs(options),
+        data: options.queryParams,
         dataType: "json",
         success: function (response) {
             options.currentData = response;
             printResults(root, options);
+            printPagination(root, options);
         }
     });
 
-    printPagination(root, options);
     $("#results").get(0).scrollIntoView();
 }
