@@ -29,18 +29,24 @@
                 </div>
             </div>
         </section>
-        <?php if (!empty($data->multimedia["bar"])) : ?>
-            <section class="container pt-5">
-                <h2 class="mb-5 fw-bold">Fotos</h2>
+        <section class="container pt-5">
+            <h2 class="mb-5 fw-bold">Fotos</h2>
+            <?php if (empty($data->multimedia["bar"])) : ?>
+                <p>Este bar no tiene imágenes.</p>
+            <?php else : ?>
                 <div class="owl-carousel owl-theme multimedia_slider">
                     <?php foreach ($data->multimedia["bar"] as $imageSrc) : ?>
                         <div class="item"><img src="<?= $imageSrc ?>" alt=""></div>
                     <?php endforeach; ?>
                 </div>
-            </section>
-        <?php endif; ?>
+            <?php endif; ?>
+        </section>
         <section class="container py-5">
             <h2 class="mb-5 fw-bold">Pinchos</h2>
+
+            <?php if (empty($data->pinchos)) : ?>
+                <p>Este bar no tiene pinchos.</p>
+            <?php endif; ?>
 
             <?php foreach ($data->pinchos as $pincho) : ?>
                 <?php include "view/Pincho/templates/card.php" ?>

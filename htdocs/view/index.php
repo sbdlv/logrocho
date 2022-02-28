@@ -52,7 +52,7 @@
             <img src="img/bar_icon.png" alt="">
             <p class="mt-3">Restaurantes</p>
           </a>
-          <a href="" class="option tarjeta tarjeta-btn d-flex justify-content-center flex-column align-items-center m-2">
+          <a href="<?= get_server_index_base_url() . "pincho/search" ?>" class="option tarjeta tarjeta-btn d-flex justify-content-center flex-column align-items-center m-2">
             <img src="img/pincho_icon.png" alt="">
             <p class="mt-3">Pinchos</p>
           </a>

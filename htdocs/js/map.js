@@ -18,7 +18,10 @@ $.ajax({
             });
 
             marker.addTo(map);
-            marker.bindPopup(bar.name);
+            marker.bindPopup(`
+            <h3>${bar.name}</h3>
+            <a class="link-primary" href="index.php/bar/${bar.id}">Más info.</a>
+            `);
         });
     }
 });
