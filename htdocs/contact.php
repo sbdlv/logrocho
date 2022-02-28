@@ -1,4 +1,4 @@
-<?php require "utils.php"?>
+<?php require "functions.php"?>
 <!DOCTYPE html>
 <html lang="es-ES">
 

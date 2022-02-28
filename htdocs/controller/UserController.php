@@ -14,7 +14,7 @@ class UserController
         $activeMenu = "user";
         $repo = new UserRepository();
         $users = $repo->findAll();
-        require "view/user/list.php";
+        require "view/User/list.php";
     }
 
     function edit($id)
@@ -23,7 +23,7 @@ class UserController
         add_to_breadcrumbs("Usuario #$id");
         $repo = new UserRepository();
         $user = $repo->findById($id);
-        require "view/user/edit.php";
+        require "view/User/edit.php";
     }
 
     function login()
@@ -55,7 +55,7 @@ class UserController
                 $this->redirectSession();
             }
         }
-        require "view/user/login.php";
+        require "view/User/login.php";
     }
 
     function register()
@@ -336,7 +336,7 @@ class UserController
         $likedReviews = $repoReview->likedByUser($id);
         $dislikedReviews = $repoReview->dislikedByUser($id);
 
-        require "view/user/profile.php";
+        require "view/User/profile.php";
     }
 
     function update_profile()

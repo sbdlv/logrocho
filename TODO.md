@@ -1,2 +1,3 @@
  - Zona usuario. Agregar links y funcionalidad al los delete
  - Agregar entidades desde back
+ - Para el cPanel, n ose pueden typear las variables

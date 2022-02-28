@@ -21,6 +21,9 @@ $array_ruta = array_filter(explode("/", $ruta));
 if (isset($array_ruta[0])) {
     $modelName = $array_ruta[0]; //Ej.: Categoria -> index.php/Categoria
 
+    //Para soportar sistemas case sensitive, convertimos el string con primera en mayus. el testo en minus.
+    $modelName = ucfirst(strtolower($modelName));
+    
     //Obtenemos los path dinamicamente de los ficheros del controlador y modelo
     $controllerPath = "controller/$modelName" . "Controller.php";
     $modelPath = "model/$modelName" . ".php";
