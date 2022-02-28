@@ -56,6 +56,10 @@
             <img src="img/pincho_icon.png" alt="">
             <p class="mt-3">Pinchos</p>
           </a>
+          <a href="<?= get_server_index_base_url() . "bar/map" ?>" class="option tarjeta tarjeta-btn d-flex justify-content-center flex-column align-items-center m-2">
+            <img src="img/map_icon.png" alt="">
+            <p class="mt-3">Mapa de bares</p>
+          </a>
         </div>
       </div>
     </section>

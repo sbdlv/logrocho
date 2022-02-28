@@ -3,7 +3,7 @@
         position: relative;
 
         &.loading {
-            div{
+            div {
                 opacity: 0.7;
             }
 
@@ -35,5 +35,23 @@
                 }
             }
         }
+    }
+}
+
+#results {
+    nav {
+        *{
+            color: $color-primary;
+        }
+
+        .page-item.active{
+            .page-link{
+                color: white;
+                background-color: $color-primary;
+                border-color: $color-primary-dark;
+            }
+        }
+
+        
     }
 }
