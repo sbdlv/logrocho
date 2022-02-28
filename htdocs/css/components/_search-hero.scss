@@ -2,18 +2,16 @@
     height: 300px;
     color: white;
     background-size: cover;
-    background-color: #dbdbdb;
     background-blend-mode: darken;
-
     h1{
         font-size: 60px;
     }
-
+    
     &.hero_bar{
-        background-image: url("../img/pexels-pixabay-262978.jpg");
+        background-image: url("../img/pexels-pixabay-262978.jpg"), linear-gradient(0deg, rgba(0, 0, 0, 0.61) 0%, rgba(0,0,41,0) 100%);
     }
     
     &.hero_pincho{
-        background-image: url("../img/pincho_bg.jpg");
+        background-image: url("../img/pincho_bg.jpg"), linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(0,0,41,0) 100%);
     }
 }

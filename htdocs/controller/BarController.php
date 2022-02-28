@@ -173,10 +173,7 @@ class BarController
     //Publico
     function index($id)
     {
-        $repo = new BarRepository();
-
-        $bar = $repo->find($id);
-        $activeMenu = "bar";
+        $data = $this->completeJson($id, true);
         include "view/Bar/index.php";
     }
 
@@ -207,7 +204,7 @@ class BarController
         include "view/Bar/map.php";
     }
 
-    function completeJson($pk)
+    function completeJson($pk, $return = false)
     {
         $repo = new BarRepository();
         require_once "repository/PinchoRepository.php";
@@ -219,7 +216,7 @@ class BarController
             "bar" => $repo->find($pk),
             "pinchos" => $repoPincho->byBar($pk),
             "multimedia" => [
-                "bar" => empty($imagesBar) ? [] : $imagesBar[$pk],
+                "bar" => empty($imagesBar) ? [] : $imagesBar,
                 "pinchos" => []
             ]
         ];
@@ -230,8 +227,11 @@ class BarController
             $info["multimedia"]["pinchos"][$pincho->id] = empty($images) ? [] : $images[$pincho->id];
         }
 
-        header('Content-Type: application/json; charset=utf-8');
+        if ($return) {
+            return (object) $info;
+        }
 
+        header('Content-Type: application/json; charset=utf-8');
         echo json_encode($info);
     }
 }

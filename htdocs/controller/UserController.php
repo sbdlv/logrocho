@@ -109,7 +109,7 @@ class UserController
     {
         if (isset($_SESSION["logged"]) && $_SESSION["logged"]) {
             if ($_SESSION["user"]["admin"]) {
-                header("Location: " . get_server_index_base_url() . "bar");
+                header("Location: " . get_server_index_base_url() . "bar/list");
             } else {
                 header("Location: index.php");
             }

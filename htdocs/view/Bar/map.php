@@ -20,6 +20,7 @@
     <?php require "view/nav.php" ?>
     <main>
         <section class="container py-5 row mx-auto">
+            <h1>Mapa de bares</h1>
             <div id="map"></div>
         </section>
     </main>

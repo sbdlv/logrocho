@@ -17,7 +17,7 @@
 <body>
     <?php require "view/nav.php" ?>
     <main>
-        <section class="container-fluid pt-5 pb-4 hero hero_bar d-flex align-items-end" <?php if (!empty($data->multimedia["bar"])) : ?> style="background-image: url(<?= $data->multimedia["bar"][0] ?>), linear-gradient(0deg, rgba(0, 0, 0, 0.61) 0%, rgba(0,0,41,0) 100%);" <?php endif; ?>>
+        <section class="container-fluid pt-5 pb-4 hero hero_pincho d-flex align-items-end" <?php if (!empty($data->multimedia["bar"])) : ?> style="background-image: url(<?= $data->multimedia["bar"][0] ?>), linear-gradient(0deg, rgba(0, 0, 0, 0.61) 0%, rgba(0,0,41,0) 100%);" <?php endif; ?>>
             <div class="container">
                 <h1 class="mb-2"><?= $data->bar->name ?></h1>
                 <div class="mb-2">

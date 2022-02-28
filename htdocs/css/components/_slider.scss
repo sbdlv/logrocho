@@ -1,39 +1,38 @@
-.owl-carousel{
-    .owl-dots{
+.owl-carousel {
+    .owl-dots {
         display: flex;
         justify-content: center;
-        
-        .owl-dot{
+
+        .owl-dot {
             border-radius: 50px;
             margin: 10px;
             height: 18px;
-            &.active{
-    
-                span{
+            &.active {
+                span {
                     background-color: $color-primary;
                 }
             }
-            span{
+            span {
                 height: 18px;
                 width: 18px;
-        
+
                 border: 2px solid $color-primary;
                 display: inline-block;
-    
+
                 border-radius: 50px;
             }
         }
     }
 
-    .tarjeta{
+    .tarjeta {
         margin: 10px;
         text-decoration: none;
         color: inherit;
 
-        img{
+        img {
             width: 100%;
-            border-top-left-radius: .25rem;
-            border-top-right-radius: .25rem;
+            border-top-left-radius: 0.25rem;
+            border-top-right-radius: 0.25rem;
         }
     }
 }

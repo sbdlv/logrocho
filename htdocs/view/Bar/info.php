@@ -91,7 +91,7 @@
             <?php if (empty($barImages)) : ?>
                 imagesSrc: [],
             <?php else : ?>
-                imagesSrc: <?= json_encode($barImages[$bar->id]) ?>,
+                imagesSrc: <?= json_encode($barImages) ?>,
             <?php endif; ?>
             additionalClass: "tarjeta",
             onChange: (data) => {
