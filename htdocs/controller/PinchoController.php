@@ -9,12 +9,9 @@ class PinchoController
 {
     private const AMOUNT_OF_RESULTS_PER_PAGE = 4;
 
-    function index()
+    function index($id)
     {
-        $repo = new PinchoRepository();
-
-        $pinchos = $repo->findAll();
-        $activeMenu = "pincho";
+        $data = $this->completeJson($id, true);
         include "view/Pincho/index.php";
     }
 
@@ -198,7 +195,7 @@ class PinchoController
         echo json_encode($repo->searchTotal(isset($_POST["name"]) ? $_POST["name"] : "", isset($_POST["bar_name"]) ? $_POST["bar_name"] : "", isset($_POST["minRating"]) ? $_POST["minRating"] : 0, isset($_POST["maxRating"]) ? $_POST["maxRating"] : 5));
     }
 
-    function completeJson($pk)
+    function completeJson($pk, $return = false)
     {
         $repo = new PinchoRepository();
 
@@ -213,6 +210,10 @@ class PinchoController
             "multimedia" => $images,
             "reviews" => $reviewRepo->byPincho($pk)
         ];
+
+        if ($return) {
+            return (object) $info;
+        }
 
         header('Content-Type: application/json; charset=utf-8');
 

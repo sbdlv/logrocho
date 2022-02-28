@@ -17,34 +17,42 @@
 <body>
     <?php require "view/nav.php" ?>
     <main>
-        <section class="container-fluid pt-5 pb-4 hero hero_pincho d-flex align-items-end" <?php if (!empty($data->multimedia["bar"])) : ?> style="background-image: url(<?= $data->multimedia["bar"][0] ?>), linear-gradient(0deg, rgba(0, 0, 0, 0.61) 0%, rgba(0,0,41,0) 100%);" <?php endif; ?>>
+        <section class="container-fluid pt-5 pb-4 hero hero_pincho d-flex align-items-end" <?php if (!empty($data->multimedia)) : ?> style="background-image: url(<?= $data->multimedia[0] ?>), linear-gradient(0deg, rgba(0, 0, 0, 0.61) 0%, rgba(0,0,41,0) 100%);" <?php endif; ?>>
             <div class="container">
-                <h1 class="mb-2"><?= $data->bar->name ?></h1>
+                <h1 class="mb-2"><?= $data->pincho->name ?></h1>
                 <div class="mb-2">
-                    <?php TemplateHelper::getStarts($data->bar->rating) ?>
+                    <?php TemplateHelper::getStarts($data->pincho->rating) ?>
                 </div>
-                <div class="d-flex align-items-center">
-                    <i class="fas fa-building m-0 me-3"></i>
-                    <p class="m-0"><?= $data->bar->address ?></p>
-                </div>
+                <a href="index.php/bar/<?= $data->pincho->bar_id ?>" class="link-info d-flex align-items-center">
+                    <i class="fas fa-utensils m-0 me-3"></i>
+                    <p class="m-0"><?= $data->pincho->bar_name ?></p>
+                </a>
             </div>
         </section>
-        <?php if (!empty($data->multimedia["bar"])) : ?>
-            <section class="container pt-5">
-                <h2 class="mb-5 fw-bold">Fotos</h2>
+        <section class="container pt-5">
+            <h2 class="mb-5 fw-bold">Fotos</h2>
+            <?php if (empty($data->multimedia)) : ?>
+                <p>Este pincho no contiene imágenes.</p>
+            <?php else : ?>
                 <div class="owl-carousel owl-theme multimedia_slider">
-                    <?php foreach ($data->multimedia["bar"] as $imageSrc) : ?>
+                    <?php foreach ($data->multimedia as $imageSrc) : ?>
                         <div class="item"><img src="<?= $imageSrc ?>" alt=""></div>
                     <?php endforeach; ?>
                 </div>
-            </section>
-        <?php endif; ?>
+            <?php endif; ?>
+        </section>
         <section class="container py-5">
-            <h2 class="mb-5 fw-bold">Pinchos</h2>
+            <h2 class="mb-5 fw-bold">Reseñas</h2>
+            <button class="btn btn-success mb-3">Escribir una reseña</button>
+            <?php if (empty($data->multimedia)) : ?>
+                <p>Este pincho no tiene reseñas.</p>
+            <?php else : ?>
+                <p>Número de reseñas: <?=count($data->reviews)?></p>
+                <?php foreach ($data->reviews as $review) : ?>
+                    <?php include "view/Review/templates/card-interact.php" ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
 
-            <?php foreach ($data->pinchos as $pincho) : ?>
-                <?php include "view/Pincho/templates/card.php" ?>
-            <?php endforeach; ?>
 
         </section>
     </main>

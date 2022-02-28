@@ -3,7 +3,7 @@
     border: 1px solid rgba(238, 238, 238, 0.75);
     border-radius: 0.25rem;
     background-color: #fff;
-    transition: all .25s;
+    transition: all 0.25s;
 
     &.tarjeta-btn {
         &:hover {
@@ -92,15 +92,24 @@ input:not([type="submit"]) {
     overflow: hidden;
 }
 
-.fa-star{
+.fa-star {
     color: #f7ce5b;
 
-    &.off{
+    &.off {
         color: lightgray;
     }
 }
 
-.pfp{
+.pfp {
     border-radius: 100% !important;
     width: 50px;
+}
+
+.no-hyperlink {
+    text-decoration: none;
+    color: inherit;
+
+    &:hover{
+        color: inherit;
+    }
 }

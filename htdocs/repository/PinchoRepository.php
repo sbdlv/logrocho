@@ -12,7 +12,7 @@ class PinchoRepository implements IDAO
 
     function find($id)
     {
-        $stmt = get_db_connection()->prepare("SELECT p.*, (SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id) as rating FROM `pincho` p JOIN review r ON p.id = r.pincho_id WHERE p.id = ? GROUP BY p.id");
+        $stmt = get_db_connection()->prepare("SELECT p.*, (SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id) as rating, b.name bar_name FROM `pincho` p JOIN review r ON p.id = r.pincho_id JOIN bar b ON b.id = p.bar_id WHERE p.id = ? GROUP BY p.id");
         $stmt->execute([$id]);
 
         $fetch = $stmt->fetchAll();
