@@ -106,4 +106,10 @@ class UserRepository implements IDAO
         $results->execute();
         return $results->fetch()["total"];
     }
+
+    function voteReview($user_id, $review_id, $isLike)
+    {
+        $stmt = get_db_connection()->prepare("SET @user_id = ?, @review_id = ?, @is_like = ?; INSERT INTO `review_user_likes`(`user_id`, `review_id`, `isLike`) VALUES (@user_id, @review_id, @is_like) ON DUPLICATE KEY UPDATE isLike = @is_like");
+        return $stmt->execute([$user_id, $review_id, $isLike]);
+    }
 }

@@ -63,6 +63,8 @@ CREATE TABLE `review_user_likes` (
   `isLike` boolean
 );
 
+ALTER TABLE `review_user_likes` ADD UNIQUE `unique_review_user_likes`(`user_id`, `review_id`);
+
 CREATE TABLE `pincho` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
   `bar_id` int,

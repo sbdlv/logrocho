@@ -43,3 +43,29 @@ function publish() {
         }
     });
 }
+
+
+function like(reviewId) {
+    vote(true, reviewId);
+}
+
+function dislike(reviewId) {
+    vote(false, reviewId);
+}
+
+function vote(isLike, reviewId) {
+    $.ajax({
+        type: "POST",
+        url: "index.php/user/voteReview",
+        data: {
+            isLike: isLike ? 1 : 0,
+            review_id: reviewId
+        },
+        success: function (response) {
+            alert("Se ha votado la reseña correctamente")
+        },
+        error: function (res) {
+            alert(res);
+        }
+    });
+}

@@ -363,4 +363,25 @@ class UserController
             echo "Faltan campos POST";
         }
     }
+
+    function voteReview()
+    {
+        if (!is_logged()) {
+            http_response_code(400);
+            echo "Primero necesitar iniciar sesión.";
+            return;
+        }
+
+        if (isset($_POST["isLike"], $_POST["review_id"])) {
+            $repo = new UserRepository();
+            if ($repo->voteReview($_SESSION["user"]["id"], $_POST["review_id"], $_POST["isLike"])) {
+            } else {
+                http_response_code(400);
+                echo "No se ha podido votar la reseña";
+            }
+        } else {
+            http_response_code(400);
+            echo "Faltan campos POST";
+        }
+    }
 }
