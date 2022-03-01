@@ -1,4 +1,4 @@
-<div class="tarjeta card review p-4 flex-row no-hyperlink" id="review_<?= $review->id ?>">
+<div class="tarjeta card review p-4 flex-row no-hyperlink mb-4" id="review_<?= $review->id ?>">
     <div class="me-4"><img src="img/pfp.jpg" alt="" class="pfp"></div>
     <div class="w-100">
         <p class="h4"><?= $review->title ?></p>
