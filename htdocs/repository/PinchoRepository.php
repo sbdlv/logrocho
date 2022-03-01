@@ -137,7 +137,7 @@ class PinchoRepository implements IDAO
 
     function last(int $amount)
     {
-        $results = get_db_connection()->query("SELECT * FROM pincho ORDER BY id DESC LIMIT $amount");
+        $results = get_db_connection()->query("SELECT p.*, IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0) as rating, b.name bar_name FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN bar b ON b.id = p.bar_id GROUP BY p.id ORDER BY p.id DESC LIMIT $amount");
         $instances = [];
 
         foreach ($results as $row) {
