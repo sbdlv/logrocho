@@ -1,5 +1,5 @@
 <div class="tarjeta tarjeta-btn card review p-4 flex-row">
-    <div class="me-4"><img src="img/pfp.jpg" alt="" class="pfp"></div>
+    <div class="me-4 pfp"><?php if (isset($review->user_img) && $review->user_img != null) : ?><img src="<?= $review->user_img ?>" alt=""><?php endif; ?></div>
     <div class="w-100">
         <p class="h4"><?= $review->title ?></p>
         <p class="text_clamp_3 review-text"><?= $review->desc ?></p>
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div>
-                <a class="btn btn-primary" href="<?= get_server_index_base_url() ?>pincho/<?= $review->pincho_id ?>#review_<?=$review->id?>">Ver pincho</a>
+                <a class="btn btn-primary" href="<?= get_server_index_base_url() ?>pincho/<?= $review->pincho_id ?>#review_<?= $review->id ?>">Ver pincho</a>
                 <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
             </div>
         </div>

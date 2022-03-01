@@ -1,5 +1,5 @@
 <div class="tarjeta card review p-4 flex-row no-hyperlink mb-4" id="review_<?= $review->id ?>">
-    <div class="me-4"><img src="img/pfp.jpg" alt="" class="pfp"></div>
+    <div class="me-4 pfp"><?php if (isset($review->user_img) && $review->user_img != null) : ?><img src="<?= $review->user_img ?>" alt=""><?php endif; ?></div>
     <div class="w-100">
         <p class="h4"><?= $review->title ?></p>
         <p class="text_clamp_3 review-text"><?= $review->desc ?></p>
@@ -9,11 +9,11 @@
         <div class="d-flex justify-content-end">
             <button class="likes btn">
                 <i class="fas fa-thumbs-up text-success"></i>
-                <?=$review->likes?>
+                <?= $review->likes ?>
             </button>
             <button class="dislikes btn">
                 <i class="fas fa-thumbs-down text-danger"></i>
-                <?=$review->dislikes?>
+                <?= $review->dislikes ?>
             </button>
         </div>
     </div>

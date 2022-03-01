@@ -51,7 +51,7 @@ class UserRepository implements IDAO
     function save($obj)
     {
         if ($obj instanceof stdClass) {
-            $obj = User::fromstdclass($obj);
+            $obj = User::getInstance($obj);
         }
 
         $stmt = get_db_connection()->prepare("INSERT INTO `user`(`first_name`, `last_name`, `email`, `password`, `admin`, `created_date`) VALUES (?, ?, ?, sha1(?), ?, now())");

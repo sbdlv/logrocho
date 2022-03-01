@@ -12,7 +12,7 @@ class PinchoRepository implements IDAO
 
     function find($id)
     {
-        $stmt = get_db_connection()->prepare("SELECT p.*, (SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id) as rating, b.name bar_name FROM `pincho` p JOIN review r ON p.id = r.pincho_id JOIN bar b ON b.id = p.bar_id WHERE p.id = ? GROUP BY p.id");
+        $stmt = get_db_connection()->prepare("SELECT p.*, IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0) as rating, b.name bar_name FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN bar b ON b.id = p.bar_id WHERE p.id = ? GROUP BY p.id");
         $stmt->execute([$id]);
 
         $fetch = $stmt->fetchAll();
@@ -23,9 +23,9 @@ class PinchoRepository implements IDAO
     function findAll($page = false, $amount = 1)
     {
         if ($page !== false) {
-            $results = get_db_connection()->query("SELECT p.*, (SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id) as rating FROM `pincho` p JOIN review r ON p.id = r.pincho_id GROUP BY p.id LIMIT $page,$amount");
+            $results = get_db_connection()->query("SELECT p.*, IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id GROUP BY p.id LIMIT $page,$amount");
         } else {
-            $results = get_db_connection()->query("SELECT p.*, (SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id) as rating FROM `pincho` p JOIN review r ON p.id = r.pincho_id GROUP BY p.id");
+            $results = get_db_connection()->query("SELECT p.*, IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id GROUP BY p.id");
         }
 
         $instances = [];
@@ -150,7 +150,7 @@ class PinchoRepository implements IDAO
     function search($page, $amount, $nameLike = "", $barLike = "", $minRating = 0, $maxRating = 5)
     {
 
-        $baseQuery = "SELECT p.*, b.name bar_name, IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN `bar` b ON b.id = p.bar_id GROUP BY p.id HAVING";
+        $baseQuery = "SELECT p.*, b.name bar_name, IFNULL(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 0) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN `bar` b ON b.id = p.bar_id GROUP BY p.id HAVING";
 
         //Having
         $baseQuery .= " p.name LIKE ?";
@@ -177,7 +177,7 @@ class PinchoRepository implements IDAO
     function searchTotal($nameLike = "", $barLike = "", $minRating = 0, $maxRating = 5)
     {
 
-        $baseQuery = "SELECT p.*, b.name, IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN `bar` b ON b.id = p.bar_id GROUP BY p.id HAVING";
+        $baseQuery = "SELECT p.*, b.name, IFNULL(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 0) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN `bar` b ON b.id = p.bar_id GROUP BY p.id HAVING";
 
         //Having
         $baseQuery .= " p.name LIKE ?";
@@ -195,7 +195,7 @@ class PinchoRepository implements IDAO
 
     function byBar($pk)
     {
-        $baseQuery = "SELECT p.*, b.name bar_name, IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN `bar` b ON b.id = p.bar_id WHERE b.id = ? GROUP BY p.id";
+        $baseQuery = "SELECT p.*, b.name bar_name, IFNULL(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 0) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN `bar` b ON b.id = p.bar_id WHERE b.id = ? GROUP BY p.id";
 
         $stmt = get_db_connection()->prepare($baseQuery);
         $stmt->execute([$pk]);

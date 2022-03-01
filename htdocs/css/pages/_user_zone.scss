@@ -6,6 +6,16 @@
                 height: 200px;
                 border-radius: 50%;
             }
+
+            .big-pfp {
+                height: 200px;
+                width: 200px;
+                border-radius: 50%;
+
+                background-image: url("../img/user_icon.png");
+                background-size: cover;
+                background-position: center;
+            }
         }
 
         .nav-link {
@@ -18,8 +28,8 @@
         }
     }
 
-    .reviews{
-        .review{
+    .reviews {
+        .review {
             margin: 20px 0;
         }
     }

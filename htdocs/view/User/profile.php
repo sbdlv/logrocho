@@ -17,7 +17,11 @@
     <?php include "view/nav.php" ?>
     <div class="container-fluid profile_and_tabs py-5">
         <div class="info text-center mb-5">
-            <img src="../img/pfp.jpg" alt="" class="img-fluid mb-3">
+            <?php if (isset($user->img_path)) : ?>
+                <img src="<?= $user->img_path ?>" alt="" class="img-fluid mb-3">
+            <?php else: ?>
+                <div class="big-pfp mb-3 d-inline-block"></div>
+            <?php endif; ?>
             <div class="email h1">usuario@logrocho.local</div>
         </div>
         <nav class="container">
