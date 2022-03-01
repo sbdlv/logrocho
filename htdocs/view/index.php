@@ -51,14 +51,17 @@
           <a href="<?= get_server_index_base_url() . "bar/search" ?>" class="option tarjeta tarjeta-btn d-flex justify-content-center flex-column align-items-center m-2">
             <img src="img/bar_icon.png" alt="">
             <p class="mt-3">Restaurantes</p>
+            <p class="mt-1 desc text-center">Busca restaurantes por su puntuación, nombre o dirección.</p>
           </a>
           <a href="<?= get_server_index_base_url() . "pincho/search" ?>" class="option tarjeta tarjeta-btn d-flex justify-content-center flex-column align-items-center m-2">
             <img src="img/pincho_icon.png" alt="">
             <p class="mt-3">Pinchos</p>
+            <p class="mt-1 desc text-center">Busca pinchos por su puntuación, nombre o bar.</p>
           </a>
           <a href="<?= get_server_index_base_url() . "bar/map" ?>" class="option tarjeta tarjeta-btn d-flex justify-content-center flex-column align-items-center m-2">
             <img src="img/map_icon.png" alt="">
             <p class="mt-3">Mapa de bares</p>
+            <p class="mt-1 desc text-center">Explora el mapa de bares y accede a su información.</p>
           </a>
         </div>
       </div>
