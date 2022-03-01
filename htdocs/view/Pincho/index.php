@@ -87,7 +87,7 @@
                 </div>
             <?php endif; ?>
 
-            <?php if (empty($data->multimedia)) : ?>
+            <?php if (empty($data->reviews)) : ?>
                 <p>Este pincho no tiene reseñas.</p>
             <?php else : ?>
                 <p>Número de reseñas: <?= count($data->reviews) ?></p>

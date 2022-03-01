@@ -11,8 +11,13 @@ class PinchoController
 
     function index($id)
     {
-        $data = $this->completeJson($id, true);
-        include "view/Pincho/index.php";
+        if (preg_replace('/[^0-9]/', '', $id)) {
+            $data = $this->completeJson($id, true);
+            include "view/Pincho/index.php";
+            return;
+        }
+
+        include "404.php";
     }
 
     function list()
