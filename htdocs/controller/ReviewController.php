@@ -136,4 +136,36 @@ class ReviewController
 
         echo json_encode($repo->total());
     }
+
+
+    function publish()
+    {
+        if (is_logged()) {
+            if (isset($_POST["title"], $_POST["desc"], $_POST["presentation"], $_POST["texture"], $_POST["taste"], $_POST["pincho_id"])) {
+                $review = new Review();
+
+                $review->user_id = $_SESSION["user"]["id"];
+                $review->title = $_POST["title"];
+                $review->desc = $_POST["desc"];
+                $review->presentation = $_POST["presentation"];
+                $review->texture = $_POST["texture"];
+                $review->taste = $_POST["taste"];
+                $review->pincho_id = $_POST["pincho_id"];
+
+                $repo = new ReviewRepository();
+                if ($repo->save($review)) {
+                    echo "OK";
+                } else {
+                    http_response_code(400);
+                    echo "No se ha podido crear la reseña";
+                }
+            } else {
+                http_response_code(400);
+                echo "Faltan campos POST.";
+            }
+        } else {
+            http_response_code(400);
+            echo "No has iniciado sesión.";
+        }
+    }
 }

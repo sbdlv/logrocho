@@ -69,6 +69,11 @@ function is_admin()
     return isset($_SESSION["user"]) && $_SESSION["user"]["admin"];
 }
 
+/**
+ * Checks if the user is logged
+ *
+ * @return boolean
+ */
 function is_logged()
 {
     return isset($_SESSION["user"]);

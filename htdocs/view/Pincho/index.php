@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/fontawesome/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="js/OwlCarousel2/dist/assets/owl.carousel.min.css">
 </head>
 
@@ -43,11 +42,55 @@
         </section>
         <section class="container py-5">
             <h2 class="mb-5 fw-bold">Reseñas</h2>
-            <button class="btn btn-success mb-3">Escribir una reseña</button>
+            <?php if (is_logged()) : ?>
+                <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#reviewModal">Escribir una reseña</button>
+                <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <input type="hidden" name="review_pincho_id" id="review_pincho_id" value="<?= $data->pincho->id ?>">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Publicar una reseña</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close_review_modal"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="w-100 mb-2">
+                                    <label for="review_title" class="w-100 mb-2">Título</label>
+                                    <input type="text" name="review_title" id="review_title" class="w-100">
+                                </div>
+                                <div class="w-100">
+                                    <label for="review_desc" class="mb-2">Descripción</label>
+                                    <textarea cols="30" rows="10" class="w-100 mb-4" id="review_desc" name="review_desc"></textarea>
+                                </div>
+                                <div class="w-100">
+                                    <label for="review_taste">Sabor: <span id="review_taste_preview">3</label>
+                                    <input type="range" class="w-100" name="" id="review_taste" min=0 max=5 value="3">
+                                </div>
+                                <div class="w-100">
+                                    <label for="review_presentation">Presentación: <span id="review_presentation_preview">3</span></label>
+                                    <input type="range" class="w-100" name="" id="review_presentation" min=0 max=5 value="3">
+                                </div>
+                                <div class="w-100">
+                                    <label for="review_texture">Textura: <span id="review_texture_preview">3</label>
+                                    <input type="range" class="w-100" name="" id="review_texture" min=0 max=5 value="3">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                <button type="button" class="btn btn-primary" onclick="publish()">Publicar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php else : ?>
+                <div class="alert alert-primary mb-3" role="alert">
+                    <a href="<?= get_server_index_base_url() ?>user/login">Inicia sesión</a> para publicar una review
+                </div>
+            <?php endif; ?>
+
             <?php if (empty($data->multimedia)) : ?>
                 <p>Este pincho no tiene reseñas.</p>
             <?php else : ?>
-                <p>Número de reseñas: <?=count($data->reviews)?></p>
+                <p>Número de reseñas: <?= count($data->reviews) ?></p>
                 <?php foreach ($data->reviews as $review) : ?>
                     <?php include "view/Review/templates/card-interact.php" ?>
                 <?php endforeach; ?>
@@ -61,6 +104,12 @@
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/OwlCarousel2/dist/owl.carousel.min.js"></script>
     <script src="js/info/multimedia.js"></script>
+    <script src="js/bootstrap/js/bootstrap.min.js"></script>
+
+    <?php if (is_logged()) : ?>
+        <script src="js/review.js"></script>
+    <?php endif; ?>
+
 </body>
 
 </html>
