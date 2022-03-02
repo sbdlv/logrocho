@@ -7,14 +7,30 @@
         <div class="card-subtitle mb-2"><span class="fw-bold">Presentación: <?php TemplateHelper::getStarts($review->presentation) ?></div>
         <div class="card-subtitle mb-2"><span class="fw-bold">Textura: <?php TemplateHelper::getStarts($review->texture) ?></div>
         <div class="d-flex justify-content-end">
-            <button class="likes btn" onclick="like(<?=$review->id?>)">
-                <i class="fas fa-thumbs-up text-success"></i>
-                <?= $review->likes ?>
-            </button>
-            <button class="dislikes btn" onclick="dislike(<?=$review->id?>)">
-                <i class="fas fa-thumbs-down text-danger"></i>
-                <?= $review->dislikes ?>
-            </button>
+            <?php if (is_logged()) : ?>
+                <button class="likes btn" onclick="like(<?= $review->id ?>)">
+                    <i class="fas fa-thumbs-up text-success"></i>
+                    <?= $review->likes ?>
+                </button>
+                <button class="dislikes btn" onclick="dislike(<?= $review->id ?>)">
+                    <i class="fas fa-thumbs-down text-danger"></i>
+                    <?= $review->dislikes ?>
+                </button>
+            <?php else : ?>
+                <a class="likes btn" href="<?= get_server_index_base_url() ?>user/login">
+                    <i class="fas fa-thumbs-up text-success"></i>
+                    <?= $review->likes ?>
+                </a>
+                <a class="dislikes btn" href="<?= get_server_index_base_url() ?>user/login">
+                    <i class="fas fa-thumbs-down text-danger"></i>
+                    <?= $review->dislikes ?>
+                </a>
+            <?php endif; ?>
         </div>
     </div>
 </div>
+<?php
+require_once "repository/ReviewRepository.php";
+$repo = new ReviewRepository();
+var_dump($repo->hasBeenVotedByUser($_SESSION["user"]["id"], $review->id));
+?>
