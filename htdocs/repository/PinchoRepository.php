@@ -333,4 +333,16 @@ class PinchoRepository implements IDAO
 
         return $instances;
     }
+
+    public function findAllOrderByRating()
+    {
+        $results = get_db_connection()->query("SELECT p.*, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id GROUP BY p.id ORDER BY rating DESC");
+        $instances = [];
+
+        foreach ($results as $row) {
+            $instances[] = Pincho::getInstance($row);
+        }
+
+        return $instances;
+    }
 }

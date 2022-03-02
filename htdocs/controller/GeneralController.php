@@ -21,4 +21,21 @@ class GeneralController
 
         echo json_encode($results);
     }
+
+    public function bestPinchosAndReviews()
+    {
+        require_once "repository/PinchoRepository.php";
+        require_once "repository/ReviewRepository.php";
+        $pinchoRepo = new PinchoRepository();
+        $reviewRepo = new ReviewRepository();
+
+        header('Content-Type: application/json; charset=utf-8');
+
+        $results = [
+            "pinchos" => $pinchoRepo->findAllOrderByRating(),
+            "reviews" => $reviewRepo->findAllOrderByRating()
+        ];
+        
+        echo json_encode($results);
+    }
 }

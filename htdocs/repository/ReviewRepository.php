@@ -221,4 +221,16 @@ class ReviewRepository implements IDAO
 
         return (bool) $stmt->fetch()["isLike"];
     }
+
+    public function findAllOrderByRating()
+    {
+        $results = get_db_connection()->query("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  LEFT JOIN review_user_likes rul ON r.id = rul.review_id GROUP BY r.id ORDER BY likes DESC");
+        $instances = [];
+
+        foreach ($results as $row) {
+            $instances[] = Review::getInstance($row);
+        }
+
+        return $instances;
+    }
 }

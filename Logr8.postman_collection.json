@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "c0415b29-07d1-45b8-a479-5284aaa487b4",
+		"_postman_id": "d51b8874-8817-4435-b315-2305fb3fd4ba",
 		"name": "Logr8",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -844,6 +844,42 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Votar reseña",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "review_id",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "isLike",
+									"value": "1",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "logrocho.local/index.php/user/voteReview/",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"user",
+								"voteReview",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -1053,6 +1089,35 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Token serach",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "logrocho.local/index.php/general/tokenSearch/me",
+					"host": [
+						"logrocho",
+						"local"
+					],
+					"path": [
+						"index.php",
+						"general",
+						"tokenSearch",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Best Pinchos and Reviews",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
