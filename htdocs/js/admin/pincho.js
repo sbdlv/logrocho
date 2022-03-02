@@ -16,6 +16,25 @@ $("#mainTableWrapper").AjaxTable(
                 }
             },
             {
+                queryIndex: "desc",
+                header: {
+                    displayName: "Descripción",
+                },
+                col: {
+                    type: "text"
+                }
+            },
+            {
+                queryIndex: "rating",
+                header: {
+                    displayName: "Puntuación",
+                },
+                col: {
+                    type: "text"
+                },
+                class: "text-center"
+            },
+            {
                 queryIndex: "bar_id",
                 header: {
                     displayName: "Bar ID",
@@ -23,7 +42,7 @@ $("#mainTableWrapper").AjaxTable(
                 col: {
                     type: "text"
                 },
-                class: "text-center"                
+                class: "text-center"
             },
         ],
         tableClass: "table"

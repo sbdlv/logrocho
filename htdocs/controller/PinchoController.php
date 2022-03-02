@@ -74,12 +74,13 @@ class PinchoController
 
     function update()
     {
-        if (isset($_POST["id"], $_POST["bar_id"], $_POST["name"], $_POST["price"], $_POST["allergens"])) {
+        if (isset($_POST["id"], $_POST["bar_id"], $_POST["name"], $_POST["desc"], $_POST["price"])) {
             $pincho = new Pincho();
 
             $pincho->id = $_POST["id"];
             $pincho->bar_id = $_POST["bar_id"];
             $pincho->name = $_POST["name"];
+            $pincho->desc = $_POST["desc"];
             $pincho->price = $_POST["price"];
 
             $repo = new PinchoRepository();
@@ -87,7 +88,7 @@ class PinchoController
             $images = isset($_POST["images"]) ? $_POST["images"] : [];
             $repo->treatImages($_POST["id"], $images);
 
-            if ($repo->update($pincho) && $repo->setAllergens($pincho, $_POST["allergens"])) {
+            if ($repo->update($pincho) && $repo->setAllergens($pincho, isset($_POST["allergens"]) ? $_POST["allergens"] : [])) {
                 echo "Se ha modificado el pincho";
             } else {
                 http_response_code(400);

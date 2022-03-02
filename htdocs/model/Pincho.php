@@ -10,6 +10,7 @@ class Pincho extends AbstractMappedSQLModel
     public int $id;
     public int $bar_id;
     public string $name;
+    public string $desc;
     public float $price;
     public float $rating;
     public string $bar_name;
@@ -20,6 +21,7 @@ class Pincho extends AbstractMappedSQLModel
             "id" => "id",
             "bar_id" => "bar_id",
             "name" => "name",
+            "desc" => "desc",
             "price" => "price",
             "rating" => "rating",
             "bar_name" => "bar_name",

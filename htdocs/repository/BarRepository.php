@@ -253,4 +253,20 @@ class BarRepository implements IDAO
 
         return count($results);
     }
+
+    public function tokenSearch($searchText)
+    {
+        //Delete old images
+        $stmt = get_db_connection()->prepare("SELECT * FROM `BAR` WHERE name LIKE ?");
+        $stmt->execute(["%" . $searchText . "%"]);
+
+        $results = $stmt->fetchAll();
+        $instances = [];
+
+        foreach ($results as $row) {
+            $instances[] = Bar::getInstance($row);
+        }
+
+        return $instances;
+    }
 }

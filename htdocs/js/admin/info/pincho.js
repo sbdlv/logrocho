@@ -2,6 +2,7 @@ $("#save_btn").on("click", () => {
     let data = {
         id: $("#pincho_id").val(),
         name: $("#pincho_name").val(),
+        desc: $("#pincho_desc").val(),
         bar_id: $("#pincho_bar_id").val(),
         price: $("#pincho_price").val(),
         allergens: $("#pincho_allergens").val(),

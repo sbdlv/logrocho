@@ -33,6 +33,10 @@
                                     <td><input type="text" name="" id="pincho_name" value="<?= $pincho->name ?>"></td>
                                 </tr>
                                 <tr>
+                                    <td>Descripción</td>
+                                    <td><textarea name="" id="pincho_desc" cols="30" rows="10" autocomplete="off"><?= $pincho->desc ?></textarea></td>
+                                </tr>
+                                <tr>
                                     <td>Bar</td>
                                     <td>
                                         <select name="" id="pincho_bar_id" autocomplete="false">
@@ -58,7 +62,7 @@
                                 </tr>
                                 <tr>
                                     <td>Puntuación</td>
-                                    <td class="puntuacionWrapper">?<i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><?=$pincho->rating?><i class="fas fa-star"></i></td>
                                 </tr>
                             </tbody>
                         </table>

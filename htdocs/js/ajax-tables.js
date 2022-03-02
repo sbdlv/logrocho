@@ -76,15 +76,17 @@ function printTable(root, options) {
         //Link to entity info page
         tr.append(
             $("<td></td>").append(
-                $("<a></a>").attr("href", options.infoBaseUrl + rowData["id"]).append(
-                    $('<i class="fas fa-external-link-alt"></i>')
-                ).addClass("btn btn-primary"),
-                $("<button></button>").append(
-                    $('<i class="fas fa-trash"></i>')
-                ).addClass("btn btn-danger").on("click", () => {
-                    deleteRow(rowData["id"], root, options);
-                }).addClass("ms-2")
-            ).addClass("text-center")
+                $("<div></div>").append(
+                    $("<a></a>").attr("href", options.infoBaseUrl + rowData["id"]).append(
+                        $('<i class="fas fa-external-link-alt"></i>')
+                    ).addClass("btn btn-primary"),
+                    $("<button></button>").append(
+                        $('<i class="fas fa-trash"></i>')
+                    ).addClass("btn btn-danger").on("click", () => {
+                        deleteRow(rowData["id"], root, options);
+                    }).addClass("ms-2")
+                ).addClass("d-flex justify-content-center")
+            )
         )
 
         tbody.append(tr);

@@ -18,7 +18,7 @@ class PinchoRepository implements IDAO
      */
     function find($id)
     {
-        $stmt = get_db_connection()->prepare("SELECT p.*, IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0) as rating, b.name bar_name FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN bar b ON b.id = p.bar_id WHERE p.id = ? GROUP BY p.id");
+        $stmt = get_db_connection()->prepare("SELECT p.*, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating, b.name bar_name FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN bar b ON b.id = p.bar_id WHERE p.id = ? GROUP BY p.id");
         $stmt->execute([$id]);
 
         $fetch = $stmt->fetchAll();
@@ -36,9 +36,9 @@ class PinchoRepository implements IDAO
     function findAll($page = false, $amount = 1)
     {
         if ($page !== false) {
-            $results = get_db_connection()->query("SELECT p.*, IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id GROUP BY p.id LIMIT $page,$amount");
+            $results = get_db_connection()->query("SELECT p.*, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id GROUP BY p.id LIMIT $page,$amount");
         } else {
-            $results = get_db_connection()->query("SELECT p.*, IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id GROUP BY p.id");
+            $results = get_db_connection()->query("SELECT p.*, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id GROUP BY p.id");
         }
 
         $instances = [];
@@ -58,8 +58,8 @@ class PinchoRepository implements IDAO
      */
     function save($obj)
     {
-        $stmt = get_db_connection()->prepare("INSERT INTO `pincho`(`bar_id`, `name`) VALUES (?,?)");
-        return $stmt->execute([$obj->bar_id, $obj->name]);
+        $stmt = get_db_connection()->prepare("INSERT INTO `pincho`(`bar_id`, `name`, `desc`, `price`) VALUES (?,?,?,?)");
+        return $stmt->execute([$obj->bar_id, $obj->name, $obj->desc, $obj->price]);
     }
 
     /**
@@ -84,8 +84,8 @@ class PinchoRepository implements IDAO
      */
     function update($obj)
     {
-        $stmt = get_db_connection()->prepare("UPDATE `pincho` SET `bar_id` = ?, `name` = ?, `price` = ? WHERE `id` = ?");
-        return $stmt->execute([$obj->bar_id, $obj->name, $obj->price, $obj->id]);
+        $stmt = get_db_connection()->prepare("UPDATE `pincho` SET `bar_id` = ?, `name` = ?, `price` = ?, `desc` = ? WHERE `id` = ?");
+        return $stmt->execute([$obj->bar_id, $obj->name, $obj->price, $obj->desc, $obj->id]);
     }
 
     /**
@@ -178,7 +178,7 @@ class PinchoRepository implements IDAO
     function search($page, $amount, $nameLike = "", $barLike = "", $minRating = 0, $maxRating = 5)
     {
 
-        $baseQuery = "SELECT p.*, b.name bar_name, IFNULL(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 0) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN `bar` b ON b.id = p.bar_id GROUP BY p.id HAVING";
+        $baseQuery = "SELECT p.*, b.name bar_name, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN `bar` b ON b.id = p.bar_id GROUP BY p.id HAVING";
 
         //Having
         $baseQuery .= " p.name LIKE ?";
@@ -214,7 +214,7 @@ class PinchoRepository implements IDAO
     function searchTotal($nameLike = "", $barLike = "", $minRating = 0, $maxRating = 5)
     {
 
-        $baseQuery = "SELECT p.*, b.name, IFNULL(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 0) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN `bar` b ON b.id = p.bar_id GROUP BY p.id HAVING";
+        $baseQuery = "SELECT p.*, b.name, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN `bar` b ON b.id = p.bar_id GROUP BY p.id HAVING";
 
         //Having
         $baseQuery .= " p.name LIKE ?";
@@ -238,7 +238,7 @@ class PinchoRepository implements IDAO
      */
     function byBar($pk)
     {
-        $baseQuery = "SELECT p.*, b.name bar_name, IFNULL(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 0) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN `bar` b ON b.id = p.bar_id WHERE b.id = ? GROUP BY p.id";
+        $baseQuery = "SELECT p.*, b.name bar_name, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN `bar` b ON b.id = p.bar_id WHERE b.id = ? GROUP BY p.id";
 
         $stmt = get_db_connection()->prepare($baseQuery);
         $stmt->execute([$pk]);
@@ -262,7 +262,7 @@ class PinchoRepository implements IDAO
      */
     function last(int $amount)
     {
-        $results = get_db_connection()->query("SELECT p.*, IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0) as rating, b.name bar_name FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN bar b ON b.id = p.bar_id GROUP BY p.id ORDER BY p.id DESC LIMIT $amount");
+        $results = get_db_connection()->query("SELECT p.*, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating, b.name bar_name FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id JOIN bar b ON b.id = p.bar_id GROUP BY p.id ORDER BY p.id DESC LIMIT $amount");
         $instances = [];
 
         foreach ($results as $row) {
@@ -305,12 +305,32 @@ class PinchoRepository implements IDAO
         $stmt = get_db_connection()->prepare("DELETE FROM `pincho_allergen` WHERE `pincho_id` = ?");
         $stmt->execute([$obj->id]);
 
-        $stmt = get_db_connection()->prepare("INSERT INTO `pincho_allergen` (pincho_id, allergen_id) VALUES (?, ?)");
+        if (count($allergens) > 0) {
+            $stmt = get_db_connection()->prepare("INSERT INTO `pincho_allergen` (pincho_id, allergen_id) VALUES (?, ?)");
 
-        foreach ($allergens as $allergen) {
-            $stmt->execute([$obj->id, $allergen]);
+            foreach ($allergens as $allergen) {
+                $stmt->execute([$obj->id, $allergen]);
+            }
         }
 
+
         return true;
+    }
+
+    public function tokenSearch($searchText)
+    {
+        //Delete old images
+        $stmt = get_db_connection()->prepare("SELECT p.* FROM `pincho` p LEFT JOIN `review` r ON p.id = r.pincho_id WHERE p.name LIKE ? OR p.desc LIKE ? OR r.desc LIKE ? OR r.title LIKE ? GROUP BY p.id;");
+        $searchText = "%" . $searchText . "%";
+        $stmt->execute([$searchText, $searchText, $searchText, $searchText]);
+
+        $results = $stmt->fetchAll();
+        $instances = [];
+
+        foreach ($results as $row) {
+            $instances[] = Pincho::getInstance($row);
+        }
+
+        return $instances;
     }
 }
