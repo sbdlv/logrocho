@@ -30,7 +30,7 @@ class BarRepository implements IDAO
      *
      * @param mixed $page Actual page number. If not defined, all results are returned.
      * @param integer $amount Amount of results per page.
-     * @param mixed $orderBy THe field to do an order by.
+     * @param string $orderBy THe field to do an order by.
      * @param string $orderDir The order by direction. Can be "ASC" or "DESC"
      * @return Bar[] The resulting bars.
      */
@@ -138,13 +138,12 @@ class BarRepository implements IDAO
             $imagesSrc[] = $row["path"];
         }
 
-        if($imgs === false){
+        if ($imgs === false) {
             return $imagesSrc;
         } else {
             $imgs[$id] = $imagesSrc;
             return $imgs;
         }
-
     }
 
     /**
