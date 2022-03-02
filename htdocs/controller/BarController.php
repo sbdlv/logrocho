@@ -202,6 +202,7 @@ class BarController
 
     function map()
     {
+        $activeMenu = "map";
         include "view/Bar/map.php";
     }
 

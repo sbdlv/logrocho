@@ -4,9 +4,16 @@
 
     a{
         font-size: 20px;
+
+        &#navbarDropdownMenuLink{
+            i{
+                font-size: 26px;
+            }
+        }
     }
-    li{
+    li,a{
         &.active{
+            color: $color-primary;
             a{
                 color: $color-primary;
                 //font-weight: bold;

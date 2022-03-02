@@ -320,6 +320,8 @@ class UserController
     //Public
     function profile($id)
     {
+        $activeMenu = "user";
+
         if ($id != $_SESSION["user"]["id"]) {
             require "404.php";
             die;
