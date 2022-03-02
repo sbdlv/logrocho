@@ -64,15 +64,20 @@ function is_admin_for_api()
     }
 }
 
+/**
+ * Checks if a user is an admin. (Based on PHP $_SESSION)
+ *
+ * @return boolean True if the user is an admin, false if not.
+ */
 function is_admin()
 {
     return isset($_SESSION["user"]) && $_SESSION["user"]["admin"];
 }
 
 /**
- * Checks if the user is logged
+ * Checks if the user is logged.
  *
- * @return boolean
+ * @return boolean True if the user is logged, false if not.
  */
 function is_logged()
 {
@@ -82,7 +87,7 @@ function is_logged()
 /**
  * Gets the system root path for the current web, which means, it returns the dirname of the index.php of this mvc.
  *
- * @return string The web root system path
+ * @return string The web root system path.
  */
 function get_system_web_root_folder_path()
 {
