@@ -32,5 +32,5 @@
 <?php
 require_once "repository/ReviewRepository.php";
 $repo = new ReviewRepository();
-var_dump($repo->hasBeenVotedByUser($_SESSION["user"]["id"], $review->id));
+var_dump($repo->didUserVoteLike($_SESSION["user"]["id"], $review->id));
 ?>

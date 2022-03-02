@@ -208,9 +208,17 @@ class ReviewRepository implements IDAO
 
     function hasBeenVotedByUser($user_id, $review_id)
     {
-        $stmt = get_db_connection()->prepare("SELECT isLike FROM `review` r WHERE r.user_id = ? AND review_id = ?");
+        $stmt = get_db_connection()->prepare("SELECT isLike FROM `review_user_likes` r WHERE r.user_id = ? AND review_id = ?");
         $stmt->execute([$user_id, $review_id]);
 
         return $stmt->rowCount() > 0;
+    }
+
+    function didUserVoteLike($user_id, $review_id)
+    {
+        $stmt = get_db_connection()->prepare("SELECT isLike FROM `review_user_likes` r WHERE r.user_id = ? AND review_id = ?");
+        $stmt->execute([$user_id, $review_id]);
+
+        return (bool) $stmt->fetch()["isLike"];
     }
 }
