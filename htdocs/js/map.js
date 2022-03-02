@@ -13,7 +13,7 @@ $.ajax({
     success: function (response) {
 
         let markerIcon = L.icon({
-            iconUrl: "/img/bar_icon.png",
+            iconUrl: "img/bar_icon.png",
             iconSize: [40, 40]
         });
 
