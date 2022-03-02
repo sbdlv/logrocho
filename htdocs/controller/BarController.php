@@ -26,7 +26,7 @@ class BarController
         $bar = $repo->find($id);
         $barImages = $repo->getImages($id);
         $activeMenu = "bar";
-        include "view/Bar/info.php";
+        include "view/Bar/edit.php";
     }
 
     function alta()
