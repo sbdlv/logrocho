@@ -3,15 +3,17 @@ require_once "IDAO.php";
 require_once "model/Bar.php";
 
 /**
+ * Manage operations int the database for bar entities.
+ * 
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
  */
 class BarRepository implements IDAO
 {
     /**
-     * Obtiene la información de un bar
+     * Obtains a bar from the database.
      *
-     * @param string $id el email del bar
-     * @return Bar
+     * @param string $id The bar ID.
+     * @return Bar The bar.
      */
     function find($id)
     {
@@ -24,13 +26,13 @@ class BarRepository implements IDAO
     }
 
     /**
-     * Obitiene los bares de la BD, mediante paginación
+     * Obtains all the bars from the database. Supports pagination.
      *
-     * @param mixed $page número de página actual
-     * @param integer $amount Cantidad de resultados por página
-     * @param mixed $orderBy El nombre del campo por el que se va a ordenar
-     * @param string $orderDir Dirección de ordenación (ASC, DESC)
-     * @return array Array de bares
+     * @param mixed $page Actual page number. If not defined, all results are returned.
+     * @param integer $amount Amount of results per page.
+     * @param mixed $orderBy THe field to do an order by.
+     * @param string $orderDir The order by direction. Can be "ASC" or "DESC"
+     * @return Bar[] The resulting bars.
      */
     function findAll($page = false, $amount = 1, $orderBy = false, $orderDir = "DESC")
     {
@@ -54,10 +56,10 @@ class BarRepository implements IDAO
     }
 
     /**
-     * Inserta en la base de datos el usuario
+     * Inserts a new bar into the database
      *
-     * @param stdClass|object $obj
-     * @return true si todo ha sido correcto, false sí no.
+     * @param stdClass|object|Bar $obj The Bar to insert.
+     * @return true if the bar was inserted, false if not.
      */
     function save($obj)
     {
@@ -65,6 +67,12 @@ class BarRepository implements IDAO
         return $stmt->execute([$obj->name, $obj->address, $obj->lon, $obj->lat, $obj->terrace]);
     }
 
+    /**
+     * Deletes a bar from the database
+     *
+     * @param Bar $obj The bar to delete
+     * @return boolean if the bar was deleted, false if not.
+     */
     function delete($obj): bool
     {
         $stmt = get_db_connection()->prepare("DELETE FROM bar WHERE `id` = ?");
@@ -73,12 +81,23 @@ class BarRepository implements IDAO
         return $stmt->rowCount();
     }
 
+    /**
+     * Updates a bar from the database
+     *
+     * @param Bar $obj the bar to update
+     * @return boolean if the bar was updated, false if not.
+     */
     function update($obj)
     {
         $stmt = get_db_connection()->prepare("UPDATE `bar` SET `name` = ?, `address` = ?, `lon` = ?, `lat` = ?, `terrace` = ? WHERE `id` = ?");
         return $stmt->execute([$obj->name, $obj->address, $obj->lon, $obj->lat, $obj->terrace, $obj->id]);
     }
 
+    /**
+     * Returns the total amount of bars on the database.
+     *
+     * @return int Total amount.
+     */
     function total()
     {
         $results = get_db_connection()->query("SELECT count(*) as total FROM bar");
@@ -86,12 +105,27 @@ class BarRepository implements IDAO
         return $results->fetch()["total"];
     }
 
+    /**
+     * Uploads a picture for a bar.
+     *
+     * @param int $pk The bar ID.
+     * @param string $path The img path.
+     * @param int $priority The priority of the image.
+     * @return boolean if the image was inserted, false if not.
+     */
     function uploadPic($pk, $path, $priority = -1)
     {
         $stmt = get_db_connection()->prepare("INSERT INTO `multimediaBar`(`bar_id`, `path`, `priority`) VALUES (?,?,?)");
         return $stmt->execute([$pk, $path, $priority]);
     }
 
+    /**
+     * Returns the images of a bar by ID.
+     *
+     * @param int $id The bar ID.
+     * @param array $imgs If passed, a new entry will be created on the array, where the key is the bar ID and the value is the array of images of such bar. 
+     * @return array The images array.
+     */
     function getImages($id, &$imgs = false)
     {
         $stmt = get_db_connection()->prepare("SELECT * FROM `multimediabar` WHERE bar_id = ? ORDER BY priority, id");
@@ -113,6 +147,9 @@ class BarRepository implements IDAO
 
     }
 
+    /**
+     * @deprecated No se esta usando?
+     */
     function getImagesForArray($objs, $imgs = [])
     {
         foreach ($objs as $obj => $id) {
@@ -122,6 +159,13 @@ class BarRepository implements IDAO
         return $imgs;
     }
 
+    /**
+     * Manages the bar images
+     *
+     * @param integer $id The bar ID
+     * @param array $imagesSrc The bar images paths. If empty, all the current images will be deleted.
+     * @return boolean If the images were deleted or not. 
+     */
     function treatImages(int $id, array $imagesSrc)
     {
 
@@ -145,6 +189,17 @@ class BarRepository implements IDAO
         }
     }
 
+    /**
+     * Advance search for bars.
+     *
+     * @param int $page Page number.
+     * @param int $amount Amount of results per page.
+     * @param string $nameLike The like condition for the bar's name. By default empty (any).
+     * @param string $addressLike The like condition for the bar's address. By default empty (any).
+     * @param integer $minRating The like condition for the minimum bar's rating accepted. By default 0 (lowest).
+     * @param integer $maxRating The like condition for the maximum bar's rating accepted. By default 5 (highest).
+     * @return Bar[] The bars that meet the conditions.
+     */
     function search($page, $amount, $nameLike = "", $addressLike = "", $minRating = 0, $maxRating = 5)
     {
 
@@ -172,6 +227,15 @@ class BarRepository implements IDAO
         return $instances;
     }
 
+    /**
+     * Gets the total amount of results of an advance search. Useful for pagination.
+     *
+     * @param string $nameLike The like condition for the bar's name. By default empty (any).
+     * @param string $addressLike The like condition for the bar's address. By default empty (any).
+     * @param integer $minRating The like condition for the minimum bar's rating accepted. By default 0 (lowest).
+     * @param integer $maxRating The like condition for the maximum bar's rating accepted. By default 5 (highest).
+     * @return int The total amount of results.
+     */
     function searchTotal($nameLike = "", $addressLike = "", $minRating = 0, $maxRating = 5)
     {
 
