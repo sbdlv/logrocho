@@ -1,6 +1,6 @@
 <?php
 require_once "repository/PinchoRepository.php";
-add_to_breadcrumbs("Pinchos", get_server_index_base_url() . "pincho");
+add_to_breadcrumbs("Pinchos", get_server_index_base_url() . "pincho/list");
 
 /**
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>

@@ -1,6 +1,6 @@
 <?php
 require_once "repository/BarRepository.php";
-add_to_breadcrumbs("Bares", get_server_index_base_url() . "bar");
+add_to_breadcrumbs("Bares", get_server_index_base_url() . "bar/list");
 
 /**
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>

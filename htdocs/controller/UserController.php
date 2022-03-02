@@ -1,6 +1,6 @@
 <?php
 require_once "repository/UserRepository.php";
-add_to_breadcrumbs("Usuarios", get_server_index_base_url() . "user");
+add_to_breadcrumbs("Usuarios", get_server_index_base_url() . "user/list");
 
 /**
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>

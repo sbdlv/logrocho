@@ -1,6 +1,6 @@
 <?php
 require_once "repository/ReviewRepository.php";
-add_to_breadcrumbs("Reseñas", get_server_index_base_url() . "review");
+add_to_breadcrumbs("Reseñas", get_server_index_base_url() . "review/list");
 
 /**
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
