@@ -74,7 +74,7 @@ class ReviewRepository implements IDAO
      * Deletes a review from the database.
      *
      * @param Review $obj The review to delete.
-     * @return boolean if the review was deleted, false if not.
+     * @return bool if the review was deleted, false if not.
      */
     function delete($obj): bool
     {
@@ -88,7 +88,7 @@ class ReviewRepository implements IDAO
      * Updates a review from the database.
      *
      * @param Review $obj the review to update.
-     * @return boolean if the review was updated, false if not.
+     * @return bool if the review was updated, false if not.
      */
     function update($obj)
     {

@@ -71,7 +71,7 @@ class BarRepository implements IDAO
      * Deletes a bar from the database
      *
      * @param Bar $obj The bar to delete
-     * @return boolean if the bar was deleted, false if not.
+     * @return bool if the bar was deleted, false if not.
      */
     function delete($obj): bool
     {
@@ -85,7 +85,7 @@ class BarRepository implements IDAO
      * Updates a bar from the database
      *
      * @param Bar $obj the bar to update
-     * @return boolean if the bar was updated, false if not.
+     * @return bool if the bar was updated, false if not.
      */
     function update($obj)
     {
@@ -111,7 +111,7 @@ class BarRepository implements IDAO
      * @param int $pk The bar ID.
      * @param string $path The img path.
      * @param int $priority The priority of the image.
-     * @return boolean if the image was inserted, false if not.
+     * @return bool if the image was inserted, false if not.
      */
     function uploadPic($pk, $path, $priority = -1)
     {
@@ -163,7 +163,7 @@ class BarRepository implements IDAO
      *
      * @param integer $id The bar ID
      * @param array $imagesSrc The bar images paths. If empty, all the current images will be deleted.
-     * @return boolean If the images were deleted or not. 
+     * @return bool If the images were deleted or not. 
      */
     function treatImages(int $id, array $imagesSrc)
     {

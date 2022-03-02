@@ -66,7 +66,7 @@ class PinchoRepository implements IDAO
      * Deletes a pincho from the database
      *
      * @param Pincho $obj The pincho to delete
-     * @return boolean if the pincho was deleted, false if not.
+     * @return bool if the pincho was deleted, false if not.
      */
     function delete($obj): bool
     {
@@ -80,7 +80,7 @@ class PinchoRepository implements IDAO
      * Updates a pincho from the database
      *
      * @param Pincho $obj the pincho to update
-     * @return boolean if the pincho was updated, false if not.
+     * @return bool if the pincho was updated, false if not.
      */
     function update($obj)
     {
@@ -106,7 +106,7 @@ class PinchoRepository implements IDAO
      * @param int $pk The pincho ID.
      * @param string $path The img path.
      * @param int $priority The priority of the image.
-     * @return boolean if the image was inserted, false if not.
+     * @return bool if the image was inserted, false if not.
      */
     function uploadPic($pk, $path, $priority = -1)
     {
@@ -139,7 +139,7 @@ class PinchoRepository implements IDAO
      *
      * @param integer $id The pincho ID
      * @param array $imagesSrc The pincho images paths. If empty, all the current images will be deleted.
-     * @return boolean If the images were deleted or not. 
+     * @return bool If the images were deleted or not. 
      */
     function treatImages(int $id, array $imagesSrc)
     {
@@ -298,7 +298,7 @@ class PinchoRepository implements IDAO
      *
      * @param Pincho $obj The pincho to set the allergens.
      * @param array $allergens THe allergens id to add.
-     * @return boolean True if the operation was succesful.
+     * @return bool True if the operation was succesful.
      */
     function setAllergens($obj, $allergens)
     {
