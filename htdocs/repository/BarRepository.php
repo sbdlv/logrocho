@@ -3,7 +3,7 @@ require_once "IDAO.php";
 require_once "model/Bar.php";
 
 /**
- * Manage operations int the database for bar entities.
+ * Manage operations in the database for bar entities.
  * 
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
  */

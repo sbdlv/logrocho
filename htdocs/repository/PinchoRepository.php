@@ -3,7 +3,7 @@ require_once "IDAO.php";
 require_once "model/Pincho.php";
 
 /**
- * Manage operations int the database for pincho entities.
+ * Manage operations in the database for pincho entities.
  * 
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
  */

@@ -3,7 +3,7 @@ require_once "IDAO.php";
 require_once "model/Review.php";
 
 /**
- * Manage operations int the database for review entities.
+ * Manage operations in the database for review entities.
  * 
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
  */
