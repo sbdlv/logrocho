@@ -1,7 +1,8 @@
 <?php
 
 /**
- * Makes easier to convert SQL fetch data into instance of an class by just calling the getInstance() method.
+ * Makes easier to convert SQL fetch data and stdClass into instance of a class by just calling the getInstance() method.
+ * 
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
  */
 abstract class AbstractMappedSQLModel
@@ -17,10 +18,10 @@ abstract class AbstractMappedSQLModel
     /**
      * Gets a new instance from the fetch data.
      *
-     * @param mixed $data
+     * @param PDOStatement|stdClass|array $fetchData The object data.
      * @return mixed The instance created from the data
      */
-    static function getInstance($fetchData, $images = false)
+    static function getInstance($fetchData)
     {
         if ($fetchData instanceof stdClass) {
             $fetchData = json_decode(json_encode($fetchData), true);
