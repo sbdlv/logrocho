@@ -29,6 +29,22 @@ class PinchoController
         include "view/Pincho/list.php";
     }
 
+    public function new()
+    {
+        add_to_breadcrumbs("Nuevo pincho");
+        $activeMenu = "pincho";
+
+        require_once "repository/BarRepository.php";
+        $barRepo = new BarRepository();
+        $bars = $barRepo->findAll();
+
+        require_once "repository/AllergenRepository.php";
+        $allergenRepo = new AllergenRepository();
+        $allergens = $allergenRepo->findAll();
+
+        include "view/Pincho/new.php";
+    }
+
     function edit($id)
     {
         $repo = new PinchoRepository();
@@ -54,16 +70,19 @@ class PinchoController
 
     function alta()
     {
-        if (isset($_POST["bar_id"], $_POST["name"])) {
+        if (isset($_POST["bar_id"], $_POST["name"], $_POST["desc"], $_POST["price"])) {
             $pincho = new Pincho();
 
             $pincho->bar_id = $_POST["bar_id"];
             $pincho->name = $_POST["name"];
+            $pincho->desc = $_POST["desc"];
+            $pincho->price = $_POST["price"];
             //TODO: Incluir campo imagen etc
 
             $repo = new PinchoRepository();
-            if ($repo->save($pincho)) {
-                echo "Se ha dado de alta el pincho";
+            $newID = $repo->save($pincho);
+            if ($newID) {
+                echo $newID;
             } else {
                 echo "Error: No se ha dado de alta el pincho";
             }

@@ -59,7 +59,12 @@ class PinchoRepository implements IDAO
     function save($obj)
     {
         $stmt = get_db_connection()->prepare("INSERT INTO `pincho`(`bar_id`, `name`, `desc`, `price`) VALUES (?,?,?,?)");
-        return $stmt->execute([$obj->bar_id, $obj->name, $obj->desc, $obj->price]);
+
+        if ($stmt->execute([$obj->bar_id, $obj->name, $obj->desc, $obj->price])) {
+            return get_db_connection()->lastInsertId();
+        } else {
+            return false;
+        }
     }
 
     /**

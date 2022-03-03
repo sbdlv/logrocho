@@ -170,6 +170,7 @@ class BarController
     function new()
     {
         $activeMenu = "bar";
+        add_to_breadcrumbs("Nuevo bar");
 
         include "view/Bar/new.php";
     }
