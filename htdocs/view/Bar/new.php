@@ -34,6 +34,10 @@
                                     <td><input type="text" name="" id="bar_name" value=""></td>
                                 </tr>
                                 <tr>
+                                    <td>Descripción</td>
+                                    <td><textarea name="" id="bar_desc" cols="30" rows="10" autocomplete="off"></textarea></td>
+                                </tr>
+                                <tr>
                                     <td>Dirección</td>
                                     <td><input type="text" name="" id="bar_address" value=""></td>
                                 </tr>

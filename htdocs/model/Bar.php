@@ -8,6 +8,7 @@ class Bar extends AbstractMappedSQLModel
 {
     public int $id;
     public string $name;
+    public string $desc;
     public string $address;
     public float $lon;
     public float $lat;
@@ -19,6 +20,7 @@ class Bar extends AbstractMappedSQLModel
         return [
             "id" => "id",
             "name" => "name",
+            "desc" => "desc",
             "address" => "address",
             "lon" => "lon",
             "lat" => "lat",

@@ -1,6 +1,7 @@
 $("#save_btn").on("click", () => {
     let bar = {
         name: $("#bar_name").val(),
+        desc: $("#bar_desc").val(),
         address: $("#bar_address").val(),
         terrace: $("#bar_terrace").val(),
         lon: $("#bar_lon").val(),

@@ -1,3 +1,3 @@
+ - Añadir altura min a las tarjetas de la search de bares y añadir la desc
  - Zona usuario. Agregar links y funcionalidad al los delete
- - Agregar entidades desde back
- - Para el cPanel, n ose pueden typear las variables
+ - Para el cPanel, no se pueden typear las variables

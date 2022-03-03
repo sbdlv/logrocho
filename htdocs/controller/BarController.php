@@ -31,10 +31,11 @@ class BarController
 
     function alta()
     {
-        if (isset($_POST["name"], $_POST["address"], $_POST["lon"], $_POST["lat"], $_POST["terrace"])) {
+        if (isset($_POST["name"], $_POST["desc"], $_POST["address"], $_POST["lon"], $_POST["lat"], $_POST["terrace"])) {
             $bar = new Bar();
 
             $bar->name = $_POST["name"];
+            $bar->desc = $_POST["desc"];
             $bar->address = $_POST["address"];
             $bar->lon = $_POST["lon"];
             $bar->lat = $_POST["lat"];
@@ -56,11 +57,12 @@ class BarController
 
     function update()
     {
-        if (isset($_POST["id"], $_POST["name"], $_POST["address"], $_POST["lon"], $_POST["lat"], $_POST["terrace"])) {
+        if (isset($_POST["id"], $_POST["name"], $_POST["desc"], $_POST["address"], $_POST["lon"], $_POST["lat"], $_POST["terrace"])) {
             $bar = new Bar();
 
             $bar->id = $_POST["id"];
             $bar->name = $_POST["name"];
+            $bar->desc = $_POST["desc"];
             $bar->address = $_POST["address"];
             $bar->lon = $_POST["lon"];
             $bar->lat = $_POST["lat"];

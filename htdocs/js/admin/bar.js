@@ -16,6 +16,15 @@ $("#mainTableWrapper").AjaxTable(
                 }
             },
             {
+                queryIndex: "desc",
+                header: {
+                    displayName: "Descripción",
+                },
+                col: {
+                    type: "text"
+                }
+            },
+            {
                 queryIndex: "address",
                 header: {
                     displayName: "Dirección",
