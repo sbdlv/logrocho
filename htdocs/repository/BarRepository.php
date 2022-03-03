@@ -17,7 +17,7 @@ class BarRepository implements IDAO
      */
     function find($id)
     {
-        $stmt = get_db_connection()->prepare("SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id WHERE b.id = ? GROUP BY b.id");
+        $stmt = get_db_connection()->prepare("SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, ROUND(IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0), 2) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id WHERE b.id = ? GROUP BY b.id");
         $stmt->execute([$id]);
 
         $fetch = $stmt->fetchAll();
@@ -38,12 +38,12 @@ class BarRepository implements IDAO
     {
         if ($page !== false) {
             if ($orderBy) {
-                $results = get_db_connection()->query("SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id ORDER BY " . $orderBy . " " . $orderDir . " LIMIT $page,$amount");
+                $results = get_db_connection()->query("SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, ROUND(IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0), 2) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id ORDER BY " . $orderBy . " " . $orderDir . " LIMIT $page,$amount");
             } else {
-                $results = get_db_connection()->query("SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id LIMIT $page,$amount");
+                $results = get_db_connection()->query("SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, ROUND(IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0), 2) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id LIMIT $page,$amount");
             }
         } else {
-            $results = get_db_connection()->query("SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id");
+            $results = get_db_connection()->query("SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, ROUND(IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0), 2) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id");
         }
 
         $instances = [];
@@ -206,7 +206,7 @@ class BarRepository implements IDAO
     function search($page, $amount, $nameLike = "", $addressLike = "", $minRating = 0, $maxRating = 5)
     {
 
-        $baseQuery = "SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id HAVING";
+        $baseQuery = "SELECT b.id, b.name, b.address, b.lon, b.lat, b.terrace, ROUND(IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0), 2) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id HAVING";
 
         //Having
         $baseQuery .= " name LIKE ?";
@@ -242,7 +242,7 @@ class BarRepository implements IDAO
     function searchTotal($nameLike = "", $addressLike = "", $minRating = 0, $maxRating = 5)
     {
 
-        $baseQuery = "SELECT b.name, b.address, IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id HAVING";
+        $baseQuery = "SELECT b.name, b.address, ROUND(IFNULL(((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/3/COUNT(r.id)), 0), 2) AS rating FROM `bar` b LEFT JOIN pincho p ON b.id = p.bar_id LEFT JOIN review as r ON r.pincho_id = p.id GROUP BY b.id HAVING";
 
         //Having
         $baseQuery .= " name LIKE ?";
