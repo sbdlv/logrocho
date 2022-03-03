@@ -226,4 +226,12 @@ class PinchoController
 
         echo json_encode($info);
     }
+
+    public function images($id)
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        $repo = new PinchoRepository();
+
+        echo json_encode($repo->getImages($id));
+    }
 }

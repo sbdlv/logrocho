@@ -104,53 +104,6 @@
     <script src="js/jquery-3.6.0.min.js"></script>
     <script src="js/image-uploader.min.js"></script>
     <script src="js/imgdroparea.js"></script>
-    <script>
-        let ID = <?= $pincho->id ?>;
-        let barimgs = $(".pinchoimgs");
-        barimgs.ImgDropArea({
-            <?php if (empty($pinchoImages)) : ?>
-                imagesSrc: [],
-            <?php else : ?>
-                imagesSrc: <?= json_encode($pinchoImages) ?>,
-            <?php endif; ?>
-            additionalClass: "tarjeta",
-            onChange: (data) => {
-                console.log(data);
-            },
-            onAdd: () => {},
-        })
-
-        function uploadPic() {
-            let input = document.createElement('input');
-            input.type = 'file';
-            input.accept = "image/png, image/jpeg";
-            input.onchange = _ => {
-                // you can use this method to get file and perform respective operations
-                let files = Array.from(input.files);
-                console.log(files);
-
-                files.forEach(file => {
-                    let fd = new FormData();
-                    fd.append("pic", file);
-                    fd.append("name", file.name);
-                    fd.append("pk", ID);
-
-                    $.ajax({
-                        type: "POST",
-                        url: "index.php/pincho/uploadPic",
-                        data: fd,
-                        contentType: false,
-                        processData: false,
-                        success: function(response) {
-                            barimgs.ImgDropAreaAdd([`/img/img_pinchos/${ID}/${file.name}`])
-                        }
-                    });
-                });
-            };
-            input.click();
-        }
-    </script>
-
     <script src="js/admin/info/pincho.js"></script>
 
 </body>
