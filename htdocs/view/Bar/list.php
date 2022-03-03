@@ -64,6 +64,9 @@
                 </form>
             </section>
             <section class="tarjeta p-5 seccion-info">
+                <div class="d-flex justify-content-end">
+                    <a class="btn btn-primary" href="<?=get_server_index_base_url()?>bar/new">Añadir nuevo</a>
+                </div>
                 <div class="table-responsive mb-2" id="mainTableWrapper">
 
                 </div>
