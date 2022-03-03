@@ -64,7 +64,11 @@ class BarRepository implements IDAO
     function save($obj)
     {
         $stmt = get_db_connection()->prepare("INSERT INTO `bar`(`name`, `address`, `lon`, `lat`, `terrace`) VALUES (?,?,?,?,?)");
-        return $stmt->execute([$obj->name, $obj->address, $obj->lon, $obj->lat, $obj->terrace]);
+        if ($stmt->execute([$obj->name, $obj->address, $obj->lon, $obj->lat, $obj->terrace])) {
+            return get_db_connection()->lastInsertId();
+        } else {
+            return false;
+        }
     }
 
     /**

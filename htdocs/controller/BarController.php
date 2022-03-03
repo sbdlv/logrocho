@@ -42,8 +42,10 @@ class BarController
             //TODO: Incluir campo imagen etc
 
             $repo = new BarRepository();
-            if ($repo->save($bar)) {
-                echo "Se ha dado de alta el bar";
+
+            $newBarID = $repo->save($bar);
+            if ($newBarID !== false) {
+                echo $newBarID;
             } else {
                 echo "Error: No se ha dado de alta el bar";
             }
@@ -167,6 +169,8 @@ class BarController
 
     function new()
     {
+        $activeMenu = "bar";
+
         include "view/Bar/new.php";
     }
 
