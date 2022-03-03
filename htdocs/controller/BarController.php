@@ -236,4 +236,12 @@ class BarController
         header('Content-Type: application/json; charset=utf-8');
         echo json_encode($info);
     }
+
+    public function images($id)
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        $repo = new BarRepository();
+        
+        echo json_encode($repo->getImages($id));
+    }
 }

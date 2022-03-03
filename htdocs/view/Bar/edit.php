@@ -39,7 +39,7 @@
                                 </tr>
                                 <tr>
                                     <td>Puntuación</td>
-                                    <td class="puntuacionWrapper"><?=$bar->rating?><i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><?= $bar->rating ?><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Terraza</td>
@@ -84,53 +84,6 @@
     <script src="js/jquery-3.6.0.min.js"></script>
 
     <script src="js/imgdroparea.js"></script>
-    <script>
-        let barID = <?= $bar->id ?>;
-        let barimgs = $(".barimgs");
-        barimgs.ImgDropArea({
-            <?php if (empty($barImages)) : ?>
-                imagesSrc: [],
-            <?php else : ?>
-                imagesSrc: <?= json_encode($barImages) ?>,
-            <?php endif; ?>
-            additionalClass: "tarjeta",
-            onChange: (data) => {
-                console.log(data);
-            },
-            onAdd: () => {},
-        })
-
-        function uploadPic() {
-            let input = document.createElement('input');
-            input.type = 'file';
-            input.accept = "image/png, image/jpeg";
-            input.onchange = _ => {
-                // you can use this method to get file and perform respective operations
-                let files = Array.from(input.files);
-                console.log(files);
-
-                files.forEach(file => {
-                    let fd = new FormData();
-                    fd.append("pic", file);
-                    fd.append("name", file.name);
-                    fd.append("pk", barID);
-
-                    $.ajax({
-                        type: "POST",
-                        url: "index.php/bar/uploadPic",
-                        data: fd,
-                        contentType: false,
-                        processData: false,
-                        success: function(response) {
-                            barimgs.ImgDropAreaAdd([`/img/img_bares/${barID}/${file.name}`])
-                        }
-                    });
-                });
-            };
-            input.click();
-        }
-    </script>
-
     <script src="js/admin/info/bar.js"></script>
 
 </body>

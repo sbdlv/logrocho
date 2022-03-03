@@ -57,11 +57,15 @@
                             transform: scale(1);
                         }
                     }
+
                 }
             }
             
             button {
                 display: none;
+                i{
+                    pointer-events: none;
+                }
             }
         }
     }
