@@ -206,6 +206,13 @@ class ReviewRepository implements IDAO
         return $instances;
     }
 
+    /**
+     * Checks if a review has been voted by an user.
+     *
+     * @param int $user_id The user ID.
+     * @param int $review_id The review ID.
+     * @return boolean True if the user has voted the review, false if not.
+     */
     function hasBeenVotedByUser($user_id, $review_id)
     {
         $stmt = get_db_connection()->prepare("SELECT isLike FROM `review_user_likes` r WHERE r.user_id = ? AND review_id = ?");
@@ -214,6 +221,13 @@ class ReviewRepository implements IDAO
         return $stmt->rowCount() > 0;
     }
 
+    /**
+     * Checks if a user has voted like on a review.
+     *
+     * @param int $user_id The user ID.
+     * @param int $review_id The review ID.
+     * @return boolean True if the user has liked the review, false if not.
+     */
     function didUserVoteLike($user_id, $review_id)
     {
         $stmt = get_db_connection()->prepare("SELECT isLike FROM `review_user_likes` r WHERE r.user_id = ? AND review_id = ?");
@@ -222,6 +236,11 @@ class ReviewRepository implements IDAO
         return (bool) $stmt->fetch()["isLike"];
     }
 
+    /**
+     * Obtains all the reviews ordered by the rating.
+     *
+     * @return Review[] The resulting reviews.
+     */
     public function findAllOrderByRating()
     {
         $results = get_db_connection()->query("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  LEFT JOIN review_user_likes rul ON r.id = rul.review_id GROUP BY r.id ORDER BY likes DESC");

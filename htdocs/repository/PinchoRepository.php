@@ -54,7 +54,7 @@ class PinchoRepository implements IDAO
      * Inserts a new pincho into the database
      *
      * @param stdClass|object|Pincho $obj The Pincho to insert.
-     * @return true if the pincho was inserted, false if not.
+     * @return false|int if the pincho was inserted, the id is returned, false if not.
      */
     function save($obj)
     {
@@ -322,6 +322,12 @@ class PinchoRepository implements IDAO
         return true;
     }
 
+    /**
+     * Obtains the pinchos from the database that the name or desc or related reviews contains the specified string.
+     *
+     * @param string $searchText The string to search for.
+     * @return Pincho[] The resulting pinchos.
+     */
     public function tokenSearch($searchText)
     {
         //Delete old images
@@ -339,6 +345,11 @@ class PinchoRepository implements IDAO
         return $instances;
     }
 
+    /**
+     * Obtains all the pinchos ordered by the rating.
+     *
+     * @return Pincho[] The resulting pinchos.
+     */
     public function findAllOrderByRating()
     {
         $results = get_db_connection()->query("SELECT p.*, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id GROUP BY p.id ORDER BY rating DESC");

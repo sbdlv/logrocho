@@ -59,7 +59,7 @@ class BarRepository implements IDAO
      * Inserts a new bar into the database
      *
      * @param stdClass|object|Bar $obj The Bar to insert.
-     * @return true if the bar was inserted, false if not.
+     * @return false|int if the pincho was inserted, the id is returned, false if not.
      */
     function save($obj)
     {
@@ -258,6 +258,12 @@ class BarRepository implements IDAO
         return count($results);
     }
 
+    /**
+     * Obtains the bars from the database that the name or desc contains the specified string.
+     *
+     * @param string $searchText The string to search for.
+     * @return Bar[] The resulting bars.
+     */
     public function tokenSearch($searchText)
     {
         //Delete old images
