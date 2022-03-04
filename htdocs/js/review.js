@@ -57,31 +57,45 @@ function vote(isLike, reviewId, target) {
     target = $(target);
 
     if (target.find("i").eq(0).hasClass("text-success") || target.find("i").eq(0).hasClass("text-danger")) {
-        alert("Ya has hecho esta votación");
-        return;
+        //Se le ha dado a una votación que ya teníamos hecha -> Borrar voto
+        $.ajax({
+            type: "GET",
+            url: "index.php/user/removeVote/" + reviewId,
+            success: function (res) {
+                target.find("i").eq(0).removeClass(isLike ? "text-success" : "text-danger");
+
+                let targetText = target.find(".text").eq(0);
+                targetText.text(parseInt(targetText.text()) - 1);
+            }
+        });
+    } else {
+        $.ajax({
+            type: "POST",
+            url: "index.php/user/voteReview",
+            data: {
+                isLike: isLike ? 1 : 0,
+                review_id: reviewId
+            },
+            success: function (response) {
+                target.find("i").eq(0).addClass(isLike ? "text-success" : "text-danger");
+                target.find(".text").eq(0).text(parseInt(target.find(".text").eq(0).text()) + 1);
+
+                let theOtherBtn = target.siblings().eq(0);
+                let theOtherBtnText = theOtherBtn.find(".text").eq(0);
+                let theOtherBtnIcon = theOtherBtn.find("i").eq(0);
+
+                if (theOtherBtnIcon.hasClass(!isLike ? "text-success" : "text-danger")) {
+                    theOtherBtnIcon.removeClass(!isLike ? "text-success" : "text-danger");
+                    if (theOtherBtnText.text() != "0") {
+                        theOtherBtnText.text(parseInt(theOtherBtnText.text()) - 1);
+                    }
+                }
+                
+                //alert("Se ha votado la reseña correctamente")
+            },
+            error: function (res) {
+                alert(res);
+            }
+        });
     }
-
-    $.ajax({
-        type: "POST",
-        url: "index.php/user/voteReview",
-        data: {
-            isLike: isLike ? 1 : 0,
-            review_id: reviewId
-        },
-        success: function (response) {
-            target = $(target);
-
-            target.find("i").eq(0).addClass(isLike ? "text-success" : "text-danger");
-            target.find(".text").eq(0).text(parseInt(target.find(".text").eq(0).text()) + 1);
-
-            let theOtherBtn = target.siblings().eq(0);
-            theOtherBtn.find("i").eq(0).removeClass(!isLike ? "text-success" : "text-danger");
-            theOtherBtn.find(".text").eq(0).text(parseInt(theOtherBtn.find(".text").eq(0).text()) - 1);
-
-            alert("Se ha votado la reseña correctamente")
-        },
-        error: function (res) {
-            alert(res);
-        }
-    });
 }

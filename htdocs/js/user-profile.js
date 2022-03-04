@@ -22,12 +22,16 @@ function saveProfile() {
     });
 }
 
-function removeVote(review_id) {
+function removeVote(review_id, event) {
     $.ajax({
         type: "GET",
         url: "index.php/user/removeVote/" + review_id,
         success: function (response) {
             alert("Voto eliminado");
-        }
+            $(event.target).closest(".review-card-detailed").eq(0).remove();
+        },
+        error: function (res) { 
+            alert("Lo sentimos, no se ha podido eliminar tu voto.");
+         }
     });
 }

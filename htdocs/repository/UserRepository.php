@@ -194,7 +194,7 @@ class UserRepository implements IDAO
     }
 
     function removeVote($user_id, $review_id){
-        $stmt = get_db_connection()->prepare("DELETE FROM review WHERE `user_id` = ? AND review_id = ?");
+        $stmt = get_db_connection()->prepare("DELETE FROM review_user_likes WHERE `user_id` = ? AND `review_id` = ?");
         return $stmt->execute([$user_id, $review_id]);
     }
 }

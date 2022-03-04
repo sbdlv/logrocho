@@ -389,10 +389,16 @@ class UserController
 
     public function removeVote($review_id)
     {
+        $review_id = intval($review_id);
+
         if (is_logged()) {
             $repo = new UserRepository();
-            $repo->removeVote($_SESSION["user"]["id"], $review_id);
-            echo "OK";
+            if ($repo->removeVote($_SESSION["user"]["id"], $review_id)) {
+                echo "OK";
+            } else {
+                http_response_code(400);
+                echo "No se ha podido eliminar tu voto. Intentalo de nuevo más tarde.";
+            }
         } else {
             http_response_code(400);
             echo "Primero necesitar iniciar sesión.";
