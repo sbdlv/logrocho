@@ -58,6 +58,9 @@ class PinchoController
         $allergenRepo = new AllergenRepository();
         $allergens = $allergenRepo->findAll();
 
+        require_once "repository/ReviewRepository.php";
+        $reviewRepo = new ReviewRepository();
+        $reviews = $reviewRepo->byPincho($id);
 
         $pincho = $repo->find($id);
         $pinchoImages = $repo->getImages($id);

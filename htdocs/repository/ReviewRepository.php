@@ -20,7 +20,7 @@ class ReviewRepository implements IDAO
      */
     function find($id)
     {
-        $stmt = get_db_connection()->prepare("SELECT * FROM " . self::TABLE_NAME .  " WHERE `id` = ?");
+        $stmt = get_db_connection()->prepare("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  LEFT JOIN review_user_likes rul ON r.id = rul.review_id WHERE r.id = ? GROUP BY r.id");
         $stmt->execute([$id]);
 
         $fetch = $stmt->fetchAll();
@@ -41,12 +41,12 @@ class ReviewRepository implements IDAO
     {
         if ($page !== false) {
             if ($orderBy) {
-                $results = get_db_connection()->query("SELECT * FROM " . self::TABLE_NAME . " ORDER BY " . $orderBy . " " . $orderDir . " LIMIT $page,$amount");
+                $results = get_db_connection()->query("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  LEFT JOIN review_user_likes rul ON r.id = rul.review_id GROUP BY r.id" . " ORDER BY " . $orderBy . " " . $orderDir . " LIMIT $page,$amount");
             } else {
-                $results = get_db_connection()->query("SELECT * FROM " . self::TABLE_NAME . " LIMIT $page,$amount");
+                $results = get_db_connection()->query("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  LEFT JOIN review_user_likes rul ON r.id = rul.review_id GROUP BY r.id" . " LIMIT $page,$amount");
             }
         } else {
-            $results = get_db_connection()->query("SELECT * FROM " . self::TABLE_NAME);
+            $results = get_db_connection()->query("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  LEFT JOIN review_user_likes rul ON r.id = rul.review_id GROUP BY r.id");
         }
 
         $instances = [];
@@ -116,7 +116,7 @@ class ReviewRepository implements IDAO
      */
     function byUser($id)
     {
-        $stmt = get_db_connection()->prepare("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  JOIN review_user_likes rul ON r.id = rul.review_id WHERE r.user_id = ? GROUP BY r.id");
+        $stmt = get_db_connection()->prepare("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  LEFT JOIN review_user_likes rul ON r.id = rul.review_id WHERE r.user_id = ? GROUP BY r.id");
         $stmt->execute([$id]);
 
         $results = $stmt->fetchAll();
@@ -136,7 +136,7 @@ class ReviewRepository implements IDAO
      */
     function likedByUser($id)
     {
-        $stmt = get_db_connection()->prepare("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  JOIN review_user_likes rul ON r.id = rul.review_id WHERE rul.user_id = ? AND rul.isLike = 1 GROUP BY r.id");
+        $stmt = get_db_connection()->prepare("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  LEFT JOIN review_user_likes rul ON r.id = rul.review_id WHERE rul.user_id = ? AND rul.isLike = 1 GROUP BY r.id");
         $stmt->execute([$id]);
 
         $results = $stmt->fetchAll();
@@ -156,7 +156,7 @@ class ReviewRepository implements IDAO
      */
     function dislikedByUser($id)
     {
-        $stmt = get_db_connection()->prepare("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  JOIN review_user_likes rul ON r.id = rul.review_id WHERE rul.user_id = ? AND rul.isLike = 0 GROUP BY r.id");
+        $stmt = get_db_connection()->prepare("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  LEFT JOIN review_user_likes rul ON r.id = rul.review_id WHERE rul.user_id = ? AND rul.isLike = 0 GROUP BY r.id");
         $stmt->execute([$id]);
 
         $results = $stmt->fetchAll();

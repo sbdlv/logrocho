@@ -71,16 +71,16 @@
                                 </tr>
                                 <tr>
                                     <td>Me gusta <i class="fas fa-thumbs-up"></i></td>
-                                    <td>?</td>
+                                    <td><?=$review->likes?></td>
                                 </tr>
                                 <tr>
                                     <td>No me gusta <i class="fas fa-thumbs-down"></i></td>
-                                    <td>?</td>
+                                    <td><?=$review->dislikes?></td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="puntuacionWrapper h3">
-                            <div class="font-weight-bold mt-4 d-inline-block">Total (Calculado): </div> ? <i class="fas fa-star"></i>
+                            <div class="font-weight-bold mt-4 d-inline-block">Total (Calculado): </div> <?=round(($review->taste + $review->presentacion + $review->texture) / 3, 1)?> <i class="fas fa-star"></i>
                         </div>
                     </div>
                 </div>

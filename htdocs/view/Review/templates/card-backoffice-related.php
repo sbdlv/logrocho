@@ -17,7 +17,7 @@
                     <?= $review->dislikes ?>
                 </div>
             </div>
-            <a class="btn btn-primary" href="<?= get_server_index_base_url() ?>pincho/<?= $review->pincho_id ?>">Ver pincho</a>
+            <a class="btn btn-primary" href="<?= get_server_index_base_url() ?>review/edit/<?= $review->pincho_id ?>">Ver ficha</a>
         </div>
     </div>
 </div>

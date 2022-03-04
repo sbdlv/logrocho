@@ -77,24 +77,13 @@
             </div>
             <div class="row tarjeta p-4">
                 <h2 class="mb-4"><i class="fas fa-gavel"></i> Reseñas</h2>
-                <h3 class="h4">Destacada</h3>
-                <div class="tarjeta reseña_destacada row p-4 mb-4">
-                    <div class="imgWrapper col-3"><img class="img-fluid" src="img/pfp.jpg" alt=""></div>
-                    <div class="col">
-                        <h4>¡Lo mejor que he probado nunca!</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati eligendi quidem fuga
-                            eveniet quod. Ad aliquam rem ut! Quaerat beatae id sapiente inventore dolor harum omnis odit
-                            reiciendis ratione in.</p>
-                        <div class="puntuacionWrapper">Presentación: 5<i class="fas fa-star"></i></div>
-                        <div class="puntuacionWrapper">Sabor: 5<i class="fas fa-star"></i></div>
-                        <div class="puntuacionWrapper">Textura: 5<i class="fas fa-star"></i></div>
-                        <div class="puntuacionWrapper mb-4">Total (Calculado): 5<i class="fas fa-star"></i></div>
-                        <div class="">Me gusta: 3</div>
-                        <div class="mb-4">No me gusta: 3</div>
-                        <a href="ficha_resenia.html" class="btn btn-primary">Ver reseña</a>
-                    </div>
-                </div>
-                <a class="btn btn-primary" href="<?= get_server_index_base_url() ?>pincho/<?= $pincho->id ?>">Ver más reseñas</a>
+                <?php if (count($reviews)) : ?>
+                    <?php foreach ($reviews as $review) : ?>
+                        <?php require "view/Review/templates/card-backoffice-related.php"?>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <p>Este pincho no tiene reseñas</p>
+                <?php endif; ?>
             </div>
         </section>
     </main>
