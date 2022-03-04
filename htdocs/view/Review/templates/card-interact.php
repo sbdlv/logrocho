@@ -2,7 +2,7 @@
     <div class="me-4 pfp"><?php if (isset($review->user_img) && $review->user_img != null) : ?><img src="<?= $review->user_img ?>" alt=""><?php endif; ?></div>
     <div class="w-100">
         <p class="h4"><?= $review->title ?></p>
-        <p class="text_clamp_3 review-text"><?= $review->desc ?></p>
+        <p class="review-text"><?= $review->desc ?></p>
         <div class="card-subtitle mb-2"><span class="fw-bold">Sabor: <?php TemplateHelper::getStarts($review->taste) ?></div>
         <div class="card-subtitle mb-2"><span class="fw-bold">Presentación: <?php TemplateHelper::getStarts($review->presentation) ?></div>
         <div class="card-subtitle mb-2"><span class="fw-bold">Textura: <?php TemplateHelper::getStarts($review->texture) ?></div>
