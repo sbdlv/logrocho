@@ -2,8 +2,8 @@
 /*
 * Configure the database credentials and connection.
 */
-const DB_USER = "root";
-const DB_PASS = "";
+const DB_USER = "admin";
+const DB_PASS = "root";
 const DB_INFO = "mysql:host=localhost;dbname=logrocho";
 
 $_connection = null;
