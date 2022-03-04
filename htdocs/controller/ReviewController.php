@@ -106,18 +106,18 @@ class ReviewController
         }
     }
 
-    function jsonAll($page, $orderBy = false, $orderDir = false)
+    function jsonAll($page, $resultsPerPage = 4, $orderBy = false, $orderDir = false)
     {
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json; charset=utf-8');
         $repo = new ReviewRepository();
 
-        $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
+        $offset = ($page - 1) * $resultsPerPage;
 
         if ($orderBy && $orderDir) {
-            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE, $orderBy, $orderDir));
+            echo json_encode($repo->findAll($offset, $resultsPerPage , $orderBy, $orderDir));
         } else {
-            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));
+            echo json_encode($repo->findAll($offset, $resultsPerPage));
         }
     }
 

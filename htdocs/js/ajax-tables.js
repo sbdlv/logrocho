@@ -30,6 +30,29 @@ $.fn.AjaxTable = function (options = {}) {
 
     let root = this;
 
+    //
+    this.append(
+        $("<div></div>").append(
+            $("<label></label>").attr("for", "resultsPerPageIn").text("Resultados por página:"),
+            $("<input type='number' placeholder='4' id='resultsPerPageIn'/>").on("input", (event) => {
+                options.resultsPerPage = $(event.target).val() == "" ? 4 : $(event.target).val();
+                options.page = 1;
+    
+                $.ajax({
+                    type: "GET",
+                    url: getQueryUrlWithArgs(options),
+                    dataType: "json",
+                    success: function (response) {
+                        options.currentData = response;
+                        printPagination(root, options);
+                        printTable(root, options);
+                    }
+                });
+            }).val(options.resultsPerPage).addClass("ms-2")
+        ).addClass("mt-4 mb-1")
+        
+    )
+
     //Print first page
     $.ajax({
         type: "GET",
@@ -97,6 +120,8 @@ function printPagination(root, options) {
     let pageButtons = [];
     let nav = root.find("nav").eq(0);
 
+    console.log(options);
+
     $.ajax({
         type: "GET",
         url: options.countUrl,
@@ -139,7 +164,7 @@ function getQueryUrlWithArgs(options) {
     //Set current page for future operations
     options.page = page;
 
-    return options.baseUrl + page;
+    return options.baseUrl + page + "/" + options.resultsPerPage;
 }
 
 function generateInputForField(queryIndex, type, value) {

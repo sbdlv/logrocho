@@ -137,15 +137,15 @@ class PinchoController
         }
     }
 
-    function jsonAll($page)
+    function jsonAll($page, $resultsPerPage = 4)
     {
         header('Content-Type: application/json; charset=utf-8');
 
         $repo = new PinchoRepository();
 
-        $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
+        $offset = ($page - 1) * $resultsPerPage;
 
-        echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));
+        echo json_encode($repo->findAll($offset, $resultsPerPage));
     }
 
     function json($id)
