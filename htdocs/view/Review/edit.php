@@ -85,13 +85,6 @@
                     </div>
                 </div>
             </div>
-            <div class="row tarjeta p-4">
-                <h2 class="mb-4"><i class="fas fa-images"></i></i> Multimedia</h2>
-                <div class="displa-felx imagenes_reseña">
-                    <img src="img/pt1.jpg" alt="">
-                    <img src="img/pt2.jpg" alt="">
-                </div>
-            </div>
         </section>
     </main>
 

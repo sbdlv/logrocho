@@ -50,12 +50,12 @@ CREATE TABLE `review` (
   `pincho_id` int
 );
 
-CREATE TABLE `multimediaReview` (
-  `id` int PRIMARY KEY AUTO_INCREMENT,
-  `review_id` int,
-  `path` varchar(255),
-  `priority` int
-);
+-- CREATE TABLE `multimediaReview` (
+--   `id` int PRIMARY KEY AUTO_INCREMENT,
+--   `review_id` int,
+--   `path` varchar(255),
+--   `priority` int
+-- );
 
 CREATE TABLE `review_user_likes` (
   `id` int PRIMARY KEY AUTO_INCREMENT,
@@ -99,7 +99,7 @@ ALTER TABLE `review` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DEL
 
 ALTER TABLE `review` ADD FOREIGN KEY (`pincho_id`) REFERENCES `pincho` (`id`) ON DELETE CASCADE;
 
-ALTER TABLE `multimediaReview` ADD FOREIGN KEY (`review_id`) REFERENCES `review` (`id`) ON DELETE CASCADE;
+-- ALTER TABLE `multimediaReview` ADD FOREIGN KEY (`review_id`) REFERENCES `review` (`id`) ON DELETE CASCADE;
 
 ALTER TABLE `review_user_likes` ADD FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE CASCADE;
 
