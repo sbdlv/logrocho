@@ -43,7 +43,7 @@ let makeQuery = $("#results").AjaxSearch({
                     $('<i class="fas fa-building"></i>'),
                     $("<p></p>").text(data.address)
                 ).addClass("mb-2"),
-                $("<div></div>").text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.").addClass("text_clamp_3")
+                $("<div></div>").text(data.desc).addClass("text_clamp_3")
             ),
         ).attr("href", `index.php/bar/${data.id}`)
     }

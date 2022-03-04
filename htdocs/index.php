@@ -99,6 +99,8 @@ if (isset($array_ruta[0])) {
     include "repository/PinchoRepository.php";
     $pinchoRepo = new PinchoRepository();
 
+    $best5 = $pinchoRepo->findAllOrderByRating(5);
+    
     $lastPinchos = $pinchoRepo->last(5);
     $lastReviews = $reviewRepo->last(5);
 

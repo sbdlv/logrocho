@@ -350,9 +350,9 @@ class PinchoRepository implements IDAO
      *
      * @return Pincho[] The resulting pinchos.
      */
-    public function findAllOrderByRating()
+    public function findAllOrderByRating($limit = false)
     {
-        $results = get_db_connection()->query("SELECT p.*, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id GROUP BY p.id ORDER BY rating DESC");
+        $results = get_db_connection()->query("SELECT p.*, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id GROUP BY p.id ORDER BY rating DESC" . ($limit ? " LIMIT $limit": ""));
         $instances = [];
 
         foreach ($results as $row) {
