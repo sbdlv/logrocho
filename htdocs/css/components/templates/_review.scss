@@ -1,0 +1,11 @@
+.review-card-interact{
+    .btn{
+        *{
+            pointer-events: none;
+        }
+
+        i{
+            transition: color .20s ease-out;
+        }
+    }
+}

@@ -91,7 +91,18 @@
                 <p>Este pincho no tiene reseñas.</p>
             <?php else : ?>
                 <p>Número de reseñas: <?= count($data->reviews) ?></p>
-                <?php foreach ($data->reviews as $review) : ?>
+                <?php foreach ($data->reviews as $review) :
+                    require_once "repository/ReviewRepository.php";
+                    $repo = new ReviewRepository();
+
+                    if ($repo->hasBeenVotedByUser($_SESSION["user"]["id"], $review->id)) {
+                        $isLiked = $repo->didUserVoteLike($_SESSION["user"]["id"], $review->id);
+                        $isDisliked = !$isLiked;
+                    } else {
+                        $isLiked = false;
+                        $isDisliked = false;
+                    }
+                ?>
                     <?php include "view/Review/templates/card-interact.php" ?>
                 <?php endforeach; ?>
             <?php endif; ?>

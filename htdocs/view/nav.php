@@ -4,7 +4,7 @@ if (!isset($activeMenu)) {
 }
 ?>
 <nav class="navbar navbar-expand-lg navbar-light px-4" id="mainNav">
-    <a class="navbar-brand" href="/index.php">
+    <a class="navbar-brand" href="index.php">
         <img src="img/logo.svg" width="100" alt="">
     </a>
     <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">

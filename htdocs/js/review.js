@@ -45,15 +45,22 @@ function publish() {
 }
 
 
-function like(reviewId) {
-    vote(true, reviewId);
+function like(event, reviewId) {
+    vote(true, reviewId, event.target);
 }
 
-function dislike(reviewId) {
-    vote(false, reviewId);
+function dislike(event, reviewId) {
+    vote(false, reviewId, event.target);
 }
 
-function vote(isLike, reviewId) {
+function vote(isLike, reviewId, target) {
+    target = $(target);
+
+    if (target.find("i").eq(0).hasClass("text-success") || target.find("i").eq(0).hasClass("text-danger")) {
+        alert("Ya has hecho esta votación");
+        return;
+    }
+
     $.ajax({
         type: "POST",
         url: "index.php/user/voteReview",
@@ -62,6 +69,15 @@ function vote(isLike, reviewId) {
             review_id: reviewId
         },
         success: function (response) {
+            target = $(target);
+
+            target.find("i").eq(0).addClass(isLike ? "text-success" : "text-danger");
+            target.find(".text").eq(0).text(parseInt(target.find(".text").eq(0).text()) + 1);
+
+            let theOtherBtn = target.siblings().eq(0);
+            theOtherBtn.find("i").eq(0).removeClass(!isLike ? "text-success" : "text-danger");
+            theOtherBtn.find(".text").eq(0).text(parseInt(theOtherBtn.find(".text").eq(0).text()) - 1);
+
             alert("Se ha votado la reseña correctamente")
         },
         error: function (res) {
