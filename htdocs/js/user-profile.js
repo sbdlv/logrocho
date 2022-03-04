@@ -11,13 +11,23 @@ function saveProfile() {
 
     $.ajax({
         type: "POST",
-        url: "/index.php/user/update_profile",
+        url: "index.php/user/update_profile",
         data: userData,
         success: function (response) {
             alert("¡Se ha actualizado el perfil correctamente!");
         },
         error: function (res) {
             alert("Error: " + res.responseText);
+        }
+    });
+}
+
+function removeVote(review_id) {
+    $.ajax({
+        type: "GET",
+        url: "index.php/user/removeVote/" + review_id,
+        success: function (response) {
+            alert("Voto eliminado");
         }
     });
 }

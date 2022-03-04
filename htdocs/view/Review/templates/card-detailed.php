@@ -19,7 +19,7 @@
             </div>
             <div>
                 <a class="btn btn-primary" href="<?= get_server_index_base_url() ?>pincho/<?= $review->pincho_id ?>#review_<?= $review->id ?>">Ver pincho</a>
-                <button class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                <button class="btn btn-danger" onclick="removeVote(<?=$review->id?>)"><i class="fas fa-trash"></i></button>
             </div>
         </div>
     </div>

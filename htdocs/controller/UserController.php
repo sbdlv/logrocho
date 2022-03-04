@@ -386,4 +386,16 @@ class UserController
             echo "Faltan campos POST";
         }
     }
+
+    public function removeVote($review_id)
+    {
+        if (is_logged()) {
+            $repo = new UserRepository();
+            $repo->removeVote($_SESSION["user"]["id"], $review_id);
+            echo "OK";
+        } else {
+            http_response_code(400);
+            echo "Primero necesitar iniciar sesión.";
+        }
+    }
 }

@@ -7,7 +7,10 @@ if (!isset($activeMenu)) {
     <a class="navbar-brand" href="index.php">
         <img src="img/logo.svg" width="100" alt="">
     </a>
-    <div class="collapse navbar-collapse justify-content-end" id="navbarTogglerDemo02">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item <?= $activeMenu == "bar" ? "active" : "" ?>">
                 <a class="nav-link" href="<?= get_server_index_base_url() . "bar/search" ?>">Bares</a>

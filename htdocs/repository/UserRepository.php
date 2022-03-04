@@ -192,4 +192,9 @@ class UserRepository implements IDAO
         $stmt = get_db_connection()->prepare("SET @user_id = ?, @review_id = ?, @is_like = ?; INSERT INTO `review_user_likes`(`user_id`, `review_id`, `isLike`) VALUES (@user_id, @review_id, @is_like) ON DUPLICATE KEY UPDATE isLike = @is_like");
         return $stmt->execute([$user_id, $review_id, $isLike]);
     }
+
+    function removeVote($user_id, $review_id){
+        $stmt = get_db_connection()->prepare("DELETE FROM review WHERE `user_id` = ? AND review_id = ?");
+        return $stmt->execute([$user_id, $review_id]);
+    }
 }
