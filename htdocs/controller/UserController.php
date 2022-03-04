@@ -404,4 +404,32 @@ class UserController
             echo "Primero necesitar iniciar sesión.";
         }
     }
+
+    public function deleteMyReview($review_id)
+    {
+        if (!is_logged()) {
+            http_response_code(400);
+            echo "Primero necesitar iniciar sesión.";
+            return;
+        }
+        
+        $repo = new UserRepository();
+
+        require_once "repository/ReviewRepository.php";
+        $repoReview = new ReviewRepository();
+
+        if ($repo->checkReviewOP($_SESSION["user"]["id"], $review_id)) {
+            if ($repoReview->delete((object) [
+                "id" => $review_id
+            ])) {
+                echo "OK";
+            } else {
+                http_response_code(400);
+                echo "No se ha podido borrar tu reseña";
+            }
+        } else {
+            http_response_code(400);
+            echo "No eres el autor de la reseña especificada";
+        }
+    }
 }

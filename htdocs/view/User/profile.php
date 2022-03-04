@@ -59,7 +59,8 @@
                 </div>
                 <div class="tab-pane fade p-4" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <h2 class="mb-4">Mis reseñas</h2>
-                    <?php if (count($reviews)) : ?>
+                    <?php if (count($reviews)) : 
+                        $actionFunctionName = "deleteReview"?>
                         <div class="reviews">
                             <?php foreach ($reviews as $review) : ?>
                                 <?php include "view/Review/templates/card-detailed.php" ?>
@@ -71,14 +72,15 @@
                 </div>
                 <div class="tab-pane fade p-4" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                     <h2 class="mb-4">Mis likes</h2>
-                    <?php if (count($reviews)) : ?>
+                    <?php if (count($reviews)) : 
+                        $actionFunctionName = "removeVote"?>
                         <div class="reviews">
                             <?php foreach ($likedReviews as $review) : ?>
                                 <?php include "view/Review/templates/card-detailed.php" ?>
                             <?php endforeach; ?>
                         </div>
                     <?php else : ?>
-                        <p>No tienes reseñas.</p>
+                        <p>No has dado like a ninguna reseña.</p>
                     <?php endif; ?>
                 </div>
                 <div class="tab-pane fade p-4" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
@@ -90,7 +92,7 @@
                             <?php endforeach; ?>
                         </div>
                     <?php else : ?>
-                        <p>No tienes reseñas.</p>
+                        <p>No has dado dislike a ninguna reseña.</p>
                     <?php endif; ?>
                 </div>
             </div>

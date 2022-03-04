@@ -30,8 +30,22 @@ function removeVote(review_id, event) {
             alert("Voto eliminado");
             $(event.target).closest(".review-card-detailed").eq(0).remove();
         },
-        error: function (res) { 
+        error: function (res) {
             alert("Lo sentimos, no se ha podido eliminar tu voto.");
-         }
+        }
     });
+}
+
+function deleteReview(review_id, event) {
+    $.ajax({
+        type: "GET",
+        url: "index.php/user/deleteMyReview/" + review_id,
+        success: function (response) {
+            $(event.target).closest(".review-card-detailed").eq(0).remove();
+        },
+        error: (res)=>{
+            alert("Error: No se ha podido eliminar tu reseña.");
+        }
+    });
+
 }
