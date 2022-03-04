@@ -318,8 +318,14 @@ class UserController
     }
 
     //Public
-    function profile($id)
+    function profile()
     {
+        if(!is_logged()){
+            require "404.php";
+            return;
+        }
+        
+        $id = $_SESSION["user"]["id"];
         $activeMenu = "user";
 
         if ($id != $_SESSION["user"]["id"]) {

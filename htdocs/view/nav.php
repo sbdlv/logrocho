@@ -27,7 +27,7 @@ if (!isset($activeMenu)) {
                         <i class="fas fa-user-circle"></i>
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="<?= get_server_index_base_url() . "user/profile/" . $_SESSION["user"]["id"] ?>">Zona usuario</a></li>
+                        <li><a class="dropdown-item" href="<?= get_server_index_base_url()?>user/profile">Zona usuario</a></li>
                         <?php if (is_admin()) : ?>
                             <li>
                                 <a class="dropdown-item" href="<?= get_server_index_base_url() . "bar/list/" ?>">Panel admin</a>
