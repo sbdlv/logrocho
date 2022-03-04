@@ -15,14 +15,6 @@
 
         border-top-left-radius: 0.25rem;
         border-bottom-left-radius: 0.25rem;
-
-        @media (max-width: $media-lg) {
-            height: 320px;
-        }
-
-        @media (max-width: $media-md) {
-            height: 250px;
-        }
     }
     .address {
         display: flex;

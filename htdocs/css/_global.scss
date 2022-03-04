@@ -124,3 +124,15 @@ input:not([type="submit"]) {
         color: inherit;
     }
 }
+
+.img-card-responsive {
+    img {
+        @media (max-width: $media-lg) {
+            height: 320px;
+        }
+
+        @media (max-width: $media-md) {
+            height: 250px;
+        }
+    }
+}

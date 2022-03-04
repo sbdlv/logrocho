@@ -34,7 +34,7 @@ let makeQuery = $("#results").AjaxSearch({
         }
 
         return $("<a></a>").addClass("tarjeta tarjeta-btn bar-search-card row mx-auto mb-4").append(
-            $("<div></div>").addClass("col-lg-3 col-12 imgWrapper").append(
+            $("<div></div>").addClass("col-lg-3 col-12 imgWrapper img-card-responsive").append(
             ),
             $("<div></div>").addClass("col-lg-9 col-12 p-4").append(
                 $("<h3></h3>").text(data.name).addClass("mb-1"),
