@@ -1,3 +1,7 @@
+/* DB */
+CREATE DATABASE IF NOT EXISTS logrocho;
+USE logrocho;
+
 /* DROP */
 DROP TABLE IF EXISTS multimediaPincho;
 DROP TABLE IF EXISTS multimediaBar;

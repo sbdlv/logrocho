@@ -8,7 +8,7 @@ $breadcrumbs = [];
  */
 function get_server_index_base_url()
 {
-    return isset($_SERVER["HTTPS"]) ? "https" : "http" . "://$_SERVER[HTTP_HOST]" . get_root_url() . "/";
+    return (isset($_SERVER["HTTPS"]) ? "https" : "http") . "://$_SERVER[HTTP_HOST]" . get_root_url() . "/";
 }
 
 /**
