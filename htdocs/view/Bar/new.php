@@ -25,13 +25,13 @@
             <div class="row my-4">
                 <div class="col tarjeta p-4">
                     <h2 class="mb-4"><i class="fas fa-info-circle"></i> Detalles</h2>
-                    <input type="hidden" id="bar_id" value="">
+                    <input type="hidden" id="bar_id" value="" autocomplete="off">
                     <div class="table-responsive">
                         <table class="table customize-table mb-0 v-middle table-borderless">
                             <tbody>
                                 <tr>
                                     <td>Nombre</td>
-                                    <td><input type="text" name="" id="bar_name" value=""></td>
+                                    <td><input type="text" name="" id="bar_name" value="" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>Descripción</td>
@@ -39,7 +39,7 @@
                                 </tr>
                                 <tr>
                                     <td>Dirección</td>
-                                    <td><input type="text" name="" id="bar_address" value=""></td>
+                                    <td><input type="text" name="" id="bar_address" value="" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>Puntuación</td>
@@ -47,7 +47,7 @@
                                 </tr>
                                 <tr>
                                     <td>Terraza</td>
-                                    <td><input type="checkbox" name="" id="bar_terrace"></td>
+                                    <td><input type="checkbox" name="" id="bar_terrace" autocomplete="off"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -68,11 +68,11 @@
                             <tbody>
                                 <tr>
                                     <td>Lon. </td>
-                                    <td><input type="number" name="" id="bar_lon" value=""></td>
+                                    <td><input type="number" name="" id="bar_lon" value="" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>Lat. </td>
-                                    <td><input type="number" name="" id="bar_lat" value=""></td>
+                                    <td><input type="number" name="" id="bar_lat" value="" autocomplete="off"></td>
                                 </tr>
                             </tbody>
                         </table>

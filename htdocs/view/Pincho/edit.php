@@ -24,13 +24,13 @@
             <div class="row my-4">
                 <div class="col tarjeta p-4">
                     <h2 class="mb-4"><i class="fas fa-info-circle"></i> Detalles</h2>
-                    <input type="hidden" id="pincho_id" value="<?= $pincho->id ?>">
+                    <input type="hidden" id="pincho_id" value="<?= $pincho->id ?>" autocomplete="off">
                     <div class="table-responsive">
                         <table class="table customize-table mb-0 v-middle table-borderless">
                             <tbody>
                                 <tr>
                                     <td>Nombre</td>
-                                    <td><input type="text" name="" id="pincho_name" value="<?= $pincho->name ?>"></td>
+                                    <td><input type="text" name="" id="pincho_name" value="<?= $pincho->name ?>" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>Descripción</td>
@@ -48,12 +48,12 @@
                                 </tr>
                                 <tr>
                                     <td>Precio</td>
-                                    <td><input type="number" name="" id="pincho_price" value="<?= $pincho->price ?>">€</td>
+                                    <td><input type="number" name="" id="pincho_price" value="<?= $pincho->price ?>" autocomplete="off">€</td>
                                 </tr>
                                 <tr>
                                     <td>Alérgenos</td>
                                     <td>
-                                        <select name="" id="pincho_allergens" multiple autocomplete="false">
+                                        <select name="" id="pincho_allergens" multiple autocomplete="off">
                                             <?php foreach ($allergens as $allergen) : ?>
                                                 <option value="<?= $allergen["id"] ?>" <?= in_array($allergen["id"], $currentAllergens) ? "selected" : "" ?>><?= $allergen["name"] ?></option>
                                             <?php endforeach; ?>

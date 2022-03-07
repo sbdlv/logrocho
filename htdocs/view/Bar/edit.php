@@ -25,13 +25,13 @@
             <div class="row my-4">
                 <div class="col tarjeta p-4">
                     <h2 class="mb-4"><i class="fas fa-info-circle"></i> Detalles</h2>
-                    <input type="hidden" id="bar_id" value="<?= $bar->id ?>">
+                    <input type="hidden" id="bar_id" value="<?= $bar->id ?>" autocomplete="off">
                     <div class="table-responsive">
                         <table class="table customize-table mb-0 v-middle table-borderless">
                             <tbody>
                                 <tr>
                                     <td>Nombre</td>
-                                    <td><input type="text" name="" id="bar_name" value="<?= $bar->name ?>"></td>
+                                    <td><input type="text" name="" id="bar_name" value="<?= $bar->name ?>" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>Descripción</td>
@@ -39,7 +39,7 @@
                                 </tr>
                                 <tr>
                                     <td>Dirección</td>
-                                    <td><input type="text" name="" id="bar_address" value="<?= $bar->address ?>"></td>
+                                    <td><input type="text" name="" id="bar_address" value="<?= $bar->address ?>" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>Puntuación</td>
@@ -47,7 +47,7 @@
                                 </tr>
                                 <tr>
                                     <td>Terraza</td>
-                                    <td><input type="checkbox" name="" id="bar_terrace" <?= $bar->terrace ? "checked" : "" ?>></td>
+                                    <td><input type="checkbox" name="" id="bar_terrace" <?= $bar->terrace ? "checked" : "" ?> autocomplete="off"></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -61,24 +61,23 @@
                 </div>
             </div>
             <div class="row tarjeta">
-                <div class="col-12 col-md-6 p-4">
+                <div class="col-12 p-4">
                     <h2 class="mb-4"><i class="fas fa-map-marker-alt"></i> Localización</h2>
                     <div class="table-responsive">
                         <table class="table customize-table mb-0 v-middle table-borderless">
                             <tbody>
                                 <tr>
                                     <td>Lon. </td>
-                                    <td><input type="number" name="" id="bar_lon" value="<?= $bar->lon ?>"></td>
+                                    <td><input type="number" name="" id="bar_lon" value="<?= $bar->lon ?>" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>Lat. </td>
-                                    <td><input type="number" name="" id="bar_lat" value="<?= $bar->lat ?>"></td>
+                                    <td><input type="number" name="" id="bar_lat" value="<?= $bar->lat ?>" autocomplete="off"></td>
                                 </tr>
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div class="col-12 col-md-6"><img src="img/maps.png" class="img-fluid my-2" alt=""></div>
             </div>
         </section>
     </main>

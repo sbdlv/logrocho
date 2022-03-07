@@ -25,7 +25,7 @@
             <div class="row my-4">
                 <div class="col tarjeta p-4">
                     <h2 class="mb-4"><i class="fas fa-info-circle"></i> Detalles</h2>
-                    <input type="hidden" id="review_id" value="<?= $review->id ?>">
+                    <input type="hidden" id="review_id" value="<?= $review->id ?>" autocomplete="off">
                     <div class="table-responsive">
                         <table class="table customize-table mb-0 v-middle table-borderless">
                             <tbody>
@@ -52,7 +52,7 @@
                                 </tr>
                                 <tr>
                                     <td>Titulo</td>
-                                    <td><input type="text" name="" id="review_title" value="<?= $review->title ?>"></td>
+                                    <td><input type="text" name="" id="review_title" value="<?= $review->title ?>" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>Descripción</td>
@@ -60,15 +60,15 @@
                                 </tr>
                                 <tr>
                                     <td>Presentación</td>
-                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_presentation" value="<?= $review->presentation ?>"><i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_presentation" value="<?= $review->presentation ?>" autocomplete="off"><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Sabor</td>
-                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_taste" value="<?= $review->taste ?>"><i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_taste" value="<?= $review->taste ?>" autocomplete="off"><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Textura</td>
-                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_texture" value="<?= $review->texture ?>"><i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_texture" value="<?= $review->texture ?>" autocomplete="off"><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Me gusta <i class="fas fa-thumbs-up"></i></td>
