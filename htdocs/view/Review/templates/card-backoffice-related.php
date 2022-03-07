@@ -1,4 +1,4 @@
-<div class="tarjeta tarjeta-btn card review p-4 flex-row">
+<div class="tarjeta tarjeta-btn card review p-4 flex-row mb-3">
     <div class="me-4"><img src="img/pfp.jpg" alt="" class="pfp"></div>
     <div class="w-100">
         <p class="h4"><?= $review->title ?></p>
@@ -17,7 +17,7 @@
                     <?= $review->dislikes ?>
                 </div>
             </div>
-            <a class="btn btn-primary" href="<?= get_server_index_base_url() ?>review/edit/<?= $review->pincho_id ?>">Ver ficha</a>
+            <a class="btn btn-primary" href="<?= get_server_index_base_url() ?>review/edit/<?= $review->id ?>">Ver ficha</a>
         </div>
     </div>
 </div>
