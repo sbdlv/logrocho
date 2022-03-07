@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="css/style.css">
     <script src="js/bootstrap/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="js/OwlCarousel2/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/swiper-bundle.min.css">
+
 </head>
 
 <body>
@@ -48,6 +50,25 @@
                 <p>Este bar no tiene pinchos.</p>
             <?php endif; ?>
 
+            <div class="swiper pincho_swiper">
+                <div class="swiper-wrapper">
+                    <?php foreach ($data->pinchos as $pincho) : ?>
+                        <div class="swiper-slide">
+                            <?php include "view/Pincho/templates/card-slider-vertical.php" ?>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+
+        </section>
+
+        <section class="container pb-5">
+            <h2 class="mb-5 fw-bold">Listado Pinchos</h2>
+
+            <?php if (empty($data->pinchos)) : ?>
+                <p>Este bar no tiene pinchos.</p>
+            <?php endif; ?>
+
             <?php foreach ($data->pinchos as $pincho) : ?>
                 <?php include "view/Pincho/templates/card.php" ?>
             <?php endforeach; ?>
@@ -57,8 +78,10 @@
     <?php require "view/footer.php" ?>
 
     <script src="js/jquery-3.6.0.min.js"></script>
+    <script src="js/swiper-bundle.min.js"></script>
     <script src="js/OwlCarousel2/dist/owl.carousel.min.js"></script>
     <script src="js/info/multimedia.js"></script>
+    <script src="js/info/bar.js"></script>
 </body>
 
 </html>
