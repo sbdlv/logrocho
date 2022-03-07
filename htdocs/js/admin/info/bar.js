@@ -93,6 +93,31 @@ $("#save_btn").on("click", () => {
 })
 
 function checkFields() {
+    if ($("#bar_name").val() === "") {
+        alert("El campo nombre es obligatorio");
+        return false;
+    }
+
+    if ($("#bar_desc").val() === "") {
+        alert("El campo descripción es obligatorio");
+        return false;
+    }
+
+    if ($("#bar_address").val() === "") {
+        alert("El campo dirección es obligatorio");
+        return false;
+    }
+    
+    if ($("#bar_lon").val() === "") {
+        alert("El campo longitud es obligatorio");
+        return false;
+    }
+
+    if ($("#bar_lat").val() === "") {
+        alert("El campo latitud es obligatorio");
+        return false;
+    }
+
     if ($("#bar_name").val().length > 255) {
         alert("El nombre del bar no puede superar los 255 caracteres");
         return false;
@@ -108,14 +133,18 @@ function checkFields() {
         return false;
     }
 
-    if ($("#bar_lon").val().split(".")[1].length > 5) {
-        alert("La precisión máxima para las coordenadas de la longitud es de 5 decimales");
-        return false;
+    if ($("#bar_lon").val().split(".").length > 1) {
+        if ($("#bar_lon").val().split(".")[1].length > 5) {
+            alert("La precisión máxima para las coordenadas de la longitud es de 5 decimales");
+            return false;
+        }
     }
 
-    if ($("#bar_lat").val().split(".")[1].length > 5) {
-        alert("La precisión máxima para las coordenadas de la latitud es de 5 decimales");
-        return false;
+    if ($("#bar_lat").val().split(".").length > 1) {
+        if ($("#bar_lat").val().split(".")[1].length > 5) {
+            alert("La precisión máxima para las coordenadas de la latitud es de 5 decimales");
+            return false;
+        }
     }
 
     return true

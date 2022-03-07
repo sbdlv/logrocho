@@ -44,6 +44,9 @@ function uploadPic() {
 }
 
 $("#save_btn").on("click", () => {
+    if (!checkFields()) {
+        return;
+    }
     let data = {
         id: $("#pincho_id").val(),
         name: $("#pincho_name").val(),
@@ -85,3 +88,44 @@ $("#save_btn").on("click", () => {
         },
     });
 })
+
+function checkFields() {
+    if ($("#pincho_name").val() === "") {
+        alert("El campo nombre es obligatorio");
+        return false;
+    }
+
+    if ($("#pincho_desc").val() === "") {
+        alert("El campo descripción es obligatorio");
+        return false;
+    }
+
+    if ($("#pincho_price").val() === "") {
+        alert("El campo precio es obligatorio");
+        return false;
+    }
+
+    if ($("#pincho_name").val().length > 255) {
+        alert("El nombre del pincho no puede superar los 255 caracteres");
+        return false;
+    }
+
+    if ($("#pincho_desc").val().length > 255) {
+        alert("La descripción del pincho no puede superar los 255 caracteres");
+        return false;
+    }
+
+    if ($("#pincho_price").val().split(".")[0].length > 10) {
+        alert("La parte entera para el precio no puede tener un máximo de 10 números");
+        return false;
+    }
+
+    if ($("#pincho_price").val().split(".").length > 1) {
+        if ($("#pincho_price").val().split(".")[1].length > 2) {
+            alert("La precisión máxima para el precio es de 2 decimales");
+            return false;
+        }
+    }
+
+    return true
+}

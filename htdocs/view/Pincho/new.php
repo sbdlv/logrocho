@@ -60,10 +60,6 @@
                                         </select>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Puntuación</td>
-                                    <td class="puntuacionWrapper">? <i class="fas fa-star"></i></td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>
