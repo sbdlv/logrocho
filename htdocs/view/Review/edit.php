@@ -41,12 +41,13 @@
                                 </tr>
                                 <tr>
                                     <td>Pincho</td>
-                                    <td>
+                                    <td class="d-flex align-items-center">
                                         <select name="" id="review_pincho_id" autocomplete="false">
                                             <?php foreach ($pinchos as $pincho) : ?>
                                                 <option value="<?= $pincho->id ?>" <?= $pincho->id  == $review->pincho_id ? "selected" : "" ?>><?= $pincho->name ?></option>
                                             <?php endforeach; ?>
                                         </select>
+                                        <button class="btn btn-primary ms-3" id="open_pincho"><i class="fas fa-external-link-alt"></i></button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -80,7 +81,7 @@
                             </tbody>
                         </table>
                         <div class="puntuacionWrapper h3">
-                            <div class="font-weight-bold mt-4 d-inline-block">Total (Calculado): </div> <?=round(($review->taste + $review->presentacion + $review->texture) / 3, 1)?> <i class="fas fa-star"></i>
+                            <div class="font-weight-bold mt-4 d-inline-block">Total (Calculado): </div> <?=round(($review->taste + $review->presentation + $review->texture) / 3, 1)?> <i class="fas fa-star"></i>
                         </div>
                     </div>
                 </div>

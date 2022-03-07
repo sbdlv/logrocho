@@ -22,3 +22,8 @@ $("#save_btn").on("click", () => {
         },
     });
 })
+
+
+$("#open_pincho").on("click", ()=>{
+    window.location.href = `index.php/pincho/edit/${$("#review_pincho_id").val()}`;
+})

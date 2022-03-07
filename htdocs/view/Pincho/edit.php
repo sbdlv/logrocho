@@ -19,7 +19,7 @@
         <section class="container my-4">
             <?php include "view/breadcrumbs.php" ?>
             <div class="tarjeta row p-4">
-                <h1>Pincho de tortilla - Pincho</h1>
+                <h1><?=$pincho->name?> - Pincho</h1>
             </div>
             <div class="row my-4">
                 <div class="col tarjeta p-4">
