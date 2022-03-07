@@ -27,8 +27,12 @@ function removeVote(review_id, event) {
         type: "GET",
         url: "index.php/user/removeVote/" + review_id,
         success: function (response) {
-            alert("Voto eliminado");
-            $(event.target).closest(".review-card-detailed").eq(0).remove();
+            let reviewWrapper = $(event.target).closest(".review-card-detailed").eq(0);
+
+            reviewWrapper.addClass("disappear");
+            setTimeout(() => {
+                reviewWrapper.remove();
+            }, 380);
         },
         error: function (res) {
             alert("Lo sentimos, no se ha podido eliminar tu voto.");
@@ -41,9 +45,14 @@ function deleteReview(review_id, event) {
         type: "GET",
         url: "index.php/user/deleteMyReview/" + review_id,
         success: function (response) {
-            $(event.target).closest(".review-card-detailed").eq(0).remove();
+            let reviewWrapper = $(event.target).closest(".review-card-detailed").eq(0);
+
+            reviewWrapper.addClass("disappear");
+            setTimeout(() => {
+                reviewWrapper.remove();
+            }, 380);
         },
-        error: (res)=>{
+        error: (res) => {
             alert("Error: No se ha podido eliminar tu reseña.");
         }
     });

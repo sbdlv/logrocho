@@ -72,7 +72,7 @@
                 </div>
                 <div class="tab-pane fade p-4" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                     <h2 class="mb-4 fw-bold">Mis likes</h2>
-                    <?php if (count($reviews)) : 
+                    <?php if (count($likedReviews)) : 
                         $actionFunctionName = "removeVote"?>
                         <div class="reviews">
                             <?php foreach ($likedReviews as $review) : ?>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="tab-pane fade p-4" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                     <h2 class="mb-4 fw-bold">Mis dislikes</h2>
-                    <?php if (count($reviews)) : ?>
+                    <?php if (count($dislikedReviews)) : ?>
                         <div class="reviews">
                             <?php foreach ($dislikedReviews as $review) : ?>
                                 <?php include "view/Review/templates/card-detailed.php" ?>

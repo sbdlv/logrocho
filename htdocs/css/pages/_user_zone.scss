@@ -33,4 +33,14 @@
             margin: 20px 0;
         }
     }
+
+    #v-pills-tab{
+        @media (max-width: $media-sm) {
+            flex-direction: column;
+
+            .nav-link{
+                margin: 5px 0;
+            }
+        }
+    }
 }
