@@ -93,8 +93,8 @@ class BarRepository implements IDAO
      */
     function update($obj)
     {
-        $stmt = get_db_connection()->prepare("UPDATE `bar` SET `name` = ?, `address` = ?, `lon` = ?, `lat` = ?, `terrace` = ? WHERE `id` = ?");
-        return $stmt->execute([$obj->name, $obj->address, $obj->lon, $obj->lat, $obj->terrace, $obj->id]);
+        $stmt = get_db_connection()->prepare("UPDATE `bar` SET `name` = ?, `desc` = ?, `address` = ?, `lon` = ?, `lat` = ?, `terrace` = ? WHERE `id` = ?");
+        return $stmt->execute([$obj->name, $obj->desc, $obj->address, $obj->lon, $obj->lat, $obj->terrace ? 1 : 0, $obj->id]);
     }
 
     /**
