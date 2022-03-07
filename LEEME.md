@@ -5,7 +5,7 @@ http://sergiobarrio.ociobinario.com/index.php
 Usuario: admin@logrocho.local
 Contraseña: usuario123ABC
 
-# Instrucciones de montaje del entorno
+# Instrucciones de montaje del entorno (Local)
 Por favor, leer todos los apartados de este fichero, en especial aquellos que afecten a la asignatura que se está evaluando.
 
 ## BD
