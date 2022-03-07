@@ -5,6 +5,9 @@ http://sergiobarrio.ociobinario.com/index.php
 Usuario: admin@logrocho.local
 Contraseña: usuario123ABC
 
+# GitHub
+https://github.com/sbdlv/logrocho
+
 # Instrucciones de montaje del entorno (Local)
 Por favor, leer todos los apartados de este fichero, en especial aquellos que afecten a la asignatura que se está evaluando.
 
