@@ -267,7 +267,7 @@ class BarRepository implements IDAO
     public function tokenSearch($searchText)
     {
         //Delete old images
-        $stmt = get_db_connection()->prepare("SELECT * FROM `BAR` WHERE `name` LIKE ? OR `desc` LIKE ?");
+        $stmt = get_db_connection()->prepare("SELECT * FROM `bar` WHERE `name` LIKE ? OR `desc` LIKE ?");
         $text = "%" . $searchText . "%";
         $stmt->execute([$text, $text]);
 
