@@ -6,21 +6,21 @@ require_once "AbstractMappedSQLModel.php";
  */
 class User extends AbstractMappedSQLModel
 {
-    public int $id;
+    public $id;
 
-    public string $first_name;
+    public $first_name;
 
-    public string $last_name;
+    public $last_name;
 
-    public string $email;
+    public $email;
 
-    public string $password;
+    public $password;
 
-    public bool $admin;
+    public $admin;
 
-    public string $created_date;
+    public $created_date;
 
-    public string $img_path;
+    public $img_path;
 
     static function getPropertiesMapArray(): array
     {
