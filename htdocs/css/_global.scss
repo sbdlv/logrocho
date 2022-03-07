@@ -193,13 +193,3 @@ input:not([type="submit"]) {
         }
     }
 }
-
-.multimedia_slider {
-    img {
-        display: block;
-        height: 100%;
-        min-width: 100%;
-
-        object-fit: cover;
-    }
-}
