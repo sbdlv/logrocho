@@ -6,22 +6,22 @@ require_once "AbstractMappedSQLModel.php";
  */
 class Review extends AbstractMappedSQLModel
 {
-    public int $id;
+    public $id;
 
-    public int $user_id;
+    public $user_id;
 
-    public string $title;
+    public $title;
 
-    public string $desc;
+    public $desc;
 
-    public int $presentation;
-    public int $texture;
-    public int $taste;
+    public $presentation;
+    public $texture;
+    public $taste;
 
-    public int $pincho_id;
+    public $pincho_id;
 
-    public int $likes;
-    public int $dislikes;
+    public $likes;
+    public $dislikes;
 
     static function getPropertiesMapArray(): array
     {
