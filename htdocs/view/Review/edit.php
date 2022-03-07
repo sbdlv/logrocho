@@ -81,7 +81,7 @@
                             </tbody>
                         </table>
                         <div class="puntuacionWrapper h3">
-                            <div class="font-weight-bold mt-4 d-inline-block">Total (Calculado): </div> <?=round(($review->taste + $review->presentation + $review->texture) / 3, 1)?> <i class="fas fa-star"></i>
+                            <div class="font-weight-bold mt-4 d-inline-block">Total (Calculado): </div> <?=round((floatval($review->taste) + floatval($review->presentation) + floatval($review->texture)) / 3, 1)?> <i class="fas fa-star"></i>
                         </div>
                     </div>
                 </div>

@@ -1,3 +1,10 @@
+# Hosting
+http://sergiobarrio.ociobinario.com/index.php
+
+## Usuario administrador para la web
+Usuario: admin@logrocho.local
+Contraseña: usuario123ABC
+
 # Instrucciones de montaje del entorno
 Por favor, leer todos los apartados de este fichero, en especial aquellos que afecten a la asignatura que se está evaluando.
 
@@ -19,6 +26,7 @@ Por favor, leer todos los apartados de este fichero, en especial aquellos que af
 
 # Para comprobar
 > Suponiendo que la raiz de index es localhost/
+
 ## Parte admin (La de bares, pero luego se puede navegar por el resto): 
 http://localhost/index.php/bar
 ## Contacto: 
