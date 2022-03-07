@@ -37,7 +37,7 @@
         <div class="">
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active p-4" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                    <h2 class="mb-4">Perfil</h2>
+                    <h2 class="mb-4 fw-bold">Perfil</h2>
                     <section class="pb-4">
                         <div class="form-group mb-4">
                             <label for="user_first_name">Nombre</label>
@@ -58,7 +58,7 @@
                     </section>
                 </div>
                 <div class="tab-pane fade p-4" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <h2 class="mb-4">Mis reseñas</h2>
+                    <h2 class="mb-4 fw-bold">Mis reseñas</h2>
                     <?php if (count($reviews)) : 
                         $actionFunctionName = "deleteReview"?>
                         <div class="reviews">
@@ -71,7 +71,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="tab-pane fade p-4" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                    <h2 class="mb-4">Mis likes</h2>
+                    <h2 class="mb-4 fw-bold">Mis likes</h2>
                     <?php if (count($reviews)) : 
                         $actionFunctionName = "removeVote"?>
                         <div class="reviews">
@@ -84,7 +84,7 @@
                     <?php endif; ?>
                 </div>
                 <div class="tab-pane fade p-4" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                    <h2 class="mb-4">Mis dislikes</h2>
+                    <h2 class="mb-4 fw-bold">Mis dislikes</h2>
                     <?php if (count($reviews)) : ?>
                         <div class="reviews">
                             <?php foreach ($dislikedReviews as $review) : ?>

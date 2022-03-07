@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div>
-                <a class="btn btn-primary" href="<?= get_server_index_base_url() ?>pincho/<?= $review->pincho_id ?>#review_<?= $review->id ?>">Ver pincho</a>
+                <a class="btn btn-primary" href="<?= get_server_index_base_url() ?>pincho/<?= $review->pincho_id ?>#review_<?= $review->id ?>">Ver reseña</a>
                 <button class="btn btn-danger" onclick="<?=$actionFunctionName?>(<?=$review->id?>, event)"><i class="fas fa-trash"></i></button>
             </div>
         </div>

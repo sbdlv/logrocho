@@ -16,7 +16,9 @@
     <main>
         <form class="tarjeta login_form mx-auto text-center" method="POST" action="<?= get_server_index_base_url() . "user/register" ?>">
             <div class="w-50 mb-3 mx-auto">
-                <img src="img/logo.svg" alt="Logrocho logo" class="img-fluid p-3">
+                <a href="<?= get_server_index_base_url() ?>">
+                    <img src="img/logo.svg" alt="Logrocho logo" class="img-fluid p-3">
+                </a>
             </div>
             <?php if (isset($errorMsg)) : ?>
                 <div class="alert alert-danger" role="alert">
