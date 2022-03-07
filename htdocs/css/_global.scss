@@ -160,8 +160,8 @@ input:not([type="submit"]) {
     }
 }
 
-.slider-custom-controls{
-    button{
+.slider-custom-controls {
+    button {
         height: 50px;
         width: 50px;
         background-size: cover;
@@ -169,27 +169,37 @@ input:not([type="submit"]) {
         background-color: transparent;
         border: none;
         border-radius: 100%;
-        transition: filter .25s ease-out;
+        transition: filter 0.25s ease-out;
 
-        &:hover{
+        &:hover {
             filter: saturate(1.5);
         }
 
-        &:active{
-            filter: brightness(.9)
+        &:active {
+            filter: brightness(0.9);
         }
 
-        &.play{
+        &.play {
             background-image: url("../img/play.png");
         }
-        &.pause{
+        &.pause {
             background-image: url("../img/pause.png");
         }
-        &.next{
+        &.next {
             background-image: url("../img/next.png");
         }
-        &.prev{
+        &.prev {
             background-image: url("../img/prev.png");
         }
+    }
+}
+
+.multimedia_slider {
+    img {
+        display: block;
+        height: 100%;
+        min-width: 100%;
+
+        object-fit: cover;
     }
 }
