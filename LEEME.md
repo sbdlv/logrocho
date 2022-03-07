@@ -33,7 +33,7 @@ Por favor, leer todos los apartados de este fichero, en especial aquellos que af
 > Suponiendo que la raiz de index es localhost/
 
 ## Parte admin (La de bares, pero luego se puede navegar por el resto): 
-http://localhost/index.php/bar
+http://localhost/index.php/bar/list
 ## Contacto: 
 http://localhost/contact.php
 ## Registro: 
