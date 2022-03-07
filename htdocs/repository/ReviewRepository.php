@@ -238,12 +238,13 @@ class ReviewRepository implements IDAO
 
     /**
      * Obtains all the reviews ordered by the rating.
-     *
+     * 
+     * @param int $limit Limit the results.
      * @return Review[] The resulting reviews.
      */
-    public function findAllOrderByRating()
+    public function findAllOrderByRating($limit = false)
     {
-        $results = get_db_connection()->query("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  LEFT JOIN review_user_likes rul ON r.id = rul.review_id GROUP BY r.id ORDER BY likes DESC");
+        $results = get_db_connection()->query("SELECT r.*, SUM(CASE WHEN rul.isLike = 1 THEN 1 ELSE 0 END) as likes, SUM(CASE WHEN rul.isLike = 0 THEN 1 ELSE 0 END) as dislikes FROM `review` r  LEFT JOIN review_user_likes rul ON r.id = rul.review_id GROUP BY r.id ORDER BY likes DESC" . ($limit ? " LIMIT $limit" : ""));
         $instances = [];
 
         foreach ($results as $row) {

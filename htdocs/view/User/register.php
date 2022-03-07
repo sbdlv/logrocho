@@ -32,7 +32,7 @@
             <?php endif; ?>
             <div class="form-floating mb-3">
                 <input type="email" class="form-control" id="user_email" name="email" placeholder="name@example.com">
-                <label for="floatingInput">Correo electronico</label>
+                <label for="floatingInput">Correo electrónico</label>
             </div>
             <div class="form-floating mb-3">
                 <input type="password" class="form-control" id="user_password" name="password" placeholder="Password">
@@ -40,7 +40,7 @@
             </div>
             <input class="w-100 btn btn-lg btn-primary mb-3" type="submit" value="Registrarse" id="submit">
             <div class="text-center mb-3">
-                <a href="<?= get_server_index_base_url() . "user/login" ?>">Ya tienes cuenta?</a>
+                <a href="<?= get_server_index_base_url() . "user/login" ?>">¿Ya tienes cuenta?</a>
             </div>
         </form>
     </main>

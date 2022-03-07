@@ -84,7 +84,7 @@ class UserRepository implements IDAO
         }
 
         $stmt = get_db_connection()->prepare("INSERT INTO `user`(`first_name`, `last_name`, `email`, `password`, `admin`, `created_date`) VALUES (?, ?, ?, sha1(?), ?, now())");
-        return $stmt->execute([$obj->first_name, $obj->last_name, $obj->email, $obj->password, false]);
+        return $stmt->execute([isset($obj->first_name) ? $obj->first_name : "", isset($obj->last_name) ? $obj->last_name : "", $obj->email, $obj->password, 0]);
     }
 
     /**
@@ -190,10 +190,18 @@ class UserRepository implements IDAO
     function voteReview($user_id, $review_id, $isLike)
     {
         $stmt = get_db_connection()->prepare("SET @user_id = ?, @review_id = ?, @is_like = ?; INSERT INTO `review_user_likes`(`user_id`, `review_id`, `isLike`) VALUES (@user_id, @review_id, @is_like) ON DUPLICATE KEY UPDATE isLike = @is_like");
-        return $stmt->execute([$user_id, $review_id, $isLike]);
+        return $stmt->execute([$user_id, $review_id, $isLike ? 1 : 0]);
     }
 
-    function removeVote($user_id, $review_id){
+    /**
+     * Remove a vote from a user to a specific review
+     *
+     * @param int $user_id The user ID
+     * @param int $review_id The review ID
+     * @return bool True if the operation was executed without errors, false if not.
+     */
+    function removeVote($user_id, $review_id)
+    {
         $stmt = get_db_connection()->prepare("DELETE FROM review_user_likes WHERE `user_id` = ? AND `review_id` = ?");
         return $stmt->execute([$user_id, $review_id]);
     }

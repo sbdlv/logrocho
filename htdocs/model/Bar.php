@@ -2,18 +2,19 @@
 require_once "AbstractMappedSQLModel.php";
 
 /**
+ * Represents a Bar
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
  */
 class Bar extends AbstractMappedSQLModel
 {
-    public int $id;
-    public string $name;
-    public string $desc;
-    public string $address;
-    public float $lon;
-    public float $lat;
-    public bool $terrace;
-    public float $rating;
+    public $id;
+    public $name;
+    public $desc;
+    public $address;
+    public $lon;
+    public $lat;
+    public $terrace;
+    public $rating;
 
     static function getPropertiesMapArray(): array
     {

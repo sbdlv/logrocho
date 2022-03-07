@@ -81,9 +81,9 @@
       </div>
     </section>
     <section class="container py-5">
-      <h2 class="mb-5 fw-bold">Últimas valoraciones</h2>
+      <h2 class="mb-5 fw-bold">Mejores valoraciones</h2>
       <div class="owl-carousel last_reviews_slider owl-theme">
-        <?php foreach ($lastReviews as $review) {
+        <?php foreach ($bestReviews as $review) {
           include "view/Review/templates/card-slider.php";
         } ?>
       </div>

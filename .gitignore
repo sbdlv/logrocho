@@ -9,6 +9,7 @@ htdocs/css/fontawesome/scss/*
 
 ## Exclude css
 !htdocs/css/animate.min.css
+!htdocs/css/swiper-bundle.min.css
 
 ## Exclude changes on db.php
 htdocs/db.php
