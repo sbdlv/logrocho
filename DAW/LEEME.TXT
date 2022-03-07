@@ -1,0 +1,9 @@
+# Hosting
+http://sergiobarrio.ociobinario.com/index.php
+
+## Usuario administrador para la web
+Usuario: admin@logrocho.local
+Contraseña: usuario123ABC
+
+# GitHub
+https://github.com/sbdlv/logrocho
