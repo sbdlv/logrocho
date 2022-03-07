@@ -48,17 +48,17 @@
 
             <?php if (empty($data->pinchos)) : ?>
                 <p>Este bar no tiene pinchos.</p>
-            <?php endif; ?>
-
-            <div class="swiper pincho_swiper">
-                <div class="swiper-wrapper">
-                    <?php foreach ($data->pinchos as $pincho) : ?>
-                        <div class="swiper-slide">
-                            <?php include "view/Pincho/templates/card-slider-vertical.php" ?>
-                        </div>
-                    <?php endforeach; ?>
+            <?php else : ?>
+                <div class="swiper pincho_swiper">
+                    <div class="swiper-wrapper">
+                        <?php foreach ($data->pinchos as $pincho) : ?>
+                            <div class="swiper-slide">
+                                <?php include "view/Pincho/templates/card-slider-vertical.php" ?>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
                 </div>
-            </div>
+            <?php endif; ?>
 
         </section>
 
