@@ -2,6 +2,7 @@
 require_once "AbstractMappedSQLModel.php";
 
 /**
+ * Represents a Pincho
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
  */
 class Pincho extends AbstractMappedSQLModel

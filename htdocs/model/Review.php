@@ -2,6 +2,7 @@
 require_once "AbstractMappedSQLModel.php";
 
 /**
+ * Represents a Review
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
  */
 class Review extends AbstractMappedSQLModel

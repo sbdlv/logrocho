@@ -238,7 +238,8 @@ class ReviewRepository implements IDAO
 
     /**
      * Obtains all the reviews ordered by the rating.
-     *
+     * 
+     * @param int $limit Limit the results.
      * @return Review[] The resulting reviews.
      */
     public function findAllOrderByRating($limit = false)

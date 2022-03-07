@@ -193,6 +193,13 @@ class UserRepository implements IDAO
         return $stmt->execute([$user_id, $review_id, $isLike]);
     }
 
+    /**
+     * Remove a vote from a user to a specific review
+     *
+     * @param int $user_id The user ID
+     * @param int $review_id The review ID
+     * @return bool True if the operation was executed without errors, false if not.
+     */
     function removeVote($user_id, $review_id)
     {
         $stmt = get_db_connection()->prepare("DELETE FROM review_user_likes WHERE `user_id` = ? AND `review_id` = ?");

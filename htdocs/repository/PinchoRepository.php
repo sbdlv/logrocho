@@ -352,7 +352,7 @@ class PinchoRepository implements IDAO
      */
     public function findAllOrderByRating($limit = false)
     {
-        $results = get_db_connection()->query("SELECT p.*, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id GROUP BY p.id ORDER BY rating DESC" . ($limit ? " LIMIT $limit": ""));
+        $results = get_db_connection()->query("SELECT p.*, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id GROUP BY p.id ORDER BY rating DESC" . ($limit ? " LIMIT $limit" : ""));
         $instances = [];
 
         foreach ($results as $row) {
@@ -362,9 +362,16 @@ class PinchoRepository implements IDAO
         return $instances;
     }
 
+    /**
+     * Gets all the results from the database ordered by the users rating
+     *
+     * @param int $user_id The user ID
+     * @param boolean $limit Limit the amount of results
+     * @return bool True if the operation was executed without errors, false if not.
+     */
     public function findAllOrderByUserRating($user_id, $limit = false)
     {
-        $stmt = get_db_connection()->prepare("SELECT p.*, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id WHERE r.user_id = ? GROUP BY p.id ORDER BY rating DESC" . ($limit ? " LIMIT $limit": ""));
+        $stmt = get_db_connection()->prepare("SELECT p.*, ROUND(IFNULL((SUM(r.presentation) + SUM(r.taste) + SUM(r.texture))/ 3 / COUNT(r.id), 0), 1) as rating FROM `pincho` p LEFT JOIN review r ON p.id = r.pincho_id WHERE r.user_id = ? GROUP BY p.id ORDER BY rating DESC" . ($limit ? " LIMIT $limit" : ""));
         $stmt->execute([$user_id]);
 
         $results = $stmt->fetchAll();

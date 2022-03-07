@@ -2,6 +2,7 @@
 require_once "AbstractMappedSQLModel.php";
 
 /**
+ * Represents a User
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
  */
 class User extends AbstractMappedSQLModel
