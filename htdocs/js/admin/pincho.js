@@ -35,6 +35,16 @@ $("#mainTableWrapper").AjaxTable(
                 class: "text-center"
             },
             {
+                queryIndex: "price",
+                header: {
+                    displayName: "Precio",
+                },
+                col: {
+                    type: "text"
+                },
+                class: "text-center"
+            },
+            {
                 queryIndex: "bar_id",
                 header: {
                     displayName: "Bar ID",

@@ -32,7 +32,16 @@
             </div>
         </section>
         <section class="container pt-5">
-            <h2 class="mb-5 fw-bold">Fotos</h2>
+            <h2 class="mb-4 fw-bold">Información</h2>
+            <h3>Descripción</h3>
+            <p><?= $data->bar->desc ?></p>
+            <h3>Dirección</h3>
+            <p><?= $data->bar->address ?></p>
+            <h3>Terraza</h3>
+            <p><?= $data->bar->terrace ? "Si" : "No" ?></p>
+        </section>
+        <section class="container py-5">
+            <h2 class="mb-4 fw-bold">Fotos</h2>
             <?php if (empty($data->multimedia["bar"])) : ?>
                 <p>Este bar no tiene imágenes.</p>
             <?php else : ?>
@@ -44,7 +53,7 @@
             <?php endif; ?>
         </section>
         <section class="container py-5">
-            <h2 class="mb-5 fw-bold">Pinchos</h2>
+            <h2 class="mb-4 fw-bold">Pinchos</h2>
 
             <?php if (empty($data->pinchos)) : ?>
                 <p>Este bar no tiene pinchos.</p>
@@ -63,7 +72,7 @@
         </section>
 
         <section class="container pb-5">
-            <h2 class="mb-5 fw-bold">Listado Pinchos</h2>
+            <h2 class="mb-4 fw-bold">Listado Pinchos</h2>
 
             <?php if (empty($data->pinchos)) : ?>
                 <p>Este bar no tiene pinchos.</p>

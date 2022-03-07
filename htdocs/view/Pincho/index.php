@@ -29,7 +29,14 @@
             </div>
         </section>
         <section class="container pt-5">
-            <h2 class="mb-5 fw-bold">Fotos</h2>
+            <h2 class="mb-4 fw-bold">Información</h2>
+            <h3>Descripción</h3>
+            <p><?= $data->pincho->desc ?></p>
+            <h3>Precio</h3>
+            <p><?= $data->pincho->price ?> €</p>
+        </section>
+        <section class="container py-5">
+            <h2 class="mb-4 fw-bold">Fotos</h2>
             <?php if (empty($data->multimedia)) : ?>
                 <p>Este pincho no contiene imágenes.</p>
             <?php else : ?>
@@ -41,7 +48,7 @@
             <?php endif; ?>
         </section>
         <section class="container py-5">
-            <h2 class="mb-5 fw-bold">Reseñas</h2>
+            <h2 class="mb-4 fw-bold">Reseñas</h2>
             <?php if (is_logged()) : ?>
                 <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#reviewModal">Escribir una reseña</button>
                 <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
