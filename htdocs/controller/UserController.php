@@ -81,7 +81,7 @@ class UserController
 
                 $insert = $repo->save(
                     (object) [
-                        "username" => explode("@", $_POST["email"])[0],
+                        "first_name" => explode("@", $_POST["email"])[0],
                         "email" => $_POST["email"],
                         "password" => $_POST["password"],
                     ]
@@ -111,7 +111,7 @@ class UserController
             if ($_SESSION["user"]["admin"]) {
                 header("Location: " . get_server_index_base_url() . "bar/list");
             } else {
-                header("Location: index.php");
+                header("Location: " . get_server_index_base_url());
             }
         }
     }

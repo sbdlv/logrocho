@@ -84,7 +84,7 @@ class UserRepository implements IDAO
         }
 
         $stmt = get_db_connection()->prepare("INSERT INTO `user`(`first_name`, `last_name`, `email`, `password`, `admin`, `created_date`) VALUES (?, ?, ?, sha1(?), ?, now())");
-        return $stmt->execute([$obj->first_name, $obj->last_name, $obj->email, $obj->password, false]);
+        return $stmt->execute([isset($obj->first_name) ? $obj->first_name : "", isset($obj->last_name) ? $obj->last_name : "", $obj->email, $obj->password, false]);
     }
 
     /**
@@ -193,7 +193,8 @@ class UserRepository implements IDAO
         return $stmt->execute([$user_id, $review_id, $isLike]);
     }
 
-    function removeVote($user_id, $review_id){
+    function removeVote($user_id, $review_id)
+    {
         $stmt = get_db_connection()->prepare("DELETE FROM review_user_likes WHERE `user_id` = ? AND `review_id` = ?");
         return $stmt->execute([$user_id, $review_id]);
     }

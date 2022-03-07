@@ -106,7 +106,7 @@ if (isset($array_ruta[0])) {
     }
 
     $lastPinchos = $pinchoRepo->last(5);
-    $lastReviews = $reviewRepo->last(5);
+    $bestReviews = $reviewRepo->findAllOrderByRating(5);
 
     include "view/index.php";
 }
