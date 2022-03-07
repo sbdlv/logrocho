@@ -9,3 +9,6 @@ htdocs/css/fontawesome/scss/*
 
 ## Exclude css
 !htdocs/css/animate.min.css
+
+## Exclude changes on db.php
+htdocs/db.php

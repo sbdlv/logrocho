@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "2fc684c3-7d7e-4826-867b-962cd17da8a6",
+		"_postman_id": "e4764292-c538-4b96-9dd0-78fab3d4649d",
 		"name": "Logr8",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -20,6 +20,11 @@
 									"key": "name",
 									"value": "BAR POST",
 									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "Descr prueba",
+									"type": "default"
 								},
 								{
 									"key": "address",
@@ -102,6 +107,11 @@
 									"type": "text"
 								},
 								{
+									"key": "desc",
+									"value": "Descr prueba",
+									"type": "default"
+								},
+								{
 									"key": "name",
 									"value": "UPDATED",
 									"type": "text"
@@ -149,7 +159,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "logrocho.local/index.php/bar/jsonAll/1",
+							"raw": "logrocho.local/index.php/bar/jsonAll/1/4",
 							"host": [
 								"logrocho",
 								"local"
@@ -158,7 +168,8 @@
 								"index.php",
 								"bar",
 								"jsonAll",
-								"1"
+								"1",
+								"4"
 							]
 						}
 					},
@@ -250,10 +261,35 @@
 				{
 					"name": "Advance Search Query",
 					"request": {
-						"method": "GET",
+						"method": "POST",
 						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "a",
+									"type": "default"
+								},
+								{
+									"key": "address",
+									"value": "",
+									"type": "default"
+								},
+								{
+									"key": "minRating",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "maxRating",
+									"value": "5",
+									"type": "default"
+								}
+							]
+						},
 						"url": {
-							"raw": "logrocho.local/index.php/bar/searchQuery/2/10",
+							"raw": "logrocho.local/index.php/bar/searchQuery/1/10",
 							"host": [
 								"logrocho",
 								"local"
@@ -262,7 +298,7 @@
 								"index.php",
 								"bar",
 								"searchQuery",
-								"2",
+								"1",
 								"10"
 							]
 						}
@@ -273,7 +309,20 @@
 					"name": "JSON Complete by ID",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "logrocho.local/index.php/bar/completeJson/1",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"bar",
+								"completeJson",
+								"1"
+							]
+						}
 					},
 					"response": []
 				}
@@ -299,6 +348,16 @@
 									"key": "name",
 									"value": "ALTA PIncho",
 									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "Un princho de alta",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "1",
+									"type": "default"
 								}
 							]
 						},
@@ -339,6 +398,16 @@
 									"key": "bar_id",
 									"value": "1",
 									"type": "text"
+								},
+								{
+									"key": "desc",
+									"value": "MODIFICADO",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "21",
+									"type": "default"
 								}
 							]
 						},
@@ -476,7 +545,28 @@
 						"header": [],
 						"body": {
 							"mode": "formdata",
-							"formdata": []
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ll",
+									"type": "default"
+								},
+								{
+									"key": "bar_name",
+									"value": "a",
+									"type": "default"
+								},
+								{
+									"key": "minRating",
+									"value": "2",
+									"type": "default"
+								},
+								{
+									"key": "maxRating",
+									"value": "5",
+									"type": "default"
+								}
+							]
 						},
 						"url": {
 							"raw": "logrocho.local/index.php/pincho/searchQuery/1/6",
@@ -499,7 +589,20 @@
 					"name": "JSON Complete by ID",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "logrocho.local/index.php/pincho/completeJson/1",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"pincho",
+								"completeJson",
+								"1"
+							]
+						}
 					},
 					"response": []
 				}
@@ -615,6 +718,11 @@
 									"key": "password",
 									"value": "usuario",
 									"type": "text"
+								},
+								{
+									"key": "created_date",
+									"value": "2022-03-05",
+									"type": "default"
 								}
 							]
 						},
@@ -814,6 +922,42 @@
 								"user",
 								"deleteLikes",
 								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Votar reseña",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "review_id",
+									"value": "1",
+									"type": "default"
+								},
+								{
+									"key": "isLike",
+									"value": "1",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "logrocho.local/index.php/user/voteReview/",
+							"host": [
+								"logrocho",
+								"local"
+							],
+							"path": [
+								"index.php",
+								"user",
+								"voteReview",
+								""
 							]
 						}
 					},
@@ -1027,6 +1171,47 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Token serach",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "logrocho.local/index.php/general/tokenSearch/me",
+					"host": [
+						"logrocho",
+						"local"
+					],
+					"path": [
+						"index.php",
+						"general",
+						"tokenSearch",
+						"me"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Best Pinchos and Reviews",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "logrocho.local/index.php/general/bestPinchosAndReviews",
+					"host": [
+						"logrocho",
+						"local"
+					],
+					"path": [
+						"index.php",
+						"general",
+						"bestPinchosAndReviews"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

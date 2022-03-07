@@ -41,7 +41,7 @@ $menus = [
     </ul>
     <hr>
     <div class="dropdown">
-        <a href="/" class="btn bg-primary text-white"><i class="fas fa-home"></i></a>
+        <a href="index.php" class="btn bg-primary text-white"><i class="fas fa-home"></i></a>
         <a href="<?= get_server_index_base_url() . "user/logout" ?>" class="btn bg-danger text-white"><i class="fas fa-sign-out-alt"></i></a>
     </div>
 </aside>

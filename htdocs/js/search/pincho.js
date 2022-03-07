@@ -25,7 +25,7 @@ let makeQuery = $("#results").AjaxSearch({
     getTemplate: (data) => {
         let stars = $("<div></div>").addClass("mb-2");
 
-        for (let i = 0; i < data.rating; i++) {
+        for (let i = 0; i < Math.floor(data.rating); i++) {
             stars.append('<i class="fas fa-star"></i>')
         }
 
@@ -33,21 +33,19 @@ let makeQuery = $("#results").AjaxSearch({
             stars.append('<i class="fas fa-star off"></i>')
         }
 
-        console.log(data);
-
         return $("<a></a>").addClass("tarjeta tarjeta-btn pincho-search-card row mx-auto mb-4").append(
-            $("<div></div>").addClass("col-3 imgWrapper").append(
+            $("<div></div>").addClass("col-lg-3 col-12 imgWrapper img-card-responsive").append(
             ),
-            $("<div></div>").addClass("col p-4").append(
+            $("<div></div>").addClass("col-lg-9 col-12 p-4").append(
                 $("<h3></h3>").text(data.name).addClass("mb-1"),
                 stars,
                 $("<div></div>").addClass("address").append(
                     $('<i class="fas fa-utensils"></i>'),
                     $("<p></p>").text(data.bar_name)
                 ).addClass("mb-2"),
-                $("<div></div>").text("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.")
+                $("<div></div>").text(data.desc).addClass("text_clamp_3")
             ),
-        ).attr("href", `index.php/bar/${data.id}`)
+        ).attr("href", `index.php/pincho/${data.id}`)
     }
 });
 

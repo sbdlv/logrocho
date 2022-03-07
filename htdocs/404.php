@@ -16,7 +16,7 @@
         <div class="text-center mx-auto" id="e404">
             <h1 class="mb-5">404</h1>
             <p class="mb-5">Lo sentimos, la página que busca no existe</p>
-            <a href="index.html" class="btn btn-primary">Ir al inicio</a>
+            <a href="index.php" class="btn btn-primary">Ir al inicio</a>
         </div>
     </section>
 </body>

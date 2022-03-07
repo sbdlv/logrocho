@@ -25,7 +25,7 @@
             <div class="row my-4">
                 <div class="col tarjeta p-4">
                     <h2 class="mb-4"><i class="fas fa-info-circle"></i> Detalles</h2>
-                    <input type="hidden" id="review_id" value="<?= $review->id ?>">
+                    <input type="hidden" id="review_id" value="<?= $review->id ?>" autocomplete="off">
                     <div class="table-responsive">
                         <table class="table customize-table mb-0 v-middle table-borderless">
                             <tbody>
@@ -41,17 +41,18 @@
                                 </tr>
                                 <tr>
                                     <td>Pincho</td>
-                                    <td>
+                                    <td class="d-flex align-items-center">
                                         <select name="" id="review_pincho_id" autocomplete="false">
                                             <?php foreach ($pinchos as $pincho) : ?>
                                                 <option value="<?= $pincho->id ?>" <?= $pincho->id  == $review->pincho_id ? "selected" : "" ?>><?= $pincho->name ?></option>
                                             <?php endforeach; ?>
                                         </select>
+                                        <button class="btn btn-primary ms-3" id="open_pincho"><i class="fas fa-external-link-alt"></i></button>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>Titulo</td>
-                                    <td><input type="text" name="" id="review_title" value="<?= $review->title ?>"></td>
+                                    <td><input type="text" name="" id="review_title" value="<?= $review->title ?>" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>Descripción</td>
@@ -59,37 +60,30 @@
                                 </tr>
                                 <tr>
                                     <td>Presentación</td>
-                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_presentation" value="<?= $review->presentation ?>"><i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_presentation" value="<?= $review->presentation ?>" autocomplete="off"><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Sabor</td>
-                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_taste" value="<?= $review->taste ?>"><i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_taste" value="<?= $review->taste ?>" autocomplete="off"><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Textura</td>
-                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_texture" value="<?= $review->texture ?>"><i class="fas fa-star"></i></td>
+                                    <td class="puntuacionWrapper"><input type="number" name="" id="review_texture" value="<?= $review->texture ?>" autocomplete="off"><i class="fas fa-star"></i></td>
                                 </tr>
                                 <tr>
                                     <td>Me gusta <i class="fas fa-thumbs-up"></i></td>
-                                    <td>?</td>
+                                    <td><?=$review->likes?></td>
                                 </tr>
                                 <tr>
                                     <td>No me gusta <i class="fas fa-thumbs-down"></i></td>
-                                    <td>?</td>
+                                    <td><?=$review->dislikes?></td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="puntuacionWrapper h3">
-                            <div class="font-weight-bold mt-4 d-inline-block">Total (Calculado): </div> ? <i class="fas fa-star"></i>
+                            <div class="font-weight-bold mt-4 d-inline-block">Total (Calculado): </div> <?=round((floatval($review->taste) + floatval($review->presentation) + floatval($review->texture)) / 3, 1)?> <i class="fas fa-star"></i>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row tarjeta p-4">
-                <h2 class="mb-4"><i class="fas fa-images"></i></i> Multimedia</h2>
-                <div class="displa-felx imagenes_reseña">
-                    <img src="img/pt1.jpg" alt="">
-                    <img src="img/pt2.jpg" alt="">
                 </div>
             </div>
         </section>

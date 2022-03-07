@@ -1,0 +1,33 @@
+.review-card-interact {
+    .btn {
+        * {
+            pointer-events: none;
+        }
+
+        i {
+            transition: color 0.2s ease-out;
+        }
+    }
+}
+
+.review-card-slider {
+    min-height: 255px;
+}
+
+.review-card-detailed {
+    &.disappear {
+        animation-name: disappearReview;
+        animation-duration: 0.35s;
+        animation-iteration-count: 1;
+
+        @keyframes disappearReview {
+            from {
+                opacity: 1;
+            }
+            
+            to {
+                opacity: 0;
+            }
+        }
+    }
+}

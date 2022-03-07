@@ -13,8 +13,14 @@
         background-position: center;
         background-size: 80px;
 
-        border-top-left-radius: .25rem;
-        border-bottom-left-radius: .25rem;
+        border-top-left-radius: 0.25rem;
+        border-bottom-left-radius: 0.25rem;
+
+        @media (max-width: $media-lg) {
+            height: 300px;
+            border-top-right-radius: 0.25rem;
+            border-bottom-left-radius: 0;
+        }
     }
     .address {
         display: flex;
@@ -25,5 +31,30 @@
             margin: 0;
             margin-left: 10px;
         }
+    }
+}
+
+.pincho-card-slider-vertical {
+    max-width: 900px;
+    height: 568px;
+    .imgWrapper {
+        background-color: lightgray;
+        background-image: url("../img/pincho_placeholder.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 80px;
+
+        height: 400px;
+
+        @media (max-width: $media-sm) {
+            height: 300px;
+        }
+
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+    }
+
+    @media (max-width: $media-md) {
+        height: 500px;
     }
 }

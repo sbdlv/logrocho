@@ -1,6 +1,6 @@
 <?php
 require_once "repository/ReviewRepository.php";
-add_to_breadcrumbs("Reseñas", get_server_index_base_url() . "review");
+add_to_breadcrumbs("Reseñas", get_server_index_base_url() . "review/list");
 
 /**
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
@@ -106,18 +106,18 @@ class ReviewController
         }
     }
 
-    function jsonAll($page, $orderBy = false, $orderDir = false)
+    function jsonAll($page, $resultsPerPage = 4, $orderBy = false, $orderDir = false)
     {
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json; charset=utf-8');
         $repo = new ReviewRepository();
 
-        $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
+        $offset = ($page - 1) * $resultsPerPage;
 
         if ($orderBy && $orderDir) {
-            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE, $orderBy, $orderDir));
+            echo json_encode($repo->findAll($offset, $resultsPerPage , $orderBy, $orderDir));
         } else {
-            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));
+            echo json_encode($repo->findAll($offset, $resultsPerPage));
         }
     }
 
@@ -135,5 +135,37 @@ class ReviewController
         $repo = new ReviewRepository();
 
         echo json_encode($repo->total());
+    }
+
+
+    function publish()
+    {
+        if (is_logged()) {
+            if (isset($_POST["title"], $_POST["desc"], $_POST["presentation"], $_POST["texture"], $_POST["taste"], $_POST["pincho_id"])) {
+                $review = new Review();
+
+                $review->user_id = $_SESSION["user"]["id"];
+                $review->title = $_POST["title"];
+                $review->desc = $_POST["desc"];
+                $review->presentation = $_POST["presentation"];
+                $review->texture = $_POST["texture"];
+                $review->taste = $_POST["taste"];
+                $review->pincho_id = $_POST["pincho_id"];
+
+                $repo = new ReviewRepository();
+                if ($repo->save($review)) {
+                    echo "OK";
+                } else {
+                    http_response_code(400);
+                    echo "No se ha podido crear la reseña";
+                }
+            } else {
+                http_response_code(400);
+                echo "Faltan campos POST.";
+            }
+        } else {
+            http_response_code(400);
+            echo "No has iniciado sesión.";
+        }
     }
 }

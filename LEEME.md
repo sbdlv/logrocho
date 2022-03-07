@@ -1,4 +1,11 @@
-# Instrucciones de montaje del entorno
+# Hosting
+http://sergiobarrio.ociobinario.com/index.php
+
+## Usuario administrador para la web
+Usuario: admin@logrocho.local
+Contraseña: usuario123ABC
+
+# Instrucciones de montaje del entorno (Local)
 Por favor, leer todos los apartados de este fichero, en especial aquellos que afecten a la asignatura que se está evaluando.
 
 ## BD
@@ -12,11 +19,14 @@ Por favor, leer todos los apartados de este fichero, en especial aquellos que af
 ## Instrucciones XAMPP:
 - La carpeta htdocs dentro de XAMPP. La ruta debería de ser indiferente, ya que el index.php se encarga de abstraer la ruta en la que se encuentra.
 
-# NOTAS
-- Los campos calculados se muestran con un ?, ya que de momento no se ha pedido implementar la funcionalidad de creación de reseñas por parte del usuario, likes etc.
+## Detalles para DWES
+- Para las peticiones que requieren de permisos admin se ha comentado la linea que comprueba dicha condición (Por comodidad a la hora de hacer las pruebas con Postman)
+- Para las peticiones POST, todos los campos están definidos en el apartado de `Body`
+- Para probar a subir imágenes deberías de poder ver un campo llamado `pic` en las peticiones de `Upload IMG` (Bar y pincho
 
 # Para comprobar
 > Suponiendo que la raiz de index es localhost/
+
 ## Parte admin (La de bares, pero luego se puede navegar por el resto): 
 http://localhost/index.php/bar
 ## Contacto: 

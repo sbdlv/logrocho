@@ -1,4 +1,7 @@
 <?php
+/*
+* Configure the database credentials and connection.
+*/
 const DB_USER = "root";
 const DB_PASS = "";
 const DB_INFO = "mysql:host=localhost;dbname=logrocho";
@@ -6,9 +9,9 @@ const DB_INFO = "mysql:host=localhost;dbname=logrocho";
 $_connection = null;
 
 /**
- * Obtiene la conexión con la base de datos
+ * Obtains the database connection.
  *
- * @return PDO
+ * @return PDO The database connection
  */
 function get_db_connection()
 {

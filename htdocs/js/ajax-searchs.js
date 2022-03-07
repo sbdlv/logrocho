@@ -153,8 +153,8 @@ function numericPagination_click(e, options, root) {
             options.currentData = response;
             printResults(root, options);
             printPagination(root, options);
+            $("#results").get(0).scrollIntoView();
         }
     });
 
-    $("#results").get(0).scrollIntoView();
 }

@@ -8,18 +8,24 @@
             width: 100px;
         }
 
-        p{
+        p:not(.desc){
             font-weight: bold;
             color: black;
             font-size: 20px;
             margin-bottom: 0;
         }
 
-        @media (max-width: $media-sm) {
+        .desc{
+            font-size: 15px;
+            max-width: 80%;
+            color: rgb(59, 59, 59);
+        }
+
+        @media (max-width: 987px) {
             width: 100%;
         }
     }
-    @media (max-width: $media-sm) {
+    @media (max-width: 987px) {
         flex-wrap: wrap;
     }
 }

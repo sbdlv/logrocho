@@ -1,6 +1,6 @@
 <?php
 require_once "repository/BarRepository.php";
-add_to_breadcrumbs("Bares", get_server_index_base_url() . "bar");
+add_to_breadcrumbs("Bares", get_server_index_base_url() . "bar/list");
 
 /**
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
@@ -26,15 +26,16 @@ class BarController
         $bar = $repo->find($id);
         $barImages = $repo->getImages($id);
         $activeMenu = "bar";
-        include "view/Bar/info.php";
+        include "view/Bar/edit.php";
     }
 
     function alta()
     {
-        if (isset($_POST["name"], $_POST["address"], $_POST["lon"], $_POST["lat"], $_POST["terrace"])) {
+        if (isset($_POST["name"], $_POST["desc"], $_POST["address"], $_POST["lon"], $_POST["lat"], $_POST["terrace"])) {
             $bar = new Bar();
 
             $bar->name = $_POST["name"];
+            $bar->desc = $_POST["desc"];
             $bar->address = $_POST["address"];
             $bar->lon = $_POST["lon"];
             $bar->lat = $_POST["lat"];
@@ -42,8 +43,10 @@ class BarController
             //TODO: Incluir campo imagen etc
 
             $repo = new BarRepository();
-            if ($repo->save($bar)) {
-                echo "Se ha dado de alta el bar";
+
+            $newBarID = $repo->save($bar);
+            if ($newBarID !== false) {
+                echo $newBarID;
             } else {
                 echo "Error: No se ha dado de alta el bar";
             }
@@ -54,11 +57,12 @@ class BarController
 
     function update()
     {
-        if (isset($_POST["id"], $_POST["name"], $_POST["address"], $_POST["lon"], $_POST["lat"], $_POST["terrace"])) {
+        if (isset($_POST["id"], $_POST["name"], $_POST["desc"], $_POST["address"], $_POST["lon"], $_POST["lat"], $_POST["terrace"])) {
             $bar = new Bar();
 
             $bar->id = $_POST["id"];
             $bar->name = $_POST["name"];
+            $bar->desc = $_POST["desc"];
             $bar->address = $_POST["address"];
             $bar->lon = $_POST["lon"];
             $bar->lat = $_POST["lat"];
@@ -98,18 +102,22 @@ class BarController
         }
     }
 
-    function jsonAll($page, $orderBy = false, $orderDir = false)
+    function jsonAll($page = false, $resultsPerPage = 4, $orderBy = false, $orderDir = false)
     {
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json; charset=utf-8');
         $repo = new BarRepository();
 
-        $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
+        if ($page) {
+            $offset = ($page - 1) * $resultsPerPage;
 
-        if ($orderBy && $orderDir) {
-            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE, $orderBy, $orderDir));
+            if ($orderBy && $orderDir) {
+                echo json_encode($repo->findAll($offset, $resultsPerPage, $orderBy, $orderDir));
+            } else {
+                echo json_encode($repo->findAll($offset, $resultsPerPage));
+            }
         } else {
-            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));
+            echo json_encode($repo->findAll());
         }
     }
 
@@ -163,21 +171,22 @@ class BarController
 
     function new()
     {
+        $activeMenu = "bar";
+        add_to_breadcrumbs("Nuevo bar");
+
         include "view/Bar/new.php";
     }
 
     //Publico
     function index($id)
     {
-        $repo = new BarRepository();
-
-        $bar = $repo->find($id);
-        $activeMenu = "bar";
+        $data = $this->completeJson($id, true);
         include "view/Bar/index.php";
     }
 
     function search()
     {
+        $activeMenu = "bar";
         include "view/Bar/search.php";
     }
 
@@ -200,10 +209,11 @@ class BarController
 
     function map()
     {
+        $activeMenu = "map";
         include "view/Bar/map.php";
     }
 
-    function completeJson($pk)
+    function completeJson($pk, $return = false)
     {
         $repo = new BarRepository();
         require_once "repository/PinchoRepository.php";
@@ -215,7 +225,7 @@ class BarController
             "bar" => $repo->find($pk),
             "pinchos" => $repoPincho->byBar($pk),
             "multimedia" => [
-                "bar" => empty($imagesBar) ? [] : $imagesBar[$pk],
+                "bar" => $imagesBar,
                 "pinchos" => []
             ]
         ];
@@ -223,11 +233,22 @@ class BarController
 
         foreach ($info["pinchos"] as $pincho) {
             $images = $repoPincho->getImages($pincho->id);
-            $info["multimedia"]["pinchos"][$pincho->id] = empty($images) ? [] : $images[$pincho->id];
+            $info["multimedia"]["pinchos"][$pincho->id] = $images;
+        }
+
+        if ($return) {
+            return (object) $info;
         }
 
         header('Content-Type: application/json; charset=utf-8');
-
         echo json_encode($info);
+    }
+
+    public function images($id)
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        $repo = new BarRepository();
+        
+        echo json_encode($repo->getImages($id));
     }
 }

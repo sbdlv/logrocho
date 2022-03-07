@@ -20,6 +20,8 @@ class User extends AbstractMappedSQLModel
 
     public string $created_date;
 
+    public string $img_path;
+
     static function getPropertiesMapArray(): array
     {
         return [
@@ -30,19 +32,8 @@ class User extends AbstractMappedSQLModel
             "password" => "password",
             "admin" => "admin",
             "created_date" => "created_date",
+            "img_path" => "img_path",
         ];
         
-    }
-
-    public static function fromstdclass(stdClass $obj)
-    {
-        $instance = new self();
-
-        $instance->first_name = $obj->first_name;
-        $instance->last_name = $obj->last_name;
-        $instance->email = $obj->email;
-        $instance->password = $obj->password;
-
-        return $instance;
     }
 }

@@ -17,7 +17,11 @@
     <?php include "view/nav.php" ?>
     <div class="container-fluid profile_and_tabs py-5">
         <div class="info text-center mb-5">
-            <img src="../img/pfp.jpg" alt="" class="img-fluid mb-3">
+            <?php if (isset($user->img_path)) : ?>
+                <img src="<?= $user->img_path ?>" alt="" class="img-fluid mb-3">
+            <?php else: ?>
+                <div class="big-pfp mb-3 d-inline-block"></div>
+            <?php endif; ?>
             <div class="email h1">usuario@logrocho.local</div>
         </div>
         <nav class="container">
@@ -33,7 +37,7 @@
         <div class="">
             <div class="tab-content" id="v-pills-tabContent">
                 <div class="tab-pane fade show active p-4" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                    <h2 class="mb-4">Perfil</h2>
+                    <h2 class="mb-4 fw-bold">Perfil</h2>
                     <section class="pb-4">
                         <div class="form-group mb-4">
                             <label for="user_first_name">Nombre</label>
@@ -54,8 +58,9 @@
                     </section>
                 </div>
                 <div class="tab-pane fade p-4" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <h2 class="mb-4">Mis reseñas</h2>
-                    <?php if (count($reviews)) : ?>
+                    <h2 class="mb-4 fw-bold">Mis reseñas</h2>
+                    <?php if (count($reviews)) : 
+                        $actionFunctionName = "deleteReview"?>
                         <div class="reviews">
                             <?php foreach ($reviews as $review) : ?>
                                 <?php include "view/Review/templates/card-detailed.php" ?>
@@ -66,27 +71,28 @@
                     <?php endif; ?>
                 </div>
                 <div class="tab-pane fade p-4" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                    <h2 class="mb-4">Mis likes</h2>
-                    <?php if (count($reviews)) : ?>
+                    <h2 class="mb-4 fw-bold">Mis likes</h2>
+                    <?php if (count($likedReviews)) : 
+                        $actionFunctionName = "removeVote"?>
                         <div class="reviews">
                             <?php foreach ($likedReviews as $review) : ?>
                                 <?php include "view/Review/templates/card-detailed.php" ?>
                             <?php endforeach; ?>
                         </div>
                     <?php else : ?>
-                        <p>No tienes reseñas.</p>
+                        <p>No has dado like a ninguna reseña.</p>
                     <?php endif; ?>
                 </div>
                 <div class="tab-pane fade p-4" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-                    <h2 class="mb-4">Mis dislikes</h2>
-                    <?php if (count($reviews)) : ?>
+                    <h2 class="mb-4 fw-bold">Mis dislikes</h2>
+                    <?php if (count($dislikedReviews)) : ?>
                         <div class="reviews">
                             <?php foreach ($dislikedReviews as $review) : ?>
                                 <?php include "view/Review/templates/card-detailed.php" ?>
                             <?php endforeach; ?>
                         </div>
                     <?php else : ?>
-                        <p>No tienes reseñas.</p>
+                        <p>No has dado dislike a ninguna reseña.</p>
                     <?php endif; ?>
                 </div>
             </div>

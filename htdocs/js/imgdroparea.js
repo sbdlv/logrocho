@@ -16,6 +16,7 @@ $.fn.ImgDropArea = function (data = {
     additionalClass: "",
     onChange: () => { },
     onAdd: () => { },
+    onDelete: () => { },
 }) {
     //Remove any inner HTML
     this.html("");
@@ -42,16 +43,14 @@ $.fn.ImgDropArea = function (data = {
     return this;
 }
 
-$.fn.ImgDropAreaAdd = function (imagesSrc = []) {
+$.fn.ImgDropAreaAdd = function (imageSrc, filename) {
     let lastElemToAppend = this.find(".images").eq(0);
 
     let additionalClass = this.data("data").additionalClass;
 
     let lastPos = this.find("img").length - 1;
 
-    imagesSrc.forEach(imageSrc => {
-        lastElemToAppend.append(getImgAndDrop(imageSrc, ++lastPos, additionalClass))
-    });
+    lastElemToAppend.append(getImgAndDrop(imageSrc, ++lastPos, additionalClass, filename))
 
     return this;
 }
@@ -74,14 +73,14 @@ function ImgDropAreaGetVal(root) {
  * @param {string} additionalClass Additional class for the img element
  * @returns {JQuery} The img JQuery element
  */
-function getImgAndDrop(imageSrc, pos, additionalClass = "") {
+function getImgAndDrop(imageSrc, pos, additionalClass = "", filename = "") {
     return $("<div></div>").addClass("img-draggable-wrapper").append(
         newDropZone(true).add(
             $("<img/>").attr("src", imageSrc).addClass("draggableImg").addClass(additionalClass).attr("data-img-pos", pos).on("dragstart", imgOnDragStart).on("dragend", imgOnDragEnd).add(
                 newDropZone(false).add(
                     $('<button class="btn btn-danger"><i class="fas fa-times"></i></button>').on("click", deleteImage)
                 )
-            )
+            ).attr("data-file-name", filename)
         )
     )
 }
@@ -153,10 +152,20 @@ function dropOnDragleave(e) {
 }
 
 function deleteImage(e) {
-    $(e.target).closest(".img-draggable-wrapper").remove();
+    let deleteButton = $(e.target);
+    let filename = deleteButton.siblings().eq(1).attr("data-file-name");
+
+    let data = deleteButton.closest(".imgdroparea").data().data;
+
+    if (filename != null && filename != "") {
+        data.onDelete(filename);
+    }
+
+    deleteButton.closest(".img-draggable-wrapper").remove();
 
     $("[data-img-pos]").each((i, elem) => {
         console.log(elem);
         $(elem).attr("data-img-pos", i);
     })
+
 }

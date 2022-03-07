@@ -1,6 +1,6 @@
 <?php
 require_once "repository/UserRepository.php";
-add_to_breadcrumbs("Usuarios", get_server_index_base_url() . "user");
+add_to_breadcrumbs("Usuarios", get_server_index_base_url() . "user/list");
 
 /**
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
@@ -14,7 +14,7 @@ class UserController
         $activeMenu = "user";
         $repo = new UserRepository();
         $users = $repo->findAll();
-        require "view/user/list.php";
+        require "view/User/list.php";
     }
 
     function edit($id)
@@ -23,7 +23,7 @@ class UserController
         add_to_breadcrumbs("Usuario #$id");
         $repo = new UserRepository();
         $user = $repo->findById($id);
-        require "view/user/edit.php";
+        require "view/User/edit.php";
     }
 
     function login()
@@ -55,7 +55,7 @@ class UserController
                 $this->redirectSession();
             }
         }
-        require "view/user/login.php";
+        require "view/User/login.php";
     }
 
     function register()
@@ -109,7 +109,7 @@ class UserController
     {
         if (isset($_SESSION["logged"]) && $_SESSION["logged"]) {
             if ($_SESSION["user"]["admin"]) {
-                header("Location: " . get_server_index_base_url() . "bar");
+                header("Location: " . get_server_index_base_url() . "bar/list");
             } else {
                 header("Location: index.php");
             }
@@ -182,18 +182,18 @@ class UserController
         }
     }
 
-    function jsonAll($page, $orderBy = false, $orderDir = false)
+    function jsonAll($page, $resultsPerPage = 4, $orderBy = false, $orderDir = false)
     {
         header('Access-Control-Allow-Origin: *');
         header('Content-Type: application/json; charset=utf-8');
         $repo = new UserRepository();
 
-        $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
+        $offset = ($page - 1) * $resultsPerPage;
 
         if ($orderBy && $orderDir) {
-            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE, $orderBy, $orderDir));
+            echo json_encode($repo->findAll($offset, $resultsPerPage, $orderBy, $orderDir));
         } else {
-            echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));
+            echo json_encode($repo->findAll($offset, $resultsPerPage));
         }
     }
 
@@ -318,8 +318,16 @@ class UserController
     }
 
     //Public
-    function profile($id)
+    function profile()
     {
+        if(!is_logged()){
+            require "404.php";
+            return;
+        }
+        
+        $id = $_SESSION["user"]["id"];
+        $activeMenu = "user";
+
         if ($id != $_SESSION["user"]["id"]) {
             require "404.php";
             die;
@@ -336,7 +344,7 @@ class UserController
         $likedReviews = $repoReview->likedByUser($id);
         $dislikedReviews = $repoReview->dislikedByUser($id);
 
-        require "view/user/profile.php";
+        require "view/User/profile.php";
     }
 
     function update_profile()
@@ -361,6 +369,73 @@ class UserController
         } else {
             http_response_code(400);
             echo "Faltan campos POST";
+        }
+    }
+
+    function voteReview()
+    {
+        if (!is_logged()) {
+            http_response_code(400);
+            echo "Primero necesitar iniciar sesión.";
+            return;
+        }
+
+        if (isset($_POST["isLike"], $_POST["review_id"])) {
+            $repo = new UserRepository();
+            if ($repo->voteReview($_SESSION["user"]["id"], $_POST["review_id"], $_POST["isLike"])) {
+            } else {
+                http_response_code(400);
+                echo "No se ha podido votar la reseña";
+            }
+        } else {
+            http_response_code(400);
+            echo "Faltan campos POST";
+        }
+    }
+
+    public function removeVote($review_id)
+    {
+        $review_id = intval($review_id);
+
+        if (is_logged()) {
+            $repo = new UserRepository();
+            if ($repo->removeVote($_SESSION["user"]["id"], $review_id)) {
+                echo "OK";
+            } else {
+                http_response_code(400);
+                echo "No se ha podido eliminar tu voto. Intentalo de nuevo más tarde.";
+            }
+        } else {
+            http_response_code(400);
+            echo "Primero necesitar iniciar sesión.";
+        }
+    }
+
+    public function deleteMyReview($review_id)
+    {
+        if (!is_logged()) {
+            http_response_code(400);
+            echo "Primero necesitar iniciar sesión.";
+            return;
+        }
+        
+        $repo = new UserRepository();
+
+        require_once "repository/ReviewRepository.php";
+        $repoReview = new ReviewRepository();
+
+        if ($repo->checkReviewOP($_SESSION["user"]["id"], $review_id)) {
+            if ($repoReview->delete((object) [
+                "id" => $review_id
+            ])) {
+                echo "OK";
+            } else {
+                http_response_code(400);
+                echo "No se ha podido borrar tu reseña";
+            }
+        } else {
+            http_response_code(400);
+            echo "No eres el autor de la reseña especificada";
         }
     }
 }

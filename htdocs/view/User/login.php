@@ -17,7 +17,9 @@
 
         <form class="tarjeta login_form mx-auto text-center" method="POST" action="<?= get_server_index_base_url() . "user/login" ?>">
             <div class="w-50 mb-3 mx-auto">
-                <img src="img/logo.png" alt="Logrocho logo" class="img-fluid">
+                <a href="<?= get_server_index_base_url() ?>">
+                    <img src="img/logo.svg" alt="Logrocho logo" class="img-fluid p-3">
+                </a>
             </div>
             <?php if (isset($errorMsg)) : ?>
                 <div class="alert alert-danger" role="alert">
@@ -34,7 +36,7 @@
             </div>
             <input type="submit" class="w-100 btn btn-lg btn-primary mb-3" href="listado_restaruante.html" value="Iniciar sesión" />
             <div class="text-center mb-3">
-                <a href="recuperar.html">¿olvidó su contraseña?</a>
+                <a href="view/User/recuperar.html">¿olvidó su contraseña?</a>
                 o
                 <a href="<?= get_server_index_base_url() . "user/register" ?>">Registrarse</a>
             </div>

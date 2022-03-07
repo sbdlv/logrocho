@@ -25,25 +25,25 @@
                 <div class="col-12 col-lg-4 tarjeta"><img src="img/pfp.jpg" class="img-fluid my-2" alt=""></div>
                 <div class="col offset-lg-1 tarjeta p-4">
                     <h2 class="mb-4"><i class="fas fa-info-circle"></i> Detalles</h2>
-                    <input type="hidden" id="user_id" value="<?= $user->id ?>">
+                    <input type="hidden" id="user_id" value="<?= $user->id ?>" autocomplete="off">
                     <div class="table-responsive">
                         <table class="table customize-table mb-0 v-middle table-borderless">
                             <tbody>
                                 <tr>
                                     <td>Nombre</td>
-                                    <td><input type="text" name="" id="user_first_name" value="<?= $user->first_name ?>"></td>
+                                    <td><input type="text" name="" id="user_first_name" value="<?= $user->first_name ?>" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>Apellidos</td>
-                                    <td><input type="text" name="" id="user_last_name" value="<?= $user->last_name ?>"></td>
+                                    <td><input type="text" name="" id="user_last_name" value="<?= $user->last_name ?>" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>Email</td>
-                                    <td><input type="email" name="" id="user_email" value="<?= $user->email ?>"></td>
+                                    <td><input type="email" name="" id="user_email" value="<?= $user->email ?>" autocomplete="off"></td>
                                 </tr>
                                 <tr>
                                     <td>Fecha de alta</td>
-                                    <td><input type="date" name="" id="user_created_date" value="<?= $user->created_date ?>"></td>
+                                    <td><input type="date" name="" id="user_created_date" value="<?= $user->created_date ?>" autocomplete="off"></td>
                                 </tr>
                             </tbody>
                         </table>

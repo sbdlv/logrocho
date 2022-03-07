@@ -1,6 +1,6 @@
 <?php
 require_once "repository/PinchoRepository.php";
-add_to_breadcrumbs("Pinchos", get_server_index_base_url() . "pincho");
+add_to_breadcrumbs("Pinchos", get_server_index_base_url() . "pincho/list");
 
 /**
  * @author Sergio Barrio <sergiobarriodelavega@gmail.com>
@@ -9,6 +9,17 @@ class PinchoController
 {
     private const AMOUNT_OF_RESULTS_PER_PAGE = 4;
 
+    function index($id)
+    {
+        if (preg_replace('/[^0-9]/', '', $id)) {
+            $data = $this->completeJson($id, true);
+            include "view/Pincho/index.php";
+            return;
+        }
+
+        include "404.php";
+    }
+
     function list()
     {
         $repo = new PinchoRepository();
@@ -16,6 +27,22 @@ class PinchoController
         $pinchos = $repo->findAll();
         $activeMenu = "pincho";
         include "view/Pincho/list.php";
+    }
+
+    public function new()
+    {
+        add_to_breadcrumbs("Nuevo pincho");
+        $activeMenu = "pincho";
+
+        require_once "repository/BarRepository.php";
+        $barRepo = new BarRepository();
+        $bars = $barRepo->findAll();
+
+        require_once "repository/AllergenRepository.php";
+        $allergenRepo = new AllergenRepository();
+        $allergens = $allergenRepo->findAll();
+
+        include "view/Pincho/new.php";
     }
 
     function edit($id)
@@ -31,6 +58,9 @@ class PinchoController
         $allergenRepo = new AllergenRepository();
         $allergens = $allergenRepo->findAll();
 
+        require_once "repository/ReviewRepository.php";
+        $reviewRepo = new ReviewRepository();
+        $reviews = $reviewRepo->byPincho($id);
 
         $pincho = $repo->find($id);
         $pinchoImages = $repo->getImages($id);
@@ -43,16 +73,19 @@ class PinchoController
 
     function alta()
     {
-        if (isset($_POST["bar_id"], $_POST["name"])) {
+        if (isset($_POST["bar_id"], $_POST["name"], $_POST["desc"], $_POST["price"])) {
             $pincho = new Pincho();
 
             $pincho->bar_id = $_POST["bar_id"];
             $pincho->name = $_POST["name"];
+            $pincho->desc = $_POST["desc"];
+            $pincho->price = $_POST["price"];
             //TODO: Incluir campo imagen etc
 
             $repo = new PinchoRepository();
-            if ($repo->save($pincho)) {
-                echo "Se ha dado de alta el pincho";
+            $newID = $repo->save($pincho);
+            if ($newID) {
+                echo $newID;
             } else {
                 echo "Error: No se ha dado de alta el pincho";
             }
@@ -63,12 +96,13 @@ class PinchoController
 
     function update()
     {
-        if (isset($_POST["id"], $_POST["bar_id"], $_POST["name"], $_POST["price"], $_POST["allergens"])) {
+        if (isset($_POST["id"], $_POST["bar_id"], $_POST["name"], $_POST["desc"], $_POST["price"])) {
             $pincho = new Pincho();
 
             $pincho->id = $_POST["id"];
             $pincho->bar_id = $_POST["bar_id"];
             $pincho->name = $_POST["name"];
+            $pincho->desc = $_POST["desc"];
             $pincho->price = $_POST["price"];
 
             $repo = new PinchoRepository();
@@ -76,7 +110,7 @@ class PinchoController
             $images = isset($_POST["images"]) ? $_POST["images"] : [];
             $repo->treatImages($_POST["id"], $images);
 
-            if ($repo->update($pincho) && $repo->setAllergens($pincho, $_POST["allergens"])) {
+            if ($repo->update($pincho) && $repo->setAllergens($pincho, isset($_POST["allergens"]) ? $_POST["allergens"] : [])) {
                 echo "Se ha modificado el pincho";
             } else {
                 http_response_code(400);
@@ -106,15 +140,15 @@ class PinchoController
         }
     }
 
-    function jsonAll($page)
+    function jsonAll($page, $resultsPerPage = 4)
     {
         header('Content-Type: application/json; charset=utf-8');
 
         $repo = new PinchoRepository();
 
-        $offset = ($page - 1) * self::AMOUNT_OF_RESULTS_PER_PAGE;
+        $offset = ($page - 1) * $resultsPerPage;
 
-        echo json_encode($repo->findAll($offset, self::AMOUNT_OF_RESULTS_PER_PAGE));
+        echo json_encode($repo->findAll($offset, $resultsPerPage));
     }
 
     function json($id)
@@ -168,6 +202,7 @@ class PinchoController
         require_once "repository/BarRepository.php";
         $reop = new BarRepository();
         $bars = $reop->findAll();
+        $activeMenu = "pincho";
 
         include "view/Pincho/search.php";
     }
@@ -189,7 +224,7 @@ class PinchoController
         echo json_encode($repo->searchTotal(isset($_POST["name"]) ? $_POST["name"] : "", isset($_POST["bar_name"]) ? $_POST["bar_name"] : "", isset($_POST["minRating"]) ? $_POST["minRating"] : 0, isset($_POST["maxRating"]) ? $_POST["maxRating"] : 5));
     }
 
-    function completeJson($pk)
+    function completeJson($pk, $return = false)
     {
         $repo = new PinchoRepository();
 
@@ -201,12 +236,24 @@ class PinchoController
 
         $info = [
             "pincho" => $repo->find($pk),
-            "multimedia" => empty($images) ? [] : $images[$pk],
+            "multimedia" => $images,
             "reviews" => $reviewRepo->byPincho($pk)
         ];
+
+        if ($return) {
+            return (object) $info;
+        }
 
         header('Content-Type: application/json; charset=utf-8');
 
         echo json_encode($info);
+    }
+
+    public function images($id)
+    {
+        header('Content-Type: application/json; charset=utf-8');
+        $repo = new PinchoRepository();
+
+        echo json_encode($repo->getImages($id));
     }
 }

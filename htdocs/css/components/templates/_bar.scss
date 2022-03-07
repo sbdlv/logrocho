@@ -1,5 +1,5 @@
 .bar-search-card {
-    min-height: 220px;
+    min-height: 224px;
     align-items: stretch;
 
     text-decoration: none;
@@ -13,8 +13,13 @@
         background-position: center;
         background-size: 80px;
 
-        border-top-left-radius: .25rem;
-        border-bottom-left-radius: .25rem;
+        border-top-left-radius: 0.25rem;
+        
+        @media (max-width: $media-lg) {
+            height: 300px;
+            border-top-right-radius: 0.25rem;
+            border-bottom-left-radius: 0;
+        }
     }
     .address {
         display: flex;
