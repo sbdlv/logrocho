@@ -18,7 +18,7 @@
 }
 
 input:not([type="submit"]),
-select {
+select, textarea {
     background-color: #edf0f3 !important;
     border: none !important;
     border-radius: 0.25rem;
