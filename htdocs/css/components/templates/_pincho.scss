@@ -27,3 +27,24 @@
         }
     }
 }
+
+.pincho-card-slider-vertical {
+    max-width: 900px;
+    height: 568px;
+    .imgWrapper {
+        background-color: lightgray;
+        background-image: url("../img/pincho_placeholder.png");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 80px;
+
+        height: 400px;
+
+        @media (max-width: $media-sm) {
+            height: 300px;
+        }
+
+        border-top-left-radius: 0.25rem;
+        border-top-right-radius: 0.25rem;
+    }
+}

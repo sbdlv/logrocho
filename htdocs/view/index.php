@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="js/OwlCarousel2/dist/assets/owl.carousel.min.css">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/animate.min.css">
+  <link rel="stylesheet" href="css/swiper-bundle.min.css">
   <script src="js/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
@@ -21,27 +22,32 @@
     <section class="container py-5">
       <h2 class="mb-5 fw-bold">Pinchos</h2>
       <div id="principal_sliders">
-        <div class="owl-carousel owl-theme best_pinchos_slider fixed_slider">
-          <div class="item"><img src="img/pf1.jpg" alt=""></div>
-          <div class="item"><img src="img/pf2.jpg" alt=""></div>
-          <div class="item"><img src="img/pf3.jpg" alt=""></div>
-          <div class="item"><img src="img/pf4.jpg" alt=""></div>
-          <div class="item"><img src="img/pf5.jpg" alt=""></div>
+        <div class="swiper best_pinchos_swiper">
+          <div class="swiper-wrapper">
+            <?php foreach ($best5 as $pincho) : ?>
+              <div class="swiper-slide"><?php require "view/Pincho/templates/card-slider-vertical.php" ?></div>
+            <?php endforeach; ?>
+          </div>
         </div>
-        <div class="owl-carousel owl-theme fav_slider fixed_slider">
-          <div class="item"><img src="img/pp1.jpg" alt=""></div>
-          <div class="item"><img src="img/pp2.jpg" alt=""></div>
-          <div class="item"><img src="img/pp3.jpg" alt=""></div>
-          <div class="item"><img src="img/pp4.jpg" alt=""></div>
-          <div class="item"><img src="img/pm-1.jpg" alt=""></div>
-        </div>
+        <?php if (is_logged() && count($fav5) > 0) : ?>
+          <div class="swiper fav_swiper">
+            <div class="swiper-wrapper">
+              <?php foreach ($fav5 as $pincho) : ?>
+                <div class="swiper-slide"><?php require "view/Pincho/templates/card-slider-vertical.php" ?></div>
+              <?php endforeach; ?>
+            </div>
+          </div>
+        <?php endif; ?>
+
       </div>
       <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
         <input type="radio" class="btn-check" name="btnradio" id="toggleBestPinchosSlider" autocomplete="off" checked>
         <label class="btn btn-outline-primary" for="toggleBestPinchosSlider">Los mejores</label>
 
-        <input type="radio" class="btn-check" name="btnradio" id="toggleFavSlider" autocomplete="off">
-        <label class="btn btn-outline-primary" for="toggleFavSlider">Preferidos</label>
+        <?php if (is_logged() && count($fav5) > 0) : ?>
+          <input type="radio" class="btn-check" name="btnradio" id="toggleFavSlider" autocomplete="off">
+          <label class="btn btn-outline-primary" for="toggleFavSlider">Preferidos</label>
+        <?php endif; ?>
       </div>
     </section>
     <section class="container-fluid contrastFluid py-5">
@@ -88,6 +94,7 @@
 
   <script src="js/jquery-3.6.0.min.js"></script>
   <script src="js/OwlCarousel2/dist/owl.carousel.min.js"></script>
+  <script src="js/swiper-bundle.min.js"></script>
   <script src="js/home_sliders.js"></script>
 </body>
 

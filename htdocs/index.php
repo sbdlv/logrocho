@@ -23,7 +23,7 @@ if (isset($array_ruta[0])) {
 
     //Para soportar sistemas case sensitive, convertimos el string con primera en mayus. el testo en minus.
     $modelName = ucfirst(strtolower($modelName));
-    
+
     //Obtenemos los path dinamicamente de los ficheros del controlador y modelo
     $controllerPath = "controller/$modelName" . "Controller.php";
     $modelPath = "model/$modelName" . ".php";
@@ -100,7 +100,11 @@ if (isset($array_ruta[0])) {
     $pinchoRepo = new PinchoRepository();
 
     $best5 = $pinchoRepo->findAllOrderByRating(5);
-    
+
+    if(is_logged()){
+        $fav5 = $pinchoRepo->findAllOrderByUserRating($_SESSION["user"]["id"], 5);
+    }
+
     $lastPinchos = $pinchoRepo->last(5);
     $lastReviews = $reviewRepo->last(5);
 

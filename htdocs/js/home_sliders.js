@@ -1,34 +1,29 @@
 //Sliders
+var swiperBest5 = new Swiper(".best_pinchos_swiper", {
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    effect: "fade",
+    loop: true
+});
+let bestPinchosSlider = $(".best_pinchos_swiper").eq(0);
+addPausePlayButton(bestPinchosSlider, swiperBest5);
 
-let bestPinchosSlider = $(".best_pinchos_slider");
-bestPinchosSlider.owlCarousel(
-    {
-        autoplay: true,
-        autoplayTimeout: 5000,
-        loop: true,
-        items: 1,
-        nav: true,
-        navText: ['<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-right"></i>'],
-        dots: false
-    }
-)
-addPausePlayButton(bestPinchosSlider);
-
-let favSlider = $(".fav_slider").css("display", "none");
-favSlider.owlCarousel(
-    {
-        autoplay: true,
-        autoplayTimeout: 5000,
-        loop: true,
-        items: 1,
-        nav: true,
-        navText: ['<i class="fas fa-chevron-left"></i>', '<i class="fas fa-chevron-right"></i>'],
-        dots: false,
-        animateOut: 'animate__slideOutDown',
-        animateIn: 'animate__flipInX',
-    }
-)
-addPausePlayButton(favSlider);
+var swiperFav5 = new Swiper(".fav_swiper", {
+    spaceBetween: 30,
+    centeredSlides: true,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    effect: "flip",
+    loop: true
+});
+let favSlider = $(".fav_swiper").eq(0).css("display", "none");
+addPausePlayButton(favSlider, swiperFav5);
 
 $(".last_pinchos_slider").owlCarousel({
     dots: true,
@@ -84,21 +79,30 @@ $("#toggleBestPinchosSlider").on("click", () => {
  * 
  * @param {JQuery} slider 
  */
-function addPausePlayButton(slider) {
-    $("<button></button>").on("click", (e) => {
-        let button = $(e.target);
-        let isStopped = button.attr("data-stopped") == "true";
+function addPausePlayButton(slider, swiper) {
+    slider.append(
+        $("<div></div>").addClass("slider-custom-controls d-flex justify-content-center mb-2").append(
+            $("<button></button>").addClass("prev").on("click", () => {
+                swiper.slidePrev();
+            }),
+            $("<button></button>").addClass("pause mx-3").on("click", (e) => {
+                let og = $(e.target);
 
-        let i = button.children().eq(0).removeClass();
+                if (og.hasClass("play")) {
+                    swiper.autoplay.start();
 
-        if (isStopped) {
-            slider.trigger("play.owl.autoplay");
-            i.addClass("fas fa-pause");
-        } else {
-            slider.trigger("stop.owl.autoplay");
-            i.addClass("fas fa-play");
-        }
+                    og.removeClass("play");
+                    og.addClass("pause");
+                } else {
+                    swiper.autoplay.stop();
+                    og.removeClass("pause");
+                    og.addClass("play");
+                }
 
-        button.attr("data-stopped", !isStopped);
-    }).append($('<i class="fas fa-pause"></i>')).addClass("pause_play").insertAfter(slider.find(".owl-nav").eq(0).children().eq(0));
+            }),
+            $("<button></button>").addClass("next").on("click", () => {
+                swiper.slideNext();
+            }),
+        )
+    )
 }
