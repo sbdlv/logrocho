@@ -84,7 +84,7 @@ class UserRepository implements IDAO
         }
 
         $stmt = get_db_connection()->prepare("INSERT INTO `user`(`first_name`, `last_name`, `email`, `password`, `admin`, `created_date`) VALUES (?, ?, ?, sha1(?), ?, now())");
-        return $stmt->execute([isset($obj->first_name) ? $obj->first_name : "", isset($obj->last_name) ? $obj->last_name : "", $obj->email, $obj->password, false]);
+        return $stmt->execute([isset($obj->first_name) ? $obj->first_name : "", isset($obj->last_name) ? $obj->last_name : "", $obj->email, $obj->password, 0]);
     }
 
     /**
