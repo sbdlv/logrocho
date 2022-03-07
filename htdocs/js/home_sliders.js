@@ -3,7 +3,7 @@ var swiperBest5 = new Swiper(".best_pinchos_swiper", {
     spaceBetween: 30,
     centeredSlides: true,
     autoplay: {
-        delay: 3000,
+        delay: 5000,
         disableOnInteraction: false,
     },
     effect: "fade",
@@ -16,7 +16,7 @@ var swiperFav5 = new Swiper(".fav_swiper", {
     spaceBetween: 30,
     centeredSlides: true,
     autoplay: {
-        delay: 3000,
+        delay: 5000,
         disableOnInteraction: false,
     },
     effect: "flip",
