@@ -25,7 +25,7 @@ Por favor, leer todos los apartados de este fichero, en especial aquellos que af
 ## Detalles para DWES
 - Para las peticiones que requieren de permisos admin se ha comentado la linea que comprueba dicha condición (Por comodidad a la hora de hacer las pruebas con Postman)
 - Para las peticiones POST, todos los campos están definidos en el apartado de `Body`
-- Para probar a subir imágenes deberías de poder ver un campo llamado `pic` en las peticiones de `Upload IMG` (Bar y pincho)
+- Para probar a subir imágenes deberías de poder ver un campo llamado `pic` en las peticiones de `Upload IMG` (Bar y pincho) aun que también se puede hacer desde backoffice
 - Para la búsqueda por token se hace desde la llamada `Token search`.
 - Para la obtención de pinchos y reseñas por orden de puntuación, se hace desde la llamada `Best Pinchos and Reviews`.
 
