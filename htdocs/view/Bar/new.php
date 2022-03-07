@@ -42,10 +42,6 @@
                                     <td><input type="text" name="" id="bar_address" value="" autocomplete="off"></td>
                                 </tr>
                                 <tr>
-                                    <td>Puntuación</td>
-                                    <td class="puntuacionWrapper">?<i class="fas fa-star"></i></td>
-                                </tr>
-                                <tr>
                                     <td>Terraza</td>
                                     <td><input type="checkbox" name="" id="bar_terrace" autocomplete="off"></td>
                                 </tr>
