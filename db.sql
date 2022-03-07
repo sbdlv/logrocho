@@ -156,23 +156,23 @@ insert into user (first_name, last_name, email, password, admin, created_date) v
 insert into user (first_name, last_name, email, password, admin, created_date) values ('Godfry', 'McArtan', 'gmcartan9@squidoo.com', SHA1('usuario123ABC'), false, NOW());
 
 /* PINCHOS */
-insert into pincho (bar_id, name, `desc`, price) values (4, 'Bread - Rosemary Focaccia', 'ut tellus nulla ut erat id mauris vulputate elementum nullam varius nulla facilisi cras non velit', 1);
-insert into pincho (bar_id, name, `desc`, price) values (4, 'Truffle Shells - Semi - Sweet', 'eu est congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque', 2);
-insert into pincho (bar_id, name, `desc`, price) values (5, 'Milk - Nature Valley', 'id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien', 2);
-insert into pincho (bar_id, name, `desc`, price) values (1, 'Cherries - Fresh', 'tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla', 1.5);
-insert into pincho (bar_id, name, `desc`, price) values (4, 'Wine - Zinfandel California 2002', 'donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum', 1.5);
-insert into pincho (bar_id, name, `desc`, price) values (1, 'Cabbage - Savoy', 'aliquam quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante', 1.5);
-insert into pincho (bar_id, name, `desc`, price) values (3, 'Arizona - Plum Green Tea', 'nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim', 1.5);
-insert into pincho (bar_id, name, `desc`, price) values (1, 'Glass Clear - 7 Oz Xl', 'integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices', 1.5);
-insert into pincho (bar_id, name, `desc`, price) values (1, 'Sauce - Alfredo', 'quis lectus suspendisse potenti in eleifend quam a odio in hac', 1.5);
-insert into pincho (bar_id, name, `desc`, price) values (3, 'Mustard - Pommery', 'sapien non mi integer ac neque duis bibendum morbi non quam nec dui', 1.5);
+insert into pincho (bar_id, name, `desc`, price) values (4, 'Bread - Rosemary Focaccia', 'Ut tellus nulla ut erat id mauris vulputate elementum nullam varius nulla facilisi cras non velit', 1);
+insert into pincho (bar_id, name, `desc`, price) values (4, 'Truffle Shells - Semi - Sweet', 'Eu est congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque', 2);
+insert into pincho (bar_id, name, `desc`, price) values (5, 'Milk - Nature Valley', 'Id lobortis convallis tortor risus dapibus augue vel accumsan tellus nisi eu orci mauris lacinia sapien', 2);
+insert into pincho (bar_id, name, `desc`, price) values (1, 'Cherries - Fresh', 'Tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla', 1.5);
+insert into pincho (bar_id, name, `desc`, price) values (4, 'Wine - Zinfandel California 2002', 'Donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum', 1.5);
+insert into pincho (bar_id, name, `desc`, price) values (1, 'Cabbage - Savoy', 'Aliquam quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante', 1.5);
+insert into pincho (bar_id, name, `desc`, price) values (3, 'Arizona - Plum Green Tea', 'Nisi nam ultrices libero non mattis pulvinar nulla pede ullamcorper augue a suscipit nulla elit ac nulla sed vel enim', 1.5);
+insert into pincho (bar_id, name, `desc`, price) values (1, 'Glass Clear - 7 Oz Xl', 'Integer ac leo pellentesque ultrices mattis odio donec vitae nisi nam ultrices', 1.5);
+insert into pincho (bar_id, name, `desc`, price) values (1, 'Sauce - Alfredo', 'Quis lectus suspendisse potenti in eleifend quam a odio in hac', 1.5);
+insert into pincho (bar_id, name, `desc`, price) values (3, 'Mustard - Pommery', 'Sapien non mi integer ac neque duis bibendum morbi non quam nec dui', 1.5);
 
 /* RESEÑAS */
-insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (1, 'vel nulla eget eros elementum', 'volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim', 2, 1, 5, 4);
-insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (4, 'faucibus accumsan odio curabitur convallis', 'egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero', 3, 3, 4, 4);
-insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (5, 'lobortis sapien sapien', 'suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis', 1, 2, 5, 1);
-insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (3, 'est phasellus sit amet', 'ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi', 3, 5, 4, 2);
-insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (2, 'quis justo maecenas rhoncus aliquam', 'interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur', 2, 5, 5, 3);
+insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (1, 'Vel nulla eget eros elementum', 'Volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim', 2, 1, 5, 4);
+insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (4, 'Daucibus accumsan odio curabitur convallis', 'Egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero', 3, 3, 4, 4);
+insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (5, 'Lobortis sapien sapien', 'Suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis', 1, 2, 5, 1);
+insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (3, 'Est phasellus sit amet', 'Ultrices posuere cubilia curae duis faucibus accumsan odio curabitur convallis duis consequat dui nec nisi', 3, 5, 4, 2);
+insert into review (user_id, title, `desc`, presentation, texture, taste, pincho_id) values (2, 'Quis justo maecenas rhoncus aliquam', 'Interdum in ante vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae duis faucibus accumsan odio curabitur', 2, 5, 5, 3);
 
 /* LIKES */
 insert into review_user_likes (user_id, review_id, isLike) values (5, 1, true);
